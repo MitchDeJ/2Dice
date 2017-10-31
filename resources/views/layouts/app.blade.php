@@ -10,7 +10,7 @@
     <title>Dice 2.0 - BETA 1.0</title>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/favicon.png" />
-    <!-- Bootstrap core CSS-->s
+    <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template-->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -130,7 +130,6 @@
         </ul>
     </div>
 </nav>
-
 <div class="content-wrapper">
 @yield('content')
 </div>
