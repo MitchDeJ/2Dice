@@ -8,7 +8,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Dice 2.0 - BETA 1.0</title>
-    <!-- Bootstrap core CSS-->
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png" />
+    <!-- Bootstrap core CSS-->s
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template-->
     <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
