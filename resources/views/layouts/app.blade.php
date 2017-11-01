@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Dice 2.0 - BETA 1.0</title>
+    <title>2Dice - BETA 1.0</title>
     <!-- Force scrollbar -->
     <style> html {
             overflow: -moz-scrollbars-vertical;
@@ -111,19 +111,13 @@
             <span style="display:inline-block; width: 50px;"></span>
 
             <li class="nav-item">
-                <span class="navbar-text">Cash: $200.000</span>
+                <span class="navbar-text">Cash: ${{number_format(Auth::user()->cash)}}</span>
             </li>
 
             <span style="display:inline-block; width: 50px;"></span>
 
             <li class="nav-item">
-                <span class="navbar-text">Bank: $56.568.888</span>
-            </li>
-
-            <span style="display:inline-block; width: 50px;"></span>
-
-            <li class="nav-item">
-                <a href="{{ url('/profile') }}" class="nav-link">Envy</a>
+                <a href="{{ url('/profile') }}" class="nav-link">{{Auth::user()->name}}</a>
             </li>
 
             <span style="display:inline-block; width: 50px;"></span>

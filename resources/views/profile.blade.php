@@ -11,16 +11,16 @@
 @section('content')
     <div class="container-fluid">
         <div class="card mb-3">
-            <div class="card-header"><i style="color: #f39c12;" class="fa fa-user"></i> Envy's profile | <a class="text-dark" href="#"> Edit
+            <div class="card-header"><i style="color: #f39c12;" class="fa fa-user"></i> {{$user->name}}'s profile | <a class="text-dark" href="#"> Edit
                     profile</a></div>
             <div class="card-body">
                 <img src="img/placeholder.png" width="200px" height="200px" class="img-thumbnail"
                      style="display: block; margin: auto; margin-bottom: 1%">
-                <h4 class="text-center"><strong>Billionaire</strong> Envy</h4>
+                <h4 class="text-center"><strong>Title</strong> {{$user->name}}</h4>
 
                 <div class="form-group">
                     <label for="about_area"><h5>About me</h5></label>
-                    <textarea class="form-control text-center" id="about_area" rows="3" disabled>Lorem ipsum</textarea>
+                    <textarea class="form-control text-center" id="about_area" rows="3" disabled>{{$user->desc}}</textarea>
                 </div>
 
                 <label for="about_area"><h5>Player information</h5></label>
@@ -32,16 +32,13 @@
                             <td><i style="color: #f39c12;" class="fa fa-user"></i> <strong>Leaderboard rank:</strong> #1</td>
                         </tr>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-user"></i> <strong>Power:</strong> 1.555.666</td>
+                            <td><i style="color: #f39c12;" class="fa fa-user"></i> <strong>Power:</strong> {{ number_format($user->power) }}</td>
                         </tr>
                         <tr>
                             <td><i style="color: #f39c12;" class="fa fa-home"></i> <strong>Company:</strong> Ome Duo</td>
                         </tr>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-usd"></i> <strong>Cash:</strong> $101.556.677</td>
-                        </tr>
-                        <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-bank"></i> <strong>Bank:</strong> $1.464.634.664.666</td>
+                            <td><i style="color: #f39c12;" class="fa fa-usd"></i> <strong>Cash:</strong> ${{number_format($user->cash)}}</td>
                         </tr>
                         </tbody>
                     </table>

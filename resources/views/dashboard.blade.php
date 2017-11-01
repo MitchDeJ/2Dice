@@ -11,7 +11,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="card mb-3">
-            <div class="card-header"><i style="color: #f39c12;" class="fa fa-user"></i> Envy's dashboard</div>
+            <div class="card-header"><i style="color: #f39c12;" class="fa fa-user"></i> {{$user->name}}'s dashboard</div>
 
             <div class="card-body">
                 <div class="row">
@@ -36,7 +36,7 @@
                             <td><i style="color: #f39c12;" class="fa fa-industry"></i> <strong>Stone:</strong> 101.556.677</td>
                         </tr>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-user"></i> <strong>Power:</strong> 1.555.666</td>
+                            <td><i style="color: #f39c12;" class="fa fa-user"></i> <strong>Power:</strong> {{number_format($user->power)}}</td>
                             <td><i style="color: #f39c12;" class="fa fa-industry"></i> <strong>Wood:</strong> 264.634.664</td>
                         </tr>
                         <tr>
@@ -56,11 +56,11 @@
                         <tbody>
                         <tr>
                             <td><i style="color: #f39c12;" class="fa fa-calendar-check-o"></i> <strong>Started:</strong> 1-11-2017</td>
-                            <td><i style="color: #f39c12;" class="fa fa-usd"></i> <strong>Cash:</strong> $101.556.677</td>
+                            <td><i style="color: #f39c12;" class="fa fa-usd"></i> <strong>Cash:</strong> {{number_format($user->cash)}}</td>
                         </tr>
                         <tr>
                             <td><i style="color: #f39c12;" class="fa fa-id-card"></i> <strong>Titles unlocked:</strong> 9/11</td>
-                            <td><i style="color: #f39c12;" class="fa fa-bank"></i> <strong>Bank:</strong> $64.634.664.666</td>
+                            <td><i style="color: #f39c12;" class="fa fa-bank"></i> <strong>????:</strong> ??????????</td>
                         </tr>
                         </tbody>
                     </table>
