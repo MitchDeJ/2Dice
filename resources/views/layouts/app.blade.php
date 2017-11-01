@@ -14,21 +14,21 @@
             overflow-y: scroll;
         }</style>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="img/favicon.png"/>
+    <link rel="icon" type="image/png" href={{ asset("img/favicon.png")}}/>
     <!-- Custom stylesheet -->
-    <link href="css/stylesheet.css" rel="stylesheet">
+    {{ Html::style('css/stylesheet.css') }}
     <!-- Bootstrap core CSS-->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    {{ Html::style("vendor/bootstrap/css/bootstrap.min.css" ) }}
     <!-- Custom fonts for this template-->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    {{ Html::style("vendor/font-awesome/css/font-awesome.min.css" ) }}
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    {{ Html::style("css/sb-admin.css") }}
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a href="{{ url('/dashboard') }}"><img src="img/dicelogo.png" alt="Dice logo" width="100px" height="40px"></a>
+    <a href="{{ url('/dashboard') }}"><img src="{{asset("img/dicelogo.png")}}" alt="Dice logo" width="100px" height="40px"></a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
             data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -151,12 +151,13 @@
     @yield('content')
 </div>
 <!-- Bootstrap core JavaScript-->
-<script src="vendor/jquery/jquery.min.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+{{ Html::script("vendor/jquery/jquery.min.js") }}
+
+{{ Html::script("vendor/bootstrap/js/bootstrap.bundle.min.js") }}
 <!-- Core plugin JavaScript-->
-<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+{{ Html::script("vendor/jquery-easing/jquery.easing.min.js") }}
 <!-- Custom scripts for all pages-->
-<script src="js/sb-admin.min.js"></script>
+{{ Html::script("js/sb-admin.min.js") }}
 </body>
 </html>
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use File;
 use Image;
+use App\User;
 
 class ProfileController extends Controller
 {
@@ -17,6 +18,11 @@ class ProfileController extends Controller
     public function index()
     {
         return view('profile', array("user" => Auth::user()));
+    }
+
+    public function otherProfile($name)
+    {
+        return view("profile", array("user" => User::where("name", $name)->get()->first()));
     }
 
     public function edit()
