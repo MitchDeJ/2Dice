@@ -30,32 +30,65 @@
                               disabled>{{$user->desc}}</textarea>
                 </div>
 
-                <label for="about_area"><h5>Player information</h5></label>
+                <label for="about_area"><h5>Status</h5></label>
 
                 <div class="table-responsive table-bordered">
                     <table class="table table-bordered table-bordered table-striped">
                         <tbody>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-user"></i> <strong>Leaderboard rank:</strong> #1
-                            </td>
+                            <td><i class="fa fa-trophy i_button_background"></i> <strong>Leaderboard position:</strong> #1</td>
                         </tr>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-user"></i>
+                            <td><i class="fa fa-star i_button_background"></i> <strong>Rank:</strong> 1 (Prestige 0)</td>
+                        </tr>
+                        <tr>
+                            <td><i style="color: #f39c12;" class="fa fa-rocket"></i>
                                 <strong>Power:</strong> {{ number_format($user->power) }}</td>
                         </tr>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-home"></i> <strong>Company:</strong> Ome Duo
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-usd"></i> <strong>Cash:</strong>
-                                ${{number_format($user->cash)}}</td>
+                            <td><i class="fa fa-diamond i_button_background"></i> <strong>VIP:</strong> Yes</td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
 
-                <br> <label for="about_area"><h5>Betting information</h5></label>
+                <br> <label for="about_area"><h5>Cash</h5></label>
+
+                <div class="table-responsive table-bordered">
+                    <table class="table table-bordered table-bordered table-striped">
+                        <tbody>
+                        <tr>
+                            <td><i style="color: #f39c12;" class="fa fa-usd i_button_background"></i> <strong>Cash:</strong> ${{number_format($user->cash)}}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-money i_button_background"></i> <strong>Total worth:</strong> $50,666,666</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <br> <label for="about_area"><h5>About</h5></label>
+
+                <div class="table-responsive table-bordered">
+                    <table class="table table-bordered table-bordered table-striped">
+                        <tbody>
+                        <tr>
+                            <td><i style="color: #f39c12;" class="fa fa-building"></i> <strong>Company:</strong> <a href="#" class="text-dark"> Ome Duo</a></td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-plane i_button_background"></i> <strong>Location:</strong> The Netherlands</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-calendar i_button_background"></i> <strong>Started:</strong> 1-11-2017</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-calendar-check-o i_button_background"></i> <strong>Last logged in:</strong> 2-11-2017</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <br> <label for="about_area"><h5>Betting</h5></label>
 
                 <div class="table-responsive table-bordered">
                     <table class="table table-bordered table-bordered table-striped">
@@ -67,7 +100,7 @@
                     </table>
                 </div>
 
-                <br> <label for="about_area"><h5>Object information</h5></label>
+                <br> <label for="about_area"><h5>Object</h5></label>
 
                 <div class="table-responsive table-bordered">
                     <table class="table table-bordered table-bordered table-striped">

@@ -32,16 +32,20 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><i class="fa fa-user i_button_background"></i> <strong>Leaderboard rank:</strong> #1</td>
+                            <td><i class="fa fa-trophy i_button_background"></i> <strong>Leaderboard position:</strong> #1</td>
                             <td><i class="fa fa-area-chart i_button_background"></i> <strong>Stone:</strong> 101.556.677</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-rocket i_button_background"></i> <strong>Power:</strong> {{number_format($user->power)}}</td>
+                            <td><i class="fa fa-star i_button_background"></i> <strong>Rank:</strong> 1 (Prestige 0)</td>
                             <td><i class="fa fa-area-chart i_button_background"></i> <strong>Wood:</strong> 264.634.664</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-plane i_button_background"></i> <strong>Location:</strong> The Netherlands</td>
+                            <td><i class="fa fa-rocket i_button_background"></i> <strong>Power:</strong> {{number_format($user->power)}}</td>
                             <td><i class="fa fa-area-chart i_button_background"></i> <strong>Wheat:</strong> 464.634.664</td>
+                        </tr>
+                        <tr>
+                            <td><i class="fa fa-diamond i_button_background"></i> <strong>VIP:</strong> Yes (21 days left)</td>
+                            <td></td>
                         </tr>
                         </tbody>
                     </table>
@@ -55,12 +59,12 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><i class="fa fa-calendar-check-o i_button_background"></i> <strong>Started:</strong> 1-11-2017</td>
+                            <td><i class="fa fa-plane i_button_background"></i> <strong>Location:</strong> The Netherlands</td>
                             <td><i style="color: #f39c12;" class="fa fa-usd i_button_background"></i> <strong>Cash:</strong> ${{number_format($user->cash)}}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-id-card i_button_background"></i> <strong>Titles unlocked:</strong> 9/11</td>
-                            <td><i class="fa fa-bank i_button_background"></i> <strong>Total worth:</strong> $50,666,666</td>
+                            <td><i class="fa fa-calendar-check-o i_button_background"></i> <strong>Started:</strong> 1-11-2017</td>
+                            <td><i class="fa fa-money i_button_background"></i> <strong>Total worth:</strong> $50,666,666</td>
                         </tr>
                         </tbody>
                     </table>
