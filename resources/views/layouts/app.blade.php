@@ -11,10 +11,10 @@
     <!-- Force scrollbar -->
     <style> html {
             overflow: -moz-scrollbars-vertical;
-        overflow-y: scroll;
+            overflow-y: scroll;
         }</style>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="img/favicon.png" />
+    <link rel="icon" type="image/png" href="img/favicon.png"/>
     <!-- Custom stylesheet -->
     <link href="css/stylesheet.css" rel="stylesheet">
     <!-- Bootstrap core CSS-->
@@ -29,7 +29,9 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <a href="{{ url('/dashboard') }}"><img src="img/dicelogo.png" alt="Dice logo" width="100px" height="40px"></a>
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+            data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+            aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -53,7 +55,8 @@
                 </a>
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ja">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents" data-parent="#exampleAccordion">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents"
+                   data-parent="#exampleAccordion">
                     <i class="fa fa-fw fa-wrench"></i>
                     <span class="nav-link-text">Ja</span>
                 </a>
@@ -76,13 +79,14 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle mr-lg-2" id="messagesDropdown" href="#" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
                     <i class="fa fa-fw fa-envelope"></i>
                     <span class="d-lg-none">Messages
               <span class="badge badge-pill badge-primary">12 New</span>
             </span>
                     <span class="indicator text-primary d-none d-lg-block">
-              <i style="color: #f39c12;"class="fa fa-fw fa-circle"></i>
+              <i style="color: #f39c12;" class="fa fa-fw fa-circle"></i>
             </span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="messagesDropdown">
@@ -91,19 +95,26 @@
                     <a class="dropdown-item" href="#">
                         <strong>David Miller</strong>
                         <span class="small float-right text-muted">11:21 AM</span>
-                        <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome! These messages clip off when they reach the end of the box so they don't overflow over to the sides!</div>
+                        <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome!
+                            These messages clip off when they reach the end of the box so they don't overflow over to
+                            the sides!
+                        </div>
                     </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">
                         <strong>Jane Smith</strong>
                         <span class="small float-right text-muted">11:21 AM</span>
-                        <div class="dropdown-message small">I was wondering if you could meet for an appointment at 3:00 instead of 4:00. Thanks!</div>
+                        <div class="dropdown-message small">I was wondering if you could meet for an appointment at 3:00
+                            instead of 4:00. Thanks!
+                        </div>
                     </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">
                         <strong>John Doe</strong>
                         <span class="small float-right text-muted">11:21 AM</span>
-                        <div class="dropdown-message small">I've sent the final files over to you for review. When you're able to sign off of them let me know and we can discuss distribution.</div>
+                        <div class="dropdown-message small">I've sent the final files over to you for review. When
+                            you're able to sign off of them let me know and we can discuss distribution.
+                        </div>
                     </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item small" href="{{ url('/inbox') }}">View all messages</a>
@@ -125,14 +136,19 @@
             <span style="display:inline-block; width: 50px;"></span>
 
             <li class="nav-item">
-                <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                   document.getElementById('logout-form').submit();" class="nav-link" data-toggle="modal"
+                   data-target="#exampleModal">
                     <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
             </li>
         </ul>
     </div>
 </nav>
 <div class="content-wrapper">
-@yield('content')
+    @yield('content')
 </div>
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
