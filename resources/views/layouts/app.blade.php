@@ -8,6 +8,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Dice 2.0 - BETA 1.0</title>
+    <!-- Force scrollbar -->
+    <style> html {
+            overflow: -moz-scrollbars-vertical;
+        overflow-y: scroll;
+        }</style>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/favicon.png" />
     <!-- Bootstrap core CSS-->
@@ -21,14 +26,14 @@
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <img src="img/dicelogo.png" alt="Dice logo" width="100px" height="40px">
+    <a href="{{ url('/dashboard') }}"><img src="img/dicelogo.png" alt="Dice logo" width="100px" height="40px"></a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ url('/dashboard') }}">
                     <i class="fa fa-fw fa-dashboard"></i>
                     <span class="nav-link-text">Dashboard</span>
                 </a>
@@ -75,7 +80,7 @@
               <span class="badge badge-pill badge-primary">12 New</span>
             </span>
                     <span class="indicator text-primary d-none d-lg-block">
-              <i class="fa fa-fw fa-circle"></i>
+              <i style="color: #f39c12;"class="fa fa-fw fa-circle"></i>
             </span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="messagesDropdown">
@@ -118,7 +123,7 @@
             <span style="display:inline-block; width: 50px;"></span>
 
             <li class="nav-item">
-                <a class="nav-link">Envy</a>
+                <a href="{{ url('/profile') }}" class="nav-link">Envy</a>
             </li>
 
             <span style="display:inline-block; width: 50px;"></span>
