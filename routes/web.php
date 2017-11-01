@@ -24,3 +24,4 @@ Route::get('/inbox', 'InboxController@index')->name('inbox');
 Route::get('/message', 'MessageController@index')->name('message');
 Route::get('/newmessage', 'NewMessageController@index')->name('newmessage');
 Route::get('/leaderboard', 'LeaderboardController@index')->name('leaderboard');
+Route::get('/changepassword', 'ChangePasswordController@index')->name('changepassword');
