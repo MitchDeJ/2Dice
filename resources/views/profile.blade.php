@@ -14,13 +14,13 @@
             <div class="card-header"><i style="color: #f39c12;" class="fa fa-user"></i> {{$user->name}}'s profile | <a class="text-dark" href="{{ url('/editprofile') }}"> Edit
                     profile</a></div>
             <div class="card-body">
-                <img src="img/placeholder.png" width="200px" height="200px" class="img-thumbnail"
+                <img src="{!! url("/userimg/".$user->avatar) !!}" width="200px" height="200px" class="img-thumbnail"
                      style="display: block; margin: auto; margin-bottom: 1%">
                 <h4 class="text-center"><strong>Title</strong> {{$user->name}}</h4>
 
                 <div class="form-group">
                     <label for="about_area"><h5>About me</h5></label>
-                    <textarea class="form-control text-center" id="about_area" rows="3" disabled>{{$user->desc}}</textarea>
+                    <textarea class="form-control text-center" id="about_area" rows="6" disabled>{{$user->desc}}</textarea>
                 </div>
 
                 <label for="about_area"><h5>Player information</h5></label>

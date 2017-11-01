@@ -18,7 +18,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
 Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::post('editprofile', 'ProfileController@updateAvatar');
+Route::post("/updateDesc",["uses" => "ProfileController@updateDesc", "as"=>"profile.updateDesc"]);
+
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/inbox', 'InboxController@index')->name('inbox');
 Route::get('/message', 'MessageController@index')->name('message');

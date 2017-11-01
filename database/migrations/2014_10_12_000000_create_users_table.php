@@ -18,8 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name', 20)->unique();
             $table->string('email', 64)->unique();
             $table->string('password');
-            $table->string("avatar")->default("default.jpg");
-            $table->string("desc")->default("Welcome to my profile! This is a standard description.");
+            $table->string("avatar")->default("default.png");
+            $table->string("desc",400)->default("Welcome to my profile! This is a standard description.");
             $table->bigInteger('power')->default(0);
             $table->biginteger('cash')->default(100000);
             $table->integer('companyid')->default(-1);
