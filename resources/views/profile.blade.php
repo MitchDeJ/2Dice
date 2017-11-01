@@ -11,7 +11,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="card mb-3">
-            <div class="card-header"><i style="color: #f39c12;" class="fa fa-user"></i> {{$user->name}}'s profile | <a class="text-dark" href="#"> Edit
+            <div class="card-header"><i style="color: #f39c12;" class="fa fa-user"></i> {{$user->name}}'s profile | <a class="text-dark" href="{{ url('/editprofile') }}"> Edit
                     profile</a></div>
             <div class="card-body">
                 <img src="img/placeholder.png" width="200px" height="200px" class="img-thumbnail"
