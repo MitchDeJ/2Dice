@@ -43,12 +43,6 @@
                             </span>
                         @endif
                     </div>
-                    <div class="form-group">
-                        <div class="form-check">
-                            <label class="form-check-label">
-                                <input type="checkbox" {{ old('remember') ? 'checked' : '' }}> Remember Password</label>
-                        </div>
-                    </div>
                     <button type="submit" class="btn btn-primary btn-block">
                         Login
                     </button>
