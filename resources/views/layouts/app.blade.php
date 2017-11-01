@@ -42,7 +42,7 @@
             </li>
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Leaderboard">
                 <a class="nav-link" href="{{ url('/leaderboard') }}">
-                    <i class="fa fa-fw fa-area-chart"></i>
+                    <i class="fa fa-fw fa-line-chart"></i>
                     <span class="nav-link-text">Leaderboard</span>
                 </a>
             </li>
