@@ -18,7 +18,7 @@
                     <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/profile') }}" class="text-dark"><button type="button" class="btn btn-default">View profile</button></a></div>
                     <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/profile') }}" class="text-dark"><button type="button" class="btn btn-default">View company</button></a></div>
                     <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/inbox') }}" class="text-dark"><button type="button" class="btn btn-default">View messages</button></a></div>
-                    <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/profile') }}" class="text-dark"><button type="button" class="btn btn-default">Change password</button></a></div>
+                    <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/changepassword') }}" class="text-dark"><button type="button" class="btn btn-default">Change password</button></a></div>
                 </div> <hr />
 
 
