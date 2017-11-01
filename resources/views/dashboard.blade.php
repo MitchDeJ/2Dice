@@ -11,14 +11,14 @@
 @section('content')
     <div class="container-fluid">
         <div class="card mb-3">
-            <div class="card-header"><i style="color: #f39c12;" class="fa fa-user"></i> {{$user->name}}'s dashboard</div>
+            <div class="card-header"><i class="fa fa-user i_button_background"></i> {{$user->name}}'s dashboard</div>
 
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-3"><a href="{{ url('/profile') }}" class="text-dark">View profile</a></div>
-                    <div class="col-md-3"><a href="{{ url('/profile') }}" class="text-dark">View company</a></div>
-                    <div class="col-md-3"><a href="{{ url('/profile') }}" class="text-dark">Account settings</a></div>
-                    <div class="col-md-3"><a href="{{ url('/profile') }}" class="text-dark">Change password</a></div>
+                    <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/profile') }}" class="text-dark"><button type="button" class="btn btn-default">View profile</button></a></div>
+                    <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/profile') }}" class="text-dark"><button type="button" class="btn btn-default">View company</button></a></div>
+                    <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/profile') }}" class="text-dark"><button type="button" class="btn btn-default">Account settings</button></a></div>
+                    <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/profile') }}" class="text-dark"><button type="button" class="btn btn-default">Change password</button></a></div>
                 </div> <hr />
 
 
@@ -27,21 +27,21 @@
                         <thead>
                         <tr>
                             <td>Status</td>
-                            <td>Statistics</td>
+                            <td>Resources</td>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-user"></i> <strong>Leaderboard rank:</strong> #1</td>
-                            <td><i style="color: #f39c12;" class="fa fa-industry"></i> <strong>Stone:</strong> 101.556.677</td>
+                            <td><i class="fa fa-user i_button_background"></i> <strong>Leaderboard rank:</strong> #1</td>
+                            <td><i class="fa fa-industry i_button_background"></i> <strong>Stone:</strong> 101.556.677</td>
                         </tr>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-user"></i> <strong>Power:</strong> {{number_format($user->power)}}</td>
-                            <td><i style="color: #f39c12;" class="fa fa-industry"></i> <strong>Wood:</strong> 264.634.664</td>
+                            <td><i class="fa fa-user i_button_background"></i> <strong>Power:</strong> {{number_format($user->power)}}</td>
+                            <td><i class="fa fa-industry i_button_background"></i> <strong>Wood:</strong> 264.634.664</td>
                         </tr>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-plane"></i> <strong>Location:</strong> The Netherlands</td>
-                            <td><i style="color: #f39c12;" class="fa fa-industry"></i> <strong>Wheat:</strong> 464.634.664</td>
+                            <td><i class="fa fa-plane i_button_background"></i> <strong>Location:</strong> The Netherlands</td>
+                            <td><i class="fa fa-industry i_button_background"></i> <strong>Wheat:</strong> 464.634.664</td>
                         </tr>
                         </tbody>
                     </table>
@@ -55,12 +55,12 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-calendar-check-o"></i> <strong>Started:</strong> 1-11-2017</td>
-                            <td><i style="color: #f39c12;" class="fa fa-usd"></i> <strong>Cash:</strong> {{number_format($user->cash)}}</td>
+                            <td><i class="fa fa-calendar-check-o i_button_background"></i> <strong>Started:</strong> 1-11-2017</td>
+                            <td><i style="color: #f39c12;" class="fa fa-usd i_button_background"></i> <strong>Cash:</strong> ${{number_format($user->cash)}}</td>
                         </tr>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-id-card"></i> <strong>Titles unlocked:</strong> 9/11</td>
-                            <td><i style="color: #f39c12;" class="fa fa-bank"></i> <strong>????:</strong> ??????????</td>
+                            <td><i class="fa fa-id-card i_button_background"></i> <strong>Titles unlocked:</strong> 9/11</td>
+                            <td><i class="fa fa-bank i_button_background"></i> <strong>????:</strong> ??????????</td>
                         </tr>
                         </tbody>
                     </table>
@@ -75,12 +75,12 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-calendar-check-o"></i> <strong>Started:</strong> 1-11-2017</td>
-                            <td><i style="color: #f39c12;" class="fa fa-usd"></i> <strong>Cash:</strong> $101.556.677</td>
+                            <td><i class="fa fa-signal i_button_background"></i> <strong>Bet:</strong> 1</td>
+                            <td><i class="fa fa-home i_button_background"></i> <strong>Company:</strong> Ome Duo</td>
                         </tr>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-id-card"></i> <strong>Titles unlocked:</strong> 9/11</td>
-                            <td><i style="color: #f39c12;" class="fa fa-bank"></i> <strong>Bank:</strong> $64.634.664.666</td>
+                            <td><i class="fa fa-signal i_button_background"></i> <strong>Bet:</strong> 1</td>
+                            <td><i class="fa fa-home i_button_background"></i> <strong>Company rank:</strong> #3</td>
                         </tr>
                         </tbody>
                     </table>

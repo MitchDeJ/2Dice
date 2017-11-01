@@ -15,6 +15,8 @@
         }</style>
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="img/favicon.png" />
+    <!-- Custom stylesheet -->
+    <link href="css/stylesheet.css" rel="stylesheet">
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template-->
@@ -104,7 +106,7 @@
                         <div class="dropdown-message small">I've sent the final files over to you for review. When you're able to sign off of them let me know and we can discuss distribution.</div>
                     </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item small" href="#">View all messages</a>
+                    <a class="dropdown-item small" href="{{ url('/inbox') }}">View all messages</a>
                 </div>
             </li>
 

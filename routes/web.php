@@ -20,3 +20,6 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/inbox', 'InboxController@index')->name('inbox');
+Route::get('/message', 'MessageController@index')->name('message');
+Route::get('/newmessage', 'NewMessageController@index')->name('newmessage');

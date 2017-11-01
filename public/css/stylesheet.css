@@ -1,0 +1,10 @@
+.mail_button {
+    padding-bottom: 5px;
+    float: left;
+    display: inline-block;
+    margin-right: 0.5%;
+}
+
+.i_button_background {
+    color: #f39c12;
+}

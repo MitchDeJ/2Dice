@@ -62,8 +62,7 @@
                     <table class="table table-bordered table-bordered table-striped">
                         <tbody>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-globe"></i> <strong>Object(s):</strong> Blackjack Holland | Roulette
-                                Belgium
+                            <td><i style="color: #f39c12;" class="fa fa-globe"></i> <strong>Object(s):</strong> Blackjack Holland | Roulette Belgium
                             </td>
                         </tr>
                         </tbody>
