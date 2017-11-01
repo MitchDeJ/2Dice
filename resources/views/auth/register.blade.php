@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>SB Admin - Start Bootstrap Template</title>
+    <title>2Dice - BETA 1.0</title>
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom fonts for this template-->
@@ -17,9 +17,11 @@
 </head>
 
 <body class="bg-dark">
+<div class="col-md-12">
+    <a href="{{ url('/dashboard') }}"><img class="logo_center" src="img/dicelogo.png" style="margin: auto; margin-top: 2%; display: block; " alt="Dice logo" width="150px" height="60px"></a>
+</div>
 <div class="container">
     <div class="card card-register mx-auto mt-5">
-        <div class="card-header">Register an Account</div>
         <div class="card-body">
             <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                 {{ csrf_field() }}
