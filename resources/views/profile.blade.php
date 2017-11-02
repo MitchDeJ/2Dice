@@ -39,14 +39,19 @@
                             <td><i class="fa fa-trophy i_button_background"></i> <strong>Leaderboard position:</strong> #{{$lbrank}}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-star i_button_background"></i> <strong>Rank:</strong> 1 (Prestige 0)</td>
+                            <td><i class="fa fa-star i_button_background"></i> <strong>Rank:</strong> {{$user->rank}} (Prestige {{$user->prestige}})</td>
                         </tr>
                         <tr>
                             <td><i style="color: #f39c12;" class="fa fa-rocket"></i>
                                 <strong>Power:</strong> {{ number_format($user->power) }}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-diamond i_button_background"></i> <strong>VIP:</strong> Yes</td>
+                            <td><i class="fa fa-diamond i_button_background"></i> <strong>VIP:</strong>
+                                @if($user->vip == true)
+                                    Yes
+                                @else
+                                    No
+                                @endif</td>
                         </tr>
                         </tbody>
                     </table>
@@ -70,16 +75,16 @@
                     <table class="table table-bordered table-bordered table-striped">
                         <tbody>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-building"></i> <strong>Company:</strong> <a href="#" class="text-dark"> Ome Duo</a></td>
+                            <td><i style="color: #f39c12;" class="fa fa-building"></i> <strong>Company:</strong> <a href="#" class="text-dark"> {{$user->company}}</a></td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-plane i_button_background"></i> <strong>Location:</strong> The Netherlands</td>
+                            <td><i class="fa fa-plane i_button_background"></i> <strong>Location:</strong> {{$user->location}}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-calendar i_button_background"></i> <strong>Started:</strong> 1-11-2017</td>
+                            <td><i class="fa fa-calendar i_button_background"></i> <strong>Started:</strong> {{$user->started}}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-calendar-check-o i_button_background"></i> <strong>Last logged in:</strong> 2-11-2017</td>
+                            <td><i class="fa fa-calendar-check-o i_button_background"></i> <strong>Last logged in:</strong> {{$user->lastlogin}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -91,10 +96,10 @@
                     <table class="table table-bordered table-bordered table-striped">
                         <tbody>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> <strong>Highest bet:</strong> $10,000</td>
+                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> <strong>Highest bet:</strong> ${{number_format($user->highestbet)}}</td>
                         </tr>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> <strong>Total bets:</strong> 5245    </td>
+                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> <strong>Total bets:</strong> {{$user->totalbets}}</td>
                         </tr>
                         </tbody>
                     </table>

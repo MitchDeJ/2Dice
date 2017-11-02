@@ -18,11 +18,30 @@ class UsersTableSeeder extends Seeder
                 'password' => bcrypt("secret"),
                 'avatar' => "default.png",
                 'desc' => "this is a generated account",
+
+                'started' => "4-20-1337",
+                'lastlogin' => "4-20-1337",
+
+                'location' => 0,
+
+                'rank' => random_int(1, 10),
+                'xp' => 0,
+                'prestige' => random_int(0, 20),
+                'vip' => (boolean)random_int(0, 1),
                 'power' => random_int(1, 1337),
+
                 'cash' => random_int(1, 1000000),
-                'companyid' => -1,
+                'wood' => random_int(1, 13337),
+                'stone' => random_int(1, 13337),
+                'wheat' => random_int(1, 13337),
+
+                'company' => -1,
+
                 'title' => -1,
-                'unlocked_titles' => serialize(array_fill(0, 20, 0))
+                'unlockedtitles' => serialize(array_fill(0, 20, 0)),
+
+                'highestbet' => random_int(1, 13337),
+                'totalbets' => random_int(1, 5000)
             ]);
         }
     }

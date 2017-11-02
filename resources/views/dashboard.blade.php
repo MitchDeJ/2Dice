@@ -15,11 +15,23 @@
 
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/profile') }}" class="text-dark"><button type="button" class="btn btn-default">View profile</button></a></div>
-                    <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/profile') }}" class="text-dark"><button type="button" class="btn btn-default">View company</button></a></div>
-                    <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/inbox') }}" class="text-dark"><button type="button" class="btn btn-default">View messages</button></a></div>
-                    <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/changepassword') }}" class="text-dark"><button type="button" class="btn btn-default">Change password</button></a></div>
-                </div> <hr />
+                    <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/profile') }}"
+                                                                          class="text-dark">
+                            <button type="button" class="btn btn-default">View profile</button>
+                        </a></div>
+                    <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/profile') }}"
+                                                                          class="text-dark">
+                            <button type="button" class="btn btn-default">View company</button>
+                        </a></div>
+                    <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/inbox') }}" class="text-dark">
+                            <button type="button" class="btn btn-default">View messages</button>
+                        </a></div>
+                    <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/changepassword') }}"
+                                                                          class="text-dark">
+                            <button type="button" class="btn btn-default">Change password</button>
+                        </a></div>
+                </div>
+                <hr/>
 
 
                 <div class="table-responsive table-bordered">
@@ -32,19 +44,32 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><i class="fa fa-trophy i_button_background"></i> <strong>Leaderboard position:</strong> #{{$lbrank}}</td>
-                            <td><i class="fa fa-area-chart i_button_background"></i> <strong>Stone:</strong> 101.556.677</td>
+                            <td><i class="fa fa-trophy i_button_background"></i> <strong>Leaderboard position:</strong>
+                                #{{$lbrank}}</td>
+                            <td><i class="fa fa-area-chart i_button_background"></i>
+                                <strong>Stone:</strong> {{number_format($user->stone)}}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-star i_button_background"></i> <strong>Rank:</strong> 143634 (Prestige 0)</td>
-                            <td><i class="fa fa-area-chart i_button_background"></i> <strong>Wood:</strong> 264.634.664</td>
+                            <td><i class="fa fa-star i_button_background"></i> <strong>Rank:</strong> {{$user->rank}}
+                                (Prestige 0)
+                            </td>
+                            <td><i class="fa fa-area-chart i_button_background"></i>
+                                <strong>Wood:</strong> {{number_format($user->wood)}}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-rocket i_button_background"></i> <strong>Power:</strong> {{number_format($user->power)}}</td>
-                            <td><i class="fa fa-area-chart i_button_background"></i> <strong>Wheat:</strong> 464.634.664</td>
+                            <td><i class="fa fa-rocket i_button_background"></i>
+                                <strong>Power:</strong> {{number_format($user->power)}}</td>
+                            <td><i class="fa fa-area-chart i_button_background"></i>
+                                <strong>Wheat:</strong> {{number_format($user->wheat)}}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-diamond i_button_background"></i> <strong>VIP:</strong> Yes (21 days left)</td>
+                            <td><i class="fa fa-diamond i_button_background"></i> <strong>VIP: </strong>
+                                @if($user->vip == true)
+                                    Yes
+                                @else
+                                    No
+                                @endif
+                            </td>
                             <td></td>
                         </tr>
                         </tbody>
@@ -59,11 +84,14 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><i class="fa fa-plane i_button_background"></i> <strong>Location:</strong> The Netherlands</td>
-                            <td><i style="color: #f39c12;" class="fa fa-usd i_button_background"></i> <strong>Cash:</strong> ${{number_format($user->cash)}}</td>
+                            <td><i class="fa fa-plane i_button_background"></i>
+                                <strong>Location:</strong> {{$user->location}}</td>
+                            <td><i style="color: #f39c12;" class="fa fa-usd i_button_background"></i>
+                                <strong>Cash:</strong> ${{number_format($user->cash)}}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-calendar-check-o i_button_background"></i> <strong>Started:</strong> 1-11-2017</td>
+                            <td><i class="fa fa-calendar-check-o i_button_background"></i>
+                                <strong>Started:</strong> {{$user->started}}</td>
                             <td></td>
                         </tr>
                         </tbody>
@@ -79,12 +107,17 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> <strong>Highest bet:</strong> $10,000</td>
-                            <td><i class="fa fa-building i_button_background"></i> <strong>Company:</strong> Ome Duo</td>
+                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> <strong>Highest bet:</strong>
+                                ${{number_format($user->highestbet)}}
+                            </td>
+                            <td><i class="fa fa-building i_button_background"></i> <strong>Company:</strong> {{$user->company}}
+                            </td>
                         </tr>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> <strong>Total bets:</strong> 5354</td>
-                            <td><i class="fa fa-building i_button_background"></i> <strong>Company rank:</strong> #3</td>
+                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> <strong>Total bets:</strong> {{$user->totalbets}}
+                            </td>
+                            <td><i class="fa fa-building i_button_background"></i> <strong>Company rank:</strong> ??
+                            </td>
                         </tr>
                         </tbody>
                     </table>
