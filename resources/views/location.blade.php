@@ -13,7 +13,8 @@
         <div class="card mb-3">
             <div class="card-header"><i style="color: #f39c12;" class="fa fa-plane"></i> Location</div>
             <div class="card-body">
-                <p>You can fly to another country every <strong>30 minutes</strong>. The country you are currently in is marked in bold.</p>
+                <p>You can fly to another country every <strong>30 minutes</strong>. The country you are currently in is
+                    marked in bold.</p>
                 <p>As a VIP you can fly to another country every <strong>10 minutes</strong>.</p>
                 <div class="table-responsive">
                     <table class="table table-striped">
@@ -26,20 +27,27 @@
                         </thead>
                         <tbody>
                         @foreach($locations as $loc)
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios[]" value="option[]">
-                                </label>
-                            </td>
-                            <td>
-                                <img src="{{asset("img/".$loc->flag)}}"> {{$loc->name}}
-                            </td>
-                            <td>
-                                $1,000
-                            </td>
-                        </tr>
-                            @endforeach
+                            <tr>
+                                <td>
+                                    <label>
+                                        @if ($user->location != $loc->id)
+                                            <input type="radio" name="optionsRadios" id="optionsRadios[]"
+                                                   value="option[]">
+                                        @endif
+                                    </label>
+                                </td>
+                                <td>
+                                    <img src="{{asset("img/".$loc->flag)}}">
+                                    @if ($user->location != $loc->id) {{$loc->name}}
+                                    @else
+                                        <b>{{$loc->name}}</b>
+                                    @endif
+                                </td>
+                                <td>
+                                    $1,000
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
