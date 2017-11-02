@@ -27,14 +27,14 @@
                 <hr/>
 
 
-                <div class="table-responsive table-bordered">
-                    <table class="table table-bordered table-bordered table-striped">
+                <div class="table-responsive">
+                    <table class="table table-striped">
                         <thead>
                         <tr>
-                            <td style="width: 10%;">Title</td>
-                            <td style="width: 10%;">From</td>
-                            <td style="width: 10%;">Received at</td>
-                            <td style="width: 10%;">Action</td>
+                            <td class="table_dark_bg" style="width: 10%;">Title</td>
+                            <td class="table_dark_bg" style="width: 10%;">From</td>
+                            <td class="table_dark_bg" style="width: 10%;">Received at</td>
+                            <td class="table_dark_bg" style="width: 10%;">Action</td>
                         </tr>
                         </thead>
                         <tbody>

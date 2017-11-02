@@ -13,3 +13,8 @@
     margin-bottom: 50px;
     text-align: center;
 }
+
+.table_dark_bg {
+    background-color: #343a40;
+    color: white;
+}

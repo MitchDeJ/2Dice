@@ -25,15 +25,18 @@
                 <h4 class="text-center"><strong>Title</strong> {{$user->name}}</h4>
 
                 <div class="form-group">
-                    <label for="about_area"><h5>About me</h5></label>
+                    <br>
                     <textarea class="form-control text-center" id="about_area" rows="6"
                               disabled>{{$user->desc}}</textarea>
                 </div>
-
-                <label for="about_area"><h5>Status</h5></label>
-
-                <div class="table-responsive table-bordered">
-                    <table class="table table-bordered table-bordered table-striped">
+                <br>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <td class="table_dark_bg" style="width: 10%;">Status</td>
+                        </tr>
+                        </thead>
                         <tbody>
                         <tr>
                             <td><i class="fa fa-trophy i_button_background"></i> <strong>Leaderboard position:</strong> #{{$lbrank}}</td>
@@ -56,11 +59,14 @@
                         </tbody>
                     </table>
                 </div>
-
-                <br> <label for="about_area"><h5>Cash</h5></label>
-
-                <div class="table-responsive table-bordered">
-                    <table class="table table-bordered table-bordered table-striped">
+                <br>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <td class="table_dark_bg" style="width: 10%;">Cash</td>
+                        </tr>
+                        </thead>
                         <tbody>
                         <tr>
                             <td><i style="color: #f39c12;" class="fa fa-usd i_button_background"></i> <strong>Cash:</strong> ${{number_format($user->cash)}}</td>
@@ -68,11 +74,14 @@
                         </tbody>
                     </table>
                 </div>
-
-                <br> <label for="about_area"><h5>About</h5></label>
-
-                <div class="table-responsive table-bordered">
-                    <table class="table table-bordered table-bordered table-striped">
+                <br>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <td class="table_dark_bg" style="width: 10%;">About</td>
+                        </tr>
+                        </thead>
                         <tbody>
                         <tr>
                             <td><i style="color: #f39c12;" class="fa fa-building"></i> <strong>Company:</strong> <a href="#" class="text-dark"> {{$user->company}}</a></td>
@@ -89,11 +98,14 @@
                         </tbody>
                     </table>
                 </div>
-
-                <br> <label for="about_area"><h5>Betting</h5></label>
-
-                <div class="table-responsive table-bordered">
-                    <table class="table table-bordered table-bordered table-striped">
+                <br>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <td class="table_dark_bg" style="width: 10%;">Betting</td>
+                        </tr>
+                        </thead>
                         <tbody>
                         <tr>
                             <td><i style="color: #f39c12;" class="fa fa-signal"></i> <strong>Highest bet:</strong> ${{number_format($user->highestbet)}}</td>
@@ -104,15 +116,18 @@
                         </tbody>
                     </table>
                 </div>
-
-                <br> <label for="about_area"><h5>Object</h5></label>
-
-                <div class="table-responsive table-bordered">
-                    <table class="table table-bordered table-bordered table-striped">
+                <br>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <td class="table_dark_bg" style="width: 10%;">Object</td>
+                        </tr>
+                        </thead>
                         <tbody>
                         <tr>
                             <td><i style="color: #f39c12;" class="fa fa-globe"></i> <strong>Object(s):</strong>
-                                Blackjack Holland | Roulette Belgium
+                                Blackjack Russia
                             </td>
                         </tr>
                         </tbody>

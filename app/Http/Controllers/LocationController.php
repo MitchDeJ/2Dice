@@ -9,7 +9,7 @@ use App\Location;
 class LocationController extends Controller
 {
     /**
-     * Show the application inbox message.
+     * Show the application locations.
      *
      * @return \Illuminate\Http\Response
      */

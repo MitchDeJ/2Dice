@@ -15,13 +15,13 @@
             <div class="card-body">
                 <p>You can fly to another country every <strong>30 minutes</strong>. The country you are currently in is marked in bold.</p>
                 <p>As a VIP you can fly to another country every <strong>10 minutes</strong>.</p>
-                <div class="table-bordered table-responsive">
-                    <table class="table table-bordered table-striped">
+                <div class="table-responsive">
+                    <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th style="width: 0.5%;">Option</th>
-                            <th style="width: 10%;">Country</th>
-                            <th style="width: 10%;">Cost</th>
+                            <td class="table_dark_bg" style="width: 0.5%;">Option</td>
+                            <td class="table_dark_bg" style="width: 10%;">Country</td>
+                            <td class="table_dark_bg" style="width: 10%;">Cost</td>
                         </tr>
                         </thead>
                         <tbody>

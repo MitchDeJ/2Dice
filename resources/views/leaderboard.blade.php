@@ -12,7 +12,7 @@
     <div class="container-fluid">
         <div class="card mb-3">
             <div class="card-header"><i class="fa fa-tasks i_button_background"></i> Leaderboard</div>
-                <div class="table-bordered table-responsive">
+                <div class="table-responsive">
                     <div class="col-md-2" style="float: right;">
                     <label>Search:
                         {!! Form::open(['route' => ['leaderboard.getPlayer'], 'method' => 'post', 'class' => 'form-horizontal']) !!}
@@ -30,12 +30,12 @@
                         {!! Form::close() !!}
                     </label>
                     </div>
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th style="width: 2%;">Rank</th>
-                            <th style="width: 10%;">Player</th>
-                            <th style="width: 10%;">Power</th>
+                            <td class="table_dark_bg" style="width: 2%;">Rank</td>
+                            <td class="table_dark_bg"style="width: 10%;">Player</td>
+                            <td class="table_dark_bg" style="width: 10%;">Power</td>
                         </tr>
                         </thead>
                         <tbody>

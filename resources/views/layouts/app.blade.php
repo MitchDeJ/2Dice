@@ -47,20 +47,20 @@
 
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Leaderboard">
                 <a class="nav-link" href="{{ url('/leaderboard/1') }}">
-                    <i class="fa fa-fw fa-line-chart"></i>
+                    <i class="fa fa-fw fa-tasks"></i>
                     <span class="nav-link-text">Leaderboard</span>
                 </a>
             </li>
 
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Statistics">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ url('/statistics') }}">
                     <i class="fa fa-fw fa-area-chart"></i>
                     <span class="nav-link-text">Statistics</span>
                 </a>
             </li>
 
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Marketplace">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ url('/marketplace') }}">
                     <i class="fa fa-fw fa-university"></i>
                     <span class="nav-link-text">Marketplace</span>
                 </a>
