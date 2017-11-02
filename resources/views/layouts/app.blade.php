@@ -143,6 +143,13 @@
                 </ul>
             </li>
 
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Forum">
+                <a class="nav-link" href="{{ url('/forum') }}">
+                    <i class="fa fa-fw fa-comments"></i>
+                    <span class="nav-link-text">Forum</span>
+                </a>
+            </li>
+
         </ul>
         <ul class="navbar-nav sidenav-toggler">
             <li class="nav-item">
