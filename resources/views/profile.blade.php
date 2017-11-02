@@ -60,9 +60,6 @@
                         <tr>
                             <td><i style="color: #f39c12;" class="fa fa-usd i_button_background"></i> <strong>Cash:</strong> ${{number_format($user->cash)}}</td>
                         </tr>
-                        <tr>
-                            <td><i class="fa fa-money i_button_background"></i> <strong>Total worth:</strong> $50,666,666</td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>

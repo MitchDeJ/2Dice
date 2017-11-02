@@ -64,7 +64,7 @@
                         </tr>
                         <tr>
                             <td><i class="fa fa-calendar-check-o i_button_background"></i> <strong>Started:</strong> 1-11-2017</td>
-                            <td><i class="fa fa-money i_button_background"></i> <strong>Total worth:</strong> $50,666,666</td>
+                            <td></td>
                         </tr>
                         </tbody>
                     </table>
