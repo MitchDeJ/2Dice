@@ -31,6 +31,8 @@ Route::get('/editprofile', 'ProfileController@edit')->name('editprofile');
 Route::get('/location', 'LocationController@index')->name('location');
 Route::get('/statistics', 'StatisticsController@index')->name('statistics');
 Route::get('/marketplace', 'MarketplaceController@index')->name('marketplace');
+Route::get('/55x45', 'GamblingController@index')->name('55x45');
+Route::get('/coinflip', 'GamblingController@coinflip')->name('coinflip');
 
 Route::post('editprofile', 'ProfileController@updateAvatar');
 Route::post("/updateDesc",["uses" => "ProfileController@updateDesc", "as"=>"profile.updateDesc"]);

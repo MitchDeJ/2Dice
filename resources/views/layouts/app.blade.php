@@ -116,7 +116,10 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseBetting">
                     <li>
-                        <a href="#">Coinflip</a>
+                        <a href="{{ url('/55x45') }}">55/45</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/coinflip') }}">Coinflip</a>
                     </li>
                     <li>
                         <a href="#">Blackjack</a>
@@ -125,7 +128,7 @@
                         <a href="#">Roulette</a>
                     </li>
                     <li>
-                        <a href="#">Lottery</a>
+                        <a href="#">High lower</a>
                     </li>
                 </ul>
             </li>
