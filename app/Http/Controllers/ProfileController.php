@@ -17,12 +17,13 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('profile', array("user" => Auth::user()));
+        return view('profile', array("user" => Auth::user(), "lbrank" => $this->getLeaderboardRank(Auth::user()->name)));
     }
 
     public function otherProfile($name)
     {
-        return view("profile", array("user" => User::where("name", $name)->get()->first()));
+        $user = User::where("name", $name)->get()->first();
+        return view("profile", array("user" => $user, "lbrank" => $this->getLeaderboardRank($user->name)));
     }
 
     public function edit()
@@ -62,4 +63,15 @@ class ProfileController extends Controller
         $user->save();
         return redirect('editprofile')->with('success', 'Updated description.');
     }
+
+    public function getLeaderboardRank($name) {
+        $i = 0;
+        foreach(User::all()->sortByDesc('power') as $p) {
+            $i++;
+            if ($p->name == $name) {
+                return $i;
+            }
+        }
+    }
+
 }

@@ -36,7 +36,7 @@
                     <table class="table table-bordered table-bordered table-striped">
                         <tbody>
                         <tr>
-                            <td><i class="fa fa-trophy i_button_background"></i> <strong>Leaderboard position:</strong> #1</td>
+                            <td><i class="fa fa-trophy i_button_background"></i> <strong>Leaderboard position:</strong> #{{$lbrank}}</td>
                         </tr>
                         <tr>
                             <td><i class="fa fa-star i_button_background"></i> <strong>Rank:</strong> 1 (Prestige 0)</td>

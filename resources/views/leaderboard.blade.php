@@ -15,15 +15,19 @@
                 <div class="table-bordered table-responsive">
                     <div class="col-md-2" style="float: right;">
                     <label>Search:
-                        <input type="search" class="form-control form-control-sm" placeholder="" aria-controls="dataTable">
+                        {!! Form::open(['route' => ['leaderboard.getPlayer'], 'method' => 'post', 'class' => 'form-horizontal']) !!}
+                        {!! Form::text('name', '', ["class" => "form-control form-control-sm"]) !!}
+                        {!! Form::close() !!}
                     </label>
 
                     <label>Page
-                        <select name="dataTable_length" aria-controls="dataTable" class="form-control form-control-sm">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
+                        {!! Form::open(['route' => ['leaderboard.getPage'], 'method' => 'post', 'id' => 'pageselect']) !!}
+                        <select name="pageselected" class="form-control form-control-sm" form="pageselect" onchange="this.form.submit()">
+                            @for($i=1; $i<=$pages; $i++)
+                            <option value="{{$i}}" @if ($i == $num) selected="selected"@endif>{{$i}}</option>
+                                @endfor
                         </select>
+                        {!! Form::close() !!}
                     </label>
                     </div>
 
@@ -36,11 +40,13 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach ($users as $user)
                         <tr>
-                            <td>1</td>
-                            <td><a href="#" class="text-dark">Envy</a></td>
+                            <td>{{(($num-1)*25)+$loop->iteration}}</td>
+                            <td><a href="{{url("/profile/".$user->name)}}" class="text-dark">{{$user->name}}</a></td>
                             <td>{{number_format($user->power)}}</td>
                         </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
