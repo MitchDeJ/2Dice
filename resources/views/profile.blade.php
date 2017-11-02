@@ -39,17 +39,17 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><i class="fa fa-trophy i_button_background"></i> <strong>Leaderboard position:</strong> #{{$lbrank}}</td>
+                            <td><i class="fa fa-trophy i_button_background"></i> Leaderboard position: #{{$lbrank}}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-star i_button_background"></i> <strong>Rank:</strong> {{$user->rank}} (Prestige {{$user->prestige}})</td>
+                            <td><i class="fa fa-star i_button_background"></i> Rank: {{$user->rank}} (Prestige {{$user->prestige}})</td>
                         </tr>
                         <tr>
                             <td><i style="color: #f39c12;" class="fa fa-rocket"></i>
-                                <strong>Power:</strong> {{ number_format($user->power) }}</td>
+                                Power: {{ number_format($user->power) }}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-diamond i_button_background"></i> <strong>VIP:</strong>
+                            <td><i class="fa fa-diamond i_button_background"></i> VIP:
                                 @if($user->vip == true)
                                     Yes
                                 @else
@@ -69,7 +69,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-usd i_button_background"></i> <strong>Cash:</strong> ${{number_format($user->cash)}}</td>
+                            <td><i style="color: #f39c12;" class="fa fa-usd i_button_background"></i> Cash:${{number_format($user->cash)}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -84,16 +84,16 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-building"></i> <strong>Company:</strong> <a href="#" class="text-dark"> {{$user->company}}</a></td>
+                            <td><i style="color: #f39c12;" class="fa fa-building"></i> Company: <a href="#" class="text-dark"> {{$user->company}}</a></td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-plane i_button_background"></i> <strong>Location:</strong> {{$user->location}}</td>
+                            <td><i class="fa fa-plane i_button_background"></i> Location: {{$user->location}}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-calendar i_button_background"></i> <strong>Started:</strong> {{$user->started}}</td>
+                            <td><i class="fa fa-calendar i_button_background"></i> Started: {{$user->started}}</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-calendar-check-o i_button_background"></i> <strong>Last logged in:</strong> {{$user->lastlogin}}</td>
+                            <td><i class="fa fa-calendar-check-o i_button_background"></i> Last logged in: {{$user->lastlogin}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -108,10 +108,10 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> <strong>Highest bet:</strong> ${{number_format($user->highestbet)}}</td>
+                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> Highest bet: ${{number_format($user->highestbet)}}</td>
                         </tr>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> <strong>Total bets:</strong> {{$user->totalbets}}</td>
+                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> Total bets: {{$user->totalbets}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -126,7 +126,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-globe"></i> <strong>Object(s):</strong>
+                            <td><i style="color: #f39c12;" class="fa fa-globe"></i> Object(s):
                                 Blackjack Russia
                             </td>
                         </tr>
