@@ -32,7 +32,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><i class="fa fa-trophy i_button_background"></i> <strong>Leaderboard position:</strong> #1</td>
+                            <td><i class="fa fa-trophy i_button_background"></i> <strong>Leaderboard position:</strong> #{{$lbrank}}</td>
                             <td><i class="fa fa-area-chart i_button_background"></i> <strong>Stone:</strong> 101.556.677</td>
                         </tr>
                         <tr>

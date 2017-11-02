@@ -14,6 +14,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard', array("user" => Auth::user()));
+        return view('dashboard', array("user" => Auth::user(),
+            "lbrank" => app('App\Http\Controllers\ProfileController')->getLeaderboardRank(Auth::user()->name)));
     }
 }
