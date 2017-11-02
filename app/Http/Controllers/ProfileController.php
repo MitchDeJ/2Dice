@@ -7,6 +7,7 @@ use Auth;
 use File;
 use Image;
 use App\User;
+use App\Location;
 
 class ProfileController extends Controller
 {
@@ -17,13 +18,22 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        return view('profile', array("user" => Auth::user(), "lbrank" => $this->getLeaderboardRank(Auth::user()->name)));
+        $user = Auth::user();
+        return view('profile', array(
+            "user" => $user,
+            "lbrank" => $this->getLeaderboardRank(Auth::user()->name),
+            "location" => Location::where("id", $user->location)->get()->first()
+            ));
     }
 
     public function otherProfile($name)
     {
         $user = User::where("name", $name)->get()->first();
-        return view("profile", array("user" => $user, "lbrank" => $this->getLeaderboardRank($user->name)));
+        return view("profile", array(
+            "user" => $user,
+            "lbrank" => $this->getLeaderboardRank($user->name),
+            "location" => Location::where("id", $user->location)->get()->first()
+            ));
     }
 
     public function edit()

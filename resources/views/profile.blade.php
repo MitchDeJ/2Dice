@@ -87,7 +87,7 @@
                             <td><i style="color: #f39c12;" class="fa fa-building"></i> Company: <a href="#" class="text-dark"> {{$user->company}}</a></td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-plane i_button_background"></i> Location: {{$user->location}}</td>
+                            <td><i class="fa fa-plane i_button_background"></i> Location: {{$location->name}}</td>
                         </tr>
                         <tr>
                             <td><i class="fa fa-calendar i_button_background"></i> Started: {{$user->started}}</td>

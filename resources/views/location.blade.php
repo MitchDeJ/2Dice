@@ -26,13 +26,13 @@
                         </tr>
                         </thead>
                         <tbody>
+                        {!! Form::open(['route' => ['location.fly'], 'method' => 'post', 'id' => 'selection']) !!}
                         @foreach($locations as $loc)
                             <tr>
                                 <td>
                                     <label>
                                         @if ($user->location != $loc->id)
-                                            <input type="radio" name="optionsRadios" id="optionsRadios[]"
-                                                   value="option[]">
+                                            {{ Form::radio('location'.$loc->id, $loc->name) }}
                                         @endif
                                     </label>
                                 </td>
@@ -51,7 +51,8 @@
                         </tbody>
                     </table>
                 </div>
-                <button type="button" class="btn btn-default">Fly</button>
+                <button type="submit" class="btn btn-default">Fly</button>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>

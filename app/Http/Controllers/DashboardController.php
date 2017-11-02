@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Location;
 
 class DashboardController extends Controller
 {
@@ -14,7 +15,11 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard', array("user" => Auth::user(),
-            "lbrank" => app('App\Http\Controllers\ProfileController')->getLeaderboardRank(Auth::user()->name)));
+        $user = Auth::user();
+        return view('dashboard', array(
+            "user" => $user,
+            "lbrank" => app('App\Http\Controllers\ProfileController')->getLeaderboardRank(Auth::user()->name),
+            "location" => Location::where("id", $user->location)->get()->first()
+            ));
     }
 }

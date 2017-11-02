@@ -99,7 +99,7 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td><i class="fa fa-plane i_button_background"></i> Location: {{$user->location}}</td>
+                                <td><i class="fa fa-plane i_button_background"></i> Location: {{$location->name}}</td>
                             </tr>
                             <tr>
                                 <td><i class="fa fa-calendar-check-o i_button_background"></i> Started: {{$user->started}}</td>
