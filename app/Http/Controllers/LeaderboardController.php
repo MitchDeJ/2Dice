@@ -27,13 +27,13 @@ class LeaderboardController extends Controller
         if ($user) {
             return app('App\Http\Controllers\ProfileController')->otherProfile($name);
         } else {
-            return $this->index(1);
+            return redirect("leaderboard/1");
         }
 
     }
 
     public function getPage(Request $request) {
-        $num = $request->input('pageselected');
-        return $this->index((int)$num);
+        $num = (int)$request->input('pageselected');
+        return redirect("leaderboard/".$num);
     }
 }
