@@ -13,7 +13,7 @@
         <div class="card mb-3">
             <div class="card-header"><i style="color: #f39c12;" class="fa fa-plane"></i> Location</div>
             <div class="card-body">
-                <p>You can fly to another country every <strong>30 minutes</strong>. The country you are currently in, will be bold.</p>
+                <p>You can fly to another country every <strong>30 minutes</strong>. The country you are currently in is marked in bold.</p>
                 <p>As a VIP you can fly to another country every <strong>10 minutes</strong>.</p>
                 <div class="table-bordered table-responsive">
                     <table class="table table-bordered table-striped">
@@ -25,6 +25,7 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($locations as $loc)
                         <tr>
                             <td>
                                 <label>
@@ -32,40 +33,13 @@
                                 </label>
                             </td>
                             <td>
-                                <img src="{{asset("img/netherlands.png")}}"> Netherlands
+                                <img src="{{asset("img/".$loc->flag)}}"> {{$loc->name}}
                             </td>
                             <td>
                                 $1,000
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios[]" value="option[]">
-                                </label>
-                            </td>
-                            <td>
-                                <img src="{{asset("img/uk.png")}}"> United Kingdom
-                            </td>
-                            <td>
-                                $1,000
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <label>
-                                    <input type="radio" name="optionsRadios" id="optionsRadios[]" value="option[]">
-                                </label>
-                            </td>
-                            <td>
-                                <img src="{{asset("img/russia.png")}}"> Russia
-                            </td>
-                            <td>
-                                $1,000
-                            </td>
-                        </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
