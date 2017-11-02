@@ -79,11 +79,11 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><i class="fa fa-signal i_button_background"></i> <strong>Bet stat:</strong> 1</td>
+                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> <strong>Highest bet:</strong> $10,000</td>
                             <td><i class="fa fa-building i_button_background"></i> <strong>Company:</strong> Ome Duo</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-signal i_button_background"></i> <strong>Bet stat:</strong> 1</td>
+                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> <strong>Total bets:</strong> 5354</td>
                             <td><i class="fa fa-building i_button_background"></i> <strong>Company rank:</strong> #3</td>
                         </tr>
                         </tbody>

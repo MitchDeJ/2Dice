@@ -91,7 +91,10 @@
                     <table class="table table-bordered table-bordered table-striped">
                         <tbody>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-user"></i> <strong>Bet stat:</strong> #1</td>
+                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> <strong>Highest bet:</strong> $10,000</td>
+                        </tr>
+                        <tr>
+                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> <strong>Total bets:</strong> 5245    </td>
                         </tr>
                         </tbody>
                     </table>
