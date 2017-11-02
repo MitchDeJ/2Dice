@@ -34,41 +34,115 @@
             aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
                 <a class="nav-link" href="{{ url('/dashboard') }}">
                     <i class="fa fa-fw fa-dashboard"></i>
                     <span class="nav-link-text">Dashboard</span>
                 </a>
             </li>
+
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Leaderboard">
                 <a class="nav-link" href="{{ url('/leaderboard/1') }}">
                     <i class="fa fa-fw fa-line-chart"></i>
                     <span class="nav-link-text">Leaderboard</span>
                 </a>
             </li>
+
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Statistics">
                 <a class="nav-link" href="#">
                     <i class="fa fa-fw fa-area-chart"></i>
                     <span class="nav-link-text">Statistics</span>
                 </a>
             </li>
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Ja">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseComponents"
-                   data-parent="#exampleAccordion">
-                    <i class="fa fa-fw fa-wrench"></i>
-                    <span class="nav-link-text">Ja</span>
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Marketplace">
+                <a class="nav-link" href="#">
+                    <i class="fa fa-fw fa-university"></i>
+                    <span class="nav-link-text">Marketplace</span>
                 </a>
-                <ul class="sidenav-second-level collapse" id="collapseComponents">
+            </li>
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Location">
+                <a class="nav-link" href="#">
+                    <i class="fa fa-fw fa-plane"></i>
+                    <span class="nav-link-text">Location</span>
+                </a>
+            </li>
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Shop">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseShop"
+                   data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-shopping-bag"></i>
+                    <span class="nav-link-text">Shop</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="collapseShop">
                     <li>
-                        <a href="tables.html">Ja2</a>
+                        <a href="#">Money shop</a>
                     </li>
                     <li>
-                        <a href="#">Ja3</a>
+                        <a href="#">Prestige shop</a>
                     </li>
                 </ul>
             </li>
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Business">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseBusiness"
+                   data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-suitcase"></i>
+                    <span class="nav-link-text">Business</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="collapseBusiness">
+                    <li>
+                        <a href="#">Stockmarket</a>
+                    </li>
+                    <li>
+                        <a href="#">Business collaboration</a>
+                    </li>
+                    <li>
+                        <a href="#">Business jobs</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Betting">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseBetting"
+                   data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-dollar"></i>
+                    <span class="nav-link-text">Betting</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="collapseBetting">
+                    <li>
+                        <a href="#">Coinflip</a>
+                    </li>
+                    <li>
+                        <a href="#">Blackjack</a>
+                    </li>
+                    <li>
+                        <a href="#">Roulette</a>
+                    </li>
+                    <li>
+                        <a href="#">Lottery</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Company">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseCompany"
+                   data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-building"></i>
+                    <span class="nav-link-text">Company</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="collapseCompany">
+                    <li>
+                        <a href="#">Company profile</a>
+                    </li>
+                </ul>
+            </li>
+
         </ul>
         <ul class="navbar-nav sidenav-toggler">
             <li class="nav-item">
