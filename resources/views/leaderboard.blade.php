@@ -30,13 +30,12 @@
                         {!! Form::close() !!}
                     </label>
                     </div>
-
                     <table class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <td>Rank</td>
-                            <td>Player</td>
-                            <td>Power</td>
+                            <th style="width: 2%;">Rank</th>
+                            <th style="width: 10%;">Player</th>
+                            <th style="width: 10%;">Power</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -50,7 +49,6 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
         </div>
-    </div>
-</div>
 @endsection

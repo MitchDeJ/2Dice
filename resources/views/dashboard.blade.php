@@ -26,8 +26,8 @@
                     <table class="table table-bordered table-bordered table-striped">
                         <thead>
                         <tr>
-                            <td>Status</td>
-                            <td>Resources</td>
+                            <td style="width: 10%;">Status</td>
+                            <td style="width: 10%;">Resources</td>
                         </tr>
                         </thead>
                         <tbody>
@@ -36,7 +36,7 @@
                             <td><i class="fa fa-area-chart i_button_background"></i> <strong>Stone:</strong> 101.556.677</td>
                         </tr>
                         <tr>
-                            <td><i class="fa fa-star i_button_background"></i> <strong>Rank:</strong> 1 (Prestige 0)</td>
+                            <td><i class="fa fa-star i_button_background"></i> <strong>Rank:</strong> 143634 (Prestige 0)</td>
                             <td><i class="fa fa-area-chart i_button_background"></i> <strong>Wood:</strong> 264.634.664</td>
                         </tr>
                         <tr>
@@ -53,8 +53,8 @@
                     <table class="table table-bordered table-bordered table-striped">
                         <thead>
                         <tr>
-                            <td>About</td>
-                            <td>Money</td>
+                            <td style="width: 10%;">About</td>
+                            <td style="width: 10%;">Money</td>
                         </tr>
                         </thead>
                         <tbody>
@@ -73,8 +73,8 @@
                     <table class="table table-bordered table-bordered table-striped">
                         <thead>
                         <tr>
-                            <td>Betting</td>
-                            <td>Company</td>
+                            <td style="width: 10%;">Betting</td>
+                            <td style="width: 10%;">Company</td>
                         </tr>
                         </thead>
                         <tbody>

@@ -31,10 +31,10 @@
                     <table class="table table-bordered table-bordered table-striped">
                         <thead>
                         <tr>
-                            <td>Title</td>
-                            <td>From</td>
-                            <td>Received at</td>
-                            <td>Action</td>
+                            <td style="width: 10%;">Title</td>
+                            <td style="width: 10%;">From</td>
+                            <td style="width: 10%;">Received at</td>
+                            <td style="width: 10%;">Action</td>
                         </tr>
                         </thead>
                         <tbody>
