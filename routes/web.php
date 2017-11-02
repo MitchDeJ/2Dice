@@ -35,3 +35,4 @@ Route::get('/newmessage', 'NewMessageController@index')->name('newmessage');
 Route::get('/leaderboard/{num}', 'LeaderboardController@index')->name('leaderboard');
 Route::get('/changepassword', 'ChangePasswordController@index')->name('changepassword');
 Route::get('/editprofile', 'ProfileController@edit')->name('editprofile');
+Route::get('/location', 'LocationController@index')->name('location');

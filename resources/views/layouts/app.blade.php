@@ -67,7 +67,7 @@
             </li>
 
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Location">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ url('/location') }}">
                     <i class="fa fa-fw fa-plane"></i>
                     <span class="nav-link-text">Location</span>
                 </a>
