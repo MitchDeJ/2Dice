@@ -25,7 +25,7 @@ class LeaderboardController extends Controller
         $user = User::where("name", $name)->first();
 
         if ($user) {
-            return app('App\Http\Controllers\ProfileController')->otherProfile($name);
+            return redirect("profile/".$name);
         } else {
             return redirect("leaderboard/1");
         }
