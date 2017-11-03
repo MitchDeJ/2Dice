@@ -97,6 +97,9 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseBusiness">
                     <li>
+                        <a href="{{ url('/sendcash') }}">Send cash</a>
+                    </li>
+                    <li>
                         <a href="#">Stockmarket</a>
                     </li>
                     <li>
