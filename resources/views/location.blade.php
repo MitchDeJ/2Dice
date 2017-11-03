@@ -32,7 +32,9 @@
                                 <td>
                                     <label>
                                         @if ($user->location != $loc->id)
-                                            {{ Form::radio('location'.$loc->id, $loc->name) }}
+                                            {{ Form::radio('location'.$loc->id, $loc->name)}}
+                                        @else
+                                            {{ Form::radio('location'.$loc->id, $loc->name, false, ["disabled"])}}
                                         @endif
                                     </label>
                                 </td>

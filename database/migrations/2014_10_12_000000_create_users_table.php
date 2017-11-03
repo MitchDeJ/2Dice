@@ -25,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string("started", 20)->default("START-DATE");
             $table->string("lastlogin", 20)->default("LAST-LOGIN");
 
-            $table->unsignedTinyInteger("location")->default(0);
+            $table->unsignedTinyInteger("location")->default(1);
 
             $table->unsignedInteger('rank')->default(1);
             $table->unsignedInteger('xp')->default(0);
