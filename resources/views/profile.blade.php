@@ -69,7 +69,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-usd i_button_background"></i> Cash:${{number_format($user->cash)}}</td>
+                            <td><i style="color: #f39c12;" class="fa fa-usd i_button_background"></i> Cash: ${{number_format($user->cash)}}</td>
                         </tr>
                         </tbody>
                     </table>
