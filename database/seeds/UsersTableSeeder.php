@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
                 'started' => "4-20-1337",
                 'lastlogin' => "4-20-1337",
 
-                'location' => 0,
+                'location' => random_int(1,3),
 
                 'rank' => random_int(1, 10),
                 'xp' => 0,

@@ -60,7 +60,7 @@ trait RegistersUsers
         $time = date("d-m-y");
         $user->started = $time;
         $user->lastlogin = $time;
-        $user->cash += 100000;//first login bonus
+        $user->cash = 200000;//first login bonus + default cash
         $user->save();
     }
 }

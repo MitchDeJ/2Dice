@@ -23,14 +23,12 @@
                             </tr>
                             </thead>
                             <tbody>
+                            @foreach($toprichest as $user)
                             <tr>
-                                <td><a href="#" class="text-dark">Envy</a></td>
-                                <td>$100,000</td>
+                                <td><a href="{{url("/profile/".$user->name)}}" class="text-dark">{{$user->name}}</a></td>
+                                <td>${{number_format($user->cash)}}</td>
                             </tr>
-                            <tr>
-                                <td><a href="#" class="text-dark">Envy</a></td>
-                                <td>$100,000</td>
-                            </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -46,14 +44,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td><a href="#" class="text-dark">Envy</a></td>
-                                <td>Rank 6 (Prestige 8)</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#" class="text-dark">Envy</a></td>
-                                <td>Rank 6 (Prestige 8)</td>
-                            </tr>
+                            @foreach($topranked as $user)
+                                <tr>
+                                    <td><a href="{{url("/profile/".$user->name)}}" class="text-dark">{{$user->name}}</a></td>
+                                    <td>Rank {{$user->rank}} (Prestige {{$user->prestige}})</td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -69,14 +65,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td><a href="#" class="text-dark">Envy</a></td>
-                                <td>Rank 6 (Prestige 8)</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#" class="text-dark">Envy</a></td>
-                                <td>Rank 6 (Prestige 8)</td>
-                            </tr>
+                            @foreach($topbets as $user)
+                                <tr>
+                                    <td><a href="{{url("/profile/".$user->name)}}" class="text-dark">{{$user->name}}</a></td>
+                                    <td>${{number_format($user->highestbet)}}</td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -92,14 +86,12 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td><a href="#" class="text-dark">Envy</a></td>
-                                <td>Rank 6 (Prestige 8)</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#" class="text-dark">Envy</a></td>
-                                <td>Rank 6 (Prestige 8)</td>
-                            </tr>
+                            @foreach($toptotalbets as $user)
+                                <tr>
+                                    <td><a href="{{url("/profile/".$user->name)}}" class="text-dark">{{$user->name}}</a></td>
+                                    <td>{{number_format($user->totalbets)}}</td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
