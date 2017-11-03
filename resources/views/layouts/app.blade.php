@@ -81,10 +81,10 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseShop">
                     <li>
-                        <a href="#">General store</a>
+                        <a href="{{ url('/general') }}">General store</a>
                     </li>
                     <li>
-                        <a href="#">Prestige shop</a>
+                        <a href="{{ url('/prestige') }}">Prestige shop</a>
                     </li>
                 </ul>
             </li>
