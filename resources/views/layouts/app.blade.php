@@ -130,9 +130,6 @@
                     <li>
                         <a href="{{ url('/roulette') }}">Roulette</a>
                     </li>
-                    <li>
-                        <a href="{{ url('/higherlower') }}">High lower</a>
-                    </li>
                 </ul>
             </li>
 
