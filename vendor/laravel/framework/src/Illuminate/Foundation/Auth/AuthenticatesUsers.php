@@ -114,7 +114,16 @@ trait AuthenticatesUsers
      */
     protected function authenticated(Request $request, $user)
     {
-        //
+        $time = date("d-m-y");
+        if (!($user->lastlogin == $time))//the user hasn't logged in today
+        {
+            $amount = 100000;
+            if ($user->vip == true)
+                $amount*=1.5;
+            $user->cash+=$amount;
+        }
+        $user->lastlogin = $time;
+        $user->save();
     }
 
     /**
