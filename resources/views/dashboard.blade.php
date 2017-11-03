@@ -114,12 +114,15 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <td class="table_dark_bg" style="width: 10%;">Money</td>
+                                <td class="table_dark_bg" style="width: 10%;">Currency</td>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
                                 <td><i style="color: #f39c12;" class="fa fa-usd i_button_background"></i> Cash: ${{number_format($user->cash)}}</td>
+                            </tr>
+                            <tr>
+                                <td><i style="color: #f39c12;" class="fa fa-tags i_button_background"></i> Prestige points: {{number_format($user->cash)}}</td>
                             </tr>
                             </tbody>
                         </table>

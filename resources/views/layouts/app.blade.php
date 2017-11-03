@@ -81,7 +81,7 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseShop">
                     <li>
-                        <a href="#">Money shop</a>
+                        <a href="#">General store</a>
                     </li>
                     <li>
                         <a href="#">Prestige shop</a>
