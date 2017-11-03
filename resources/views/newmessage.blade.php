@@ -19,28 +19,30 @@
                     </a></div>
             </div>
             <hr/>
-
+            {!! Form::open(['route' => ['message.send'], 'method' => 'post', 'class' => 'form-horizontal']) !!}
+            {!! Form::hidden("from", Auth::user()->name) !!}
             <div class="row col-md-12">
                 <h6>Send to</h6>
-                <input type="text" class="form-control" placeholder="Username">
+                <input type="text" class="form-control" placeholder="Username" value="{{$name}}" name="to">
             </div>
             <br>
 
             <div class="row col-md-12">
                 <h6>Title</h6>
-                <input type="text" class="form-control" placeholder="Title name">
+                <input type="text" class="form-control" placeholder="Title" name="title">
             </div>
             <br>
 
             <div class="row col-md-12">
                 <h6>Title</h6>
-                <textarea class="form-control" rows="3" placeholder="Message"></textarea>
+                <textarea class="form-control" rows="3" placeholder="Message" name="text"></textarea>
             </div>
             <br>
 
             <div class="mail_button"><a href="{{ url('/inbox') }}" class="text-dark">
-                    <button type="button" class="btn btn-secondary">Send</button>
+                    <button type="submit" class="btn btn-secondary">Send</button>
                 </a></div>
+            {!! Form::close() !!}
         </div>
     </div>
 </div>

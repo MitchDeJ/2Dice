@@ -17,8 +17,7 @@
                     <div class="col-md-12">
                         {!! Form::open(['route' => ['55x2.roll'], 'method' => 'post', 'class' => 'form-inline']) !!}
                         <div class="form-group">
-                            <label for="exampleInputName2">Bet amount &nbsp;</label>
-                            <input type="number" class="form-control" placeholder="Cash" id="bet" name="bet">
+                            <input type="number" class="form-control" placeholder="Bet amount" id="bet" name="bet">
                         <div>
                             <button type="submit" class="btn btn-default">Roll</button>
                             {!! Form::close() !!}

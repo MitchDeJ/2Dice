@@ -17,14 +17,14 @@
                     <div class="col-md-12">
                         <form class="form-inline">
                             <div class="form-group">
-                                <label for="exampleInputName2">Name &nbsp;</label>
-                                <input type="text" class="form-control" id="exampleInputName2" placeholder="Username">
+                                <label for="exampleInputName2">Username &nbsp;</label>
+                                <input type="text" class="form-control" id="exampleInputName2" placeholder="">
                             </div>&nbsp;
                             <div class="form-group">
                                 <label for="exampleInputEmail2">Amount &nbsp;</label>
-                                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="100,000">
+                                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="">
                             </div>
-                            <button type="submit" class="btn btn-default">Send money</button>
+                            <button type="submit" class="btn btn-default">Send cash </button>
                         </form>
                     </div>
                 </div>

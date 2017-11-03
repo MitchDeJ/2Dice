@@ -17,7 +17,7 @@
                         profile</a></div>
             @else
                 <div class="card-header"><i style="color: #f39c12;" class="fa fa-user"></i> {{$user->name}}'s profile |
-                    <a class="text-dark" href="{{ url('/newmessage') }}"> Send Message</a></div>
+                    <a class="text-dark" href="{{url("/newmessage/".$user->name)}}"> Send Message</a></div>
             @endif
             <div class="card-body">
                 <img src="{!! url("/userimg/".$user->avatar) !!}" width="200px" height="200px" class="img-thumbnail"
