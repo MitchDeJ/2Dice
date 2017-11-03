@@ -13,7 +13,7 @@
         <div class="card mb-3">
             <div class="card-header"><i class="fa fa-shopping-bag i_button_background"></i> General store</div>
             <div class="card-body">
-                    <p>The general store will only sell it's items for money. Click <a href="{{ url('/prestige') }}" class="text-dark"><b>here</b></a> to go to the prestige shop.</p>
+                    <p>The general store accepts cash only. Click <a href="{{ url('/prestige') }}" class="text-dark"><b>here</b></a> to go to the prestige shop.</p>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -29,7 +29,7 @@
                                     1 Power
                                 </td>
                                 <td>
-                                    $100 Cash
+                                    $100
                                 </td>
                                 <td>
                                     <div class="form-inline">
