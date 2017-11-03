@@ -125,13 +125,13 @@
                         <a href="{{ url('/coinflip') }}">Coinflip</a>
                     </li>
                     <li>
-                        <a href="#">Blackjack</a>
+                        <a href="{{ url('/blackjack') }}">Blackjack</a>
                     </li>
                     <li>
-                        <a href="#">Roulette</a>
+                        <a href="{{ url('/roulette') }}">Roulette</a>
                     </li>
                     <li>
-                        <a href="#">High lower</a>
+                        <a href="{{ url('/higherlower') }}">High lower</a>
                     </li>
                 </ul>
             </li>

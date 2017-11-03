@@ -35,6 +35,7 @@ Route::get('/statistics', 'StatisticsController@index')->name('statistics');
 Route::get('/marketplace', 'MarketplaceController@index')->name('marketplace');
 Route::get('/55x2', 'GamblingController@index')->name('55x2');
 Route::get('/coinflip', 'GamblingController@coinflip')->name('coinflip');
+Route::get('/roulette', 'GamblingController@roulette')->name('roulette');
 Route::get('/sendcash', 'BusinessController@index')->name('sendcash');
 
 Route::post('editprofile', 'ProfileController@updateAvatar');

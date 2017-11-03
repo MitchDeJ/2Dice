@@ -64,4 +64,14 @@ class GamblingController extends Controller
             return redirect('55x2')->with('success', ' You roll a ' . $num . ', you win $' . number_format($bet) . '!');
         }
     }
+
+    /**
+     * Show the application roulette overview.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function roulette()
+    {
+        return view('roulette', array("user" => Auth::user()));
+    }
 }
