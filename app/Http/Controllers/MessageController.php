@@ -28,7 +28,7 @@ class MessageController extends Controller
     {
         $message = Message::where("id", $m)->get()->first();
 
-        if ($message->to != Auth::user()->name)
+        if (strtolower($message->to) != strtolower(Auth::user()->name))
             return redirect('inbox');
 
         $message->read = 1;
