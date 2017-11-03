@@ -141,6 +141,9 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseCompany">
                     <li>
+                        <a href="#">Company leaderboard</a>
+                    </li>
+                    <li>
                         <a href="#">Company profile</a>
                     </li>
                 </ul>
@@ -208,7 +211,7 @@
             <span style="display:inline-block; width: 50px;"></span>
 
             <li class="nav-item">
-                <span class="navbar-text">Cash: ${{number_format(Auth::user()->cash)}}</span>
+                <span class="navbar-text">${{number_format(Auth::user()->cash)}}</span>
             </li>
 
             <span style="display:inline-block; width: 50px;"></span>
