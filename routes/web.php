@@ -50,3 +50,4 @@ Route::post("/sendMessage", ["uses" => "MessageController@sendMessage", "as"=>"m
 Route::post("/deletemessage",["uses" => "MessageController@deleteMessage", "as"=>"message.delete"]);
 Route::post("/deleteallmessages",["uses" => "MessageController@deleteAllMessages", "as"=>"message.deleteall"]);
 Route::post("/readallmessages",["uses" => "MessageController@readAllMessages", "as"=>"message.readall"]);
+Route::post("/buypower",["uses" => "ShopController@buyPower", "as"=>"shop.buypower"]);

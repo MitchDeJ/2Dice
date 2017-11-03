@@ -33,8 +33,10 @@
                                 </td>
                                 <td>
                                     <div class="form-inline">
-                                        <input type="number" class="form-control" placeholder="Amount" id="power" name="power">
+                                        {!! Form::open(['route' => ['shop.buypower'], 'method' => 'post']) !!}
+                                        <input type="number" class="form-control" placeholder="Amount" id="power" name="amount">
                                         <button type="submit" class="btn btn-default">Buy</button>
+                                        {!! Form::close() !!}
                                     </div>
                                 </td>
                             </tr>

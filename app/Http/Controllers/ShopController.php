@@ -26,4 +26,20 @@ class ShopController extends Controller
     {
         return view('prestige', array("user" => Auth::user()));
     }
+
+    public function buyPower(Request $request) {
+        $amount = $request->input('amount');
+        $price = $amount*100;
+        $user = Auth::user();
+
+        if ($amount < 1)
+            return redirect('general');
+        if ($user->cash < $price)
+            return redirect('general');
+
+        $user->cash -= $price;
+        $user->power += $amount;
+        $user->save();
+        return redirect('general');
+    }
 }
