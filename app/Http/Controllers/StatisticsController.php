@@ -16,7 +16,7 @@ class StatisticsController extends Controller
     public function index()
     {
         $toprichest = User::all()->sortByDesc('cash')->slice(0, 5);
-        $topranked = User::all()->sortByDesc('prestige')->sortByDesc('rank')->sortByDesc('xp')->slice(0, 5);
+        $topranked = User::orderBy('prestige', 'DESC')->orderBy('rank', 'DESC')->get()->slice(0, 5);
         $topbets = User::all()->sortByDesc('highestbet')->slice(0, 5);
         $toptotalbets = User::all()->sortByDesc('totalbets')->slice(0, 5);
         return view('statistics', array(
