@@ -20,7 +20,7 @@
 
                         <input type="number" class="form-control" style="text-align: center" id="roulette" placeholder="Amount">
 
-                        <button type="submit" class="btn btn-default" style="width: 100%;">Submit</button>
+                        <button type="submit" class="btn btn-default" style="width: 100%;">Play</button>
                     </div>
 
                     <div class="col-md-2 logo_center">
@@ -29,7 +29,7 @@
 
                         <input type="number" class="form-control" style="text-align: center" id="roulette" placeholder="Amount">
 
-                        <button type="submit" class="btn btn-default" style="width: 100%;">Submit</button>
+                        <button type="submit" class="btn btn-default" style="width: 100%;">Play</button>
                     </div>
 
                     <div class="col-md-2 logo_center">
@@ -38,7 +38,7 @@
 
                         <input type="number" class="form-control" style="text-align: center" id="roulette" placeholder="Amount">
 
-                        <button type="submit" class="btn btn-default" style="width: 100%;">Submit</button>
+                        <button type="submit" class="btn btn-default" style="width: 100%;">Play</button>
                     </div>
                 </div>
             </div>

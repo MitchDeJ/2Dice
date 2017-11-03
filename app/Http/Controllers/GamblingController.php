@@ -74,4 +74,14 @@ class GamblingController extends Controller
     {
         return view('roulette', array("user" => Auth::user()));
     }
+
+    /**
+     * Show the application blackjack overview.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function blackjack()
+    {
+        return view('blackjack', array("user" => Auth::user()));
+    }
 }
