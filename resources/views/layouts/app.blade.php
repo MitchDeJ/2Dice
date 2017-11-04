@@ -103,10 +103,10 @@
                         <a href="#">Stockmarket</a>
                     </li>
                     <li>
-                        <a href="#">Business collaboration</a>
+                        <a href="{{ url('/collab') }}">Collaboration</a>
                     </li>
                     <li>
-                        <a href="#">Business jobs</a>
+                        <a href="#">Jobs</a>
                     </li>
                 </ul>
             </li>

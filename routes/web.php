@@ -40,6 +40,7 @@ Route::get('/blackjack', 'GamblingController@blackjack')->name('blackjack');
 Route::get('/sendcash', 'BusinessController@index')->name('sendcash');
 Route::get('/general', 'ShopController@general')->name('general');
 Route::get('/prestige', 'ShopController@prestige')->name('prestige');
+Route::get('/collab', 'BusinessController@collab')->name('collab');
 
 Route::post('editprofile', 'ProfileController@updateAvatar');
 Route::post("/updateDesc",["uses" => "ProfileController@updateDesc", "as"=>"profile.updateDesc"]);
