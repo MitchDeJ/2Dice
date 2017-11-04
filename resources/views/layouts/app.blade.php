@@ -100,7 +100,7 @@
                         <a href="{{ url('/sendcash') }}">Send cash</a>
                     </li>
                     <li>
-                        <a href="#">Stockmarket</a>
+                        <a href="{{ url('/stockmarket') }}">Stock market</a>
                     </li>
                     <li>
                         <a href="{{ url('/collab') }}">Collaboration</a>
@@ -149,12 +149,13 @@
                 </ul>
             </li>
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Forum">
-                <a class="nav-link" href="{{ url('/forum') }}">
-                    <i class="fa fa-fw fa-comments"></i>
-                    <span class="nav-link-text">Forum</span>
-                </a>
-            </li>
+            {{--FORUM LUL--}}
+            {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Forum">--}}
+                {{--<a class="nav-link" href="{{ url('/forum') }}">--}}
+                    {{--<i class="fa fa-fw fa-comments"></i>--}}
+                    {{--<span class="nav-link-text">Forum</span>--}}
+                {{--</a>--}}
+            {{--</li>--}}
 
         </ul>
         <ul class="navbar-nav sidenav-toggler">
