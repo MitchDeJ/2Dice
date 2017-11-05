@@ -106,7 +106,7 @@
                         <a href="{{ url('/collab') }}">Collaboration</a>
                     </li>
                     <li>
-                        <a href="#">Jobs</a>
+                        <a href="{{ url('/jobs') }}">Jobs</a>
                     </li>
                 </ul>
             </li>
