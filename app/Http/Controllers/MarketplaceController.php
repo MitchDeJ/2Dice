@@ -19,7 +19,7 @@ class MarketplaceController extends Controller
     {
         return view('marketplace', array("user" => Auth::user()));
     }
-
+    
     public function createOffer(Request $request)
     {
         $creator = $request->input('creator');
@@ -243,4 +243,13 @@ function addItem(User $user, $item, $amount)
     }
     $user->save();
 }
+    /**
+     * Show the application marketplace create offer.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function newoffer()
+    {
+        return view('newoffer', array("user" => Auth::user()));
+    }
 }
