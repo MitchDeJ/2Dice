@@ -13,14 +13,14 @@
         <div class="card mb-3">
             <div class="card-header"><i class="fa fa-university i_button_background"></i> Marketplace</div>
             <div class="card-body">
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <label for="type">Type</label>
                     <select class="form-control form-group form-inline">
                         <option>Buy</option>
                         <option>Sell</option>
                     </select>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-2">
                     <label for="item">Item</label>
                     <select class="form-control form-group form-inline">
                         <option>Wood</option>
@@ -29,11 +29,11 @@
                     </select>
                 </div>
                 <div class="col-md-2 form-group form-inline">
-                    <label for="exampleInputEmail1">Price</label>
+                    <label for="price">Price each &nbsp;</label>
                     <input type="email" class="form-control" id="price" placeholder="">
                 </div>
                 <div class="col-md-2 form-group form-inline">
-                    <label for="exampleInputEmail1">Amount</label>
+                    <label for="amount">Amount &nbsp;</label>
                     <input type="email" class="form-control" id="amount" placeholder="">
                 </div>
                 <div class="col-md-2">
