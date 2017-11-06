@@ -13,9 +13,10 @@
         <div class="card mb-3">
             <div class="card-header"><i class="fa fa-university i_button_background"></i> Marketplace</div>
             <div class="card-body">
+                <button type="submit" class="btn btn-dark">New offer</button>
                 <div class="row">
                     <div class="col-md-4 logo_center">
-                        <div class="table-responsive">
+                        <div class="table-responsive"><br>
                             <table class="table table-active">
                                 <thead>
                                 <tr>
@@ -55,7 +56,7 @@
                     </div>
 
                     <div class="col-md-4 logo_center">
-                        <div class="table-responsive">
+                        <div class="table-responsive"><br>
                             <table class="table table-active">
                                 <thead>
                                 <tr>
@@ -95,7 +96,7 @@
                     </div>
 
                     <div class="col-md-4 logo_center">
-                        <div class="table-responsive">
+                        <div class="table-responsive"><br>
                             <table class="table table-active">
                                 <thead>
                                 <tr>
