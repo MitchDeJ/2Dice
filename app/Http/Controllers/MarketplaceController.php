@@ -16,4 +16,14 @@ class MarketplaceController extends Controller
     {
         return view('marketplace', array("user" => Auth::user()));
     }
+
+    /**
+     * Show the application marketplace create offer.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function newoffer()
+    {
+        return view('newoffer', array("user" => Auth::user()));
+    }
 }
