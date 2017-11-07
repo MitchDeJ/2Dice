@@ -34,8 +34,8 @@
                     {!! Form::number('price', null, ['class'=>"form-control", 'id'=>"price"]) !!}
                 </div>
                 <div class="col-md-2 form-group form-inline">
-                    <label for="price">Price each &nbsp;</label>
-                    {!! Form::number('totalprice', null, ['class'=>"form-control", 'disabled', 'id'=>"totalprice"]) !!}
+                    <label for="price">Total price &nbsp;</label>
+                    {!! Form::text('totalprice', null, ['class'=>"form-control", 'disabled', 'id'=>"totalprice"]) !!}
                 </div>
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-default">Create offer</button>
@@ -50,7 +50,10 @@
         $('#amount').keyup(calculate);
         function calculate(e) {
             var maths = $('#price').val() * $('#amount').val();
-            $('#totalprice').val(maths);
+            $('#totalprice').val(numberWithCommas(maths));
+        }
+        function numberWithCommas(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         }
     </script>
 @endsection
