@@ -19,25 +19,26 @@
                         </a></div>
                 </div>
                 <hr/>
-
+                {!! Form::open(['route' => ['changepass'], 'method' => 'post']) !!}
                 <div class="row col-md-12">
                     <h6>Current password</h6>
-                    <input type="password" class="form-control" placeholder="Current password">
+                    <input name="old" type="password" class="form-control" placeholder="Current password">
                 </div>
                 <br>
 
                 <div class="row col-md-12">
                     <h6>New password</h6>
-                    <input type="password" class="form-control" placeholder="New password">
+                    <input name="new" type="password" class="form-control" placeholder="New password">
                 </div>
                 <br>
 
                 <div class="row col-md-12">
                     <h6>Confirm new password</h6>
-                    <input type="password" class="form-control" placeholder="Confirm new password">
+                    <input name="newconfirm" type="password" class="form-control" placeholder="Confirm new password">
                 </div>
                 <br>
-                <button type="button" class="btn btn-secondary">Change password</button>
+                <button type="submit" class="btn btn-secondary">Change password</button>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>

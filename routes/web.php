@@ -59,3 +59,4 @@ Route::post("/buypower",["uses" => "ShopController@buyPower", "as"=>"shop.buypow
 Route::post("/createoffer",["uses" => "MarketPlaceController@createOffer", "as"=>"market.newoffer"]);
 Route::post("/collectoffer",["uses" => "MarketPlaceController@collectOffer", "as"=>"market.collect"]);
 Route::post("/canceloffer",["uses" => "MarketPlaceController@cancelOffer", "as"=>"market.cancel"]);
+Route::post("/changepass",["uses" => "ChangePasswordController@changePassword", "as"=>"changepass"]);
