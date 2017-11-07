@@ -33,12 +33,12 @@
                                     <tbody>
                                     <tr>
                                         <td>
-                                            {{$itemnames->get($offer->item)}} - <b>${{$offer->price}}</b> each
+                                            {{$itemnames->get($offer->item)}} - <b>${{number_format($offer->price)}}</b> each
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            {{$offer->completed}}/{{$offer->amount}} completed
+                                            {{number_format($offer->completed)}}/{{number_format($offer->amount)}} completed
                                         </td>
                                     </tr>
                                     <tr>

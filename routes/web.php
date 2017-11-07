@@ -38,10 +38,10 @@ Route::get('/55x2', 'GamblingController@index')->name('55x2');
 Route::get('/coinflip', 'GamblingController@coinflip')->name('coinflip');
 Route::get('/roulette', 'GamblingController@roulette')->name('roulette');
 Route::get('/blackjack', 'GamblingController@blackjack')->name('blackjack');
-Route::get('/sendcash', 'BusinessController@index')->name('sendcash');
+Route::get('/sendcash', 'BusinessController@sendCashIndex')->name('sendcash');
 Route::get('/general', 'ShopController@general')->name('general');
 Route::get('/prestige', 'ShopController@prestige')->name('prestige');
-Route::get('/collab', 'BusinessController@collab')->name('collab');
+Route::get('/collab', 'BusinessController@collabIndex')->name('collab');
 Route::get('/stockmarket', 'StockmarketController@index')->name('stockmarket');
 Route::get('/jobs', 'JobsController@index')->name('jobs');
 
@@ -60,3 +60,4 @@ Route::post("/createoffer",["uses" => "MarketPlaceController@createOffer", "as"=
 Route::post("/collectoffer",["uses" => "MarketPlaceController@collectOffer", "as"=>"market.collect"]);
 Route::post("/canceloffer",["uses" => "MarketPlaceController@cancelOffer", "as"=>"market.cancel"]);
 Route::post("/changepass",["uses" => "ChangePasswordController@changePassword", "as"=>"changepass"]);
+Route::post("/cashsender",["uses" => "BusinessController@sendCash", "as"=>"business.sendcash"]);
