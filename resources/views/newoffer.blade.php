@@ -10,14 +10,6 @@
 
 @section('content')
     <div class="container-fluid">
-        <script type="text/javascript">
-            $('#price').keyup(calculate);
-            $('#amount').keyup(calculate);
-            function calculate(e) {
-                var maths = $('#price').val() * $('#amount').val();
-                $('#totalprice').val(maths);
-            }
-        </script>
         <div class="card mb-3">
             <div class="card-header"><i class="fa fa-university i_button_background"></i> Marketplace</div>
             <div class="card-body">
@@ -35,15 +27,15 @@
                 </div>
                 <div class="col-md-2 form-group form-inline">
                     <label for="amount">Amount &nbsp;</label>
-                    {!! Form::number('amount', null, ['class'=>"form-control"]) !!}
+                    {!! Form::number('amount', null, ['class'=>"form-control", 'id'=>"amount"]) !!}
                 </div>
                 <div class="col-md-2 form-group form-inline">
                     <label for="price">Price each &nbsp;</label>
-                    {!! Form::number('price', null, ['class'=>"form-control"]) !!}
+                    {!! Form::number('price', null, ['class'=>"form-control", 'id'=>"price"]) !!}
                 </div>
                 <div class="col-md-2 form-group form-inline">
                     <label for="price">Price each &nbsp;</label>
-                    {!! Form::number('totalprice', null, ['class'=>"form-control", 'disabled']) !!}
+                    {!! Form::number('totalprice', null, ['class'=>"form-control", 'disabled', 'id'=>"totalprice"]) !!}
                 </div>
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-default">Create offer</button>
@@ -52,4 +44,13 @@
             </div>
         </div>
     </div>
+<!-- jquery script -->
+    <script type="text/javascript">
+        $('#price').keyup(calculate);
+        $('#amount').keyup(calculate);
+        function calculate(e) {
+            var maths = $('#price').val() * $('#amount').val();
+            $('#totalprice').val(maths);
+        }
+    </script>
 @endsection

@@ -22,9 +22,9 @@
 <!-- Custom fonts for this template-->
 {{ Html::style("vendor/font-awesome/css/font-awesome.min.css" ) }}
 <!-- Custom styles for this template-->
-    {{ Html::style("css/sb-admin.css") }}
+{{ Html::style("css/sb-admin.css") }}
 <!-- jQuery-->
-    {{ Html::script("js/jquery-3.2.1.min.js") }}
+{{ Html::script("js/jquery-3.2.1.min.js") }}
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
