@@ -215,6 +215,7 @@ class MarketplaceController extends Controller
                 $user->cash += $cash;
                 $offer->cash = 0;
                 $user->save();
+                $offer->save();
                 $offer->collected += $toCollect;
                 if ($offer->cancelled == true || $offer->amount == $offer->completed) {
                     $this->addItem($user, $offer->item, $offer->amount - $offer->completed);
