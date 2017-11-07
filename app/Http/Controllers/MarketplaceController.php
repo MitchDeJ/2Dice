@@ -223,6 +223,8 @@ class MarketplaceController extends Controller
                         return redirect('marketplace')->with('success', 'Collected '.number_format($offer->amount - $offer->completed).' items and $'.number_format($cash).'. The offer has been removed.');
                     else
                         return redirect('marketplace')->with('success', 'Collected $'.number_format($cash).'. The offer has been removed.');
+                } else {
+                    return redirect('marketplace')->with('success', 'Collected $'.number_format($cash).'.');
                 }
             }
         }
