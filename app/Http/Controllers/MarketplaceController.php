@@ -40,6 +40,14 @@ class MarketplaceController extends Controller
         if ($creatortype == 0) {  //if listed by a user
 
             $user = User::where('id', $creator)->get()->first();
+            $useroffers = MarketOffer::where('creator', $user->id)->where('creatortype', 0)->get()->count();
+            $limit = 3;
+
+            if ($user->vip == true)
+                $limit = 6;
+
+            if ($useroffers == $limit)
+                return redirect('marketplace')->with('fail', 'You have reached the '.$limit.' offer limit.');
 
             /*
              * Buy offer
