@@ -34,6 +34,7 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('power')->default(0);
 
             $table->unsignedBigInteger('cash')->default(100000);
+            $table->unsignedInteger('prestigepoints')->default(0);
             $table->unsignedBigInteger('wood')->default(0);
             $table->unsignedBigInteger('stone')->default(0);
             $table->unsignedBigInteger('wheat')->default(0);

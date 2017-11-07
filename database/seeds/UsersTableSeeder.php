@@ -31,6 +31,7 @@ class UsersTableSeeder extends Seeder
                 'power' => random_int(1, 1337),
 
                 'cash' => random_int(1, 1000000),
+                'prestigepoints' => random_int(1, 10),
                 'wood' => random_int(1, 13337),
                 'stone' => random_int(1, 13337),
                 'wheat' => random_int(1, 13337),
