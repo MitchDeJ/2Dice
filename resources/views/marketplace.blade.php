@@ -42,11 +42,6 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>
-                                            <img src="img/{{$locs->get($offer->location - 1)->flag}}"> {{$locs->get($offer->location - 1)->name}}
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         @if($offer->cancelled == true)
                                             <td class="table-danger">
                                                 Cancelled

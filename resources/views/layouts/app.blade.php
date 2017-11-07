@@ -16,19 +16,20 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href={{ asset("img/favicon.png")}}/>
     <!-- Custom stylesheet -->
-    {{ Html::style('css/stylesheet.css') }}
-    <!-- Bootstrap core CSS-->
-    {{ Html::style("vendor/bootstrap/css/bootstrap.min.css" ) }}
-    <!-- Custom fonts for this template-->
-    {{ Html::style("vendor/font-awesome/css/font-awesome.min.css" ) }}
-    <!-- Custom styles for this template-->
+{{ Html::style('css/stylesheet.css') }}
+<!-- Bootstrap core CSS-->
+{{ Html::style("vendor/bootstrap/css/bootstrap.min.css" ) }}
+<!-- Custom fonts for this template-->
+{{ Html::style("vendor/font-awesome/css/font-awesome.min.css" ) }}
+<!-- Custom styles for this template-->
     {{ Html::style("css/sb-admin.css") }}
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a href="{{ url('/dashboard') }}"><img src="{{asset("img/dicelogo.png")}}" alt="Dice logo" width="100px" height="40px"></a>
+    <a href="{{ url('/dashboard') }}"><img src="{{asset("img/dicelogo.png")}}" alt="Dice logo" width="100px"
+                                           height="40px"></a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
             data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
             aria-label="Toggle navigation">
@@ -151,10 +152,10 @@
 
             {{--FORUM LUL--}}
             {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Forum">--}}
-                {{--<a class="nav-link" href="{{ url('/forum') }}">--}}
-                    {{--<i class="fa fa-fw fa-comments"></i>--}}
-                    {{--<span class="nav-link-text">Forum</span>--}}
-                {{--</a>--}}
+            {{--<a class="nav-link" href="{{ url('/forum') }}">--}}
+            {{--<i class="fa fa-fw fa-comments"></i>--}}
+            {{--<span class="nav-link-text">Forum</span>--}}
+            {{--</a>--}}
             {{--</li>--}}
 
         </ul>
@@ -197,6 +198,9 @@
     </div>
 </nav>
 <div class="content-wrapper">
+    <div class="container-fluid">
+        @include('layouts.appmessage')
+    </div>
     @yield('content')
 </div>
 <!-- Bootstrap core JavaScript-->

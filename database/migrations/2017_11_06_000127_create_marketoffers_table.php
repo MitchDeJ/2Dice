@@ -23,7 +23,6 @@ class CreateMarketoffersTable extends Migration
             $table->unsignedBigInteger('amount');
             $table->unsignedBigInteger('completed'); // amount completed, I.e 10/100 bought
             $table->unsignedBigInteger('collected'); // amount collected
-            $table->unsignedInteger('location'); //location of the market this offer was opened
             $table->unsignedBigInteger('cash');// returned money
             $table->boolean('cancelled');
             $table->timestamps();

@@ -33,13 +33,13 @@ class ShopController extends Controller
         $user = Auth::user();
 
         if ($amount < 1)
-            return redirect('general');
+            return redirect('general')->with('fail', 'Invalid amount.');
         if ($user->cash < $price)
-            return redirect('general');
+            return redirect('general')->with('fail', 'You do not have enough cash to buy '.number_format($amount).' power.');
 
         $user->cash -= $price;
         $user->power += $amount;
         $user->save();
-        return redirect('general');
+        return redirect('general')->with('success', 'Successfully bought '.number_format($amount).' power for $'.number_format($price));
     }
 }

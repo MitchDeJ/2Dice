@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
-use App\Location;
 use App\MarketOffer;
 
 class MarketplaceController extends Controller
@@ -23,7 +22,6 @@ class MarketplaceController extends Controller
         return view('marketplace', array(
             "user" => $user,
             "offers" => $offers,
-            "locs" => Location::all(),
             'itemnames' => $itemnames
         ));
     }
@@ -37,7 +35,6 @@ class MarketplaceController extends Controller
         $price = $request->input('price');
         $amount = $request->input('amount');
         $completed = 0;
-        $location = $request->input('location');
         $cash = 0;
 
         if ($creatortype == 0) {  //if listed by a user
@@ -50,7 +47,7 @@ class MarketplaceController extends Controller
             if ($offertype == 0) {
 
                 if ($user->cash < $amount * $price)
-                    return redirect('newoffer');//TODO niet genoeg geld
+                    return redirect('newoffer')->with('fail', 'You do not have enough cash to create that offer.');
 
                 $user->cash -= $amount * $price;
                 $cash = $amount * $price;
@@ -59,7 +56,6 @@ class MarketplaceController extends Controller
                     ->where('creatortype', 0)
                     ->where('creator', '!=', $user->id)
                     ->where('cancelled', false)
-                    ->where('location', $location)
                     ->where('price', '<=', $price)
                     ->where('offertype', 1)
                     ->get()
@@ -69,7 +65,6 @@ class MarketplaceController extends Controller
                     ->where('creatortype', 1)
                     ->where('creator', '!=', $user->company)
                     ->where('cancelled', false)
-                    ->where('location', $location)
                     ->where('price', '<=', $price)
                     ->where('offertype', 1)
                     ->get()
@@ -108,13 +103,12 @@ class MarketplaceController extends Controller
             } else if ($offertype == 1) {
 
                 if (!$this->hasItem($user, $item, $amount))
-                    return redirect('newoffer');//TODO niet genoeg resources
+                    return redirect('newoffer')->with('fail', 'You do not have the required resources to create that offer.');
 
                 $this->removeItem($user, $item, $amount);
 
                 $matches = MarketOffer::where('item', $item)
                     ->where('cancelled', false)
-                    ->where('location', $location)
                     ->where('price', '>=', $price)
                     ->where('offertype', 0)
                     ->get()
@@ -153,13 +147,12 @@ class MarketplaceController extends Controller
                 'amount' => $amount,
                 'completed' => $completed,
                 'collected' => 0,
-                'location' => $location,
                 'cash' => $cash,
                 'cancelled' => false
             ]);
             $offer->save();
 
-            return redirect('marketplace');//new offer created
+            return redirect('marketplace')->with('success', 'Offer created.');
         }
     }
 
@@ -168,11 +161,11 @@ class MarketplaceController extends Controller
         $offer = MarketOffer::where('id', $request->input('id'))->get()->first();;
 
         if ($offer->amount == $offer->completed)
-            return redirect('marketplace');//already completed, collect pls
+            return redirect('marketplace')->with('neutral', 'Offer has already been completed, please collect.');
 
         $offer->cancelled = true;
         $offer->save();
-        return redirect('marketplace');//TODO cancelled offer msg
+        return redirect('marketplace')->with('success', 'Offer cancelled.');
     }
 
     public function collectOffer(Request $request)
@@ -187,35 +180,41 @@ class MarketplaceController extends Controller
             if ($offer->offertype == 0) { //buy offer
 
                 if ($offer->cancelled == false && $toCollect <= 0)
-                    return redirect('marketplace');//TODO nothing to collect
+                    return redirect('marketplace')->with('fail', 'The collection box of this offer is currently empty.');
 
                 $this->addItem($user, $offer->item, $toCollect);
                 $offer->collected += $toCollect;
                 $offer->save();
                 if ($offer->cancelled == true || $offer->amount == $offer->completed) {
-                    $user->cash += $offer->cash;
+                    $cash = $offer->cash;
+                    $user->cash += $cash;
                     $user->save();
                     $offer->delete();
-                    return redirect('marketplace');//TODO msg offer removed & collected
+                    if ($cash > 0)
+                        return redirect('marketplace')->with('success', 'Collected '.number_format($toCollect).' items and $'.number_format($cash).'. The offer has been removed.');
+                    else
+                        return redirect('marketplace')->with('success', 'Collected '.number_format($toCollect).' items. The offer has been removed.');
                 } else {
-                    return redirect('marketplace');// msg collected stuff
+                    return redirect('marketplace')->with('success', 'Collected '.number_format($toCollect).' items.');
                 }
 
             } else if ($offer->offertype == 1) { // sell offer
 
                 if ($offer->cancelled == false && $toCollect <= 0)
-                    return redirect('marketplace');//TODO nothing to collect
+                    return redirect('marketplace')->with('fail', 'The collection box of this offer is currently empty.');
 
-                $user->cash += $offer->cash;
+                $cash = $offer->cash;
+                $user->cash += $cash;
                 $offer->cash = 0;
                 $user->save();
                 $offer->collected += $toCollect;
                 if ($offer->cancelled == true || $offer->amount == $offer->completed) {
                     $this->addItem($user, $offer->item, $offer->amount - $offer->completed);
                     $offer->delete();
-                    return redirect('marketplace');//TODO msg offer removed & collected
-                } else {
-                    return redirect('marketplace');// msg collected stuff
+                    if ($offer->amount - $offer->completed > 0)
+                        return redirect('marketplace')->with('success', 'Collected '.number_format($offer->amount - $offer->completed).' items and $'.number_format($cash).'. The offer has been removed.');
+                    else
+                        return redirect('marketplace')->with('success', 'Collected $'.number_format($cash).'. The offer has been removed.');
                 }
             }
         }

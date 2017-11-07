@@ -12,7 +12,7 @@ class MarketOffer extends Model
      * @var array
      */
     protected $fillable = [
-        'id', 'creator', 'creatortype', 'offertype', 'item', 'price', 'amount', 'completed', 'collected', 'location', 'cash', 'cancelled'
+        'id', 'creator', 'creatortype', 'offertype', 'item', 'price', 'amount', 'completed', 'collected', 'cash', 'cancelled'
     ];
 
     protected $table = 'marketoffers';
