@@ -14,4 +14,6 @@ class MarketOffer extends Model
     protected $fillable = [
         'id', 'creator', 'creatortype', 'offertype', 'item', 'price', 'amount', 'completed', 'collected', 'location', 'cash', 'cancelled'
     ];
+
+    protected $table = 'marketoffers';
 }

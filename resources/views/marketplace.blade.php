@@ -13,127 +13,71 @@
         <div class="card mb-3">
             <div class="card-header"><i class="fa fa-university i_button_background"></i> Marketplace</div>
             <div class="card-body">
-                <button type="submit" class="btn btn-dark">New offer</button>
+                <a href="{{ url('/newoffer') }}">
+                    <button type="submit" class="btn btn-dark">New offer</button>
+                </a>
                 <div class="row">
-                    <div class="col-md-4 logo_center">
-                        <div class="table-responsive"><br>
-                            <table class="table table-active">
-                                <thead>
-                                <tr>
-                                    <td class="table_dark_bg" style="width: 10%;">Buying</td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        Stone - <b>$100</b> each
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        69/69 bought
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="img/netherlands.png"> Netherlands
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-success">
-                                        Offer completed
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <button type="submit" class="btn btn-dark form-inline">Collect</button>
-                                        <button type="submit" class="btn btn-dark form-inline">Cancel</button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                    @foreach($offers as $offer)
+                        <div class="col-md-4 logo_center">
+                            <div class="table-responsive"><br>
+                                <table class="table table-active">
+                                    <thead>
+                                    <tr>
+                                        @if ($offer->offertype == 0)
+                                            <td class="table_dark_bg" style="width: 10%;">Buying</td>
+                                        @elseif ($offer->offertype == 1)
+                                            <td class="table_dark_bg" style="width: 10%;">Selling</td>
+                                        @endif
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            {{$itemnames->get($offer->item)}} - <b>${{$offer->price}}</b> each
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {{$offer->completed}}/{{$offer->amount}} completed
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <img src="img/{{$locs->get($offer->location - 1)->flag}}"> {{$locs->get($offer->location - 1)->name}}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        @if($offer->cancelled == true)
+                                            <td class="table-danger">
+                                                Cancelled
+                                            </td>
+                                        @elseif($offer->cancelled == false && $offer->completed >= $offer->amount)
+                                            <td class="table-success">
+                                                Offer completed
+                                            </td>
+                                        @elseif($offer->cancelled == false && $offer->completed < $offer->amount)
+                                            <td class="table-info">
+                                                Offer in progress
+                                            </td>
+                                        @endif
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            {!! Form::open(['route' => ['market.collect'], 'method' => 'post']) !!}
+                                            <button type="submit" class="btn btn-dark form-inline">Collect</button>
+                                            {!! Form::hidden("id", $offer->id) !!}
+                                            {!! Form::close() !!}
+                                            {!! Form::open(['route' => ['market.cancel'], 'method' => 'post']) !!}
+                                            <button type="submit" class="btn btn-dark form-inline">Cancel</button>
+                                            {!! Form::hidden("id", $offer->id) !!}
+                                            {!! Form::close() !!}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-4 logo_center">
-                        <div class="table-responsive"><br>
-                            <table class="table table-active">
-                                <thead>
-                                <tr>
-                                    <td class="table_dark_bg" style="width: 10%;">Selling</td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        Wheat - <b>$120</b> each
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        10/100 sold
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="img/uk.png"> United Kingdom
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-info">
-                                        Offer in progress
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <button type="submit" class="btn btn-dark form-inline">Collect</button>
-                                        <button type="submit" class="btn btn-dark form-inline">Cancel</button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 logo_center">
-                        <div class="table-responsive"><br>
-                            <table class="table table-active">
-                                <thead>
-                                <tr>
-                                    <td class="table_dark_bg" style="width: 10%;">Selling</td>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>
-                                        Wood - <b>$200</b> each
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        0/10 sold
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="img/russia.png"> Russia
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-danger">
-                                        Canceled
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <button type="submit" class="btn btn-dark form-inline">Collect</button>
-                                        <button type="submit" class="btn btn-dark form-inline">Cancel</button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

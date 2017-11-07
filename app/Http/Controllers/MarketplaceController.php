@@ -17,9 +17,17 @@ class MarketplaceController extends Controller
      */
     public function index()
     {
-        return view('marketplace', array("user" => Auth::user()));
+        $user = Auth::user();
+        $offers = MarketOffer::where('creator', $user->id)->get();
+        $itemnames = collect(["Wood", "Stone", "Wheat"]);
+        return view('marketplace', array(
+            "user" => $user,
+            "offers" => $offers,
+            "locs" => Location::all(),
+            'itemnames' => $itemnames
+        ));
     }
-    
+
     public function createOffer(Request $request)
     {
         $creator = $request->input('creator');
@@ -32,10 +40,9 @@ class MarketplaceController extends Controller
         $location = $request->input('location');
         $cash = 0;
 
-
         if ($creatortype == 0) {  //if listed by a user
 
-            $user = User::where('id', $creator);
+            $user = User::where('id', $creator)->get()->first();
 
             /*
              * Buy offer
@@ -43,17 +50,32 @@ class MarketplaceController extends Controller
             if ($offertype == 0) {
 
                 if ($user->cash < $amount * $price)
-                    return redirect('marketplace');//TODO niet genoeg geld
+                    return redirect('newoffer');//TODO niet genoeg geld
 
                 $user->cash -= $amount * $price;
                 $cash = $amount * $price;
 
-                $matches = MarketOffer::where('item', $item)
+                $userMatches = MarketOffer::where('item', $item)
+                    ->where('creatortype', 0)
+                    ->where('creator', '!=', $user->id)
                     ->where('cancelled', false)
                     ->where('location', $location)
                     ->where('price', '<=', $price)
                     ->where('offertype', 1)
+                    ->get()
                     ->sortBy('price');
+
+                $companyMatches =  MarketOffer::where('item', $item)
+                    ->where('creatortype', 1)
+                    ->where('creator', '!=', $user->company)
+                    ->where('cancelled', false)
+                    ->where('location', $location)
+                    ->where('price', '<=', $price)
+                    ->where('offertype', 1)
+                    ->get()
+                    ->sortBy('price');
+
+                $matches = $userMatches->merge($companyMatches);
 
                 foreach ($matches as $match) {
 
@@ -74,9 +96,11 @@ class MarketplaceController extends Controller
                             $cash -= ($needed * $match->price);
                             $match->cash += ($needed * $match->price);
                         }
+                        $user->save();
                         $match->save();
                     }
                 }
+                $user->save();
 
                 /*
                  * sell offer
@@ -84,7 +108,7 @@ class MarketplaceController extends Controller
             } else if ($offertype == 1) {
 
                 if (!$this->hasItem($user, $item, $amount))
-                    return redirect('marketplace');//TODO niet genoeg resources
+                    return redirect('newoffer');//TODO niet genoeg resources
 
                 $this->removeItem($user, $item, $amount);
 
@@ -93,6 +117,7 @@ class MarketplaceController extends Controller
                     ->where('location', $location)
                     ->where('price', '>=', $price)
                     ->where('offertype', 0)
+                    ->get()
                     ->sortByDesc('price');
 
                 foreach ($matches as $match) {
@@ -105,13 +130,13 @@ class MarketplaceController extends Controller
                         if ($needed >= $available) {
                             $match->completed += $available;
                             $completed += $available;
-                            $cash += ($match->price * $available);
-                            $match->cash -= ($match->price * $available);
+                            $cash += ($price * $available);
+                            $match->cash -= ($price * $available);
                         } else {
                             $match->completed += $needed;
-                            $completed += needed;
-                            $cash += ($match->price * $needed);
-                            $match->cash -= ($match->price * needed);
+                            $completed += $needed;
+                            $cash += ($price * $needed);
+                            $match->cash -= ($price * $needed);
                         }
                         $match->save();
                     }
@@ -133,12 +158,14 @@ class MarketplaceController extends Controller
                 'cancelled' => false
             ]);
             $offer->save();
+
+            return redirect('marketplace');//new offer created
         }
     }
 
     public function cancelOffer(Request $request)
     {
-        $offer = MarketOffer::where('id', $request->input('id'));
+        $offer = MarketOffer::where('id', $request->input('id'))->get()->first();;
 
         if ($offer->amount == $offer->completed)
             return redirect('marketplace');//already completed, collect pls
@@ -150,22 +177,24 @@ class MarketplaceController extends Controller
 
     public function collectOffer(Request $request)
     {
-        $offer = MarketOffer::where('id', $request->input('id'));
+        $offer = MarketOffer::where('id', $request->input('id'))->get()->first();
         $toCollect = $offer->completed - $offer->collected;
 
         if ($offer->creatortype == 0) {// user offer
 
-            $user = User::where('id', $offer->creator);
+            $user = Auth::user();
 
             if ($offer->offertype == 0) { //buy offer
 
                 if ($offer->cancelled == false && $toCollect <= 0)
                     return redirect('marketplace');//TODO nothing to collect
 
-                $this->addItem($user, $offer->item, $offer->toCollect);
+                $this->addItem($user, $offer->item, $toCollect);
                 $offer->collected += $toCollect;
-                if ($offer->cancelled == true) {
+                $offer->save();
+                if ($offer->cancelled == true || $offer->amount == $offer->completed) {
                     $user->cash += $offer->cash;
+                    $user->save();
                     $offer->delete();
                     return redirect('marketplace');//TODO msg offer removed & collected
                 } else {
@@ -179,8 +208,9 @@ class MarketplaceController extends Controller
 
                 $user->cash += $offer->cash;
                 $offer->cash = 0;
+                $user->save();
                 $offer->collected += $toCollect;
-                if ($offer->cancelled == true) {
+                if ($offer->cancelled == true || $offer->amount == $offer->completed) {
                     $this->addItem($user, $offer->item, $offer->amount - $offer->completed);
                     $offer->delete();
                     return redirect('marketplace');//TODO msg offer removed & collected
@@ -197,58 +227,56 @@ class MarketplaceController extends Controller
     }
 
 
-public
-function hasItem(User $user, $item, $amount)
-{
-    switch ($item) {
-        case 0://wood
-            return $user->wood >= $amount;
-        case 1://stone
-            return $user->stone >= $amount;
-        case 2://wheat
-            return $user->wheat >= $amount;
+    public function hasItem(User $user, $item, $amount)
+    {
+        switch ($item) {
+            case 0://wood
+                return $user->wood >= $amount;
+            case 1://stone
+                return $user->stone >= $amount;
+            case 2://wheat
+                return $user->wheat >= $amount;
+        }
     }
-}
 
-public
-function removeItem(User $user, $item, $amount)
-{
-    switch ($item) {
-        case 0://wood
-            $user->wood -= $amount;
-            break;
-        case 1://stone
-            $user->stone -= $amount;
-            break;
-        case 2://wheat
-            $user->wheat -= $amount;
-            break;
+    public function removeItem(User $user, $item, $amount)
+    {
+        switch ($item) {
+            case 0://wood
+                $user->wood -= $amount;
+                break;
+            case 1://stone
+                $user->stone -= $amount;
+                break;
+            case 2://wheat
+                $user->wheat -= $amount;
+                break;
+        }
+        $user->save();
     }
-    $user->save();
-}
 
-public
-function addItem(User $user, $item, $amount)
-{
-    switch ($item) {
-        case 0://wood
-            $user->wood += $amount;
-            break;
-        case 1://stone
-            $user->stone += $amount;
-            break;
-        case 2://wheat
-            $user->wheat += $amount;
-            break;
+    public function addItem(User $user, $item, $amount)
+    {
+        switch ($item) {
+            case 0://wood
+                $user->wood += $amount;
+                break;
+            case 1://stone
+                $user->stone += $amount;
+                break;
+            case 2://wheat
+                $user->wheat += $amount;
+                break;
+        }
+        $user->save();
     }
-    $user->save();
-}
+
     /**
      * Show the application marketplace create offer.
      *
      * @return \Illuminate\Http\Response
      */
-    public function newoffer()
+    public function newOffer()
     {
         return view('newoffer', array("user" => Auth::user()));
     }

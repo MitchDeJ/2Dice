@@ -15,30 +15,29 @@
             <div class="card-body">
                 <div class="col-md-2">
                     <label for="type">Type</label>
-                    <select class="form-control form-group form-inline">
-                        <option>Buy</option>
-                        <option>Sell</option>
-                    </select>
+                    {!! Form::open(['route' => ['market.newoffer'], 'method' => 'post', 'class' => 'form-horizontal']) !!}
+                    {!! Form::hidden("creator", $user->id) !!}
+                    {!! Form::hidden("creatortype", 0) !!}
+                    {!! Form::hidden("location", $user->location) !!}
+                    {!! Form::select('offertype', array(0 => 'Buy', 1 => 'Sell'), 0, ['class' => 'form-control form-group form-inline']) !!}
                 </div>
                 <div class="col-md-2">
                     <label for="item">Item</label>
-                    <select class="form-control form-group form-inline">
-                        <option>Wood</option>
-                        <option>Stone</option>
-                        <option>Wheat</option>
-                    </select>
-                </div>
-                <div class="col-md-2 form-group form-inline">
-                    <label for="price">Price each &nbsp;</label>
-                    <input type="email" class="form-control" id="price" placeholder="">
+                    {!! Form::select('item', array(0 => 'Wood', 1 => 'Stone', 2 => 'Wheat'), 0, ['class' => 'form-control form-group form-inline']) !!}
                 </div>
                 <div class="col-md-2 form-group form-inline">
                     <label for="amount">Amount &nbsp;</label>
-                    <input type="email" class="form-control" id="amount" placeholder="">
+                    {!! Form::number('amount', null, ['class'=>"form-control"]) !!}
                 </div>
+                <div class="col-md-2 form-group form-inline">
+                    <label for="price">Price each &nbsp;</label>
+                    {!! Form::number('price', null, ['class'=>"form-control"]) !!}
+                </div>
+
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-default">Create offer</button>
                 </div>
+                {!! Form::close() !!}
             </div>
         </div>
     </div>
