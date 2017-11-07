@@ -63,14 +63,17 @@
                                     </tr>
                                     <tr>
                                         <td>
+                                            <div class="row" style="margin: auto; justify-content: center">
                                             {!! Form::open(['route' => ['market.collect'], 'method' => 'post']) !!}
-                                            <button type="submit" class="btn btn-dark form-inline">Collect</button>
+                                            <button type="submit" class="btn btn-dark form-group">Collect</button>
                                             {!! Form::hidden("id", $offer->id) !!}
                                             {!! Form::close() !!}
+                                                &nbsp;
                                             {!! Form::open(['route' => ['market.cancel'], 'method' => 'post']) !!}
-                                            <button type="submit" class="btn btn-dark form-inline">Cancel</button>
+                                            <button type="submit" class="btn btn-dark form-group">Cancel</button>
                                             {!! Form::hidden("id", $offer->id) !!}
                                             {!! Form::close() !!}
+                                            </div>
                                         </td>
                                     </tr>
                                     </tbody>
