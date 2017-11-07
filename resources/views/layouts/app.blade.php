@@ -23,6 +23,8 @@
 {{ Html::style("vendor/font-awesome/css/font-awesome.min.css" ) }}
 <!-- Custom styles for this template-->
     {{ Html::style("css/sb-admin.css") }}
+<!-- jQuery-->
+    {{ Html::script("js/jquery-3.2.1.min.js") }}
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -205,7 +207,6 @@
 </div>
 <!-- Bootstrap core JavaScript-->
 {{ Html::script("vendor/jquery/jquery.min.js") }}
-
 {{ Html::script("vendor/bootstrap/js/bootstrap.bundle.min.js") }}
 <!-- Core plugin JavaScript-->
 {{ Html::script("vendor/jquery-easing/jquery.easing.min.js") }}

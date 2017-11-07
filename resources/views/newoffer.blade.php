@@ -10,6 +10,14 @@
 
 @section('content')
     <div class="container-fluid">
+        <script type="text/javascript">
+            $('#price').keyup(calculate);
+            $('#amount').keyup(calculate);
+            function calculate(e) {
+                var maths = $('#price').val() * $('#amount').val();
+                $('#totalprice').val(maths);
+            }
+        </script>
         <div class="card mb-3">
             <div class="card-header"><i class="fa fa-university i_button_background"></i> Marketplace</div>
             <div class="card-body">
@@ -33,7 +41,10 @@
                     <label for="price">Price each &nbsp;</label>
                     {!! Form::number('price', null, ['class'=>"form-control"]) !!}
                 </div>
-
+                <div class="col-md-2 form-group form-inline">
+                    <label for="price">Price each &nbsp;</label>
+                    {!! Form::number('totalprice', null, ['class'=>"form-control", 'disabled']) !!}
+                </div>
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-default">Create offer</button>
                 </div>
