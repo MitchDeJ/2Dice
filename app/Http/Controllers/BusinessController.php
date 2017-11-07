@@ -33,6 +33,13 @@ class BusinessController extends Controller
         $name = $request->input('name');
         $sender = Auth::user();
 
+        if ($sender->cash < $amount)
+            return redirect('sendcash')->with('fail', "You don't have that much cash.");
+
+        if ($amount < 1)
+            return redirect('sendcash')->with('fail', "Why would you send nothing?");
+
+
         $found = User::where('name', $name)->get()->count();
 
         if ($found != 0) {
