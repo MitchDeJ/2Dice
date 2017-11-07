@@ -26,10 +26,10 @@
                         <tbody>
                         <tr>
                             <td>
-                                100,000 Power
+                                75,000 Power
                             </td>
                             <td>
-                                0.5 Prestige point
+                                1 Prestige point
                             </td>
                             <td>
                                 <div class="form-inline">
@@ -41,10 +41,10 @@
 
                         <tr>
                             <td>
-                                $7,500,000 Cash
+                                $5,000,000 Cash
                             </td>
                             <td>
-                                0.5 Prestige point
+                                1 Prestige point
                             </td>
                             <td>
                                 <div class="form-inline">
