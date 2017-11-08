@@ -26,11 +26,11 @@
 <!-- jQuery-->
 {{ Html::script("js/jquery-3.2.1.min.js") }}
 </head>
-
+{{--{{asset("img/dicelogo.png")}}--}}
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-    <a href="{{ url('/dashboard') }}"><img src="{{asset("img/dicelogo.png")}}" alt="Dice logo" width="100px"
+    <a href="{{ url('/dashboard') }}"><img src="https://i.imgur.com/JfyVAFq.png" alt="Dice logo" width="100px"
                                            height="40px"></a>
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
             data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
@@ -99,28 +99,6 @@
                 </ul>
             </li>
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Business">
-                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseBusiness"
-                   data-parent="#exampleAccordion">
-                    <i class="fa fa-fw fa-suitcase"></i>
-                    <span class="nav-link-text">Business</span>
-                </a>
-                <ul class="sidenav-second-level collapse" id="collapseBusiness">
-                    <li>
-                        <a href="{{ url('/sendcash') }}">Send cash</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('/stockmarket') }}">Stock market</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('/collab') }}">Collaboration</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('/jobs') }}">Jobs</a>
-                    </li>
-                </ul>
-            </li>
-
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Betting">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseBetting"
                    data-parent="#exampleAccordion">
@@ -139,6 +117,28 @@
                     </li>
                     <li>
                         <a href="{{ url('/roulette') }}">Roulette</a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Business">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseBusiness"
+                   data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-suitcase"></i>
+                    <span class="nav-link-text">Business</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="collapseBusiness">
+                    <li>
+                        <a href="{{ url('/sendcash') }}">Send cash</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/stockmarket') }}">Stock market</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/collab') }}">Collaboration</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/jobs') }}">Jobs</a>
                     </li>
                 </ul>
             </li>
