@@ -76,6 +76,13 @@
                 </a>
             </li>
 
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Location">
+                <a class="nav-link" href="{{ url('/vip') }}">
+                    <i class="fa fa-fw fa-diamond"></i>
+                    <span class="nav-link-text">VIP</span>
+                </a>
+            </li>
+
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Shop">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseShop"
                    data-parent="#exampleAccordion">
