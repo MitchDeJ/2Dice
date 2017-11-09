@@ -39,7 +39,8 @@
                                         Blackjack dealer
                                     </td>
                                     <td>
-                                        <img src="img/placeholder.png" width="100px" height="50px" class="img-thumbnail">
+                                        <img src="img/placeholder.png" width="100px" height="50px"
+                                             class="img-thumbnail">
                                     </td>
                                 </tr>
                                 <tr>
@@ -47,13 +48,74 @@
                                         {{Auth::user()->name}}
                                     </td>
                                     <td>
-                                        <img src="img/placeholder.png" width="100px" height="50px" class="img-thumbnail">
+                                        <img src="img/placeholder.png" width="100px" height="50px"
+                                             class="img-thumbnail">
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
                             <button type="submit" class="btn btn-default">Take another card</button>
                             <button type="submit" class="btn btn-default">Stop playing</button>
+                        </div><br>
+
+
+                        <h5>Blackjack {{$location->name}}</h5>
+                        <p>You are currently the owner of the Blackjack. Make sure you have enough money in your
+                            Blackjack. If a player wins more money then what your Blackjack holds, you will <b>lose</b>
+                            it!</p>
+
+                        <div class="table-responsive">
+                            <table class="table table-dark">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        Current max bet amount: <b>$50,000,000</b>
+                                    </td>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-inline">
+                            <label>Max bet amount &nbsp;</label>
+                            <input type="number" class="form-control" placeholder="" id="maxbet" name="maxbet">
+                            <button type="submit" class="btn btn-default">Change</button>
+                        </div>
+                        <br>
+
+
+                        <div class="table-responsive">
+                            <table class="table table-dark">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        Current money in your Blackjack: <b>$100,325,523,555</b>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="form-inline">
+                            <label>Deposit/withdraw money &nbsp;</label>
+                            <input type="number" class="form-control" placeholder="" id="maxbet" name="maxbet" value="">
+                            <button type="submit" class="btn btn-default">Deposit</button>&nbsp;
+                            <button type="submit" class="btn btn-default">Withdraw</button>
+                        </div>
+                        <br>
+
+                        <div class="table-responsive">
+                            <table class="table table-dark">
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        Blackjack player count: <b>100</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        Profit made: <i style="color: green;">$100,000,000</i>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

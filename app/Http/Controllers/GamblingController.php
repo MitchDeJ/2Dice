@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Location;
 
 class GamblingController extends Controller
 {
@@ -72,7 +73,11 @@ class GamblingController extends Controller
      */
     public function roulette()
     {
-        return view('roulette', array("user" => Auth::user()));
+        $user = Auth::user();
+        return view('roulette', array(
+            "user" => $user,
+            "location" => Location::where("id", $user->location)->get()->first()
+        ));
     }
 
     /**
@@ -82,6 +87,10 @@ class GamblingController extends Controller
      */
     public function blackjack()
     {
-        return view('blackjack', array("user" => Auth::user()));
+        $user = Auth::user();
+        return view('blackjack', array(
+            "user" => $user,
+            "location" => Location::where("id", $user->location)->get()->first()
+        ));
     }
 }
