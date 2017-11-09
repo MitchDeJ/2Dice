@@ -30,6 +30,7 @@ Route::get('message/{m}', "MessageController@viewMessage");
 Route::get('/leaderboard/{num}', 'LeaderboardController@index')->name('leaderboard');
 Route::get('/changepassword', 'ChangePasswordController@index')->name('changepassword');
 Route::get('/editprofile', 'ProfileController@edit')->name('editprofile');
+Route::get('/titleselection', 'ProfileController@titleIndex')->name('titeselection');
 Route::get('/location', 'LocationController@index')->name('location');
 Route::get('/statistics', 'StatisticsController@index')->name('statistics');
 Route::get('/marketplace', 'MarketplaceController@index')->name('marketplace');

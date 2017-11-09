@@ -84,4 +84,14 @@ class ProfileController extends Controller
         }
     }
 
+    /**
+     * Show the application title selection.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function titleIndex()
+    {
+        return view('titleselection');
+    }
+
 }
