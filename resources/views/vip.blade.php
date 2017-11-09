@@ -26,7 +26,7 @@
                         Orange color in the leaderboards.
                     </li>
                     <li>
-                        Custom title in the title selection screen.
+                        Exclusive title in the title selection screen.
                     </li>
                     <li>
                         3 extra marketplace slots.
