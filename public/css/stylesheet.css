@@ -18,3 +18,13 @@
     background-color: #343a40;
     color: white;
 }
+
+.vip_yes {
+    color: #f39c12;
+    font-weight: 500;
+}
+
+.vip_yes:hover {
+    color: #212529;
+    font-weight: 500;
+}
