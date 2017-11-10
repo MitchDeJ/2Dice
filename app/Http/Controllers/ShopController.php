@@ -42,4 +42,38 @@ class ShopController extends Controller
         $user->save();
         return redirect('general')->with('success', 'Successfully bought '.number_format($amount).' power for $'.number_format($price));
     }
+
+    public function claimPower(Request $request) {
+        $amount = $request->input('amount');
+        $user = Auth::user();
+
+        $POWER = 75000;
+
+        if ($amount < 1)
+            return redirect('prestige')->with('fail', 'Invalid amount.');
+        if ($user->prestigepoints < $amount)
+            return redirect('prestige')->with('fail', 'You do not have enough prestige points to claim '.$amount.'x '.number_format($POWER).' power.');
+
+        $user->prestigepoints -= $amount;
+        $user->power += $amount*$POWER;
+        $user->save();
+        return redirect('prestige')->with('success', 'Successfully claimed '.number_format($POWER*$amount).' power for '.number_format($amount).' prestige points.');
+    }
+
+    public function claimCash(Request $request) {
+        $amount = $request->input('amount');
+        $user = Auth::user();
+
+        $CASH = 5000000;
+
+        if ($amount < 1)
+            return redirect('prestige')->with('fail', 'Invalid amount.');
+        if ($user->prestigepoints < $amount)
+            return redirect('prestige')->with('fail', 'You do not have enough prestige points to claim '.$amount.'x $'.number_format($CASH).'.');
+
+        $user->prestigepoints -= $amount;
+        $user->cash += $amount*$CASH;
+        $user->save();
+        return redirect('prestige')->with('success', 'Successfully claimed $'.number_format($CASH*$amount).' for '.number_format($amount).' prestige points.');
+    }
 }
