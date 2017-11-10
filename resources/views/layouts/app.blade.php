@@ -150,11 +150,17 @@
                     <span class="nav-link-text">Company</span>
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseCompany">
+                    @if ($user->company != -1)
                     <li>
-                        <a href="#">Company leaderboard</a>
+                         <a href="{{ url('/companyprofile') }}">Company profile</a>
                     </li>
+                    @else
                     <li>
-                        <a href="#">Company profile</a>
+                        <a href="{{ url('/companycreate') }}">Company create</a>
+                    </li>
+                    @endif
+                    <li>
+                        <a href="{{ url('/companyleaderboard') }}">Company leaderboard</a>
                     </li>
                 </ul>
             </li>

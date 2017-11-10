@@ -46,6 +46,9 @@ Route::get('/collab', 'BusinessController@collabIndex')->name('collab');
 Route::get('/stockmarket', 'StockmarketController@index')->name('stockmarket');
 Route::get('/jobs', 'JobsController@index')->name('jobs');
 Route::get('/vip', 'VipController@index')->name('vip');
+Route::get('/companycreate', 'CompanyController@companyCreate')->name('companycreate');
+Route::get('/companyprofile', 'CompanyController@companyProfile')->name('companyprofile');
+Route::get('/companyleaderboard', 'CompanyController@companyLeaderboard')->name('companyleaderboard');
 
 Route::post('editprofile', 'ProfileController@updateAvatar');
 Route::post("/updateDesc",["uses" => "ProfileController@updateDesc", "as"=>"profile.updateDesc"]);
