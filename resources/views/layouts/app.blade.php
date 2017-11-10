@@ -150,7 +150,7 @@
                     <span class="nav-link-text">Company</span>
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseCompany">
-                    @if ($user->company != -1)
+                    @if (Auth::user()->company != -1)
                     <li>
                          <a href="{{ url('/companyprofile') }}">Company profile</a>
                     </li>
