@@ -117,22 +117,22 @@
                     </table>
                 </div>
                 <br>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <td class="table_dark_bg" style="width: 10%;">Object</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-globe"></i> Object(s):
-                                Blackjack Russia
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
+                {{--<div class="table-responsive">--}}
+                    {{--<table class="table table-striped">--}}
+                        {{--<thead>--}}
+                        {{--<tr>--}}
+                            {{--<td class="table_dark_bg" style="width: 10%;">Object</td>--}}
+                        {{--</tr>--}}
+                        {{--</thead>--}}
+                        {{--<tbody>--}}
+                        {{--<tr>--}}
+                            {{--<td><i style="color: #f39c12;" class="fa fa-globe"></i> Object(s):--}}
+                                {{--Blackjack Russia--}}
+                            {{--</td>--}}
+                        {{--</tr>--}}
+                        {{--</tbody>--}}
+                    {{--</table>--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>

@@ -34,7 +34,7 @@
             <br>
 
             <div class="row col-md-12">
-                <h6>Title</h6>
+                <h6>Message</h6>
                 <textarea class="form-control" rows="3" placeholder="Message" name="text"></textarea>
             </div>
             <br>

@@ -23,8 +23,6 @@
                               disabled>company desc</textarea>
                 </div>
                 <br>
-
-                <br>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -50,7 +48,7 @@
                         </tbody>
                     </table>
                 </div>
-
+                <br>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -68,7 +66,7 @@
                         </tbody>
                     </table>
                 </div>
-
+                <br>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
