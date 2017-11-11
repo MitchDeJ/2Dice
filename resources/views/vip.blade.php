@@ -56,7 +56,8 @@
                 <img src="{!! url("/img/vipexplain.png") !!}" width="425px" height="488px" style="display: block; margin-bottom: 1%">
 
                 <p>Every donation is appreciated and will be used towards funding the hosting.</p>
-                <p>If you did not receive your VIP within 24h, please contact us via mail: 2DiceInfo@gmail.com</p>
+                <p>Currently donations are processed manually, so it might take a bit for your VIP status to be granted.</p>
+                    <p>If you did not receive your VIP within 24h, please contact us via mail: <a href="mailto:2DiceInfo@gmail.com">2DiceInfo@gmail.com</a></p>
             </div>
         </div>
     </div>
