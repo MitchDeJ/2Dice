@@ -67,8 +67,10 @@
                             </td>
                             <td>
                                 <div class="form-inline">
-                                    <input type="number" class="form-control" placeholder="Amount" id="vip" name="vip">
+                                    {!! Form::open(['route' => ['shop.claimvip'], 'method' => 'post']) !!}
+                                    <input type="number" class="form-control" placeholder="Amount" id="vip" name="amount">
                                     <button type="submit" class="btn btn-default">Buy</button>
+                                    {!! Form::close() !!}
                                 </div>
                             </td>
                         </tr>

@@ -65,7 +65,7 @@ class ProfileController extends Controller
             $avatar = $request->file('avatar');
             $filename = $user->name . time() . '.' . $avatar->getClientOriginalExtension();
 
-            if ($user->avatar != "default.jpg")
+            if ($user->avatar != "default.png")
                 File::Delete(public_path("/userimg/") . $user->avatar);
 
             Image::make($avatar)->resize(200, 200)->save(public_path('/userimg/' . $filename));

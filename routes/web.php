@@ -64,6 +64,7 @@ Route::post("/readallmessages",["uses" => "MessageController@readAllMessages", "
 Route::post("/buypower",["uses" => "ShopController@buyPower", "as"=>"shop.buypower"]);
 Route::post("/claimpower",["uses" => "ShopController@claimPower", "as"=>"shop.claimpower"]);
 Route::post("/claimcash",["uses" => "ShopController@claimCash", "as"=>"shop.claimcash"]);
+Route::post("/claimvip",["uses" => "ShopController@claimVIP", "as"=>"shop.claimvip"]);
 Route::post("/createoffer",["uses" => "MarketPlaceController@createOffer", "as"=>"market.newoffer"]);
 Route::post("/collectoffer",["uses" => "MarketPlaceController@collectOffer", "as"=>"market.collect"]);
 Route::post("/canceloffer",["uses" => "MarketPlaceController@cancelOffer", "as"=>"market.cancel"]);
