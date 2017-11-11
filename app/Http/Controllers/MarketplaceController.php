@@ -18,7 +18,7 @@ class MarketplaceController extends Controller
     {
         $user = Auth::user();
         $offers = MarketOffer::where('creator', $user->id)->get();
-        $itemnames = collect(["Wood", "Stone", "Wheat"]);
+        $itemnames = collect(["Wood", "Stone", "Wheat", "Prestige point"]);
         return view('marketplace', array(
             "user" => $user,
             "offers" => $offers,
@@ -247,6 +247,8 @@ class MarketplaceController extends Controller
                 return $user->stone >= $amount;
             case 2://wheat
                 return $user->wheat >= $amount;
+            case 3://prestige point
+                return $user->prestigepoints >= $amount;
         }
     }
 
@@ -261,6 +263,9 @@ class MarketplaceController extends Controller
                 break;
             case 2://wheat
                 $user->wheat -= $amount;
+                break;
+            case 3://prestige point
+                $user->prestigepoints -= $amount;
                 break;
         }
         $user->save();
@@ -277,6 +282,9 @@ class MarketplaceController extends Controller
                 break;
             case 2://wheat
                 $user->wheat += $amount;
+                break;
+            case 3://prestige point
+                $user->prestigepoints += $amount;
                 break;
         }
         $user->save();
