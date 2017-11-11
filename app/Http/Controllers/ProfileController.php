@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use File;
 use Image;
+use App\Object;
 use App\User;
 use App\Location;
 
@@ -19,20 +20,34 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $objects = Object::where('owner', $user->id)->get();
+        $list = "";
+        foreach($objects as $obj) {
+            $list .= ObjectController::getTypeName($obj->type).' '.LocationController::getName($obj->location).', ';
+        }
+        $list = substr($list, 0, strlen($list)-2);
         return view('profile', array(
             "user" => $user,
             "lbrank" => $this->getLeaderboardRank(Auth::user()->name),
-            "location" => Location::where("id", $user->location)->get()->first()
+            "location" => Location::where("id", $user->location)->get()->first(),
+            'list' => $list
             ));
     }
 
     public function otherProfile($name)
     {
         $user = User::where("name", $name)->get()->first();
+        $objects = Object::where('owner', $user->id)->get();
+        $list = "";
+        foreach($objects as $obj) {
+            $list .= ObjectController::getTypeName($obj->type).' '.LocationController::getName($obj->location).', ';
+        }
+        $list = substr($list, 0, strlen($list)-2);
         return view("profile", array(
             "user" => $user,
             "lbrank" => $this->getLeaderboardRank($user->name),
-            "location" => Location::where("id", $user->location)->get()->first()
+            "location" => Location::where("id", $user->location)->get()->first(),
+            'list' => $list
             ));
     }
 

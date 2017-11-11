@@ -56,4 +56,9 @@ class LocationController extends Controller
         $loc = Location::where('id', Auth::user()->location)->get()->first();
         return redirect('location')->with('success', 'You pay $'.number_format($price).' and fly to '.$loc->name.'.');
     }
+
+    public static function getName($loc) {
+        $location = Location::where('id', $loc)->get()->first();
+        return $location->name;
+    }
 }

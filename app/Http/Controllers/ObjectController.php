@@ -103,4 +103,15 @@ class ObjectController extends Controller
             return redirect($page)->with('success', 'Successfully withdrawn $' . number_format($amount) . '.');
         }
     }
+
+    public static function getTypeName($type) {
+        switch ($type) {
+            case 0:
+                return "Roulette";
+            case 1:
+                return "Blackjack";
+            case 2:
+                return "Airport";
+        }
+    }
 }

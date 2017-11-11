@@ -126,7 +126,7 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-globe"></i> Object(s):
+                            <td><i style="color: #f39c12;" class="fa fa-globe"></i> Object(s): {{$list}}
 
                             </td>
                         </tr>
