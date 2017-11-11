@@ -94,9 +94,13 @@
                     <div class="form-inline">
                         <label>Deposit/withdraw money &nbsp;</label>
                         <input type="number" class="form-control" placeholder="" id="maxbet" name="maxbet" value="">
-                        <button type="submit" class="btn btn-default">Deposit</button>
-                        &nbsp;
-                        <button type="submit" class="btn btn-default">Withdraw</button>
+                        <select class="form-control form-group form-inline" id="type">
+                            <option>Deposit</option>
+                            <option>Deposit all</option>
+                            <option>Withdraw</option>
+                            <option>Withdraw all</option>
+                        </select>
+                        <button type="submit" class="btn btn-default">Transfer</button>
                     </div>
                     <br>
 
