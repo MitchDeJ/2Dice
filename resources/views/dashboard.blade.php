@@ -55,7 +55,7 @@
                             <tr>
                                 <td><i class="fa fa-diamond i_button_background"></i> VIP:
                                     @if($user->vip == true)
-                                        Yes
+                                        Yes @if($subscription != null)(until {{date("d-m-Y", $subscription->end)}}) @endif
                                     @else
                                         No
                                     @endif

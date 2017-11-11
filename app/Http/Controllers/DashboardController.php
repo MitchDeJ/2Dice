@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Location;
+use App\Subscription;
 
 class DashboardController extends Controller
 {
@@ -16,10 +17,15 @@ class DashboardController extends Controller
     public function index()
     {
         $user = Auth::user();
+        if (Subscription::where('user', $user->id)->get()->count() > 0)
+            $subscription = Subscription::where('user', $user->id)->get()->first();
+        else
+            $subscription = null;
         return view('dashboard', array(
             "user" => $user,
             "lbrank" => app('App\Http\Controllers\ProfileController')->getLeaderboardRank(Auth::user()->name),
-            "location" => Location::where("id", $user->location)->get()->first()
+            "location" => Location::where("id", $user->location)->get()->first(),
+            "subscription" => $subscription
             ));
     }
 }
