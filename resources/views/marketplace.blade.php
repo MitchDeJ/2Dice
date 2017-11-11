@@ -20,7 +20,7 @@
                     @foreach($offers as $offer)
                         <div class="col-md-4 logo_center">
                             <div class="table-responsive"><br>
-                                <table class="table table-active">
+                                <table class="table table-active" style="text-align: center;">
                                     <thead>
                                     <tr>
                                         @if ($offer->offertype == 0)
