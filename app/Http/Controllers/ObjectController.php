@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Object;
+use Auth;
 
 class ObjectController extends Controller
 {
@@ -26,6 +27,7 @@ class ObjectController extends Controller
             return redirect($page)->with('fail', 'Only the owner of this object can change the maximum bet.');
 
         $object->maxbet = $amount;
+        $object->save();
         return redirect($page)->with('success', 'Maximum bet has been set to $'.number_format($amount));
 
     }
@@ -53,20 +55,31 @@ class ObjectController extends Controller
 
         if ($action == "WITHDRAW") {
 
+            if ($amount < 1)
+                return redirect($page)->with('fail', 'Invalid amount.');
+
             if ($object->cash < $amount)
-                return redirect($page)->with('fail', 'There is not that much cash in your objects bank');
+                return redirect($page)->with('fail', 'There is not that much cash in your objects bank.');
 
             $user->cash += $amount;
             $object->cash -= $amount;
 
+            $user->save();
+            $object->save();
             return redirect($page)->with('success', 'Successfully withdrawn $' . number_format($amount) . '.');
         } else if ($action == "DEPOSIT") {
+
+            if ($amount < 1)
+                return redirect($page)->with('fail', 'Invalid amount.');
+
             if ($user->cash < $amount)
                 return redirect($page)->with('fail', 'You do not have that much cash.');
 
             $user->cash -= $amount;
             $object->cash += $amount;
 
+            $user->save();
+            $object->save();
             return redirect($page)->with('success', 'Successfully deposited $' . number_format($amount) . '.');
         } else if ($action == "DEPOSITALL") {
             if ($user->cash < 1)
@@ -75,6 +88,8 @@ class ObjectController extends Controller
             $user->cash -= $amount;
             $object->cash += $amount;
 
+            $user->save();
+            $object->save();
             return redirect($page)->with('success', 'Successfully deposited $' . number_format($amount) . '.');
         } else if ($action == "WITHDRAWALL") {
             if ($object->cash < 1)
@@ -83,6 +98,8 @@ class ObjectController extends Controller
             $object->cash -= $amount;
             $user->cash += $amount;
 
+            $user->save();
+            $object->save();
             return redirect($page)->with('success', 'Successfully withdrawn $' . number_format($amount) . '.');
         }
     }

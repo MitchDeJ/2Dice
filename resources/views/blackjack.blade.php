@@ -79,13 +79,13 @@
                                 <tbody>
                                 <tr>
                                     <td>
-                                        Current max bet amount: <b>${{number_format($object->maxbet)}}</b>
+                                        Current maximum bet: <b>${{number_format($object->maxbet)}}</b>
                                     </td>
                                 </tbody>
                             </table>
                         </div>
                         <div class="form-inline">
-                            <label>Max bet amount &nbsp;</label>
+                            <label>Maximum bet amount &nbsp;</label>
                             {!! Form::open(['route' => ['object.maxbet'], 'method' => 'post']) !!}
                             {!! Form::hidden("type", 1) !!}
                             {!! Form::hidden("location", $location->id) !!}
@@ -113,7 +113,7 @@
                             {!! Form::hidden("type", 1) !!}
                             {!! Form::hidden("location", $location->id) !!}
                             <input type="number" class="form-control" placeholder="" id="maxbet" name="amount" value="">
-                            {!! Form::select('item', array("DEPOSIT" => 'Deposit', "DEPOSITALL" => 'Deposit all',
+                            {!! Form::select('action', array("DEPOSIT" => 'Deposit', "DEPOSITALL" => 'Deposit all',
                              "WITHDRAW" => 'Withdraw', "WITHDRAWALL" => 'Withdraw all'), 'Deposit', ['class' => 'form-control form-group form-inline']) !!}
                             <button type="submit" class="btn btn-default">Transfer</button>
                             {!! Form::close() !!}
@@ -125,15 +125,10 @@
                                 <tbody>
                                 <tr>
                                     <td>
-                                        Blackjack player count: <b>100</b>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
                                         @if($object->profit < 0)
-                                            Profit made: <i style="color: red;">-${{number_format($object->profit)}}</i>
+                                            Profit: <i style="color: red;">-${{number_format($object->profit)}}</i>
                                         @else
-                                            Profit made: <i style="color: green;">+${{number_format($object->profit)}}</i>
+                                            Profit: <i style="color: green;">+${{number_format($object->profit)}}</i>
                                         @endif
                                     </td>
                                 </tr>
