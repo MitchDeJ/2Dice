@@ -74,8 +74,12 @@
                     </div>
                     <div class="form-inline">
                         <label>Max bet amount &nbsp;</label>
-                        <input type="number" class="form-control" placeholder="" id="maxbet" name="maxbet">
+                        {!! Form::open(['route' => ['object.maxbet'], 'method' => 'post']) !!}
+                        {!! Form::hidden("type", 0) !!}
+                        {!! Form::hidden("location", $location->id) !!}
+                        <input type="number" class="form-control" placeholder="" id="maxbet" name="amount">
                         <button type="submit" class="btn btn-default">Change</button>
+                        {!! Form::close() !!}
                     </div>
                     <br>
 
@@ -93,14 +97,14 @@
                     </div>
                     <div class="form-inline">
                         <label>Deposit/withdraw money &nbsp;</label>
-                        <input type="number" class="form-control" placeholder="" id="maxbet" name="maxbet" value="">
-                        <select class="form-control form-group form-inline" id="type">
-                            <option>Deposit</option>
-                            <option>Deposit all</option>
-                            <option>Withdraw</option>
-                            <option>Withdraw all</option>
-                        </select>
+                        {!! Form::open(['route' => ['object.bank'], 'method' => 'post']) !!}
+                        {!! Form::hidden("type", 0) !!}
+                        {!! Form::hidden("location", $location->id) !!}
+                        <input type="number" class="form-control" placeholder="" id="maxbet" name="amount" value="">
+                        {!! Form::select('item', array("DEPOSIT" => 'Deposit', "DEPOSITALL" => 'Deposit all',
+                         "WITHDRAW" => 'Withdraw', "WITHDRAWALL" => 'Withdraw all'), 'Deposit', ['class' => 'form-control form-group form-inline']) !!}
                         <button type="submit" class="btn btn-default">Transfer</button>
+                        {!! Form::close() !!}
                     </div>
                     <br>
 

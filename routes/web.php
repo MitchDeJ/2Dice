@@ -69,3 +69,5 @@ Route::post("/collectoffer",["uses" => "MarketPlaceController@collectOffer", "as
 Route::post("/canceloffer",["uses" => "MarketPlaceController@cancelOffer", "as"=>"market.cancel"]);
 Route::post("/changepass",["uses" => "ChangePasswordController@changePassword", "as"=>"changepass"]);
 Route::post("/cashsender",["uses" => "BusinessController@sendCash", "as"=>"business.sendcash"]);
+Route::post("/objectmaxbet",["uses" => "ObjectController@changeMaxBet", "as"=>"object.maxbet"]);
+Route::post("/objectbank",["uses" => "ObjectController@bankObject", "as"=>"object.bank"]);
