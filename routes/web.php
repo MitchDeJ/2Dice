@@ -73,3 +73,7 @@ Route::post("/cashsender",["uses" => "BusinessController@sendCash", "as"=>"busin
 Route::post("/objectmaxbet",["uses" => "ObjectController@changeMaxBet", "as"=>"object.maxbet"]);
 Route::post("/objectbank",["uses" => "ObjectController@bankObject", "as"=>"object.bank"]);
 Route::post("/spinroulette",["uses" => "GamblingController@spinRoulette", "as"=>"roulette.spin"]);
+Route::post("/newcoinflip",["uses" => "GamblingController@newCoinflip", "as"=>"coinflip.new"]);
+Route::post("/cancelcoinflip",["uses" => "GamblingController@cancelCoinflip", "as"=>"coinflip.cancel"]);
+Route::post("/playcoinflip",["uses" => "GamblingController@playCoinflip", "as"=>"coinflip.play"]);
+

@@ -45,5 +45,37 @@ class UsersTableSeeder extends Seeder
                 'totalbets' => random_int(1, 5000)
             ]);
         }
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'email' => "admin@gmail.com",
+            'password' => bcrypt("admin"),
+            'avatar' => "default.png",
+            'desc' => "",
+
+            'started' => "4-20-1337",
+            'lastlogin' => "4-20-1337",
+
+            'location' => 1,
+
+            'rank' => random_int(1, 10),
+            'xp' => 0,
+            'prestige' => random_int(0, 20),
+            'vip' => (boolean)1,
+            'power' => 1333337,
+
+            'cash' => 100000000,
+            'prestigepoints' => 10,
+            'wood' => random_int(1, 13337),
+            'stone' => random_int(1, 13337),
+            'wheat' => random_int(1, 13337),
+
+            'company' => -1,
+
+            'title' => -1,
+            'unlockedtitles' => serialize(array_fill(0, 20, 0)),
+
+            'highestbet' => 0,
+            'totalbets' => 0
+        ]);
     }
 }

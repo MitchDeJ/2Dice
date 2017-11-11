@@ -7,6 +7,7 @@ use Auth;
 use App\Object;
 use App\Location;
 use App\User;
+use App\Coinflip;
 
 class GamblingController extends Controller
 {
@@ -40,7 +41,7 @@ class GamblingController extends Controller
      */
     public function coinflipIndex()
     {
-        return view('coinflip', array("user" => Auth::user()));
+        return view('coinflip', array("user" => Auth::user(), "coinflips" => Coinflip::all()));
     }
 
     public function roll55x2(Request $request) {
@@ -194,6 +195,109 @@ class GamblingController extends Controller
             ->with('roulette-color', $color)
             ->with('roulette-profit', $profit-$bet);
 
+    }
+
+
+    public function newCoinflip(Request $request)
+    {
+        $bet = $request['bet'];
+        $user = Auth::user();
+
+        if ($bet < 1) {
+            return redirect('coinflip')->with('fail', "Invalid bet.");
+        }
+
+        if (count(Coinflip::where('user',$user->name)->get()) > 1)
+            return redirect ( 'coinflip' )->with( 'fail', 'You can have a maximum of 2 active games.' );
+
+        if ($bet > $user->cash) {
+            return redirect('coinflip')->with('fail', 'You tried to bet $' . number_format($bet) . ', but you only have $' . number_format($user->cash) . ".");
+        }
+
+        $cf = Coinflip::create ([
+            'user' => $user->name,
+            'bet' => $bet
+        ]);
+
+        $user->cash -= $bet;
+        $user->save();
+        $cf->save();
+        return redirect ( 'coinflip' )->with( 'success', 'Game created.' );
+    }
+
+    public function cancelCoinflip(Request $request)
+    {
+        $id = $request['id'];
+        $user = Auth::user();
+
+        if (count( Coinflip::where('id', $id)->get()) == 0)
+        {
+            return redirect ( 'coinflip' )->with( 'fail', "That game has already been played by someone." );
+        }
+
+        $cf = Coinflip::where('id',$id)->get()->first();
+        $user->cash+=$cf->bet;
+        $user->save();
+        $cf->delete();
+        return redirect ( 'coinflip' )->with( 'success', 'Game cancelled.' );
+    }
+
+    public function playCoinflip(Request $request)
+    {
+        $id = $request['id'];
+
+        if (count(Coinflip::where('id', $id)->get()) == 0) {
+            return redirect('coinflip')->with('fail', "That game has already been played by someone else, or the owner deleted it.");
+        }
+
+        $cf = Coinflip::where('id', $id)->get()->first();
+        $user = Auth::user();
+        $host = User::where('name', $cf->user)->get()->first();
+        $bet = $cf->bet;
+
+        if ($user->cash < $bet) {
+            return redirect('coinflip')->with('fail', 'You do not have enough cash to play this game of coinflip.');
+        }
+
+        $user->cash-=$bet;
+
+        //check for highest bet
+
+        if ($host->highestbet < $bet) {
+            $host->highestbet = $bet;
+            $host->save();
+        }
+        if ($user->highestbet < $bet) {
+            $user->highestbet = $bet;
+            $user->save();
+        }
+
+        if (rand(0, 1) == 0) {
+            $winner = $host;
+        } else {
+            $winner = $user;
+        }
+
+        $amount = $bet * 2;
+
+        $winner->cash += $amount;
+        $winner->save();
+
+        $cf->delete();
+
+        if ($host == $winner) {
+            MessageController::sendSystemMessage($host->name, "You won a game of coinflip, " . $user->name . " lost!", "You played a game of coinflip against "
+                . $user->name . " for $" . number_format($bet) . '. You won! ');
+            $user->save();
+            $host->save();
+            return redirect('coinflip')->with('fail', 'You flip a coin and it turns out to be heads. You lose!');
+        } else {
+            MessageController::sendSystemMessage($host->name, "You lost a game of coinflip, " . $user->name . " won!", "You played a game of coinflip against "
+                . $user->name . " for $" . number_format($bet) . '. You lost! ');
+            $user->save();
+            $host->save();
+            return redirect('coinflip')->with('success', 'You flip a coin and it turns out to be tails. You win!');
+        }
     }
 
     /**
