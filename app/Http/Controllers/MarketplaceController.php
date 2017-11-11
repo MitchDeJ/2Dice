@@ -119,6 +119,7 @@ class MarketplaceController extends Controller
                     ->where('cancelled', false)
                     ->where('price', '>=', $price)
                     ->where('offertype', 0)
+                    ->where('creator', '!=', $user->id)
                     ->get()
                     ->sortByDesc('price');
 
