@@ -17,21 +17,23 @@ class ApplyVip
      */
     public function handle($request, Closure $next)
     {
-        $user = Auth::user();
-        $subscribed = Subscription::where('user', Auth::user()->id)->get()->count();
-        if ($subscribed != 0) {
-            $subscription = Subscription::where('user', Auth::user()->id)->get()->first();
-            if (time() > $subscription->end) {
+        if (Auth::user() != null) {
+            $user = Auth::user();
+            $subscribed = Subscription::where('user', Auth::user()->id)->get()->count();
+            if ($subscribed != 0) {
+                $subscription = Subscription::where('user', Auth::user()->id)->get()->first();
+                if (time() > $subscription->end) {
+                    Auth::user()->vip = false;
+                    Auth::user()->save();
+                    $subscription->delete();
+                } else {
+                    Auth::user()->vip = true;
+                    Auth::user()->save();
+                }
+            } else {
                 Auth::user()->vip = false;
                 Auth::user()->save();
-                $subscription->delete();
-            } else {
-                Auth::user()->vip = true;
-                Auth::user()->save();
             }
-        } else {
-            Auth::user()->vip = false;
-            Auth::user()->save();
         }
         return $next($request);
     }
