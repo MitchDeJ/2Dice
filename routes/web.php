@@ -35,6 +35,7 @@ Route::get('/location', 'LocationController@index')->name('location');
 Route::get('/statistics', 'StatisticsController@index')->name('statistics');
 Route::get('/marketplace', 'MarketplaceController@index')->name('marketplace');
 Route::get('/newoffer', 'MarketplaceController@newoffer')->name('newoffer');
+Route::get('/newauction', 'MarketplaceController@newAuction')->name('newauction');
 Route::get('/55x2', 'GamblingController@index')->name('55x2');
 Route::get('/coinflip', 'GamblingController@coinflip')->name('coinflip');
 Route::get('/roulette', 'GamblingController@roulette')->name('roulette');

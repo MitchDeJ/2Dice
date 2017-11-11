@@ -290,4 +290,14 @@ class MarketplaceController extends Controller
     {
         return view('newoffer', array("user" => Auth::user()));
     }
+
+    /**
+     * Show the application auction view.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function newAuction()
+    {
+        return view('newauction', array("user" => Auth::user()));
+    }
 }
