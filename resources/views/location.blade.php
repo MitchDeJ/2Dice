@@ -55,6 +55,37 @@
                 </div>
                 <button type="submit" class="btn btn-default">Fly</button>
                 {!! Form::close() !!}
+                <hr />
+                <p>You are currently the owner of this Airport.</p>
+                <div class="table-responsive">
+                    <table class="table table-dark">
+                        <tbody>
+                        <tr>
+                            <td>
+                                Current money in your Airport's bank: <b>$100,000</b>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="form-inline">
+                    <label>Deposit/withdraw money &nbsp;</label>
+                    <input type="number" class="form-control" placeholder="" id="maxbet" name="maxbet" value="">
+                    <button type="submit" class="btn btn-default">Withdraw</button>
+                </div>
+                <br>
+
+                <div class="table-responsive">
+                    <table class="table table-dark">
+                        <tbody>
+                        <tr>
+                            <td>
+                                Profit: ja
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
