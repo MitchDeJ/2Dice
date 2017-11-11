@@ -11,7 +11,7 @@ class ObjectsTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($t = 0; $t < 3; $t++) {
+        for ($t = 0; $t < 4; $t++) {
             for ($i = 1; $i < 4; $i++) {
                 DB::table('objects')->insert([
                     'type' => $t,

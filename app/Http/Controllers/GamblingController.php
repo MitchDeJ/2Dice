@@ -17,7 +17,20 @@ class GamblingController extends Controller
      */
     public function diceIndex()
     {
-        return view('55x2', array("user" => Auth::user()));
+        $user = Auth::user();
+        $location =  Location::where("id", $user->location)->get()->first();
+        $object = Object::where('location', $location->id)->where('type', 3)->get()->first();
+        if (User::where('id', $object->owner)->get()->count() < 1)
+            $owner = null;
+        else
+            $owner = User::where('id', $object->owner)->get()->first();
+
+        return view('55x2', array(
+            "user" => $user,
+            "location" => $location,
+            "object" => $object,
+            "owner" => $owner
+        ));
     }
 
     /**
@@ -34,9 +47,9 @@ class GamblingController extends Controller
         $num = rand(1, 100);
         $bet = $request->input('bet');
         $user = Auth::user();
-
-        var_dump($bet);
-        var_dump($num);
+        $location = Location::where('id', $user->location)->get()->first();
+        $object = Object::where('location', $user->location)->where('type', 3)->get()->first();
+        $owner = User::where('id', $object->owner)->get()->first();
 
         if (!is_numeric($bet)) {
             return redirect('55x2')->with('fail', 'Invalid bet.');
@@ -50,6 +63,10 @@ class GamblingController extends Controller
             return redirect('55x2')->with('fail', 'You tried to bet $' . number_format($bet) . ', but you only have $' . number_format($user->cash) . ".");
         }
 
+        if ($bet > $object->maxbet) {
+            return redirect('55x2')->with('fail', 'You can not place a bet higher than the maximum bet.');
+        }
+
         $user->totalbets +=1;
 
         if ($bet > $user->highestbet)
@@ -59,10 +76,31 @@ class GamblingController extends Controller
 
         if ($num <= 50) {
             $user->cash-=$bet;
+            $object->cash+=$bet;
+            $object->profit+=$bet;
+            $object->save();
             $user->save();
             return redirect('55x2')->with('fail', ' You roll a ' . $num . ', you lose $' . number_format($bet) . '.');
         } else {
+
+            if ($object->cash < $bet) { //sweeped
+                $object->owner = $user->id;
+                $user->cash+= $object->cash;
+                $object->cash = 0;
+                $object->maxbet = 0;
+                $object->profit = 0;
+                MessageController::sendSystemMessage($owner->name, "55x2 ".$location->name." has been overtaken by ".$user->name."!",
+                    "You didn't have enough cash in your object to pay out the profits.");
+                $user->save();
+                $object->save();
+
+                return redirect('55x2')->with('neutral', 'The 55x2 did not have enough cash to pay out your profits, you have overtaken the object!');
+            }
+
             $user->cash+=$bet;
+            $object->cash-=$bet;
+            $object->profit-=$bet;
+            $object->save();
             $user->save();
             return redirect('55x2')->with('success', ' You roll a ' . $num . ', you win $' . number_format($bet) . '!');
         }

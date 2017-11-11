@@ -21,6 +21,10 @@ class ObjectController extends Controller
             $page = 'blackjack';
         } else if ($type == 2) {
             $page = 'location';
+        } else if ($type == 3) {
+            $page = '55x2';
+        } else {
+            $page = 'dashboard';
         }
 
         if ($user->id != $object->owner)
@@ -46,6 +50,8 @@ class ObjectController extends Controller
             $page = 'blackjack';
         } else if ($type == 2) {
             $page = 'location';
+        } else if ($type == 3) {
+            $page = '55x2';
         } else {
             $page = 'dashboard';
         }
@@ -112,6 +118,8 @@ class ObjectController extends Controller
                 return "Blackjack";
             case 2:
                 return "Airport";
+            case 3:
+                return "55x2";
         }
     }
 }
