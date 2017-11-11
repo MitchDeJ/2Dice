@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Object;
 use App\Location;
+use App\User;
 
 class GamblingController extends Controller
 {
@@ -13,7 +15,7 @@ class GamblingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function diceIndex()
     {
         return view('55x2', array("user" => Auth::user()));
     }
@@ -23,7 +25,7 @@ class GamblingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function coinflip()
+    public function coinflipIndex()
     {
         return view('coinflip', array("user" => Auth::user()));
     }
@@ -71,12 +73,21 @@ class GamblingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function roulette()
+    public function rouletteIndex()
     {
         $user = Auth::user();
+        $location =  Location::where("id", $user->location)->get()->first();
+        $object = Object::where('location', $location->id)->where('type', 0)->get()->first();
+        if (User::where('id', $object->owner)->get()->count() < 1)
+            $owner = null;
+        else
+            $owner = User::where('id', $object->owner)->get()->first();
+
         return view('roulette', array(
             "user" => $user,
-            "location" => Location::where("id", $user->location)->get()->first()
+            "location" => $location,
+            "object" => $object,
+            "owner" => $owner
         ));
     }
 
@@ -85,12 +96,21 @@ class GamblingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function blackjack()
+    public function blackjackIndex()
     {
         $user = Auth::user();
+        $location =  Location::where("id", $user->location)->get()->first();
+        $object = Object::where('location', $location->id)->where('type', 1)->get()->first();
+        if (User::where('id', $object->owner)->get()->count() < 1)
+            $owner = null;
+        else
+            $owner = User::where('id', $object->owner)->get()->first();
+
         return view('blackjack', array(
             "user" => $user,
-            "location" => Location::where("id", $user->location)->get()->first()
+            "location" => $location,
+            "object" => $object,
+            "owner" => $owner
         ));
     }
 }
