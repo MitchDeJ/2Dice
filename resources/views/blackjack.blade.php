@@ -126,7 +126,7 @@
                                 <tr>
                                     <td>
                                         @if($object->profit < 0)
-                                            Profit: <i style="color: red;">-${{number_format($object->profit)}}</i>
+                                            Profit: <i style="color: red;">-${{number_format($object->profit*-1)}}</i>
                                         @else
                                             Profit: <i style="color: green;">+${{number_format($object->profit)}}</i>
                                         @endif

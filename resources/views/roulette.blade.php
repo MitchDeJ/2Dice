@@ -30,11 +30,9 @@
                         <div class="col-md-2 logo_center">
                             <b>Red 1 to 7</b>
                             <img src="img/roulette_red.png" width="250px" height="250px" class="img-thumbnail">
-
+                            {!! Form::open(['route' => ['roulette.spin'], 'method' => 'post']) !!}
                             <input type="number" class="form-control" style="text-align: center" id="roulette"
-                                   placeholder="Amount">
-
-                            <button type="submit" class="btn btn-default" style="width: 100%;">Play</button>
+                                   placeholder="Amount" name="red_amount">
                         </div>
 
                         <div class="col-md-2 logo_center">
@@ -42,9 +40,7 @@
                             <img src="img/roulette_black.png" width="250px" height="250px" class="img-thumbnail">
 
                             <input type="number" class="form-control" style="text-align: center" id="roulette"
-                                   placeholder="Amount">
-
-                            <button type="submit" class="btn btn-default" style="width: 100%;">Play</button>
+                                   placeholder="Amount" name="black_amount">
                         </div>
 
                         <div class="col-md-2 logo_center">
@@ -52,11 +48,11 @@
                             <img src="img/roulette_green.png" width="250px" height="250px" class="img-thumbnail">
 
                             <input type="number" class="form-control" style="text-align: center" id="roulette"
-                                   placeholder="Amount">
-
-                            <button type="submit" class="btn btn-default" style="width: 100%;">Play</button>
+                                   placeholder="Amount" name="green_amount">
                         </div>
                     </div>
+                        <button type="submit" class="btn btn-default">Spin</button>
+                    {!! Form::close() !!}
                 @else
                     <p>You are the owner of this Roulette. Make sure there's enough money in your
                         Roulette. If a player wins more money than what your Roulette holds, you will <b>lose</b>
@@ -114,7 +110,7 @@
                             <tr>
                                 <td>
                                     @if($object->profit < 0)
-                                        Profit: <i style="color: red;">-${{number_format($object->profit)}}</i>
+                                        Profit: <i style="color: red;">-${{number_format($object->profit*-1)}}</i>
                                     @else
                                         Profit: <i style="color: green;">+${{number_format($object->profit)}}</i>
                                     @endif

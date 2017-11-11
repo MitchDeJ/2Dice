@@ -68,6 +68,96 @@ class GamblingController extends Controller
         }
     }
 
+    public function spinRoulette(Request $request) {
+        $num = rand(1, 15);
+        $user = Auth::user();
+        $red = $request['red_amount'];
+        $location = Location::where('id', $user->location)->get()->first();
+        $object = Object::where('location', $user->location)->where('type', 0)->get()->first();
+        $owner = User::where('id', $object->owner)->get()->first();
+
+        if ($red == null)
+            $red = 0;
+
+        $black = $request['black_amount'];
+        if ($black == null)
+            $black = 0;
+
+        $green = $request['green_amount'];
+        if ($green == null)
+            $green = 0;
+
+        $bet = $red+$black+$green;
+
+        if ($bet < 1) {
+            return redirect('roulette')->with('fail', 'Invalid bet.');
+        }
+
+        if ($bet > $object->maxbet) {
+            return redirect('roulette')->with('fail', 'You can not place a bet higher than the maximum bet.');
+        }
+
+        if ($bet > $user->highestbet)
+        {
+            $user->highestbet = $bet;
+        }
+
+        $user->cash -= $bet;
+
+        $profit = 0;
+        $color = 'white';
+
+        if ($num == 1 ) {
+
+            if ($green > 0)
+                $profit += ($green * 14);
+
+            $color="green";
+        }
+        if ($num >= 2 && $num <= 8) {
+
+            if ($red > 0)
+                $profit += ($red * 2);
+
+            $color="red";
+        }
+        if ($num >= 9 && $num <= 15) {
+
+            if ($black > 0)
+                $profit += ($black * 2);
+
+            $color="black";
+        }
+
+        //object bank interaction
+
+        if ($object->cash < $profit-$bet) { //sweeped
+            $object->owner = $user->id;
+            $user->cash+= $object->cash;
+            $object->cash = 0;
+            $object->maxbet = 0;
+            $object->profit = 0;
+            MessageController::sendSystemMessage($owner->name, "Roulette ".$location->name." has been overtaken by ".$user->name."!",
+                "You didn't have enough cash in your object to pay out the profits.");
+            $user->save();
+            $object->save();
+
+            return redirect('roulette')->with('neutral', 'The roulette did not have enough cash to pay out your profits, you have overtaken the object!');
+        }
+
+        $user->cash+=$profit;
+        $object->cash -= $profit-$bet;
+        $object->profit -= $profit-$bet;
+        $user->save();
+        $object->save();
+
+        return redirect('roulette')
+            ->with('roulette-result', $num)
+            ->with('roulette-color', $color)
+            ->with('roulette-profit', $profit-$bet);
+
+    }
+
     /**
      * Show the application roulette overview.
      *
