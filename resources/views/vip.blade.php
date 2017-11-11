@@ -13,14 +13,7 @@
         <div class="card mb-3">
             <div class="card-header"><i class="fa fa-diamond i_button_background"></i> VIP</div>
             <div class="card-body">
-                <p>You are currently
-                    @if($user->vip == true)
-                        a
-                    @else
-                        <b>not</b> a
-                    @endif VIP. If you would like to donate to become a VIP, please click <a href="#" class="text-dark">here</a>.</p>
-
-                <p>VIP will offer you the following:</p>
+                <h5>VIP will offer you the following:</h5>
                 <ul>
                     <li>
                         Orange color in the leaderboards.
@@ -41,6 +34,29 @@
                         2 extra VIP jobs.
                     </li>
                 </ul>
+
+                <h5>Prestige points</h5>
+                <ul>
+                    <li>You can use <b>1</b> Prestige point to claim <b>one month</b> of VIP status.</li>
+                </ul>
+
+                <h5>Donation rewards</h5>
+                <ul>
+                    <li>Every <b>€1,-</b> you donate, you'll receive 10 days of VIP status.</li>
+                    <li>Every <b>€3,-</b> you donate, you'll receive 1 month of VIP status.</li>
+                </ul>
+
+                <h5>Instructions</h5>
+                <ul>
+                    <li>If you would like to donate to become a VIP, please click <a href="https://www.paypal.me/2Dice" target="_blank">here</a> (opens in a new tab)</li>
+                    <li>Enter the amount you would like to donate</li>
+                    <li>Enter your username as a comment</li>
+                    <li>Do <b>not</b> check this checkbox (see screenshot). This will get us less money, and will get you less VIP time</li>
+                </ul>
+                <img src="{!! url("/img/vipexplain.png") !!}" width="425px" height="488px" style="display: block; margin-bottom: 1%">
+
+                <p>Every donation is appreciated and will be used towards funding the hosting.</p>
+                <p>If you did not receive your VIP within 24h, please contact us via mail: 2DiceInfo@gmail.com</p>
             </div>
         </div>
     </div>
