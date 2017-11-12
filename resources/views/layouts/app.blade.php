@@ -76,6 +76,13 @@
                 </a>
             </li>
 
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Objectoverview">
+                <a class="nav-link" href="{{ url('/objectoverview') }}">
+                    <i class="fa fa-fw fa-globe"></i>
+                    <span class="nav-link-text">Objects</span>
+                </a>
+            </li>
+
             <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Location">
                 <a class="nav-link" href="{{ url('/vip') }}">
                     <i class="fa fa-fw fa-diamond"></i>

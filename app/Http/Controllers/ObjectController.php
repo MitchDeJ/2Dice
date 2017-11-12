@@ -122,4 +122,14 @@ class ObjectController extends Controller
                 return "55x2";
         }
     }
+
+    /**
+     * Show the application objects overview.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function objectOverview()
+    {
+        return view('objectoverview');
+    }
 }
