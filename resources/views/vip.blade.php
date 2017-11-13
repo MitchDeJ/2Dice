@@ -33,6 +33,9 @@
                     <li>
                         2 extra VIP jobs.
                     </li>
+                    <li>
+                        50% more login cash.
+                    </li>
                 </ul>
 
                 <h5>Prestige points</h5>
@@ -43,7 +46,7 @@
                 <h5>Donation rewards</h5>
                 <ul>
                     <li>Every <b>€1,-</b> you donate, you'll receive 10 days of VIP status.</li>
-                    <li>Every <b>€3,-</b> you donate, you'll receive 1 month of VIP status.</li>
+                    <li>Every <b>€3,-</b> you donate, you'll receive 30 days of VIP status.</li>
                 </ul>
 
                 <h5>Instructions</h5>
