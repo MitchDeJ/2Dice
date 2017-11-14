@@ -91,7 +91,7 @@ class ShopController extends Controller
             return redirect('prestige')->with('fail', 'You do not have enough prestige points to claim '.$days.' days VIP Subscription');
 
         $user->prestigepoints -= $amount;
-        SubscriptionController::addSubscription(Auth::user()->name, $FOURTEENDAYS);
+        SubscriptionController::addSubscription(Auth::user()->name, $FOURTEENDAYS*$amount);
         $user->save();
         return redirect('prestige')->with('success', 'Successfully claimed '.$days.' days VIP Subscription for '.number_format($amount).' prestige points.');
     }
