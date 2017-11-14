@@ -42,8 +42,9 @@ class LocationController extends Controller
 
         for ($i=1;$i<=3;$i++) {
             if ($request->input(['location'.$i]) != null) {
+                $oldlocation = Location::where("id", Auth::user()->location)->get()->first();
                 $location = Location::where("name",  $request->input(['location'.$i]))->get()->first();
-                $object = Object::where('location', $location->id)->where('type', 2)->get()->first();
+                $object = Object::where('location', $oldlocation->id)->where('type', 2)->get()->first();
                 Auth::user()->location = $location->id;
                 Auth::user()->cash -= $price;
                 $object->cash+=$price;

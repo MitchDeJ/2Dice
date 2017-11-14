@@ -46,9 +46,9 @@
                                         <td><a href="#" class="text-dark">${{number_format($objects[$i]->maxbet)}}</a>
                                         </td>
                                         @if($objects[$i]->profit < 0)
-                                            <td style="color: red;">-${{$objects[$i]->profit}}</td>
+                                            <td style="color: red;">-${{number_format($objects[$i]->profit*-1)}}</td>
                                         @else
-                                            <td style="color: green;">+${{$objects[$i]->profit}}</td>
+                                            <td style="color: green;">+${{number_format($objects[$i]->profit)}}</td>
                                         @endif
                                     </tr>
                                     <tr>
@@ -83,9 +83,9 @@
                                         <td><a href="#" class="text-dark">${{number_format($objects[$i]->maxbet)}}</a>
                                         </td>
                                         @if($objects[$i]->profit < 0)
-                                            <td style="color: red;">-${{$objects[$i]->profit}}</td>
+                                            <td style="color: red;">-${{number_format($objects[$i]->profit*-1)}}</td>
                                         @else
-                                            <td style="color: green;">+${{$objects[$i]->profit}}</td>
+                                            <td style="color: green;">+${{number_format($objects[$i]->profit)}}</td>
                                         @endif
                                     </tr>
                                     <tr>
@@ -119,9 +119,9 @@
                                         <td><a href="#" class="text-dark">${{number_format($objects[$i]->maxbet)}}</a>
                                         </td>
                                         @if($objects[$i]->profit < 0)
-                                            <td style="color: red;">-${{$objects[$i]->profit*-1}}</td>
+                                            <td style="color: red;">-${{number_format($objects[$i]->profit*-1)}}</td>
                                         @else
-                                            <td style="color: green;">+${{$objects[$i]->profit}}</td>
+                                            <td style="color: green;">+${{number_format($objects[$i]->profit)}}</td>
                                         @endif
                                     </tr>
                                     <tr>
