@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Object;
 use Auth;
+use App\User;
 
 class ObjectController extends Controller
 {
@@ -130,6 +131,17 @@ class ObjectController extends Controller
      */
     public function objectOverview()
     {
-        return view('objectoverview');
+        $objects = Object::all();
+        $users = array();
+        $objectCount = $objects->count();
+
+        for ($i = 0; $i < $objectCount; $i++) {
+        $users[$i] = User::where('id', $objects[$i]->owner)->get()->first();
+        }
+
+        return view('objectoverview', array(
+            "objects" => $objects,
+            "users" => $users,
+        ));
     }
 }

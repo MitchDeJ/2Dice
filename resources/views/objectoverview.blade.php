@@ -18,6 +18,7 @@
                 <p>You can also buy an object from players, if they put it up for <a href="{{ url('/marketplace') }}">auction</a>.</p>
                 <div class="row">
                     <div class="col-md-12">
+
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -31,30 +32,15 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>55x2</td>
-                                    <td><a href="#" class="text-dark">Username</a></td>
-                                    <td>$1000</td>
-                                    <td style="color: green;">+$5000</td>
-                                </tr>
-                                <tr>
-                                    <td>Blackjack</td>
-                                    <td><a href="#" class="text-dark">Username</a></td>
-                                    <td>$1000</td>
-                                    <td style="color: green;">+$5000</td>
-                                </tr>
-                                <tr>
-                                    <td>Roulette</td>
-                                    <td><a href="#" class="text-dark">Username</a></td>
-                                    <td>$1000</td>
-                                    <td style="color: red;">-$5000</td>
-                                </tr>
-                                <tr>
-                                    <td>Airport</td>
-                                    <td><a href="#" class="text-dark">Username</a></td>
-                                    <td>$1000</td>
-                                    <td style="color: green;">+$5000</td>
-                                </tr>
+                                  @for ($i = 0; $i < 4; $i++)
+                                    <tr>
+                                        <td>{{$objects[$i]->type}}</td>
+                                        <td><a href="#" class="text-dark">{{$users[$i]->name}}</a></td>
+                                        <td><a href="#" class="text-dark">{{$objects[$i]->maxbet}}</a></td>
+                                        <td style="color: green;">+${{$objects[$i]->profit}}</td>
+                                    </tr>
+                                    <tr>
+                                 @endfor
                                 </tbody>
                             </table>
                         </div>
