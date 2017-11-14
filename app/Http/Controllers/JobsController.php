@@ -42,7 +42,7 @@ class JobsController extends Controller
         }
 
         $cashReward = rand($minCash, $maxCash) * $this->getMultiplier($num);
-        $xpReward = rand($minXp, $maxXp) * $this->getMultiplier($num);
+        $xpReward = rand($minXp, $maxXp);
 
         $user->cash += $cashReward;
         RankController::addXp($user, $xpReward);
