@@ -131,9 +131,19 @@ class ObjectController extends Controller
      */
     public function objectOverview()
     {
-        $objects = Object::all();
+        $objectsNL = Object::where('location', 1)->get();
+        $objectsUK = Object::where('location', 2)->get();
+        $objectsRU = Object::where('location', 3)->get();
+
+        $objects = $objectsNL->merge($objectsUK)->merge($objectsRU);
         $users = array();
         $objectCount = $objects->count();
+        $objectTypes = collect([
+            ObjectController::getTypeName(0),
+            ObjectController::getTypeName(1),
+            ObjectController::getTypeName(2),
+            ObjectController::getTypeName(3),
+        ]);
 
         for ($i = 0; $i < $objectCount; $i++) {
         $users[$i] = User::where('id', $objects[$i]->owner)->get()->first();
@@ -142,6 +152,7 @@ class ObjectController extends Controller
         return view('objectoverview', array(
             "objects" => $objects,
             "users" => $users,
+            "objectTypes" => $objectTypes
         ));
     }
 }

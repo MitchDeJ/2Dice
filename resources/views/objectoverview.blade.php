@@ -13,9 +13,11 @@
         <div class="card mb-3">
             <div class="card-header"><i class="fa fa-globe i_button_background"></i> Objects</div>
             <div class="card-body">
-                <p>Objects are owned by players. You can overtake an object by winning an amount, that the object bank does not hold.</p>
+                <p>Objects are owned by players. You can overtake an object by winning an amount, that the object bank
+                    does not hold.</p>
                 <p>Because the object isn't able to pay you, you will be the new owner of that object.</p>
-                <p>You can also buy an object from players, if they put it up for <a href="{{ url('/marketplace') }}">auction</a>.</p>
+                <p>You can also buy an object from players, if they put it up for <a href="{{ url('/marketplace') }}">auction</a>.
+                </p>
                 <div class="row">
                     <div class="col-md-12">
 
@@ -27,20 +29,30 @@
                                         Netherlands
                                     </td>
                                     <td class="table_dark_bg" style="width: 10%;">Owner</td>
-                                    <td class="table_dark_bg" style="width: 10%;">Max bet</td>
+                                    <td class="table_dark_bg" style="width: 10%;">Maximum bet</td>
                                     <td class="table_dark_bg" style="width: 10%;">Profit</td>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                  @for ($i = 0; $i < 4; $i++)
+                                @for ($i = 0; $i < 4; $i++)
                                     <tr>
-                                        <td>{{$objects[$i]->type}}</td>
-                                        <td><a href="#" class="text-dark">{{$users[$i]->name}}</a></td>
-                                        <td><a href="#" class="text-dark">{{$objects[$i]->maxbet}}</a></td>
-                                        <td style="color: green;">+${{$objects[$i]->profit}}</td>
+                                        <td>{{$objectTypes[$objects[$i]->type]}}</td>
+                                        @if (!$users[$i] == null)
+                                            <td><a href="{{url("/profile/".$users[$i]->name)}}"
+                                                   class="text-dark">{{$users[$i]->name}}</a></td>
+                                        @else
+                                            <td><a href="#" class="text-dark"></a></td>
+                                        @endif
+                                        <td><a href="#" class="text-dark">${{number_format($objects[$i]->maxbet)}}</a>
+                                        </td>
+                                        @if($objects[$i]->profit < 0)
+                                            <td style="color: red;">-${{$objects[$i]->profit}}</td>
+                                        @else
+                                            <td style="color: green;">+${{$objects[$i]->profit}}</td>
+                                        @endif
                                     </tr>
                                     <tr>
-                                 @endfor
+                                @endfor
                                 </tbody>
                             </table>
                         </div>
@@ -59,30 +71,25 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>55x2</td>
-                                    <td><a href="#" class="text-dark">Username</a></td>
-                                    <td>$1000</td>
-                                    <td style="color: green;">+$5000</td>
-                                </tr>
-                                <tr>
-                                    <td>Blackjack</td>
-                                    <td><a href="#" class="text-dark">Username</a></td>
-                                    <td>$1000</td>
-                                    <td style="color: green;">+$5000</td>
-                                </tr>
-                                <tr>
-                                    <td>Roulette</td>
-                                    <td><a href="#" class="text-dark">Username</a></td>
-                                    <td>$1000</td>
-                                    <td style="color: red;">-$5000</td>
-                                </tr>
-                                <tr>
-                                    <td>Airport</td>
-                                    <td><a href="#" class="text-dark">Username</a></td>
-                                    <td>$1000</td>
-                                    <td style="color: green;">+$5000</td>
-                                </tr>
+                                @for ($i = 4; $i < 8; $i++)
+                                    <tr>
+                                        <td>{{$objectTypes[$objects[$i]->type]}}</td>
+                                        @if (!$users[$i] == null)
+                                            <td><a href="{{url("/profile/".$users[$i]->name)}}"
+                                                   class="text-dark">{{$users[$i]->name}}</a></td>
+                                        @else
+                                            <td><a href="#" class="text-dark"></a></td>
+                                        @endif
+                                        <td><a href="#" class="text-dark">${{number_format($objects[$i]->maxbet)}}</a>
+                                        </td>
+                                        @if($objects[$i]->profit < 0)
+                                            <td style="color: red;">-${{$objects[$i]->profit}}</td>
+                                        @else
+                                            <td style="color: green;">+${{$objects[$i]->profit}}</td>
+                                        @endif
+                                    </tr>
+                                    <tr>
+                                @endfor
                                 </tbody>
                             </table>
                         </div>
@@ -100,30 +107,25 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>55x2</td>
-                                    <td><a href="#" class="text-dark">Username</a></td>
-                                    <td>$1000</td>
-                                    <td style="color: green;">+$5000</td>
-                                </tr>
-                                <tr>
-                                    <td>Blackjack</td>
-                                    <td><a href="#" class="text-dark">Username</a></td>
-                                    <td>$1000</td>
-                                    <td style="color: green;">+$5000</td>
-                                </tr>
-                                <tr>
-                                    <td>Roulette</td>
-                                    <td><a href="#" class="text-dark">Username</a></td>
-                                    <td>$1000</td>
-                                    <td style="color: red;">-$5000</td>
-                                </tr>
-                                <tr>
-                                    <td>Airport</td>
-                                    <td><a href="#" class="text-dark">Username</a></td>
-                                    <td>$1000</td>
-                                    <td style="color: green;">+$5000</td>
-                                </tr>
+                                @for ($i = 8; $i < 12; $i++)
+                                    <tr>
+                                        <td>{{$objectTypes[$objects[$i]->type]}}</td>
+                                        @if (!$users[$i] == null)
+                                            <td><a href="{{url("/profile/".$users[$i]->name)}}"
+                                                   class="text-dark">{{$users[$i]->name}}</a></td>
+                                        @else
+                                            <td><a href="#" class="text-dark"></a></td>
+                                        @endif
+                                        <td><a href="#" class="text-dark">${{number_format($objects[$i]->maxbet)}}</a>
+                                        </td>
+                                        @if($objects[$i]->profit < 0)
+                                            <td style="color: red;">-${{$objects[$i]->profit}}</td>
+                                        @else
+                                            <td style="color: green;">+${{$objects[$i]->profit}}</td>
+                                        @endif
+                                    </tr>
+                                    <tr>
+                                @endfor
                                 </tbody>
                             </table>
                         </div>
