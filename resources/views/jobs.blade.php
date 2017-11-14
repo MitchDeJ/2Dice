@@ -12,46 +12,81 @@
     <div class="container-fluid">
         <div class="card mb-3">
             <div class="card-header"><i class="fa fa-suitcase i_button_background"></i> Jobs</div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <p style="color: red;">You are currently unavailable to do a job. Try again in 69 seconds.</p>
-                        <p>You are currently available to do a job.</p>
-                        <label for="job1">Choose a job:</label>
-                        <select class="form-check-inline" id="job1">
-                            <option>Give a business proposal (earn more cash)</option>
-                            <option>Give personal financial advice (earn more xp)</option>
-                        </select>
-                    <button type="submit" class="btn btn-default">Start job</button>
-                        <p style="color: green;">You gained $100 and 100xp.</p>
-                    </div>
-                    <hr />
-
-                    <div class="form-group">
-                        <p style="color: red;">You are currently unavailable to do a job. Try again in 69 seconds.</p>
-                        <p>You are currently available to do a job.</p>
-                        <label for="job1">Choose a job:</label>
-                        <select class="form-check-inline" id="job1">
-                            <option>Give a business proposal (earn more cash)</option>
-                            <option>Give personal financial advice (earn more xp)</option>
-                        </select>
-                        <button type="submit" class="btn btn-default">Start job</button>
-                        <p style="color: green;">You gained $100 and 100xp.</p>
-                    </div>
-                    <hr />
-
-                    <div class="form-group">
-                        <p style="color: red;">You are currently unavailable to do a job. Try again in 69 seconds.</p>
-                        <p>You are currently available to do a job.</p>
-                        <label for="job1">Choose a job:</label>
-                        <select class="form-check-inline" id="job1">
-                            <option>Give a business proposal (earn more cash)</option>
-                            <option>Give personal financial advice (earn more xp)</option>
-                        </select>
-                        <button type="submit" class="btn btn-default">Start job</button>
-                        <p style="color: green;">You gained $100 and 100xp.</p>
+            <div class="card-body">
+                <p>vip yes = 5 jobs, vip no = 3 jobs. <b>get vip</b></p>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group form-inline">
+                            <label for="job1">Choose a job: &nbsp;</label>
+                            {!! Form::open(['route' => ['business.job'], 'method' => 'post']) !!}
+                            {!! Form::select('action', array("moneyjob" => 'Give a business proposal (more cash)', "xpjob" => 'Give personal financial advice (more xp)'), 'moneyjob', ['class' => 'form-control form-group']) !!}
+                            <button type="submit" class="btn btn-default">Start job</button>
+                            {!! Form::close() !!}
+                        </div>
+                        Cooldown
                     </div>
                 </div>
+                <br>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group form-inline">
+                            <label for="job2">Choose a job: &nbsp;</label>
+                            {!! Form::open(['route' => ['business.job'], 'method' => 'post']) !!}
+                            {!! Form::select('action', array("moneyjob" => 'Organise a business trip (more cash)', "xpjob" => 'Give personal stock market advice (more xp)'), 'moneyjob', ['class' => 'form-control form-group']) !!}
+                            <button type="submit" class="btn btn-default">Start job</button>
+                            {!! Form::close() !!}
+                        </div>
+                        Cooldown
+                    </div>
+                </div>
+                <br>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group form-inline">
+                            <label for="job3">Choose a job: &nbsp;</label>
+                            {!! Form::open(['route' => ['business.job'], 'method' => 'post']) !!}
+                            {!! Form::select('action', array("moneyjob" => 'Guide a company with their business plan(more cash)', "xpjob" => 'Give personal marketplace advice (more xp)'), 'moneyjob', ['class' => 'form-control form-group']) !!}
+                            <button type="submit" class="btn btn-default">Start job</button>
+                            {!! Form::close() !!}
+                        </div>
+                        Cooldown
+                    </div>
+                </div>
+                <br>
+                @if($user->vip == true)
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group form-inline">
+                                <label for="job3">Choose a job: &nbsp;</label>
+                                {!! Form::open(['route' => ['business.job'], 'method' => 'post']) !!}
+                                {!! Form::select('action', array("moneyjob" => 'Guide a company with their business plan(more cash)', "xpjob" => 'Give personal marketplace advice (more xp)'), 'moneyjob', ['class' => 'form-control form-group']) !!}
+                                <button type="submit" class="btn btn-default">Start job</button>
+                                {!! Form::close() !!}
+                            </div>
+                            Cooldown
+                        </div>
+                    </div>
+                    <br>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group form-inline">
+                                <label for="job3">Choose a job: &nbsp;</label>
+                                {!! Form::open(['route' => ['business.job'], 'method' => 'post']) !!}
+                                {!! Form::select('action', array("moneyjob" => 'Guide a company with their business plan(more cash)', "xpjob" => 'Give personal marketplace advice (more xp)'), 'moneyjob', ['class' => 'form-control form-group']) !!}
+                                <button type="submit" class="btn btn-default">Start job</button>
+                                {!! Form::close() !!}
+                            </div>
+                            Cooldown
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
+    </div>
 @endsection
 

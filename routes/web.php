@@ -77,4 +77,5 @@ Route::post("/spinroulette",["uses" => "GamblingController@spinRoulette", "as"=>
 Route::post("/newcoinflip",["uses" => "GamblingController@newCoinflip", "as"=>"coinflip.new"]);
 Route::post("/cancelcoinflip",["uses" => "GamblingController@cancelCoinflip", "as"=>"coinflip.cancel"]);
 Route::post("/playcoinflip",["uses" => "GamblingController@playCoinflip", "as"=>"coinflip.play"]);
+Route::post("/jobs",["uses" => "JobsController@businessJob", "as"=>"business.job"]);
 
