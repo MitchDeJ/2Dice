@@ -21,29 +21,100 @@ class JobsController extends Controller
     public function businessJob(Request $request) {
         $user = Auth::user();
         $action = $request->input('action');
+        $num = $request->input('num');
 
         if ($action == "moneyjob") {
             $minCash = 1000;
             $maxCash = 10000;
-//            $minXp = 100;
-//            $maxXp = 200;
+            $minXp = $this->getMinXp($num)/2;
+            $maxXp = $this->getMaxXp($num)/2;
         }
 
-        if ($action == "xpjob") {
-            $minCash = 100;
-            $maxCash = 1000;
-            $minXp = 250;
-            $maxXp = 500;
+        else if ($action == "xpjob") {
+            $minCash = 1000/2;
+            $maxCash = 10000/2;
+            $minXp = $this->getMinXp($num);
+            $maxXp = $this->getMaxXp($num);
         }
 
-        $cashReward = rand($minCash, $maxCash);
-//        $xpReward = rand($minXp, $maxXp);
+        else {
+            return;
+        }
+
+        $cashReward = rand($minCash, $maxCash) * $this->getMultiplier($num);
+        $xpReward = rand($minXp, $maxXp) * $this->getMultiplier($num);
 
         $user->cash += $cashReward;
-//        $user->xp += $xpReward;
+        RankController::addXp($user, $xpReward);
 
         $user->save();
 
-        return redirect('jobs') ->with( 'success', 'You nailed the business job and received $'. number_format($cashReward));
+        return redirect('jobs') ->with('success', 'You nailed the business job! 
+        You receive $'. number_format($cashReward).' and gain '.number_format($xpReward).' XP.');
+    }
+
+    public function getMultiplier($num) {
+        switch ($num) {
+            case 1:
+                return 1;
+
+            case 2:
+                return 1.25;
+
+            case 3:
+                return 1.50;
+
+            case 4:
+                return 1.75;
+
+            case 5:
+                return 2;
+
+        }
+    }
+
+    public function getMinXp($num) {
+        switch($num) {
+            case 1:
+                return 1100;
+            case 2:
+                return 1300;
+            case 3:
+                return 1500;
+            case 4:
+                return 1500;
+            case 5:
+                return 1700;
+        }
+    }
+
+    public function getMaxXp($num) {
+        switch($num) {
+            case 1:
+                return 1300;
+            case 2:
+                return 1500;
+            case 3:
+                return 1700;
+            case 4:
+                return 1700;
+            case 5:
+                return 1900;
+        }
+    }
+
+    public function getMinutes($num) {
+        switch($num) {
+            case 1:
+                return 2;
+            case 2:
+                return 4;
+            case 3:
+                return 6;
+            case 4:
+                return 8;
+            case 5:
+                return 10;
+        }
     }
 }

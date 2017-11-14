@@ -20,6 +20,7 @@
                         <div class="form-group form-inline">
                             <label for="job1">Choose a job: &nbsp;</label>
                             {!! Form::open(['route' => ['business.job'], 'method' => 'post']) !!}
+                            {!! Form::hidden("num", 1) !!}
                             {!! Form::select('action', array("moneyjob" => 'Give a business proposal (more cash)', "xpjob" => 'Give personal financial advice (more xp)'), 'moneyjob', ['class' => 'form-control form-group']) !!}
                             <button type="submit" class="btn btn-default">Start job</button>
                             {!! Form::close() !!}
@@ -34,6 +35,7 @@
                         <div class="form-group form-inline">
                             <label for="job2">Choose a job: &nbsp;</label>
                             {!! Form::open(['route' => ['business.job'], 'method' => 'post']) !!}
+                            {!! Form::hidden("num", 2) !!}
                             {!! Form::select('action', array("moneyjob" => 'Organise a business trip (more cash)', "xpjob" => 'Give personal stock market advice (more xp)'), 'moneyjob', ['class' => 'form-control form-group']) !!}
                             <button type="submit" class="btn btn-default">Start job</button>
                             {!! Form::close() !!}
@@ -48,6 +50,7 @@
                         <div class="form-group form-inline">
                             <label for="job3">Choose a job: &nbsp;</label>
                             {!! Form::open(['route' => ['business.job'], 'method' => 'post']) !!}
+                            {!! Form::hidden("num", 3) !!}
                             {!! Form::select('action', array("moneyjob" => 'Guide a company with their business plan(more cash)', "xpjob" => 'Give personal marketplace advice (more xp)'), 'moneyjob', ['class' => 'form-control form-group']) !!}
                             <button type="submit" class="btn btn-default">Start job</button>
                             {!! Form::close() !!}
@@ -63,6 +66,7 @@
                             <div class="form-group form-inline">
                                 <label for="job3">Choose a job: &nbsp;</label>
                                 {!! Form::open(['route' => ['business.job'], 'method' => 'post']) !!}
+                                {!! Form::hidden("num", 4) !!}
                                 {!! Form::select('action', array("moneyjob" => 'Guide a company with their business plan(more cash)', "xpjob" => 'Give personal marketplace advice (more xp)'), 'moneyjob', ['class' => 'form-control form-group']) !!}
                                 <button type="submit" class="btn btn-default">Start job</button>
                                 {!! Form::close() !!}
@@ -77,6 +81,7 @@
                             <div class="form-group form-inline">
                                 <label for="job3">Choose a job: &nbsp;</label>
                                 {!! Form::open(['route' => ['business.job'], 'method' => 'post']) !!}
+                                {!! Form::hidden("num", 5) !!}
                                 {!! Form::select('action', array("moneyjob" => 'Guide a company with their business plan(more cash)', "xpjob" => 'Give personal marketplace advice (more xp)'), 'moneyjob', ['class' => 'form-control form-group']) !!}
                                 <button type="submit" class="btn btn-default">Start job</button>
                                 {!! Form::close() !!}
