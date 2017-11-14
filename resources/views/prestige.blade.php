@@ -61,7 +61,7 @@
 
                         <tr>
                             <td>
-                                30 days VIP
+                                14 days VIP
                             </td>
                             <td>
                                 1 Prestige point
