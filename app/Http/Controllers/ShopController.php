@@ -78,8 +78,9 @@ class ShopController extends Controller
     }
 
     public function claimVIP(Request $request) {
-        $amount = $request->input('amount')*14;
+        $amount = $request->input('amount');
         $user = Auth::user();
+        $days = $amount*14;
 
         //$MONTH = 2592000;
         $FOURTEENDAYS = 1209600;
@@ -87,11 +88,11 @@ class ShopController extends Controller
         if ($amount < 1)
             return redirect('prestige')->with('fail', 'Invalid amount.');
         if ($user->prestigepoints < $amount)
-            return redirect('prestige')->with('fail', 'You do not have enough prestige points to claim '.$amount.' days VIP Subscription');
+            return redirect('prestige')->with('fail', 'You do not have enough prestige points to claim '.$days.' days VIP Subscription');
 
         $user->prestigepoints -= $amount;
         SubscriptionController::addSubscription(Auth::user()->name, $FOURTEENDAYS);
         $user->save();
-        return redirect('prestige')->with('success', 'Successfully claimed '.$amount.' days VIP Subscription for '.number_format($amount).' prestige points.');
+        return redirect('prestige')->with('success', 'Successfully claimed '.$days.' days VIP Subscription for '.number_format($amount).' prestige points.');
     }
 }

@@ -40,7 +40,7 @@
 
                 <h5>Prestige points</h5>
                 <ul>
-                    <li>You can use <b>1</b> Prestige point to claim <b>one month</b> of VIP status.</li>
+                    <li>You can use <b>1</b> Prestige point to claim <b>14 days</b> of VIP status.</li>
                 </ul>
 
                 <h5>Donation rewards</h5>
