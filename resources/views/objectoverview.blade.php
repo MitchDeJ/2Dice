@@ -43,7 +43,7 @@
                                         @else
                                             <td><a href="#" class="text-dark"></a></td>
                                         @endif
-                                        <td><a href="#" class="text-dark">${{number_format($objects[$i]->maxbet)}}</a>
+                                        <td>${{number_format($objects[$i]->maxbet)}}
                                         </td>
                                         @if($objects[$i]->profit < 0)
                                             <td style="color: red;">-${{number_format($objects[$i]->profit*-1)}}</td>
@@ -66,7 +66,7 @@
                                     <td class="table_dark_bg" style="width: 10%;"><img src="img/uk.png"> United Kingdom
                                     </td>
                                     <td class="table_dark_bg" style="width: 10%;">Owner</td>
-                                    <td class="table_dark_bg" style="width: 10%;">Max bet</td>
+                                    <td class="table_dark_bg" style="width: 10%;">Maximum bet</td>
                                     <td class="table_dark_bg" style="width: 10%;">Profit</td>
                                 </tr>
                                 </thead>
@@ -80,7 +80,7 @@
                                         @else
                                             <td><a href="#" class="text-dark"></a></td>
                                         @endif
-                                        <td><a href="#" class="text-dark">${{number_format($objects[$i]->maxbet)}}</a>
+                                        <td>${{number_format($objects[$i]->maxbet)}}
                                         </td>
                                         @if($objects[$i]->profit < 0)
                                             <td style="color: red;">-${{number_format($objects[$i]->profit*-1)}}</td>
@@ -102,7 +102,7 @@
                                 <tr>
                                     <td class="table_dark_bg" style="width: 10%;"><img src="img/russia.png"> Russia</td>
                                     <td class="table_dark_bg" style="width: 10%;">Owner</td>
-                                    <td class="table_dark_bg" style="width: 10%;">Max bet</td>
+                                    <td class="table_dark_bg" style="width: 10%;">Maximum bet</td>
                                     <td class="table_dark_bg" style="width: 10%;">Profit</td>
                                 </tr>
                                 </thead>
@@ -116,7 +116,7 @@
                                         @else
                                             <td><a href="#" class="text-dark"></a></td>
                                         @endif
-                                        <td><a href="#" class="text-dark">${{number_format($objects[$i]->maxbet)}}</a>
+                                        <td>${{number_format($objects[$i]->maxbet)}}
                                         </td>
                                         @if($objects[$i]->profit < 0)
                                             <td style="color: red;">-${{number_format($objects[$i]->profit*-1)}}</td>
