@@ -35,9 +35,9 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <td class="table_dark_bg" style="width: 2%;">Rank</td>
-                            <td class="table_dark_bg" style="width: 10%;">Player</td>
-                            <td class="table_dark_bg" style="width: 10%;">Power</td>
+                            <td class="table_dark_bg" style="width: 10%;">Rank</td>
+                            <td class="table_dark_bg" style="width: 45%;">Player</td>
+                            <td class="table_dark_bg" style="width: 45%;">Power</td>
                         </tr>
                         </thead>
                         <tbody>
