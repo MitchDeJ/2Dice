@@ -18,8 +18,8 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <td class="table_dark_bg" style="width: 5%;">Top richest players</td>
-                                <td class="table_dark_bg" style="width: 10%;"></td>
+                                <td class="table_dark_bg" style="width: 50%;">Top richest players</td>
+                                <td class="table_dark_bg" style="width: 50%;"></td>
                             </tr>
                             </thead>
                             <tbody>
@@ -39,8 +39,8 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <td class="table_dark_bg" style="width: 5%;">Top ranked players</td>
-                                <td class="table_dark_bg" style="width: 10%;"></td>
+                                <td class="table_dark_bg" style="width: 50%;">Top ranked players</td>
+                                <td class="table_dark_bg" style="width: 50%;"></td>
                             </tr>
                             </thead>
                             <tbody>
@@ -60,8 +60,8 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <td class="table_dark_bg" style="width: 5%;">Top highest bets</td>
-                                <td class="table_dark_bg" style="width: 10%;"></td>
+                                <td class="table_dark_bg" style="width: 50%;">Top highest bets</td>
+                                <td class="table_dark_bg" style="width: 50%;"></td>
                             </tr>
                             </thead>
                             <tbody>
@@ -81,8 +81,8 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <td class="table_dark_bg" style="width: 5%;">Top total bets</td>
-                                <td class="table_dark_bg" style="width: 10%;"></td>
+                                <td class="table_dark_bg" style="width: 50%;">Top total bets</td>
+                                <td class="table_dark_bg" style="width: 50%;"></td>
                             </tr>
                             </thead>
                             <tbody>
@@ -92,52 +92,6 @@
                                     <td>{{number_format($user->totalbets)}}</td>
                                 </tr>
                             @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <td class="table_dark_bg" style="width: 5%;">Top company rank</td>
-                                <td class="table_dark_bg" style="width: 10%;"></td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td><a href="#" class="text-dark">Envy</a></td>
-                                <td>Rank 6 (Prestige 8)</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#" class="text-dark">Envy</a></td>
-                                <td>Rank 6 (Prestige 8)</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <td class="table_dark_bg" style="width: 5%;">Top company power</td>
-                                <td class="table_dark_bg" style="width: 10%;"></td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td><a href="#" class="text-dark">Envy</a></td>
-                                <td>Rank 6 (Prestige 8)</td>
-                            </tr>
-                            <tr>
-                                <td><a href="#" class="text-dark">Envy</a></td>
-                                <td>Rank 6 (Prestige 8)</td>
-                            </tr>
                             </tbody>
                         </table>
                     </div>
