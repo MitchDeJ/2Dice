@@ -25,12 +25,12 @@
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
-                                    <td class="table_dark_bg" style="width: 10%;"><img src="img/netherlands.png">
+                                    <td class="table_dark_bg" style="width: 25%;"><img src="img/netherlands.png">
                                         Netherlands
                                     </td>
-                                    <td class="table_dark_bg" style="width: 10%;">Owner</td>
-                                    <td class="table_dark_bg" style="width: 10%;">Maximum bet</td>
-                                    <td class="table_dark_bg" style="width: 10%;">Profit</td>
+                                    <td class="table_dark_bg" style="width: 25%;">Owner</td>
+                                    <td class="table_dark_bg" style="width: 25%;">Maximum bet</td>
+                                    <td class="table_dark_bg" style="width: 25%;">Profit</td>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -63,11 +63,11 @@
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
-                                    <td class="table_dark_bg" style="width: 10%;"><img src="img/uk.png"> United Kingdom
+                                    <td class="table_dark_bg" style="width: 25%;"><img src="img/uk.png"> United Kingdom
                                     </td>
-                                    <td class="table_dark_bg" style="width: 10%;">Owner</td>
-                                    <td class="table_dark_bg" style="width: 10%;">Maximum bet</td>
-                                    <td class="table_dark_bg" style="width: 10%;">Profit</td>
+                                    <td class="table_dark_bg" style="width: 25%;">Owner</td>
+                                    <td class="table_dark_bg" style="width: 25%;">Maximum bet</td>
+                                    <td class="table_dark_bg" style="width: 25%;">Profit</td>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -100,10 +100,10 @@
                             <table class="table table-striped">
                                 <thead>
                                 <tr>
-                                    <td class="table_dark_bg" style="width: 10%;"><img src="img/russia.png"> Russia</td>
-                                    <td class="table_dark_bg" style="width: 10%;">Owner</td>
-                                    <td class="table_dark_bg" style="width: 10%;">Maximum bet</td>
-                                    <td class="table_dark_bg" style="width: 10%;">Profit</td>
+                                    <td class="table_dark_bg" style="width: 25%;"><img src="img/russia.png"> Russia</td>
+                                    <td class="table_dark_bg" style="width: 25%;">Owner</td>
+                                    <td class="table_dark_bg" style="width: 25%;">Maximum bet</td>
+                                    <td class="table_dark_bg" style="width: 25%;">Profit</td>
                                 </tr>
                                 </thead>
                                 <tbody>
