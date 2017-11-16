@@ -60,11 +60,13 @@ class BlackjackController extends Controller
                 BlackjackController::getCardName($turns[$i]->cpucard) .
                 '.png';
 
-            if ($state == "ONGOING" && $hideCard == -1) {
-                if ($turns[$i]->cpucard == 0)
-                $hideCard = $i - 1;
-                else
-                    $hideCard = $turns->count()-1;
+            if ($state == "ONGOING") {
+                if ($turns[$i]->cpucard == 0) {
+                    $hideCard = $i - 1;
+                }
+                else {
+                    $hideCard = $turns->count() - 1;
+                }
             }
 
 
