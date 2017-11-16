@@ -47,7 +47,7 @@ class ShopController extends Controller
         $amount = $request->input('amount');
         $user = Auth::user();
 
-        $POWER = 75000;
+        $POWER = 50000;
 
         if ($amount < 1)
             return redirect('prestige')->with('fail', 'Invalid amount.');
@@ -64,7 +64,7 @@ class ShopController extends Controller
         $amount = $request->input('amount');
         $user = Auth::user();
 
-        $CASH = 5000000;
+        $CASH = 3000000;
 
         if ($amount < 1)
             return redirect('prestige')->with('fail', 'Invalid amount.');

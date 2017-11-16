@@ -27,7 +27,7 @@
                         <tbody>
                         <tr>
                             <td>
-                                75,000 Power
+                                50,000 Power
                             </td>
                             <td>
                                 1 Prestige point
@@ -44,7 +44,7 @@
 
                         <tr>
                             <td>
-                                $5,000,000 Cash
+                                $3,000,000 Cash
                             </td>
                             <td>
                                 1 Prestige point
