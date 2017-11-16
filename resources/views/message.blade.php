@@ -11,7 +11,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="card mb-3">
-            <div class="card-header"><i class="fa fa-envelope i_button_background"></i>{{$m->title}}</div>
+            <div class="card-header"><i class="fa fa-envelope i_button_background"></i> {{$m->title}}</div>
             <div class="card-body">
                 <div class="row col-md-12">
                     <div class="mail_button"><a href="{{ url('/inbox') }}" class="text-dark">
