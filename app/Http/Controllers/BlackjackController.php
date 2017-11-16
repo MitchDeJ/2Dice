@@ -281,7 +281,7 @@ class BlackjackController extends Controller
 
 
         /*will the cpu hit?*/
-        if ($cpuTotal > 16) {
+        if ($cpuTotal > 16 ) {
             $cpuCard = 0;
         } else {
             $cpuCard = rand(2, 14);
@@ -347,7 +347,7 @@ class BlackjackController extends Controller
             return redirect('blackjack')->with('fail', 'This game is already over, please start a new game.');
         }
 
-        while($cpuTotal <= 16) { //let cpu take cards
+        while($cpuTotal < $userTotal) { //let cpu take cards
             if($cpuTotal > $userTotal)
                 break;
             $cpuCard = rand(2, 14);
