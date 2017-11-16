@@ -105,7 +105,8 @@
                                     @if($state == "ONGOING")
                                         {!! Form::open(['route' => ['blackjack.hit'], 'method' => 'post']) !!}
                                         {!! Form::hidden("location", $location->id) !!}
-                                    <button type="submit" class="btn btn-default">Hit!</button>
+                                    <div class="form-inline">
+                                    <button type="submit" class="btn btn-default">Hit!</button>&nbsp;
                                     {!! Form::close() !!}
                                         {!! Form::open(['route' => ['blackjack.stand'], 'method' => 'post']) !!}
                                         {!! Form::hidden("location", $location->id) !!}
@@ -115,6 +116,7 @@
                                         {!! Form::open(['route' => ['blackjack.reset'], 'method' => 'post']) !!}
                                         {!! Form::hidden("location", $location->id) !!}
                                         <button type="submit" class="btn btn-default">Reset</button>
+                                    </div>
                                         {!! Form::close() !!}
                                         @endif
                                 </div><br>
