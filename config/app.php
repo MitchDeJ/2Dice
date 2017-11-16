@@ -231,6 +231,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'MessageNotifier' =>  App\Http\Controllers\MessageNotifier::class,
+        'Titles' => App\Http\Controllers\Titles::class,
 
     ],
 

@@ -206,7 +206,8 @@
             <span style="display:inline-block; width: 50px;"></span>
 
             <li class="nav-item">
-                <a href="{{ url('/profile') }}" class="nav-link">{{Auth::user()->name}}</a>
+                <a href="{{ url('/profile') }}" class="nav-link"><strong style="color:{{Titles::getTitleColor(Auth::user()->title)}}">
+                        {{Titles::getTitle(Auth::user()->title)}}</strong>{{ Auth::user()->name }}</a>
             </li>
 
             <span style="display:inline-block; width: 50px;"></span>

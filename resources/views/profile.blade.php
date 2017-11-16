@@ -22,7 +22,8 @@
             <div class="card-body">
                 <img src="{!! url("/userimg/".$user->avatar) !!}" width="200px" height="200px" class="img-thumbnail"
                      style="display: block; margin: auto; margin-bottom: 1%">
-                <h4 class="text-center"><strong>Title</strong> {{$user->name}}</h4>
+                <h4 class="text-center"><strong style="color:{{Titles::getTitleColor($user->title)}}">
+                        {{Titles::getTitle($user->title)}}</strong>{{$user->name}}</h4>
 
                 <div class="form-group">
                     <br>

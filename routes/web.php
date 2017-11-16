@@ -82,4 +82,7 @@ Route::post("/startblackjack",["uses" => "BlackjackController@startBlackJack", "
 Route::post("/hitblackjack",["uses" => "BlackjackController@hitBlackJack", "as"=>"blackjack.hit"]);
 Route::post("/standblackjack",["uses" => "BlackjackController@standBlackJack", "as"=>"blackjack.stand"]);
 Route::post("/resetblackjack",["uses" => "BlackjackController@resetBlackJack", "as"=>"blackjack.reset"]);
+Route::post("/settitle",["uses" => "ProfileController@setTitle", "as"=>"title.set"]);
+Route::post("/unlocktitle",["uses" => "ProfileController@unlockTitle", "as"=>"title.unlock"]);
+Route::post("/cleartitle",["uses" => "ProfileController@clearTitle", "as"=>"title.clear"]);
 

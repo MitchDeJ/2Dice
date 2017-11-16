@@ -44,12 +44,15 @@
                         @foreach ($users as $user)
                             <tr>
                                 <td>{{(($num-1)*25)+$loop->iteration}}</td>
-                                <td><a href="{{url("/profile/".$user->name)}}"
+                                <td>
+                                    <strong style="color:{{Titles::getTitleColor($user->title)}}">
+                                        {{Titles::getTitle($user->title)}}</strong>
+                                    <a href="{{url("/profile/".$user->name)}}"
                                        @if($user->vip == true)
                                        class="vip_yes"
                                        @else
                                        class="text-dark"
-                                       @endif >{{$user->name}}</a>
+                                            @endif >{{$user->name}}</a>
                                 </td>
                                 <td>{{number_format($user->power)}}</td>
                             </tr>

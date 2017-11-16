@@ -106,7 +106,51 @@ class ProfileController extends Controller
      */
     public function titleIndex()
     {
-        return view('titleselection');
+        return view('titleselection', array(
+            "user" => Auth::user(),
+            "titlecount" => 1
+        ));
+    }
+
+    public function unlockTitle(Request $request)
+    {
+        $user = Auth::user();
+
+        $titleid = $request['i'];
+
+        $unlockedtitles = unserialize($user->unlockedtitles);
+
+        switch ($titleid) {
+            //
+        }
+
+        $unlockedtitles[$titleid] = 1;
+        $user->unlockedtitles = serialize($unlockedtitles);
+        $user->save();
+
+        return redirect('titleselection')->with('success', 'Succesfully unlocked title.');
+    }
+
+    public function setTitle(Request $request)
+    {
+        $user = Auth::user();
+        $title = $request['i'];
+        $unlockedtitles = unserialize($user->unlockedtitles);
+
+        if ($unlockedtitles[$title] == 0)
+            return redirect('titleselection')->with('fail', 'You have not unlocked this title yet.');
+
+        $user->title = $title;
+        $user->save();
+        return redirect('titleselection')->with('success', 'Set title to: '.Titles::getTitle($title));
+    }
+
+    public function clearTitle(Request $request)
+    {
+        $user = Auth::user();
+        $user->title = -1;
+        $user->save();
+        return redirect('titleselection')->with('success', 'Cleared title.');
     }
 
 }

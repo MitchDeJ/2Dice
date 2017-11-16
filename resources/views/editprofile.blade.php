@@ -24,7 +24,8 @@
                         <button type="submit" class="btn btn-secondary">Save</button>
                     </form>
                 </div>
-                <h4 class="text-center"><strong>Title</strong> {{$user->name}}</h4>
+                <h4 class="text-center"><strong style="color:{{Titles::getTitleColor($user->title)}}">
+                        {{Titles::getTitle($user->title)}}</strong>{{$user->name}}</h4>
                 <div class="text-center"><a href="{{ url('/titleselection') }}">Title selection</a></div>
                 <div class="form-group">
                     <label for="about_area"><h5>About me</h5></label>

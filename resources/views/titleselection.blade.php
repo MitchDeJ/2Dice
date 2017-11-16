@@ -24,6 +24,7 @@
                             <td class="table_dark_bg" style="width: 1%;">Action</td>
                         </tr>
                         </thead>
+                        <?php $unlockedtitles = unserialize($user->unlockedtitles);?>
                         <tbody>
                         <tr>
                             <td>
@@ -34,38 +35,36 @@
                             </td>
                             <td>
                                 <div class="form-inline">
+                                    {!! Form::open(['route' => ['title.clear'], 'method' => 'post']) !!}
                                     <button type="submit" class="btn btn-secondary">Clear</button>
+                                    {!! Form::close() !!}
                                 </div>
                             </td>
                         </tr>
-
+                        @for($i = 0; $i < $titlecount; $i++)
                         <tr>
                             <td>
-
+                                <strong style="color:{{Titles::getTitleColor($i)}}">{{Titles::getTitle($i)}}</strong>
                             </td>
                             <td>
-
+                                {{Titles::getTitleDesc($i)}}
                             </td>
                             <td>
                                 <div class="form-inline">
+                                    @if ($unlockedtitles[$i] == 0)
+                                        {!! Form::open(['route' => ['title.unlock'], 'method' => 'post']) !!}
+                                        {!! Form::hidden("i", $i) !!}
                                     <button type="submit" class="btn btn-default">Unlock</button>
+                                        @else
+                                        {!! Form::open(['route' => ['title.set'], 'method' => 'post']) !!}
+                                        {!! Form::hidden("i", $i) !!}
+                                        <button type="submit" class="btn btn-default">Activate</button>
+                                        {!! Form::close() !!}
+                                    @endif
                                 </div>
                             </td>
                         </tr>
-
-                        <tr>
-                            <td>
-
-                            </td>
-                            <td>
-
-                            </td>
-                            <td>
-                                <div class="form-inline">
-                                    <button type="submit" class="btn btn-dark">Active</button>
-                                </div>
-                            </td>
-                        </tr>
+                            @endfor
                         </tbody>
                     </table>
                 </div>
