@@ -190,7 +190,11 @@
         </ul>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a href="{{ url('/inbox') }}" class="nav-link"><i class="fa fa-fw fa-envelope"></i></a>
+                @if ( MessageNotifier::getUnread() > 0)
+                    <a href="{{ url('/inbox') }}" class="nav-link"><i class="fa fa-fw fa-envelope i_button_background"></i></a>
+                    @else
+                    <a href="{{ url('/inbox') }}" class="nav-link"><i class="fa fa-fw fa-envelope"></i></a>
+                @endif
             </li>
 
             <span style="display:inline-block; width: 50px;"></span>
