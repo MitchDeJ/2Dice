@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Object;
 use Auth;
+use App\BlackjackTurn;
 use App\User;
 
 class ObjectController extends Controller
@@ -40,11 +41,13 @@ class ObjectController extends Controller
             $i = 0;
             foreach($turns as $turn) {
                 $i++;
-                if (!$refundedusers.contains(User::where('id', $turn->user)->get()->first()->id)) {
+                if (!in_array(User::where('id', $turn->user)->get()->first()->id, $refundedusers)) {
                     $refundedusers[$i] = $turn->user;
-                    User::where('id', $turn->user)->get()->first()->cash+= $turn->bet;
-                    User::where('id', $turn->user)->get()->first()->save();
+                    $user =  User::where('id', $turn->user)->get()->first();
+                    $user->cash+= $turn->bet;
+                    $user->save();
                 }
+                $turn->delete();
             }
         }
 
