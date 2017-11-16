@@ -36,6 +36,8 @@
                                     {!! Form::hidden("location", $location->id) !!}
                                     <div>
                                         <button type="submit" class="btn btn-default">Gamble</button>
+
+                                        <button type="button" herf="#"  onclick="allInButton()" class="btn btn-outline-success">ALL</button>
                                     </div>
                                     {!! Form::close() !!}
                                 </div>
@@ -198,3 +200,12 @@
         </div>
     </div>
 @endsection
+{{--Load all in button Javascript--}}
+<script>
+    function allInButton() {
+        document.getElementById("bet").value =
+        @if ($user->cash > $object->maxbet) {{$object->maxbet}}
+        @else {{$user->cash}}
+        @endif
+    }
+</script>

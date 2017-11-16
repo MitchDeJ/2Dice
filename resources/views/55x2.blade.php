@@ -32,6 +32,9 @@
                                 <input type="number" class="form-control" placeholder="Bet amount" id="bet" name="bet">
                                 <div>
                                     <button type="submit" class="btn btn-default">Roll</button>
+
+                                    <button type="button" herf="#"  onclick="allInButton()" class="btn btn-outline-success">ALL</button>
+
                                     {!! Form::close() !!}
                                 </div>
                             </div>
@@ -109,3 +112,12 @@
         </div>
     </div>
 @endsection
+{{--Load all in button Javascript--}}
+<script>
+    function allInButton() {
+        document.getElementById("bet").value =
+        @if ($user->cash > $object->maxbet) {{$object->maxbet}}
+        @else {{$user->cash}}
+        @endif
+    }
+</script>

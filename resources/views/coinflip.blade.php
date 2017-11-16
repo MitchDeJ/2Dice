@@ -20,6 +20,8 @@
                             <input type="number" class="form-control" placeholder="Bet amount" id="bet" name="bet">
                             <div>
                                 <button type="submit" class="btn btn-default">New coinflip</button>
+
+                                <button type="button" herf="#"  onclick="allInButton()" class="btn btn-outline-success">ALL</button>
                                 {!! Form::close() !!}
                             </div>
                         </div>
@@ -71,3 +73,9 @@
         </div>
     </div>
 @endsection
+{{--Load all in button Javascript--}}
+<script>
+    function allInButton() {
+        document.getElementById("bet").value = "{{$user->cash}}";
+    }
+</script>

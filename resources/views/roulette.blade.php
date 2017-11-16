@@ -31,24 +31,27 @@
                             <b>Red 1 to 7</b>
                             <img src="img/roulette_red.png" width="250px" height="250px" class="img-thumbnail">
                             {!! Form::open(['route' => ['roulette.spin'], 'method' => 'post']) !!}
-                            <input type="number" class="form-control" style="text-align: center" id="roulette"
+                            <input type="number" class="form-control" style="text-align: center" id="rouletteRed"
                                    placeholder="Amount" name="red_amount">
+                            <button type="button" herf="#"  onclick="allInButton()" class="btn btn-outline-success">ALL</button>
                         </div>
 
                         <div class="col-md-2 logo_center">
                             <b>Black 8 to 14</b>
                             <img src="img/roulette_black.png" width="250px" height="250px" class="img-thumbnail">
 
-                            <input type="number" class="form-control" style="text-align: center" id="roulette"
+                            <input type="number" class="form-control" style="text-align: center" id="rouletteBlack"
                                    placeholder="Amount" name="black_amount">
+                            <button type="button" herf="#"  onclick="allInButtonBlack()" class="btn btn-outline-success">ALL</button>
                         </div>
 
                         <div class="col-md-2 logo_center">
                             <b>Green 0</b>
                             <img src="img/roulette_green.png" width="250px" height="250px" class="img-thumbnail">
 
-                            <input type="number" class="form-control" style="text-align: center" id="roulette"
+                            <input type="number" class="form-control" style="text-align: center" id="rouletteGreen"
                                    placeholder="Amount" name="green_amount">
+                            <button type="button" herf="#"  onclick="allInButtonGreen()" class="btn btn-outline-success">ALL</button>
                         </div>
                     </div>
                         <button type="submit" class="btn btn-default">Spin</button>
@@ -124,3 +127,24 @@
         </div>
     </div>
 @endsection
+{{--Load all in button Javascript--}}
+<script>
+    function allInButton() {
+        document.getElementById("rouletteRed").value =
+        @if ($user->cash > $object->maxbet) {{$object->maxbet}}
+        @else {{$user->cash}}
+        @endif
+    }
+    function allInButtonBlack() {
+        document.getElementById("rouletteBlack").value =
+        @if ($user->cash > $object->maxbet) {{$object->maxbet}}
+        @else {{$user->cash}}
+        @endif
+    }
+    function allInButtonGreen() {
+        document.getElementById("rouletteGreen").value =
+        @if ($user->cash > $object->maxbet) {{$object->maxbet}}
+        @else {{$user->cash}}
+        @endif
+    }
+</script>
