@@ -75,9 +75,7 @@ class BlackjackController extends Controller
 
         if ($state == "ONGOING") {
             for ($i = 0; $i < $turns->count(); $i++) {
-                if ($turns[$i]->cpucard != 0)
-                    $cpuTotal += BlackjackController::getCardValue($turns[$i]->cpucard, $cpuTotal);
-                if ($i != $hideCard)
+                if ($turns[$i]->cpucard != 0 || $i != $hideCard)
                     $cpuTotal += BlackjackController::getCardValue($turns[$i]->cpucard, $cpuTotal);
             }
         }
