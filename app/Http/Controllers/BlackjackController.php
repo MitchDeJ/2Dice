@@ -75,8 +75,10 @@ class BlackjackController extends Controller
 
         if ($state == "ONGOING") {
             for ($i = 0; $i < $turns->count(); $i++) {
-                if ($turns[$i]->cpucard != 0 || $i != $hideCard)
+                if ($turns[$i]->cpucard != 0) {
+                    if ($i != $hideCard)
                     $cpuTotal += BlackjackController::getCardValue($turns[$i]->cpucard, $cpuTotal);
+                }
             }
         }
 
@@ -84,6 +86,7 @@ class BlackjackController extends Controller
             $owner = null;
         else
             $owner = User::where('id', $object->owner)->get()->first();
+
 
         return view('blackjack', array(
             "user" => $user,
