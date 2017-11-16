@@ -33,6 +33,21 @@ class ObjectController extends Controller
 
         $object->maxbet = $amount;
         $object->save();
+
+        if ($type == 1)  {//if this is a blackjack we have to remove some bets that are above max
+            $refundedusers = array();
+            $turns = BlackjackTurn::where('location', $location)->where('bet', '>', $amount)->get();
+            $i = 0;
+            foreach($turns as $turn) {
+                $i++;
+                if (!$refundedusers.contains(User::where('id', $turn->user)->get()->first()->id)) {
+                    $refundedusers[$i] = $turn->user;
+                    User::where('id', $turn->user)->get()->first()->cash+= $turn->bet;
+                    User::where('id', $turn->user)->get()->first()->save();
+                }
+            }
+        }
+
         return redirect($page)->with('success', 'Maximum bet has been set to $'.number_format($amount));
 
     }

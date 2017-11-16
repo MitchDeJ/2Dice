@@ -185,6 +185,10 @@ class BlackjackController extends Controller
             return redirect('blackjack')->with('fail', 'Invalid bet.');
         }
 
+        if ($bet > $user->cash) {
+            return redirect('blackjack')->with('fail', 'You tried to bet $' . number_format($bet) . ', but you only have $' . number_format($user->cash) . ".");
+        }
+
         //getting the object
         $object = Object::where('type', 1)->where('location', $location)->get()->first();
 
@@ -214,7 +218,12 @@ class BlackjackController extends Controller
             'stand' => false
         ]);
 
+        if ($bet > $user->highestbet) {
+            $user->highestbet = $bet;
+        }
+
         $user->cash -= $bet;
+        $user->totalbets +=1;
         $user->save();
 
         $this->checkBlackJack($user, $location);

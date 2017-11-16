@@ -134,6 +134,11 @@ class GamblingController extends Controller
             return redirect('roulette')->with('fail', 'Invalid bet.');
         }
 
+
+        if ($bet > $user->cash) {
+            return redirect('roulette')->with('fail', 'You tried to bet $' . number_format($bet) . ', but you only have $' . number_format($user->cash) . ".");
+        }
+
         if ($bet > $object->maxbet) {
             return redirect('roulette')->with('fail', 'You can not place a bet higher than the maximum bet.');
         }
