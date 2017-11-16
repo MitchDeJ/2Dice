@@ -384,6 +384,8 @@ class BlackjackController extends Controller
         $turns = BlackjackTurn::where('user', $user->id)->where('location', $location)->get();
         $bet = $turns->first()->bet;
 
+        $loc = Location::where('id', $location)->get()->first();
+
         if ($state == "WIN") {
 
             if ($object->cash < $bet) {
@@ -393,8 +395,22 @@ class BlackjackController extends Controller
                 $object->cash = 0;
                 $object->maxbet = 0;
                 $object->profit = 0;
-                MessageController::sendSystemMessage($owner->name, "Blackjack ".$location->name." has been overtaken by ".$user->name."!",
+                MessageController::sendSystemMessage($owner->name, "Blackjack ".$loc->name." has been overtaken by ".$user->name."!",
                     "You didn't have enough cash in your object to pay out the profits.");
+                /* clean up reamaining bets*/
+                $refundedusers = array();
+                $turns = BlackjackTurn::where('location', $location);
+                $i = 0;
+                foreach($turns as $turn) {
+                    $i++;
+                    if (!in_array(User::where('id', $turn->user)->get()->first()->id, $refundedusers)) {
+                        $refundedusers[$i] = $turn->user;
+                        $user =  User::where('id', $turn->user)->get()->first();
+                        $user->cash+= $turn->bet;
+                        $user->save();
+                    }
+                    $turn->delete();
+                }
             } else {
                 $user->cash+=($bet*2);
                 $object->cash-=($bet);
@@ -414,8 +430,22 @@ class BlackjackController extends Controller
                 $object->cash = 0;
                 $object->maxbet = 0;
                 $object->profit = 0;
-                MessageController::sendSystemMessage($owner->name, "Blackjack ".$location->name." has been overtaken by ".$user->name."!",
+                MessageController::sendSystemMessage($owner->name, "Blackjack ".$loc->name." has been overtaken by ".$user->name."!",
                     "You didn't have enough cash in your object to pay out the profits.");
+                /* clean up reamaining bets*/
+                $refundedusers = array();
+                $turns = BlackjackTurn::where('location', $location);
+                $i = 0;
+                foreach($turns as $turn) {
+                    $i++;
+                    if (!in_array(User::where('id', $turn->user)->get()->first()->id, $refundedusers)) {
+                        $refundedusers[$i] = $turn->user;
+                        $user =  User::where('id', $turn->user)->get()->first();
+                        $user->cash+= $turn->bet;
+                        $user->save();
+                    }
+                    $turn->delete();
+                }
             } else {
                 $user->cash += ($bet * 2.5);
                 $object->cash -= ($bet * 1.5);
