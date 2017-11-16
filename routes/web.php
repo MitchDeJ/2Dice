@@ -38,7 +38,7 @@ Route::get('/newoffer', 'MarketplaceController@newoffer')->name('newoffer');
 Route::get('/55x2', 'GamblingController@diceIndex')->name('55x2');
 Route::get('/coinflip', 'GamblingController@coinflipIndex')->name('coinflip');
 Route::get('/roulette', 'GamblingController@rouletteIndex')->name('roulette');
-Route::get('/blackjack', 'GamblingController@blackjackIndex')->name('blackjack');
+Route::get('/blackjack', 'BlackjackController@blackjackIndex')->name('blackjack');
 Route::get('/newauction', 'MarketplaceController@newAuction')->name('newauction');
 Route::get('/sendcash', 'BusinessController@sendCashIndex')->name('sendcash');
 Route::get('/general', 'ShopController@general')->name('general');
@@ -78,4 +78,8 @@ Route::post("/newcoinflip",["uses" => "GamblingController@newCoinflip", "as"=>"c
 Route::post("/cancelcoinflip",["uses" => "GamblingController@cancelCoinflip", "as"=>"coinflip.cancel"]);
 Route::post("/playcoinflip",["uses" => "GamblingController@playCoinflip", "as"=>"coinflip.play"]);
 Route::post("/jobs",["uses" => "JobsController@businessJob", "as"=>"business.job"]);
+Route::post("/startblackjack",["uses" => "BlackjackController@startBlackJack", "as"=>"blackjack.start"]);
+Route::post("/hitblackjack",["uses" => "BlackjackController@hitBlackJack", "as"=>"blackjack.hit"]);
+Route::post("/standblackjack",["uses" => "BlackjackController@standBlackJack", "as"=>"blackjack.stand"]);
+Route::post("/resetblackjack",["uses" => "BlackjackController@resetBlackJack", "as"=>"blackjack.reset"]);
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\BlackjackTurn;
 use Illuminate\Http\Request;
 use Auth;
 use App\Object;
@@ -19,7 +20,7 @@ class GamblingController extends Controller
     public function diceIndex()
     {
         $user = Auth::user();
-        $location =  Location::where("id", $user->location)->get()->first();
+        $location = Location::where("id", $user->location)->get()->first();
         $object = Object::where('location', $location->id)->where('type', 3)->get()->first();
         if (User::where('id', $object->owner)->get()->count() < 1)
             $owner = null;
@@ -44,7 +45,8 @@ class GamblingController extends Controller
         return view('coinflip', array("user" => Auth::user(), "coinflips" => Coinflip::all()));
     }
 
-    public function roll55x2(Request $request) {
+    public function roll55x2(Request $request)
+    {
         $num = rand(1, 100);
         $bet = $request->input('bet');
         $user = Auth::user();
@@ -68,17 +70,16 @@ class GamblingController extends Controller
             return redirect('55x2')->with('fail', 'You can not place a bet higher than the maximum bet.');
         }
 
-        $user->totalbets +=1;
+        $user->totalbets += 1;
 
-        if ($bet > $user->highestbet)
-        {
+        if ($bet > $user->highestbet) {
             $user->highestbet = $bet;
         }
 
         if ($num <= 50) {
-            $user->cash-=$bet;
-            $object->cash+=$bet;
-            $object->profit+=$bet;
+            $user->cash -= $bet;
+            $object->cash += $bet;
+            $object->profit += $bet;
             $object->save();
             $user->save();
             return redirect('55x2')->with('fail', ' You roll a ' . $num . ', you lose $' . number_format($bet) . '.');
@@ -86,11 +87,11 @@ class GamblingController extends Controller
 
             if ($object->cash < $bet) { //sweeped
                 $object->owner = $user->id;
-                $user->cash+= $object->cash;
+                $user->cash += $object->cash;
                 $object->cash = 0;
                 $object->maxbet = 0;
                 $object->profit = 0;
-                MessageController::sendSystemMessage($owner->name, "55x2 ".$location->name." has been overtaken by ".$user->name."!",
+                MessageController::sendSystemMessage($owner->name, "55x2 " . $location->name . " has been overtaken by " . $user->name . "!",
                     "You didn't have enough cash in your object to pay out the profits.");
                 $user->save();
                 $object->save();
@@ -98,16 +99,17 @@ class GamblingController extends Controller
                 return redirect('55x2')->with('neutral', 'The 55x2 did not have enough cash to pay out your profits, you have overtaken the object!');
             }
 
-            $user->cash+=$bet;
-            $object->cash-=$bet;
-            $object->profit-=$bet;
+            $user->cash += $bet;
+            $object->cash -= $bet;
+            $object->profit -= $bet;
             $object->save();
             $user->save();
             return redirect('55x2')->with('success', ' You roll a ' . $num . ', you win $' . number_format($bet) . '!');
         }
     }
 
-    public function spinRoulette(Request $request) {
+    public function spinRoulette(Request $request)
+    {
         $num = rand(1, 15);
         $user = Auth::user();
         $red = $request['red_amount'];
@@ -126,7 +128,7 @@ class GamblingController extends Controller
         if ($green == null)
             $green = 0;
 
-        $bet = $red+$black+$green;
+        $bet = $red + $black + $green;
 
         if ($bet < 1) {
             return redirect('roulette')->with('fail', 'Invalid bet.');
@@ -136,8 +138,7 @@ class GamblingController extends Controller
             return redirect('roulette')->with('fail', 'You can not place a bet higher than the maximum bet.');
         }
 
-        if ($bet > $user->highestbet)
-        {
+        if ($bet > $user->highestbet) {
             $user->highestbet = $bet;
         }
 
@@ -146,37 +147,37 @@ class GamblingController extends Controller
         $profit = 0;
         $color = 'white';
 
-        if ($num == 1 ) {
+        if ($num == 1) {
 
             if ($green > 0)
                 $profit += ($green * 14);
 
-            $color="green";
+            $color = "green";
         }
         if ($num >= 2 && $num <= 8) {
 
             if ($red > 0)
                 $profit += ($red * 2);
 
-            $color="red";
+            $color = "red";
         }
         if ($num >= 9 && $num <= 15) {
 
             if ($black > 0)
                 $profit += ($black * 2);
 
-            $color="black";
+            $color = "black";
         }
 
         //object bank interaction
 
-        if ($object->cash < $profit-$bet) { //sweeped
+        if ($object->cash < $profit - $bet) { //sweeped
             $object->owner = $user->id;
-            $user->cash+= $object->cash;
+            $user->cash += $object->cash;
             $object->cash = 0;
             $object->maxbet = 0;
             $object->profit = 0;
-            MessageController::sendSystemMessage($owner->name, "Roulette ".$location->name." has been overtaken by ".$user->name."!",
+            MessageController::sendSystemMessage($owner->name, "Roulette " . $location->name . " has been overtaken by " . $user->name . "!",
                 "You didn't have enough cash in your object to pay out the profits.");
             $user->save();
             $object->save();
@@ -184,16 +185,16 @@ class GamblingController extends Controller
             return redirect('roulette')->with('neutral', 'The roulette did not have enough cash to pay out your profits, you have overtaken the object!');
         }
 
-        $user->cash+=$profit;
-        $object->cash -= $profit-$bet;
-        $object->profit -= $profit-$bet;
+        $user->cash += $profit;
+        $object->cash -= $profit - $bet;
+        $object->profit -= $profit - $bet;
         $user->save();
         $object->save();
 
         return redirect('roulette')
             ->with('roulette-result', $num)
             ->with('roulette-color', $color)
-            ->with('roulette-profit', $profit-$bet);
+            ->with('roulette-profit', $profit - $bet);
 
     }
 
@@ -207,14 +208,14 @@ class GamblingController extends Controller
             return redirect('coinflip')->with('fail', "Invalid bet.");
         }
 
-        if (count(Coinflip::where('user',$user->name)->get()) > 1)
-            return redirect ( 'coinflip' )->with( 'fail', 'You can have a maximum of 2 active games.' );
+        if (count(Coinflip::where('user', $user->name)->get()) > 1)
+            return redirect('coinflip')->with('fail', 'You can have a maximum of 2 active games.');
 
         if ($bet > $user->cash) {
             return redirect('coinflip')->with('fail', 'You tried to bet $' . number_format($bet) . ', but you only have $' . number_format($user->cash) . ".");
         }
 
-        $cf = Coinflip::create ([
+        $cf = Coinflip::create([
             'user' => $user->name,
             'bet' => $bet
         ]);
@@ -222,7 +223,7 @@ class GamblingController extends Controller
         $user->cash -= $bet;
         $user->save();
         $cf->save();
-        return redirect ( 'coinflip' )->with( 'success', 'Game created.' );
+        return redirect('coinflip')->with('success', 'Game created.');
     }
 
     public function cancelCoinflip(Request $request)
@@ -230,16 +231,15 @@ class GamblingController extends Controller
         $id = $request['id'];
         $user = Auth::user();
 
-        if (count( Coinflip::where('id', $id)->get()) == 0)
-        {
-            return redirect ( 'coinflip' )->with( 'fail', "That game has already been played by someone." );
+        if (count(Coinflip::where('id', $id)->get()) == 0) {
+            return redirect('coinflip')->with('fail', "That game has already been played by someone.");
         }
 
-        $cf = Coinflip::where('id',$id)->get()->first();
-        $user->cash+=$cf->bet;
+        $cf = Coinflip::where('id', $id)->get()->first();
+        $user->cash += $cf->bet;
         $user->save();
         $cf->delete();
-        return redirect ( 'coinflip' )->with( 'success', 'Game cancelled.' );
+        return redirect('coinflip')->with('success', 'Game cancelled.');
     }
 
     public function playCoinflip(Request $request)
@@ -259,7 +259,7 @@ class GamblingController extends Controller
             return redirect('coinflip')->with('fail', 'You do not have enough cash to play this game of coinflip.');
         }
 
-        $user->cash-=$bet;
+        $user->cash -= $bet;
 
         //check for highest bet
 
@@ -308,7 +308,7 @@ class GamblingController extends Controller
     public function rouletteIndex()
     {
         $user = Auth::user();
-        $location =  Location::where("id", $user->location)->get()->first();
+        $location = Location::where("id", $user->location)->get()->first();
         $object = Object::where('location', $location->id)->where('type', 0)->get()->first();
         if (User::where('id', $object->owner)->get()->count() < 1)
             $owner = null;
@@ -316,29 +316,6 @@ class GamblingController extends Controller
             $owner = User::where('id', $object->owner)->get()->first();
 
         return view('roulette', array(
-            "user" => $user,
-            "location" => $location,
-            "object" => $object,
-            "owner" => $owner
-        ));
-    }
-
-    /**
-     * Show the application blackjack overview.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function blackjackIndex()
-    {
-        $user = Auth::user();
-        $location =  Location::where("id", $user->location)->get()->first();
-        $object = Object::where('location', $location->id)->where('type', 1)->get()->first();
-        if (User::where('id', $object->owner)->get()->count() < 1)
-            $owner = null;
-        else
-            $owner = User::where('id', $object->owner)->get()->first();
-
-        return view('blackjack', array(
             "user" => $user,
             "location" => $location,
             "object" => $object,
