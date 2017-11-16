@@ -46,13 +46,6 @@ class BlackjackController extends Controller
                 $cpuTotal += BlackjackController::getCardValue($t->cpucard, $cpuTotal);
         }
 
-        if ($state == "ONGOING") {
-            for ($i = 0; $i < $turns->count() - 1; $i++) {
-                if ($turns[$i+1]->cpucard != 0)
-                    $cpuTotal += BlackjackController::getCardValue($turns[$i]->cpucard, $cpuTotal);
-            }
-        }
-
         /*getting cards to display*/
         $userCards = array();
         $cpuCards = array();
@@ -77,6 +70,15 @@ class BlackjackController extends Controller
 
             if ($turns->count() == 2) {
                 $hideCard = 1;
+            }
+
+            if ($state == "ONGOING") {
+                for ($i = 0; $i < $turns->count(); $i++) {
+                    if ($turns[$i]->cpucard != 0)
+                        $cpuTotal += BlackjackController::getCardValue($turns[$i]->cpucard, $cpuTotal);
+                    if ($i != $hideCard)
+                        $cpuTotal += BlackjackController::getCardValue($turns[$i]->cpucard, $cpuTotal);
+                }
             }
         }
 
