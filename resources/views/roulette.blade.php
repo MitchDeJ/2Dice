@@ -9,6 +9,28 @@
 @extends('layouts.app')
 
 @section('content')
+    {{--Load all in button Javascript--}}
+    <script>
+        function allInButton() {
+            document.getElementById("rouletteRed").value =
+            @if ($user->cash > $object->maxbet) {{$object->maxbet}}
+            @else {{$user->cash}}
+            @endif
+        }
+        function allInButtonBlack() {
+            document.getElementById("rouletteBlack").value =
+            @if ($user->cash > $object->maxbet) {{$object->maxbet}}
+            @else {{$user->cash}}
+            @endif
+        }
+        function allInButtonGreen() {
+            document.getElementById("rouletteGreen").value =
+            @if ($user->cash > $object->maxbet) {{$object->maxbet}}
+            @else {{$user->cash}}
+            @endif
+        }
+    </script>
+
     <div class="container-fluid">
         <div class="card mb-3">
             <div class="card-header"><i class="fa fa-dollar i_button_background"></i> Roulette {{$location->name}}</div>
@@ -127,24 +149,3 @@
         </div>
     </div>
 @endsection
-{{--Load all in button Javascript--}}
-<script>
-    function allInButton() {
-        document.getElementById("rouletteRed").value =
-        @if ($user->cash > $object->maxbet) {{$object->maxbet}}
-        @else {{$user->cash}}
-        @endif
-    }
-    function allInButtonBlack() {
-        document.getElementById("rouletteBlack").value =
-        @if ($user->cash > $object->maxbet) {{$object->maxbet}}
-        @else {{$user->cash}}
-        @endif
-    }
-    function allInButtonGreen() {
-        document.getElementById("rouletteGreen").value =
-        @if ($user->cash > $object->maxbet) {{$object->maxbet}}
-        @else {{$user->cash}}
-        @endif
-    }
-</script>

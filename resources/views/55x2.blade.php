@@ -9,6 +9,17 @@
 @extends('layouts.app')
 
 @section('content')
+    {{--Load all in button Javascript--}}
+    <script>
+        function allInButton() {
+            document.getElementById("bet").value =
+            @if ($user->cash > $object->maxbet) {{$object->maxbet}}
+            @else {{$user->cash}}
+            @endif
+        }
+    </script>
+
+    
     <div class="container-fluid">
         <div class="card mb-3">
             <div class="card-header"><i class="fa fa-dollar i_button_background"></i> 55x2 {{$location->name}}</div>
@@ -112,12 +123,3 @@
         </div>
     </div>
 @endsection
-{{--Load all in button Javascript--}}
-<script>
-    function allInButton() {
-        document.getElementById("bet").value =
-        @if ($user->cash > $object->maxbet) {{$object->maxbet}}
-        @else {{$user->cash}}
-        @endif
-    }
-</script>
