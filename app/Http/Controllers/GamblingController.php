@@ -163,6 +163,7 @@ class GamblingController extends Controller
             $color = "green";
 
             //unlock lucky title
+            if ($green > 0)
             ProfileController::forceUnlockTitle(14);
         }
         if ($num >= 2 && $num <= 8) {

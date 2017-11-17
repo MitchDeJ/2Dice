@@ -144,7 +144,7 @@ class ProfileController extends Controller
                 break;
             case 4: //wealthy
                 if ($user->cash >= 5000000) {
-                    return redirect('titleselection')->with('success', 'Unlocked title: '.Titles::getTitle($titleid));
+                    $user->cash-= 5000000;
                 } else {
                     return redirect('titleselection')->with('fail', 'You do not have enough cash to unlock this title.');
                 }

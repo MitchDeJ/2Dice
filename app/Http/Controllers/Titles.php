@@ -133,7 +133,7 @@ class Titles extends Facade
             case 13:
                 return "This title can be unlocked when you have bought the maximum amount of stock of one company.";
             case 14:
-                return "This title will be unlocked whenever you land green on the roulette.";
+                return "This title will be unlocked whenever you bet and land green on the roulette.";
             case 15:
                 return "This title can be unlocked if you are currently a VIP. (donation or prestige points both work).";
             case 16:
