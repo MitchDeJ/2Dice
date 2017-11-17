@@ -66,13 +66,13 @@ class Titles extends Facade
             case 3:
                 return "darkgreen";
             case 4:
-                return "darkorange";
+                return "orange";
             case 5:
                 return "mediumpurple";
             case 6:
                 return "lightcoral";
             case 7:
-                return "darkorange";
+                return "#f39c12";
             case 8:
                 return "darkred";
             case 9:
