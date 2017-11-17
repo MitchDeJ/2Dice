@@ -16,7 +16,7 @@
                 <h5>VIP will offer you the following:</h5>
                 <ul>
                     <li>
-                        Bold name and star behind your name in the leaderboards.
+                        Bold name and '★' icon next to your name in the leaderboards.
                     </li>
                     <li>
                         Exclusive title in the title selection screen.
