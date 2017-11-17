@@ -36,6 +36,7 @@ class LocationController extends Controller
 
     public function fly(Request $request) {
         $price = 5000;
+        $fly = false;
 
         if (Auth::user()->cash < $price)
             return redirect('location')->with('fail', 'You currently can not afford a flight.');
@@ -52,13 +53,17 @@ class LocationController extends Controller
                 $object->save();
                 Auth::user()->save();
 
+                $fly = true;
                 //unlock traveller title
                 ProfileController::forceUnlockTitle(3);
                 break;
             }
         }
         $loc = Location::where('id', Auth::user()->location)->get()->first();
-        return redirect('location')->with('success', 'You pay $'.number_format($price).' and fly to '.$loc->name.'.');
+        if ($fly)
+            return redirect('location')->with('success', 'You pay $'.number_format($price).' and fly to '.$loc->name.'.');
+        else
+            return redirect('location')->with('neutral', 'Please select a country first.');
     }
 
     public static function getName($loc) {
