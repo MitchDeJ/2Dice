@@ -14,22 +14,22 @@
             <div class="card-header"><i class="fa fa-user i_button_background"></i> {{$user->name}}'s dashboard</div>
                 <div class="row card-body">
                     <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/profile') }}" class="text-dark">
-                            <button type="button" class="btn btn-default">View profile</button>
+                            <button type="button" class="btn btn-outline-dark">View profile</button>
                         </a>
                     </div>
 
                     <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/profile') }}" class="text-dark">
-                            <button type="button" class="btn btn-default">View company</button>
+                            <button type="button" class="btn btn-outline-dark">View company</button>
                         </a>
                     </div>
 
                     <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/inbox') }}" class="text-dark">
-                            <button type="button" class="btn btn-default">View messages</button>
+                            <button type="button" class="btn btn-outline-dark">View messages</button>
                         </a>
                     </div>
 
                     <div class="col-md-3" style="padding-bottom: 5px;"><a href="{{ url('/changepassword') }}" class="text-dark">
-                            <button type="button" class="btn btn-default">Change password</button>
+                            <button type="button" class="btn btn-outline-dark">Change password</button>
                         </a>
                     </div>
 

@@ -17,9 +17,10 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <td class="table_dark_bg" style="width: 10%;">Rank</td>
+                            <td class="table_dark_bg" style="width: 10%;">Position</td>
                             <td class="table_dark_bg" style="width: 20%;">Name</td>
-                            <td class="table_dark_bg" style="width: 30%;">Level</td>
+                            <td class="table_dark_bg" style="width: 20%;">Level</td>
+                            <td class="table_dark_bg" style="width: 20%;">Base income</td>
                             <td class="table_dark_bg" style="width: 30%;">Total power</td>
                         </tr>
                         </thead>
@@ -28,6 +29,7 @@
                             <td>1</td>
                             <td><a href="#" class="text-dark">Company name</a></td>
                             <td>3</td>
+                            <td>$545,534,555</td>
                             <td>500,000</td>
                         </tr>
                         </tbody>

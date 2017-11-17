@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>2Dice - BETA 1.0</title>
+    <title>2Dice - V1.0</title>
     <!-- Force scrollbar -->
     <style> html {
             overflow: -moz-scrollbars-vertical;
@@ -24,7 +24,7 @@
 <!-- Custom styles for this template-->
 {{ Html::style("css/sb-admin.css") }}
 <!-- jQuery-->
-{{ Html::script("js/jquery-3.2.1.min.js") }}
+    {{ Html::script("js/jquery-3.2.1.min.js") }}
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
@@ -158,16 +158,19 @@
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseCompany">
                     @if (Auth::user()->company != -1)
-                    <li>
-                         <a href="{{ url('/companyprofile') }}">Company profile</a>
-                    </li>
+                        <li>
+                            <a href="{{ url('/companyprofile') }}">Profile</a>
+                        </li>
                     @else
-                    <li>
-                        <a href="{{ url('/companycreate') }}">Company create</a>
-                    </li>
+                        <li>
+                            <a href="{{ url('/companycreate') }}">Create company</a>
+                        </li>
                     @endif
                     <li>
-                        <a href="{{ url('/companyleaderboard') }}">Company leaderboard</a>
+                        <a href="{{ url('/companyleaderboard') }}">Leaderboard</a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/companydashboard') }}">Dashboard</a>
                     </li>
                 </ul>
             </li>
@@ -191,8 +194,9 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 @if ( MessageNotifier::getUnread() > 0)
-                    <a href="{{ url('/inbox') }}" class="nav-link"><i class="fa fa-fw fa-envelope i_button_background"></i></a>
-                    @else
+                    <a href="{{ url('/inbox') }}" class="nav-link"><i
+                                class="fa fa-fw fa-envelope i_button_background"></i></a>
+                @else
                     <a href="{{ url('/inbox') }}" class="nav-link"><i class="fa fa-fw fa-envelope"></i></a>
                 @endif
             </li>
@@ -206,7 +210,8 @@
             <span style="display:inline-block; width: 50px;"></span>
 
             <li class="nav-item">
-                <a href="{{ url('/profile') }}" class="nav-link"><strong style="color:{{Titles::getTitleColor(Auth::user()->title)}}">
+                <a href="{{ url('/profile') }}" class="nav-link"><strong
+                            style="color:{{Titles::getTitleColor(Auth::user()->title)}}">
                         {{Titles::getTitle(Auth::user()->title)}}</strong>{{ Auth::user()->name }}</a>
             </li>
 

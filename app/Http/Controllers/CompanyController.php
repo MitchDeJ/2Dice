@@ -36,4 +36,14 @@ class CompanyController extends Controller
     {
         return view('companyleaderboard', array("user" => Auth::user()));
     }
+
+    /**
+     * View the company dashboard page
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function companyDashboard()
+    {
+        return view('companydashboard', array("user" => Auth::user()));
+    }
 }

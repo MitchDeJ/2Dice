@@ -11,11 +11,13 @@
 @section('content')
     <div class="container-fluid">
         <div class="card mb-3">
-            <div class="card-header"><i class="fa fa-suitcase i_button_background"></i> Company profile</div>
+            <div class="card-header"><i class="fa fa-suitcase i_button_background"></i> Company profile | <a class="text-dark" href="#">Edit profile</a> </div>
             <div class="card-body">
                 <img src="{!! url("/userimg/".$user->avatar) !!}" width="200px" height="200px" class="img-thumbnail"
                      style="display: block; margin: auto; margin-bottom: 1%">
                 <h4 class="text-center">Company name</h4>
+
+                    <button style="display: block;margin: auto;" class="btn btn-success">Join this company</button>
 
                 <div class="form-group">
                     <br>
@@ -71,16 +73,18 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <td class="table_dark_bg" style="width: 2%;">Rank</td>
-                            <td class="table_dark_bg" style="width: 4%;">Members</td>
-                            <td class="table_dark_bg" style="width: 20%;">Power</td>
+                            <td class="table_dark_bg" style="width: 10%;">Rank</td>
+                            <td class="table_dark_bg" style="width: 30%;">Members</td>
+                            <td class="table_dark_bg" style="width: 30%;">Role</td>
+                            <td class="table_dark_bg" style="width: 30%;">Power</td>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td>1</td>
-                            <td><a href="#" class="text-dark">m1tch</a></td>
-                            <td>500,000</td>
+                            <td>{{$user->rank}}</td>
+                            <td><a href="#" class="text-dark">{{$user->name}}</a></td>
+                            <td>Owner</td>
+                            <td>{{number_format($user->power)}}</td>
                         </tr>
                         </tbody>
                     </table>

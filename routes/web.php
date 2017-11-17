@@ -51,6 +51,7 @@ Route::get('/objectoverview', 'ObjectController@objectOverview')->name('objectov
 Route::get('/companycreate', 'CompanyController@companyCreate')->name('companycreate');
 Route::get('/companyprofile', 'CompanyController@companyProfile')->name('companyprofile');
 Route::get('/companyleaderboard', 'CompanyController@companyLeaderboard')->name('companyleaderboard');
+Route::get('/companydashboard', 'CompanyController@companyDashboard')->name('companydashboard');
 
 Route::post('editprofile', 'ProfileController@updateAvatar');
 Route::post("/updateDesc",["uses" => "ProfileController@updateDesc", "as"=>"profile.updateDesc"]);
