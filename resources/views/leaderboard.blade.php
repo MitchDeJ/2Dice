@@ -52,7 +52,7 @@
                                        class="vip_yes"
                                        @else
                                        class="text-dark"
-                                            @endif >{{$user->name}}</a>
+                                            @endif >{{$user->name}}</a> @if($user->vip == true)★@endif
                                 </td>
                                 <td>{{number_format($user->power)}}</td>
                             </tr>
