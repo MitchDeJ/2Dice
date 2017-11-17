@@ -28,7 +28,7 @@ class ProfileController extends Controller
         $list = substr($list, 0, strlen($list)-2);
         return view('profile', array(
             "user" => $user,
-            "lbrank" => $this->getLeaderboardRank(Auth::user()->name),
+            "lbrank" => ProfileController::getLeaderboardRank(Auth::user()->name),
             "location" => Location::where("id", $user->location)->get()->first(),
             'list' => $list
             ));
@@ -45,7 +45,7 @@ class ProfileController extends Controller
         $list = substr($list, 0, strlen($list)-2);
         return view("profile", array(
             "user" => $user,
-            "lbrank" => $this->getLeaderboardRank($user->name),
+            "lbrank" => ProfileController::getLeaderboardRank($user->name),
             "location" => Location::where("id", $user->location)->get()->first(),
             'list' => $list
             ));
@@ -89,7 +89,7 @@ class ProfileController extends Controller
         return redirect('editprofile')->with('success', 'Updated description.');
     }
 
-    public function getLeaderboardRank($name) {
+    public static function getLeaderboardRank($name) {
         $i = 0;
         foreach(User::all()->sortByDesc('power') as $p) {
             $i++;
@@ -108,7 +108,8 @@ class ProfileController extends Controller
     {
         return view('titleselection', array(
             "user" => Auth::user(),
-            "titlecount" => 1
+            "unlockedtitles" => unserialize(Auth::user()->unlockedtitles),
+            "titlecount" => 18
         ));
     }
 
@@ -121,14 +122,107 @@ class ProfileController extends Controller
         $unlockedtitles = unserialize($user->unlockedtitles);
 
         switch ($titleid) {
-            //
+            case 0:// completionist
+                for ($i=1;$i<=15;$i++) {
+                if ($unlockedtitles[$i] != 1) {
+                    return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
+                }
+                }
+                break;
+            case 1:// cleaned
+                if ($user->cash > 0) {
+                    return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
+                }
+                break;
+            case 2://TODO verander naar koppeltabel als companies added zijn
+                if ($user->company == -1) {
+                    return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
+                }
+                break;
+            case 3:// traveller
+                    return redirect('titleselection')->with('neutral', 'This title will be automatically unlocked.');
+                break;
+            case 4: //wealthy
+                if ($user->cash >= 5000000) {
+                    return redirect('titleselection')->with('success', 'Unlocked title: '.Titles::getTitle($titleid));
+                } else {
+                    return redirect('titleselection')->with('fail', 'You do not have enough cash to unlock this title.');
+                }
+                break;
+            case 5:// gambler
+                if ($user->totalbets < 100) {
+                    return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
+                }
+                break;
+            case 6:// addict
+                if ($user->totalbets < 1000) {
+                    return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
+                }
+                break;
+            case 7:// The insane
+                if ($user->totalbets < 2500) {
+                    return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
+                }
+                break;
+            case 8:// Risky
+                if ($user->highestbet < 1000000) {
+                    return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
+                }
+                break;
+            case 9:// High roller
+                if ($user->highestbet < 10000000) {
+                    return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
+                }
+                break;
+            case 10:// Prestiged
+                if ($user->prestige < 5) {
+                    return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
+                }
+                break;
+            case 11:// Exchanger
+                    return redirect('titleselection')->with('neutral', 'This title will be automatically unlocked.');
+                break;
+            case 12:// Powerful
+                if ($user->power < 500000) {
+                    return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
+                }
+                break;
+            case 13:// investor
+                    return redirect('titleselection')->with('neutral', 'STOCKMARKET NOT HERE YET.');
+                break;
+            case 14:// Lucky
+                return redirect('titleselection')->with('neutral', 'This title will be automatically unlocked.');
+                break;
+            case 15:// VIP
+                if ($user->vip == false) {
+                    return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
+                }
+                break;
+            case 16:// #1
+                if (ProfileController::getLeaderboardRank($user->name) != 1) {
+                    return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
+                }
+                break;
+            case 17:// #1
+                    return redirect('titleselection')->with('neutral', 'This title will be automatically unlocked.');
+                break;
+
+
         }
 
         $unlockedtitles[$titleid] = 1;
         $user->unlockedtitles = serialize($unlockedtitles);
         $user->save();
 
-        return redirect('titleselection')->with('success', 'Succesfully unlocked title.');
+        return redirect('titleselection')->with('success', 'Unlocked title: '.Titles::getTitle($titleid));
+    }
+
+    public static function forceUnlockTitle($titleid) {
+        $user = Auth::user();
+        $unlockedtitles = unserialize($user->unlockedtitles);
+        $unlockedtitles[$titleid] = 1;
+        $user->unlockedtitles = serialize($unlockedtitles);
+        $user->save();
     }
 
     public function setTitle(Request $request)

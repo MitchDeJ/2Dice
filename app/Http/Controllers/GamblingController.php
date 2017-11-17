@@ -96,6 +96,9 @@ class GamblingController extends Controller
                 $user->save();
                 $object->save();
 
+                //unlock overtaker title
+                ProfileController::forceUnlockTitle(17);
+
                 return redirect('55x2')->with('neutral', 'The 55x2 did not have enough cash to pay out your profits, you have overtaken the object!');
             }
 
@@ -158,6 +161,9 @@ class GamblingController extends Controller
                 $profit += ($green * 14);
 
             $color = "green";
+
+            //unlock lucky title
+            ProfileController::forceUnlockTitle(14);
         }
         if ($num >= 2 && $num <= 8) {
 
@@ -186,6 +192,9 @@ class GamblingController extends Controller
                 "You didn't have enough cash in your object to pay out the profits.");
             $user->save();
             $object->save();
+
+            //unlock overtaker title
+            ProfileController::forceUnlockTitle(17);
 
             return redirect('roulette')->with('neutral', 'The roulette did not have enough cash to pay out your profits, you have overtaken the object!');
         }

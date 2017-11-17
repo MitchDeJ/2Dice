@@ -432,6 +432,10 @@ class BlackjackController extends Controller
                 $object->profit = 0;
                 MessageController::sendSystemMessage($owner->name, "Blackjack ".$loc->name." has been overtaken by ".$user->name."!",
                     "You didn't have enough cash in your object to pay out the profits.");
+
+                //unlock overtaker title
+                ProfileController::forceUnlockTitle(17);
+
                 /* clean up reamaining bets*/
                 $refundedusers = array();
                 $turns = BlackjackTurn::where('location', $location);

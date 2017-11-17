@@ -24,7 +24,6 @@
                             <td class="table_dark_bg" style="width: 1%;">Action</td>
                         </tr>
                         </thead>
-                        <?php $unlockedtitles = unserialize($user->unlockedtitles);?>
                         <tbody>
                         <tr>
                             <td>
@@ -47,7 +46,7 @@
                                 <strong style="color:{{Titles::getTitleColor($i)}}">{{Titles::getTitle($i)}}</strong>
                             </td>
                             <td>
-                                {{Titles::getTitleDesc($i)}}
+                                {!! Titles::getTitleDesc($i) !!}
                             </td>
                             <td>
                                 <div class="form-inline">
@@ -55,10 +54,11 @@
                                         {!! Form::open(['route' => ['title.unlock'], 'method' => 'post']) !!}
                                         {!! Form::hidden("i", $i) !!}
                                     <button type="submit" class="btn btn-default">Unlock</button>
+                                        {!! Form::close() !!}
                                         @else
                                         {!! Form::open(['route' => ['title.set'], 'method' => 'post']) !!}
                                         {!! Form::hidden("i", $i) !!}
-                                        <button type="submit" class="btn btn-default">Activate</button>
+                                        <button type="submit" class="btn btn-dark">Activate</button>
                                         {!! Form::close() !!}
                                     @endif
                                 </div>

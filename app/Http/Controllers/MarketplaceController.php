@@ -199,6 +199,12 @@ class MarketplaceController extends Controller
                     $user->cash += $cash;
                     $user->save();
                     $offer->delete();
+
+                    if ($offer->amount == $offer->completed) {
+                        //unlock exchanger title
+                        ProfileController::forceUnlockTitle(11);
+                    }
+
                     if ($cash > 0)
                         return redirect('marketplace')->with('success', 'Collected '.number_format($toCollect).' items and $'.number_format($cash).'. The offer has been removed.');
                     else
@@ -221,6 +227,12 @@ class MarketplaceController extends Controller
                 if ($offer->cancelled == true || $offer->amount == $offer->completed) {
                     $this->addItem($user, $offer->item, $offer->amount - $offer->completed);
                     $offer->delete();
+
+                    if ($offer->amount == $offer->completed) {
+                        //unlock exchanger title
+                        ProfileController::forceUnlockTitle(11);
+                    }
+
                     if ($offer->amount - $offer->completed > 0)
                         return redirect('marketplace')->with('success', 'Collected '.number_format($offer->amount - $offer->completed).' items and $'.number_format($cash).'. The offer has been removed.');
                     else

@@ -51,6 +51,9 @@ class LocationController extends Controller
                 $object->profit+=$price;
                 $object->save();
                 Auth::user()->save();
+
+                //unlock traveller title
+                ProfileController::forceUnlockTitle(3);
                 break;
             }
         }

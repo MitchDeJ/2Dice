@@ -23,7 +23,7 @@ class DashboardController extends Controller
             $subscription = null;
         return view('dashboard', array(
             "user" => $user,
-            "lbrank" => app('App\Http\Controllers\ProfileController')->getLeaderboardRank(Auth::user()->name),
+            "lbrank" => ProfileController::getLeaderboardRank(Auth::user()->name),
             "location" => Location::where("id", $user->location)->get()->first(),
             "subscription" => $subscription
             ));
