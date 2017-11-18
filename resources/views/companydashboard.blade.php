@@ -13,13 +13,31 @@
         <div class="card mb-3">
             <div class="card-header"><i class="fa fa-suitcase i_button_background"></i> Company dashboard</div>
             <div class="card-body">
-                <a href="#" class="text-dark">
-                    <button type="button" class="btn btn-outline-dark">View profile</button>
-                </a>
-                <a href="#" class="text-dark">
-                    <button type="button" class="btn btn-outline-dark">View join requests</button>
-                </a>
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                    <a href="#" class="text-dark">
+                        <button type="button" class="btn btn-outline-dark">Expand</button>
+                    </a>
+                    </div>
 
+                    <div class="col-md-3 text-center">
+                    <a href="#" class="text-dark">
+                        <button type="button" class="btn btn-outline-dark">Manage</button>
+                    </a>
+                    </div>
+
+                    <div class="col-md-3 text-center">
+                        <a href="#" class="text-dark">
+                            <button type="button" class="btn btn-outline-dark">Join requests</button>
+                        </a>
+                    </div>
+
+                    <div class="col-md-3 text-center">
+                        <a href="#" class="text-dark">
+                            <button type="button" class="btn btn-outline-dark">Options</button>
+                        </a>
+                    </div>
+                </div> <br>
                 <div class="row">
                     <div class="col-md-3"><br>
                         <div class="table-responsive">
@@ -132,8 +150,31 @@
                             </table>
                         </div>
                     </div>
+                </div> <br>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <td class="table_dark_bg" style="width: 10%;">Position</td>
+                            <td class="table_dark_bg" style="width: 20%;">Name</td>
+                            <td class="table_dark_bg" style="width: 20%;">Level</td>
+                            <td class="table_dark_bg" style="width: 20%;">Base income</td>
+                            <td class="table_dark_bg" style="width: 30%;">Total power</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><a href="#" class="text-dark">Company name</a></td>
+                            <td>3</td>
+                            <td>$545,534,555</td>
+                            <td>500,000</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 </div>
             </div>
         </div>
-    </div>
 @endsection
