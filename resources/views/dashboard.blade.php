@@ -37,8 +37,7 @@
                             <tr>
                                 <td><i class="fa fa-diamond i_button_background"></i> VIP:
                                     @if($user->vip == true)
-                                        Yes @if($subscription != null)(until {{date("d-m-Y", $subscription->end)}}
-                                        ) @endif
+                                        Yes @if($subscription != null)(until {{date("d-m-Y", $subscription->end)}}) @endif
                                     @else
                                         No
                                     @endif
@@ -133,7 +132,7 @@
                             </tr>
                             <tr>
                                 <td><i style="color: #f39c12;" class="fa fa-signal"></i> Total
-                                    bets: {{$user->totalbets}}</td>
+                                    bets: {{number_format($user->totalbets)}}</td>
                             </tr>
                             </tbody>
                         </table>
