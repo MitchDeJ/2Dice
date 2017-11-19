@@ -19,9 +19,9 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <td class="table_dark_bg" style="width: 10%;">Product</td>
-                            <td class="table_dark_bg" style="width: 10%;">Cost</td>
-                            <td class="table_dark_bg" style="width: 10%;">Amount</td>
+                            <td class="table_dark_bg" style="width: 33%;">Product</td>
+                            <td class="table_dark_bg" style="width: 33%;">Cost</td>
+                            <td class="table_dark_bg" style="width: 34%;">Amount</td>
                         </tr>
                         </thead>
                         <tbody>

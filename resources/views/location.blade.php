@@ -30,9 +30,9 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <td class="table_dark_bg" style="width: 0.5%;">Option</td>
-                            <td class="table_dark_bg" style="width: 10%;">Country</td>
-                            <td class="table_dark_bg" style="width: 10%;">Cost</td>
+                            <td class="table_dark_bg" style="width: 10%;">Option</td>
+                            <td class="table_dark_bg" style="width: 45%;">Country</td>
+                            <td class="table_dark_bg" style="width: 45%;">Cost</td>
                         </tr>
                         </thead>
                         <tbody>

@@ -31,110 +31,176 @@
                               disabled>{{$user->desc}}</textarea>
                 </div>
                 <br>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <td class="table_dark_bg" style="width: 10%;">Status</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><i class="fa fa-trophy i_button_background"></i> Leaderboard position: #{{$lbrank}}</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-star i_button_background"></i> Rank: {{$user->rank}} (Prestige {{$user->prestige}})</td>
-                        </tr>
-                        <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-rocket"></i>
-                                Power: {{ number_format($user->power) }}</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-diamond i_button_background"></i> VIP:
-                                @if($user->vip == true)
-                                    Yes
-                                @else
-                                    No
-                                @endif</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <br>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <td class="table_dark_bg" style="width: 10%;">Cash</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-usd i_button_background"></i> Cash: ${{number_format($user->cash)}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <br>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <td class="table_dark_bg" style="width: 10%;">About</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-building"></i> Company: <a href="#" class="text-dark"> {{$user->company}}</a></td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-plane i_button_background"></i> Location: {{$location->name}}</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-calendar i_button_background"></i> Started: {{$user->started}}</td>
-                        </tr>
-                        <tr>
-                            <td><i class="fa fa-calendar-check-o i_button_background"></i> Last logged in: {{$user->lastlogin}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <br>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <td class="table_dark_bg" style="width: 10%;">Betting</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> Highest bet: ${{number_format($user->highestbet)}}</td>
-                        </tr>
-                        <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-signal"></i> Total bets: {{$user->totalbets}}</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <br>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <td class="table_dark_bg" style="width: 10%;">Object</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td><i style="color: #f39c12;" class="fa fa-globe"></i> Object(s): {{$list}}
-
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <td class="table_dark_bg" style="width: 50%;">Status</td>
+                                    <td class="table_dark_bg" style="width: 50%;"></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><i class="fa fa-trophy i_button_background"></i>
+                                        Leaderboard position
+                                    </td>
+                                    <td>
+                                        #{{$lbrank}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-star i_button_background"></i>
+                                        Rank
+                                    </td>
+                                    <td>
+                                        {{$user->rank}} (Prestige {{$user->prestige}})
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><i style="color: #f39c12;" class="fa fa-rocket"></i>
+                                        Power
+                                    </td>
+                                    <td>
+                                        {{ number_format($user->power) }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><i style="color: #f39c12;" class="fa fa-money i_button_background"></i>
+                                        Cash
+                                    </td>
+                                    <td>
+                                        ${{number_format($user->cash)}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-diamond i_button_background"></i>
+                                        VIP
+                                    </td>
+                                    <td>
+                                        @if($user->vip == true)
+                                            Yes
+                                        @else
+                                            No
+                                        @endif
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="col-md-6">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <td class="table_dark_bg" style="width: 50%;">About</td>
+                                    <td class="table_dark_bg" style="width: 50%;"></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><i style="color: #f39c12;" class="fa fa-building"></i>
+                                        Company
+                                    </td>
+                                    <td>
+                                        <a href="#" class="text-dark"> {{$user->company}}</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><i style="color: #f39c12;" class="fa fa-building"></i>
+                                        Company rank
+                                    </td>
+                                    <td>
+                                        #1
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-plane i_button_background"></i>
+                                        Location
+                                    </td>
+                                    <td>
+                                        {{$location->name}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-calendar i_button_background"></i>
+                                        Started
+                                    </td>
+                                    <td>
+                                        {{$user->started}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-calendar-check-o i_button_background"></i>
+                                        Last logged in
+                                    </td>
+                                    <td>
+                                        {{$user->lastlogin}}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div> <br>
+                    <div class="row">
+                        <div class="col-md-6">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <td class="table_dark_bg" style="width: 50%;">Betting</td>
+                                    <td class="table_dark_bg" style="width: 50%;"></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><i style="color: #f39c12;" class="fa fa-signal"></i>
+                                        Highest bet
+                                    </td>
+                                    <td>
+                                        ${{number_format($user->highestbet)}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><i style="color: #f39c12;" class="fa fa-signal"></i>
+                                        Total bets
+                                    </td>
+                                    <td>
+                                        {{$user->totalbets}}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                        <div class="col-md-6">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <td class="table_dark_bg" style="width: 50%;">Object</td>
+                                    <td class="table_dark_bg" style="width: 50%;"></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><i style="color: #f39c12;" class="fa fa-globe"></i>
+                                        Object(s)
+                                    </td>
+                                    <td>
+                                        {{$list}}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 @endsection

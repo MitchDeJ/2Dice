@@ -17,11 +17,11 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <td class="table_dark_bg" style="width: 10%;">Position</td>
-                            <td class="table_dark_bg" style="width: 20%;">Name</td>
-                            <td class="table_dark_bg" style="width: 20%;">Level</td>
-                            <td class="table_dark_bg" style="width: 20%;">Base income</td>
-                            <td class="table_dark_bg" style="width: 30%;">Total power</td>
+                            <td class="table_dark_bg" style="width: 12%;">Position</td>
+                            <td class="table_dark_bg" style="width: 22%;">Name</td>
+                            <td class="table_dark_bg" style="width: 22%;">Level</td>
+                            <td class="table_dark_bg" style="width: 22%;">Base income</td>
+                            <td class="table_dark_bg" style="width: 22%;">Total power</td>
                         </tr>
                         </thead>
                         <tbody>
