@@ -49,6 +49,9 @@ class MarketplaceController extends Controller
             if ($useroffers == $limit)
                 return redirect('marketplace')->with('fail', 'You have reached the '.$limit.' offer limit.');
 
+            if ($amount < 1 || $price < 1)
+                return redirect('newoffer')->with('fail', 'Invalid amount.');
+
             /*
              * Buy offer
              */
