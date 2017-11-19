@@ -34,10 +34,10 @@
                             </tr>
                             <tr>
                                 <td><i class="fa fa-star i_button_background"></i>
-                                    Rank
+                                    Prestige
                                 </td>
                                 <td>
-                                    {{$user->rank}} (Prestige {{$user->prestige}})
+                                    {{$user->prestige}} (Rank {{$user->rank}})
                                 </td>
                             </tr>
                             <tr>
