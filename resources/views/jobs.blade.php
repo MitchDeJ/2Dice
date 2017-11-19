@@ -13,7 +13,8 @@
         <div class="card mb-3">
             <div class="card-header"><i class="fa fa-suitcase i_button_background"></i> Jobs</div>
             <div class="card-body">
-                <p>vip yes = 5 jobs, vip no = 3 jobs. <b>get vip</b></p>
+                <p>You will have 5 jobs available if you're VIP and 3 if you're not a VIP.</p>
+                <p>You can choose between 2 options: More cash, or more XP.</p>
                 <hr />
                 <div class="row">
                     <div class="col-md-12">

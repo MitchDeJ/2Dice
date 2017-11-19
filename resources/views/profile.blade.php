@@ -170,7 +170,7 @@
                                         Total bets
                                     </td>
                                     <td>
-                                        {{$user->totalbets}}
+                                        {{number_format($user->totalbets)}}
                                     </td>
                                 </tr>
                                 </tbody>
