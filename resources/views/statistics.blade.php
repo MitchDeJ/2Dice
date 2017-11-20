@@ -47,7 +47,7 @@
                             @foreach($topranked as $user)
                                 <tr>
                                     <td><a href="{{url("/profile/".$user->name)}}" class="text-dark">{{$user->name}}</a></td>
-                                    <td>Rank {{$user->rank}} (Prestige {{$user->prestige}})</td>
+                                    <td>Prestige {{$user->prestige}} (Rank {{$user->rank}})</td>
                                 </tr>
                             @endforeach
                             </tbody>

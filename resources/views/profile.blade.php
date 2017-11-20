@@ -52,10 +52,10 @@
                                 </tr>
                                 <tr>
                                     <td><i class="fa fa-star i_button_background"></i>
-                                        Rank
+                                        Prestige
                                     </td>
                                     <td>
-                                        {{$user->rank}} (Prestige {{$user->prestige}})
+                                        {{$user->prestige}} (Rank {{$user->rank}})
                                     </td>
                                 </tr>
                                 <tr>
@@ -170,7 +170,7 @@
                                         Total bets
                                     </td>
                                     <td>
-                                        {{$user->totalbets}}
+                                        {{number_format($user->totalbets)}}
                                     </td>
                                 </tr>
                                 </tbody>
