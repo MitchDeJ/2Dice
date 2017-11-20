@@ -88,6 +88,7 @@ class GamblingController extends Controller
             if ($object->cash < $bet) { //sweeped
                 $object->owner = $user->id;
                 $user->cash += $object->cash;
+                $user->cash += $bet;
                 $object->cash = 0;
                 $object->maxbet = 0;
                 $object->profit = 0;
@@ -186,6 +187,7 @@ class GamblingController extends Controller
         if ($object->cash < $profit - $bet) { //sweeped
             $object->owner = $user->id;
             $user->cash += $object->cash;
+            $user->cash += $bet;
             $object->cash = 0;
             $object->maxbet = 0;
             $object->profit = 0;

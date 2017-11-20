@@ -29,6 +29,10 @@ class ObjectController extends Controller
             $page = 'dashboard';
         }
 
+        if ($amount < 1) {
+            return redirect($page)->with('fail', 'Invalid amount.');
+        }
+
         if ($user->id != $object->owner)
             return redirect($page)->with('fail', 'Only the owner of this object can change the maximum bet.');
 

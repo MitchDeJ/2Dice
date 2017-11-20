@@ -391,6 +391,7 @@ class BlackjackController extends Controller
             if ($object->cash < $bet) {
                 // give object to better
                 $object->owner = $user->id;
+                $user->cash += $bet;
                 $user->cash+= $object->cash;
                 $object->cash = 0;
                 $object->maxbet = 0;
@@ -426,6 +427,7 @@ class BlackjackController extends Controller
             if ($object->cash < $bet*1.5) {
                 // give object to better
                 $object->owner = $user->id;
+                $user->cash+=$bet;
                 $user->cash+= $object->cash;
                 $object->cash = 0;
                 $object->maxbet = 0;
@@ -513,6 +515,10 @@ class BlackjackController extends Controller
 
         } else {
             if ($userTotal > 21) {  //user bust
+                if ($cpuTotal > 21) {
+                    $turns->last()->cpucard = 0;
+                    $turns->save();
+                }
                 return "LOSE";
         }
 
