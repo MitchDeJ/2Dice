@@ -167,7 +167,7 @@ class StocksController extends Controller
     }
 
     public static function getMaxStock() {
-        return 10000;
+        return 5000;
     }
 
 }
