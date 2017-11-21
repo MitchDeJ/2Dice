@@ -116,6 +116,12 @@ class StocksController extends Controller
             return redirect('stockmarket')->with('fail', 'Invalid amount.');
         }
 
+        if ($stocknum == 9 || $stocknum == 10) {
+            if ($user->vip == false) {
+                return redirect('stockmarket')->with('fail', 'Only VIPs can buy stock from that company.');
+            }
+        }
+
         if ($action == "BUY" || $action == "BUYALL") {
 
             if ((StocksController::getStock(Auth::user(), $stocknum) == $maxStock))

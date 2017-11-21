@@ -27,6 +27,7 @@
                         </thead>
                         <tbody>
                         @foreach($stocks as $stock)
+                            @if(!($user->vip == false && ($stock->id == 9 || $stock->id == 10)))
                         <tr>
                             <td>
                                 {{$stock->name}}
@@ -60,6 +61,7 @@
                                 {!! Form::close() !!}
                             </td>
                         </tr>
+                        @endif
                             @endforeach
                         </tbody>
                     </table>
