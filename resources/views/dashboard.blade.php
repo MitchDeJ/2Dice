@@ -61,8 +61,9 @@
                                 </td>
                                 <td>
                                     @if($user->vip == true)
-                                        Yes @if($subscription != null)(until {{date("d-m-Y", $subscription->end)}}
-                                        ) @endif
+                                        Yes @if($subscription != null)(until {{date("d-m-Y", $subscription->end)}})
+                                    @endif
+
                                     @else
                                         No
                                     @endif
