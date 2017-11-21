@@ -27,7 +27,5 @@ public static function addSubscription($username, $length) {
             ]);
             $subscription->save();
         }
-
-
     }
 }

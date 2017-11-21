@@ -44,7 +44,7 @@ Route::get('/sendcash', 'BusinessController@sendCashIndex')->name('sendcash');
 Route::get('/general', 'ShopController@general')->name('general');
 Route::get('/prestige', 'ShopController@prestige')->name('prestige');
 Route::get('/collab', 'BusinessController@collabIndex')->name('collab');
-Route::get('/stockmarket', 'StockmarketController@index')->name('stockmarket');
+Route::get('/stockmarket', 'StocksController@index')->name('stockmarket');
 Route::get('/jobs', 'JobsController@index')->name('jobs');
 Route::get('/vip', 'VipController@index')->name('vip');
 Route::get('/objectoverview', 'ObjectController@objectOverview')->name('objectoverview');
@@ -86,4 +86,5 @@ Route::post("/resetblackjack",["uses" => "BlackjackController@resetBlackJack", "
 Route::post("/settitle",["uses" => "ProfileController@setTitle", "as"=>"title.set"]);
 Route::post("/unlocktitle",["uses" => "ProfileController@unlockTitle", "as"=>"title.unlock"]);
 Route::post("/cleartitle",["uses" => "ProfileController@clearTitle", "as"=>"title.clear"]);
+Route::post("/exchangestock",["uses" => "StocksController@exchangeStock", "as"=>"stock.exchange"]);
 

@@ -26,70 +26,41 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($stocks as $stock)
                         <tr>
                             <td>
-                                Jamflex Studios
+                                {{$stock->name}}
                             </td>
                             <td>
-                                $201
+                                ${{number_format($stock->price)}}
                             </td>
                             <td>
-                                <div style="color: green;">+5%</div>
+                                @if ($stock->price > $stock->lastprice)
+                                <div style="color: green;">+${{number_format($stock->price-$stock->lastprice)}}</div>
+                                    @elseif($stock->price == $stock->lastprice)
+                                    <div style="color: royalblue;">+${{number_format($stock->price-$stock->lastprice)}}</div>
+                                    @else
+                                    <div style="color: red;">-${{number_format(($stock->price-$stock->lastprice)*-1)}}</div>
+                                @endif
                             </td>
                             <td>
-                                123
+                                {{number_format($owned[$stock->id])}}
                             </td>
                             <td>
-                                49,999,877
+                               {{number_format($limit-($owned[$stock->id]))}}
                             </td>
                             <td>
-                                <form method="POST" name="type">
-                                    <select name="type">
-                                        <option value="B">Buy</option>
-                                        <option value="BA">Buy all</option>
-                                        <option value="S">Sell</option>
-                                        <option value="SA">Sell all</option>
-                                    </select>
+                                {!! Form::open(['route' => ['stock.exchange'], 'method' => 'post']) !!}
+                                    {!! Form::select('action', array("BUY" => 'Buy', "BUYALL" => 'Buy all',
+                                     "SELL" => 'Sell', "SELLALL" => 'Sell all'), 'Buy') !!}
 
-                                    <input name="stockid" type="hidden" value="1">
-                                    <input class="form-control" placeholder="" name="amount" type="text">
+                                    <input name="stocknum" type="hidden" value={{$stock->id}}>
+                                    <input class="form-control" placeholder="" name="amount" type="number">
                                     <button type="submit" class="btn btn-default">Exchange</button>
-                                </form>
+                                {!! Form::close() !!}
                             </td>
                         </tr>
-
-
-                        <tr>
-                            <td>
-                                Bob's Fried Chicken
-                            </td>
-                            <td>
-                                $209
-                            </td>
-                            <td>
-                                <div style="color: red;">-2%</div>
-                            </td>
-                            <td>
-                                0
-                            </td>
-                            <td>
-                                50,000,000
-                            </td>
-                            <td>
-                                <form method="POST" name="type">
-                                    <select name="type">
-                                        <option value="B">Buy</option>
-                                        <option value="BA">Buy all</option>
-                                        <option value="S">Sell</option>
-                                        <option value="SA">Sell all</option>
-                                    </select>
-
-                                    <input name="stockid" type="hidden" value="1">
-                                    <input class="form-control" placeholder="" name="amount" type="text">
-                                    <button type="submit" class="btn btn-default">Exchange</button>
-                                </form>
-                            </td>
-                        </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
