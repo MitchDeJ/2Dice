@@ -517,7 +517,7 @@ class BlackjackController extends Controller
             if ($userTotal > 21) {  //user bust
                 if ($cpuTotal > 21) {
                     $turns->last()->cpucard = 0;
-                    $turns->save();
+                    $turns->last()->save();
                 }
                 return "LOSE";
         }
