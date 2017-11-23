@@ -88,5 +88,5 @@ Route::post("/unlocktitle",["uses" => "ProfileController@unlockTitle", "as"=>"ti
 Route::post("/cleartitle",["uses" => "ProfileController@clearTitle", "as"=>"title.clear"]);
 Route::post("/exchangestock",["uses" => "StocksController@exchangeStock", "as"=>"stock.exchange"]);
 Route::post("/addauction",["uses" => "AuctionController@addAuction", "as"=>"auction.add"]);
-Route::post("/addauction",["uses" => "AuctionController@bid", "as"=>"auction.bid"]);
+Route::post("/bidauction",["uses" => "AuctionController@bid", "as"=>"auction.bid"]);
 
