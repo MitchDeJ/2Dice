@@ -129,10 +129,10 @@
                             <tr>
                                 <td class="table_dark_bg" style="width: 10%;">Auction</td>
                                 <td class="table_dark_bg" style="width: 10%;">Auctioneer</td>
-                                <td class="table_dark_bg" style="width: 20%;">Type</td>
-                                <td class="table_dark_bg" style="width: 20%;">Minimum price</td>
-                                <td class="table_dark_bg" style="width: 20%;">Highest bid</td>
-                                <td class="table_dark_bg" style="width: 20%;">Time left</td>
+                                <td class="table_dark_bg" style="width: 15%;">Type</td>
+                                <td class="table_dark_bg" style="width: 15%;">Minimum price</td>
+                                <td class="table_dark_bg" style="width: 15%;">Highest bid</td>
+                                <td class="table_dark_bg" style="width: 15%;">Time left</td>
                                 <td class="table_dark_bg" style="width: 20%;">Bid</td>
                             </tr>
                             </thead>
