@@ -31,8 +31,8 @@ class JobsController extends Controller
         }
 
         else if ($action == "xpjob") {
-            $minCash = 1000/2;
-            $maxCash = 10000/2;
+            $minCash = 1000/3;
+            $maxCash = 10000/3;
             $minXp = $this->getMinXp($num);
             $maxXp = $this->getMaxXp($num);
         }
