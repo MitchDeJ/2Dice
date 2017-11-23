@@ -30,9 +30,11 @@
                         </a></div>
                 </div>
                 <hr/>
+                @if ($m->from != "")
                 <div class="row col-md-12">
                     <p><strong>From:</strong> <a href="{{url("/profile/".$m->from)}}" class="text-dark">{{$m->from}}</a></p>
                 </div>
+                @endif
                 <div class="row col-md-12">
                     <p><strong>Received at:</strong> {{$m->sentat}}</p>
                 </div>
