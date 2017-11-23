@@ -9,6 +9,37 @@
 @extends('layouts.app')
 
 @section('content')
+    <script>
+        @foreach($auctions as $a)
+        // Set the date we're counting down to
+        var countDownDate{{$loop->iteration}} = {{$a->end}};
+
+        // Update the count down every 1 second
+        var x{{$loop->iteration}} = setInterval(function() {
+
+            // Get todays date and time
+            var now = Math.round((new Date()).getTime() / 1000);
+
+            // Find the distance between now an the count down date
+            var distance{{$loop->iteration}} = countDownDate{{$loop->iteration}} - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var hours{{$loop->iteration}} = Math.floor((distance{{$loop->iteration}} % (60 * 60 * 24)) / (60 * 60));
+            var minutes{{$loop->iteration}} = Math.floor((distance{{$loop->iteration}} % (60 * 60)) / (60));
+            var seconds{{$loop->iteration}} = Math.floor((distance{{$loop->iteration}} % (60)));
+
+            // Output the result in an element with id="demo"
+            document.getElementById("demo{{$loop->iteration}}").innerHTML = hours{{$loop->iteration}} + "h "
+                + minutes{{$loop->iteration}} + "m " + seconds{{$loop->iteration}} + "s ";
+
+            // If the count down is over, write some text
+            if (distance{{$loop->iteration}} < 0) {
+                clearInterval(x{{$loop->iteration}});
+                document.getElementById("demo{{$loop->iteration}}").innerHTML = "EXPIRED";
+            }
+        }, 100);
+        @endforeach
+    </script>
     <div class="container-fluid">
         <div class="card mb-3">
             <div class="card-header"><i class="fa fa-university i_button_background"></i> Marketplace</div>
@@ -111,7 +142,7 @@
                             <td>${{number_format($a->minprice)}}</td>
                             <td>${{number_format($a->bid)}}</td>
                             <td><p id="demo{{$loop->iteration}}"></p></td>
-                            <td>
+                            <td
                                 {!! Form::open(['route' => ['auction.bid'], 'method' => 'post', 'class' => 'form-inline']) !!}
                                 {!! Form::hidden("id", $a->id) !!}
                                     <input type="number" class="form-control" placeholder="Amount" id="offer" name="amount">
@@ -127,35 +158,4 @@
         </div>
     </div>
 @endsection
-<script>
-    @foreach($auctions as $a)
-    // Set the date we're counting down to
-    var countDownDate{{$loop->iteration}} = {{$a->end}};
-
-    // Update the count down every 1 second
-    var x{{$loop->iteration}} = setInterval(function() {
-
-        // Get todays date and time
-        var now = Math.round((new Date()).getTime() / 1000);
-
-        // Find the distance between now an the count down date
-        var distance{{$loop->iteration}} = countDownDate{{$loop->iteration}} - now;
-
-        // Time calculations for days, hours, minutes and seconds
-        var hours{{$loop->iteration}} = Math.floor((distance{{$loop->iteration}} % (60 * 60 * 24)) / (60 * 60));
-        var minutes{{$loop->iteration}} = Math.floor((distance{{$loop->iteration}} % (60 * 60)) / (60));
-        var seconds{{$loop->iteration}} = Math.floor((distance{{$loop->iteration}} % (60)));
-
-        // Output the result in an element with id="demo"
-        document.getElementById("demo{{$loop->iteration}}").innerHTML = hours{{$loop->iteration}} + "h "
-            + minutes{{$loop->iteration}} + "m " + seconds{{$loop->iteration}} + "s ";
-
-        // If the count down is over, write some text
-        if (distance{{$loop->iteration}} < 0) {
-            clearInterval(x{{$loop->iteration}});
-            document.getElementById("demo{{$loop->iteration}}").innerHTML = "EXPIRED";
-        }
-    }, 100);
-    @endforeach
-</script>
 

@@ -139,9 +139,15 @@ class AuctionController extends Controller
             return redirect('marketplace')->with('fail', 'Invalid amount.');
         }
 
-        if ($user->id == $oldbidder->id) {
-            if ($amount > ($user->cash + $auction->bid)) {
-                return redirect('marketplace')->with('fail', 'You do not have that much cash.');
+        if ($oldbidder != 0) {
+            if ($user->id == $oldbidder->id) {
+                if ($amount > ($user->cash + $auction->bid)) {
+                    return redirect('marketplace')->with('fail', 'You do not have that much cash.');
+                }
+            } else {
+                if ($amount > $user->cash) {
+                    return redirect('marketplace')->with('fail', 'You do not have that much cash.');
+                }
             }
         } else {
             if ($amount > $user->cash) {
