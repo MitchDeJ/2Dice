@@ -142,7 +142,7 @@
                             <td>${{number_format($a->minprice)}}</td>
                             <td>${{number_format($a->bid)}}</td>
                             <td><p id="demo{{$loop->iteration}}"></p></td>
-                            <td
+                            <td>
                                 {!! Form::open(['route' => ['auction.bid'], 'method' => 'post', 'class' => 'form-inline']) !!}
                                 {!! Form::hidden("id", $a->id) !!}
                                     <input type="number" class="form-control" placeholder="Amount" id="offer" name="amount">
