@@ -5,24 +5,34 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\Auction;
 use App\MarketOffer;
 
 class MarketplaceController extends Controller
 {
-    /**
-     * Show the application marketplace overview.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $user = Auth::user();
         $offers = MarketOffer::where('creator', $user->id)->get();
         $itemnames = collect(["Wood", "Stone", "Wheat", "Prestige point"]);
+
+        $auctions = Auction::all();
+        $auctioneers = array();
+        $types = array();
+
+        foreach($auctions as $a) {
+            $auctioneers[$a->id] = User::where('id', $a->user)->get()->first()->name;
+            $types[$a->id] = "".ObjectController::getTypeName($a->type)." ".LocationController::getName($a->location);
+        }
+
         return view('marketplace', array(
             "user" => $user,
             "offers" => $offers,
-            'itemnames' => $itemnames
+            'itemnames' => $itemnames,
+            "auctions" => $auctions,
+            "auctioneers" => $auctioneers,
+            "types" => $types
         ));
     }
 
@@ -305,23 +315,8 @@ class MarketplaceController extends Controller
         $user->save();
     }
 
-    /**
-     * Show the application marketplace create offer.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function newOffer()
     {
         return view('newoffer', array("user" => Auth::user()));
-    }
-
-    /**
-     * Show the application auction view.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function newAuction()
-    {
-        return view('newauction', array("user" => Auth::user()));
     }
 }

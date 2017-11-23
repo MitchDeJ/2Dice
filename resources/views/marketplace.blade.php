@@ -88,7 +88,7 @@
                 <a href="{{ url('/newauction') }}">
                     <button type="submit" class="btn btn-default">New auction</button>
                 </a>
-                <p><br>If an object is for sale, it will be for auction here.</p>
+                <p><br>If an object is up for auction, it will be shown here.</p>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -96,25 +96,30 @@
                             <td class="table_dark_bg" style="width: 10%;">Auction</td>
                             <td class="table_dark_bg" style="width: 10%;">Auctioneer</td>
                             <td class="table_dark_bg" style="width: 20%;">Type</td>
+                            <td class="table_dark_bg" style="width: 20%;">Minimum price</td>
                             <td class="table_dark_bg" style="width: 20%;">Highest bid</td>
                             <td class="table_dark_bg" style="width: 20%;">Time left</td>
-                            <td class="table_dark_bg" style="width: 20%;">Offer</td>
+                            <td class="table_dark_bg" style="width: 20%;">Bid</td>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($auctions as $a)
                         <tr>
-                            <td>1</td>
-                            <td><a href="#" class="text-dark">Envy</a></td>
-                            <td>Roulette Netherlands</td>
-                            <td>$125,523,523</td>
-                            <td><p id="demo"></p></td>
+                            <td>{{$loop->iteration}}</td>
+                            <td><a href="{{url("/profile/".$auctioneers[$a->id])}}" class="text-dark">{{$auctioneers[$a->id]}}</a></td>
+                            <td>{{$types[$a->id]}}</td>
+                            <td>${{number_format($a->minprice)}}</td>
+                            <td>${{number_format($a->bid)}}</td>
+                            <td><p id="demo{{$loop->iteration}}"></p></td>
                             <td>
-                                <div class="form-inline">
-                                    <input type="number" class="form-control" placeholder="Amount" id="offer" name="offer">
-                                    <button type="submit" class="btn btn-default">Offer</button>
-                                </div>
+                                {!! Form::open(['route' => ['auction.bid'], 'method' => 'post', 'class' => 'form-inline']) !!}
+                                {!! Form::hidden("id", $a->id) !!}
+                                    <input type="number" class="form-control" placeholder="Amount" id="offer" name="amount">
+                                    <button type="submit" class="btn btn-default">Bid</button>
+                                {!! Form::close() !!}
                             </td>
                         </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -123,32 +128,34 @@
     </div>
 @endsection
 <script>
+    @foreach($auctions as $a)
     // Set the date we're counting down to
-    var countDownDate = new Date("Nov 15, 2018 15:37:25").getTime();
+    var countDownDate{{$loop->iteration}} = {{$a->end}};
 
     // Update the count down every 1 second
-    var x = setInterval(function() {
+    var x{{$loop->iteration}} = setInterval(function() {
 
         // Get todays date and time
-        var now = new Date().getTime();
+        var now = Math.round((new Date()).getTime() / 1000);
 
         // Find the distance between now an the count down date
-        var distance = countDownDate - now;
+        var distance{{$loop->iteration}} = countDownDate{{$loop->iteration}} - now;
 
         // Time calculations for days, hours, minutes and seconds
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        var hours{{$loop->iteration}} = Math.floor((distance{{$loop->iteration}} % (60 * 60 * 24)) / (60 * 60));
+        var minutes{{$loop->iteration}} = Math.floor((distance{{$loop->iteration}} % (60 * 60)) / (60));
+        var seconds{{$loop->iteration}} = Math.floor((distance{{$loop->iteration}} % (60)));
 
         // Output the result in an element with id="demo"
-        document.getElementById("demo").innerHTML = hours + "h "
-            + minutes + "m " + seconds + "s ";
+        document.getElementById("demo{{$loop->iteration}}").innerHTML = hours{{$loop->iteration}} + "h "
+            + minutes{{$loop->iteration}} + "m " + seconds{{$loop->iteration}} + "s ";
 
         // If the count down is over, write some text
-        if (distance < 0) {
-            clearInterval(x);
-            document.getElementById("demo").innerHTML = "EXPIRED";
+        if (distance{{$loop->iteration}} < 0) {
+            clearInterval(x{{$loop->iteration}});
+            document.getElementById("demo{{$loop->iteration}}").innerHTML = "EXPIRED";
         }
-    }, 1000);
+    }, 100);
+    @endforeach
 </script>
 

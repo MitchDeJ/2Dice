@@ -39,7 +39,7 @@ Route::get('/55x2', 'GamblingController@diceIndex')->name('55x2');
 Route::get('/coinflip', 'GamblingController@coinflipIndex')->name('coinflip');
 Route::get('/roulette', 'GamblingController@rouletteIndex')->name('roulette');
 Route::get('/blackjack', 'BlackjackController@blackjackIndex')->name('blackjack');
-Route::get('/newauction', 'MarketplaceController@newAuction')->name('newauction');
+Route::get('/newauction', 'AuctionController@newAuction')->name('newauction');
 Route::get('/sendcash', 'BusinessController@sendCashIndex')->name('sendcash');
 Route::get('/general', 'ShopController@general')->name('general');
 Route::get('/prestige', 'ShopController@prestige')->name('prestige');
@@ -67,9 +67,9 @@ Route::post("/buypower",["uses" => "ShopController@buyPower", "as"=>"shop.buypow
 Route::post("/claimpower",["uses" => "ShopController@claimPower", "as"=>"shop.claimpower"]);
 Route::post("/claimcash",["uses" => "ShopController@claimCash", "as"=>"shop.claimcash"]);
 Route::post("/claimvip",["uses" => "ShopController@claimVIP", "as"=>"shop.claimvip"]);
-Route::post("/createoffer",["uses" => "MarketPlaceController@createOffer", "as"=>"market.newoffer"]);
-Route::post("/collectoffer",["uses" => "MarketPlaceController@collectOffer", "as"=>"market.collect"]);
-Route::post("/canceloffer",["uses" => "MarketPlaceController@cancelOffer", "as"=>"market.cancel"]);
+Route::post("/createoffer",["uses" => "MarketplaceController@createOffer", "as"=>"market.newoffer"]);
+Route::post("/collectoffer",["uses" => "MarketplaceController@collectOffer", "as"=>"market.collect"]);
+Route::post("/canceloffer",["uses" => "MarketplaceController@cancelOffer", "as"=>"market.cancel"]);
 Route::post("/changepass",["uses" => "ChangePasswordController@changePassword", "as"=>"changepass"]);
 Route::post("/cashsender",["uses" => "BusinessController@sendCash", "as"=>"business.sendcash"]);
 Route::post("/objectmaxbet",["uses" => "ObjectController@changeMaxBet", "as"=>"object.maxbet"]);
@@ -87,4 +87,6 @@ Route::post("/settitle",["uses" => "ProfileController@setTitle", "as"=>"title.se
 Route::post("/unlocktitle",["uses" => "ProfileController@unlockTitle", "as"=>"title.unlock"]);
 Route::post("/cleartitle",["uses" => "ProfileController@clearTitle", "as"=>"title.clear"]);
 Route::post("/exchangestock",["uses" => "StocksController@exchangeStock", "as"=>"stock.exchange"]);
+Route::post("/addauction",["uses" => "AuctionController@addAuction", "as"=>"auction.add"]);
+Route::post("/addauction",["uses" => "AuctionController@bid", "as"=>"auction.bid"]);
 

@@ -15,22 +15,22 @@
             <div class="card-body">
                 <div class="col-md-2 form-group form-inline">
                     <label for="type">Object type &nbsp;</label>
-                    <select class="form-control form-group form-inline" id="type">
-                        <option>Blackjack Netherlands</option>
-                    </select>
+                    {!! Form::open(['route' => ['auction.add'], 'method' => 'post']) !!}
+                    {!! Form::select('object', $optionlist, null, ['class' => 'form-group, form-control']) !!}
                 </div>
 
                 <div class="col-md-2 form-group form-inline">
                     <label for="price">Minimum price &nbsp;</label>
-                    <input type="number" class="form-control" placeholder="Amount" id="price" name="price">
+                    <input type="number" class="form-control" placeholder="Amount" id="price" name="minprice">
                 </div>
 
                 <div class="col-md-2 form-group form-inline">
-                    <label for="price">Time (hours:minutes) &nbsp;</label>
-                    <input type="time" class="form-control" placeholder="Amount" id="time" name="time">
+                    <label for="time">Time (hours) &nbsp;</label>
+                    <input type="number" class="form-control" placeholder="Hours" id="time" name="time">
                 </div>
                 <div class="col-md-2">
                     <button type="submit" class="btn btn-default">Create auction</button>
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>

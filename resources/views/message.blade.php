@@ -17,6 +17,9 @@
                     <div class="mail_button"><a href="{{ url('/inbox') }}" class="text-dark">
                             <button type="button" class="btn btn-default">Back to inbox</button>
                         </a></div>
+                    <div class="mail_button"><a href="{{url("/newmessage/".$m->from)}}" class="text-dark">
+                            <button type="button" class="btn btn-default">Reply</button>
+                        </a></div>
                     <div class="mail_button"><a href="#" class="text-dark">
                             {!! Form::open(['route' => ['message.delete'], 'method' => 'post']) !!}
                             {!! Form::hidden("id",$m->id) !!}

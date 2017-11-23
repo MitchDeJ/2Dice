@@ -79,6 +79,14 @@ class MessageController extends Controller
             return redirect('newmessage')->with('fail', '"' . $to . '" is not a valid user.');
         }
 
+        if ($title == null || $title == "") {
+            return redirect('newmessage')->with('fail', 'Please enter a title.');
+        }
+
+        if ($text == null || $text == "") {
+            return redirect('newmessage')->with('fail', 'Why would you send an empty message?');
+        }
+
         if ($to == Auth::user()->name) {
             return redirect('newmessage')->with('fail', 'Why would you send a message to yourself?');
         }

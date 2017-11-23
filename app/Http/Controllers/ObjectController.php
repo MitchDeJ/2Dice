@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Object;
 use Auth;
+use App\Auction;
 use App\BlackjackTurn;
 use App\User;
 
@@ -29,8 +30,17 @@ class ObjectController extends Controller
             $page = 'dashboard';
         }
 
-        if ($amount < 1) {
+        if ($amount < 0) {
             return redirect($page)->with('fail', 'Invalid amount.');
+        }
+
+        $auctions = Auction::all();
+
+        foreach ($auctions as $auction) {
+            if ($auction->location == $object->location && $auction->type == $object->type)
+             {
+                return redirect($page)->with('fail', 'You can not change the maximum bet whenever an object is being auctioned.');
+            }
         }
 
         if ($user->id != $object->owner)
@@ -81,6 +91,15 @@ class ObjectController extends Controller
 
         if ($user->id != $object->owner)
             return redirect($page)->with('fail', 'Only the owner of this object can do that.');
+
+        $auctions = Auction::all();
+
+        foreach ($auctions as $auction) {
+            if ($auction->location == $object->location && $auction->type == $object->type)
+            {
+                return redirect($page)->with('fail', 'You can not use the bank whenever an object is being auctioned.');
+            }
+        }
 
         if ($action == "WITHDRAW") {
 

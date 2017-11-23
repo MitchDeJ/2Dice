@@ -522,7 +522,7 @@ class BlackjackController extends Controller
                 return "LOSE";
         }
 
-        if ($turncount == 2 && $cpuTotal == 21 && $userTotal == 21) {
+        if ($cpuTotal == 21 && $userTotal == 21) {
                 return "DRAW";
         }
 
