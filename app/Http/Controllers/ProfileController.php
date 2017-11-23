@@ -22,16 +22,16 @@ class ProfileController extends Controller
         $user = Auth::user();
         $objects = Object::where('owner', $user->id)->get();
         $list = "";
-        foreach($objects as $obj) {
-            $list .= ObjectController::getTypeName($obj->type).' '.LocationController::getName($obj->location).', ';
+        foreach ($objects as $obj) {
+            $list .= ObjectController::getTypeName($obj->type) . ' ' . LocationController::getName($obj->location) . ', ';
         }
-        $list = substr($list, 0, strlen($list)-2);
+        $list = substr($list, 0, strlen($list) - 2);
         return view('profile', array(
             "user" => $user,
             "lbrank" => ProfileController::getLeaderboardRank(Auth::user()->name),
             "location" => Location::where("id", $user->location)->get()->first(),
             'list' => $list
-            ));
+        ));
     }
 
     public function otherProfile($name)
@@ -39,16 +39,16 @@ class ProfileController extends Controller
         $user = User::where("name", $name)->get()->first();
         $objects = Object::where('owner', $user->id)->get();
         $list = "";
-        foreach($objects as $obj) {
-            $list .= ObjectController::getTypeName($obj->type).' '.LocationController::getName($obj->location).', ';
+        foreach ($objects as $obj) {
+            $list .= ObjectController::getTypeName($obj->type) . ' ' . LocationController::getName($obj->location) . ', ';
         }
-        $list = substr($list, 0, strlen($list)-2);
+        $list = substr($list, 0, strlen($list) - 2);
         return view("profile", array(
             "user" => $user,
             "lbrank" => ProfileController::getLeaderboardRank($user->name),
             "location" => Location::where("id", $user->location)->get()->first(),
             'list' => $list
-            ));
+        ));
     }
 
     public function edit()
@@ -89,9 +89,10 @@ class ProfileController extends Controller
         return redirect('editprofile')->with('success', 'Updated description.');
     }
 
-    public static function getLeaderboardRank($name) {
+    public static function getLeaderboardRank($name)
+    {
         $i = 0;
-        foreach(User::all()->sortByDesc('power') as $p) {
+        foreach (User::all()->sortByDesc('power') as $p) {
             $i++;
             if ($p->name == $name) {
                 return $i;
@@ -123,10 +124,10 @@ class ProfileController extends Controller
 
         switch ($titleid) {
             case 0:// completionist
-                for ($i=1;$i<=15;$i++) {
-                if ($unlockedtitles[$i] != 1) {
-                    return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
-                }
+                for ($i = 1; $i <= 15; $i++) {
+                    if ($unlockedtitles[$i] != 1) {
+                        return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
+                    }
                 }
                 break;
             case 1:// cleaned
@@ -140,11 +141,11 @@ class ProfileController extends Controller
                 }
                 break;
             case 3:// traveller
-                    return redirect('titleselection')->with('neutral', 'This title will be automatically unlocked.');
+                return redirect('titleselection')->with('neutral', 'This title will be automatically unlocked.');
                 break;
             case 4: //wealthy
                 if ($user->cash >= 5000000) {
-                    $user->cash-= 5000000;
+                    $user->cash -= 5000000;
                 } else {
                     return redirect('titleselection')->with('fail', 'You do not have enough cash to unlock this title.');
                 }
@@ -180,7 +181,7 @@ class ProfileController extends Controller
                 }
                 break;
             case 11:// Exchanger
-                    return redirect('titleselection')->with('neutral', 'This title will be automatically unlocked.');
+                return redirect('titleselection')->with('neutral', 'This title will be automatically unlocked.');
                 break;
             case 12:// Powerful
                 if ($user->power < 500000) {
@@ -188,7 +189,15 @@ class ProfileController extends Controller
                 }
                 break;
             case 13:// investor
-                    return redirect('titleselection')->with('neutral', 'STOCKMARKET NOT HERE YET.');
+                $maxed = false;
+                for ($i = 1; $i <= 10; $i++) {
+                    if (StocksController::getStock($user, $i) == StocksController::getMaxStock()) {
+                        $maxed = true;
+                    }
+                    if ($maxed == false) {
+                        return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
+                    }
+                }
                 break;
             case 14:// Lucky
                 return redirect('titleselection')->with('neutral', 'This title will be automatically unlocked.');
@@ -204,7 +213,7 @@ class ProfileController extends Controller
                 }
                 break;
             case 17:// #1
-                    return redirect('titleselection')->with('neutral', 'This title will be automatically unlocked.');
+                return redirect('titleselection')->with('neutral', 'This title will be automatically unlocked.');
                 break;
 
 
@@ -214,10 +223,11 @@ class ProfileController extends Controller
         $user->unlockedtitles = serialize($unlockedtitles);
         $user->save();
 
-        return redirect('titleselection')->with('success', 'Unlocked title: '.Titles::getTitle($titleid));
+        return redirect('titleselection')->with('success', 'Unlocked title: ' . Titles::getTitle($titleid));
     }
 
-    public static function forceUnlockTitle($titleid) {
+    public static function forceUnlockTitle($titleid)
+    {
         $user = Auth::user();
         $unlockedtitles = unserialize($user->unlockedtitles);
         $unlockedtitles[$titleid] = 1;
@@ -236,7 +246,7 @@ class ProfileController extends Controller
 
         $user->title = $title;
         $user->save();
-        return redirect('titleselection')->with('success', 'Set title to: '.Titles::getTitle($title));
+        return redirect('titleselection')->with('success', 'Set title to: ' . Titles::getTitle($title));
     }
 
     public function clearTitle(Request $request)

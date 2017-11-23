@@ -17,9 +17,11 @@
                     <div class="mail_button"><a href="{{ url('/inbox') }}" class="text-dark">
                             <button type="button" class="btn btn-default">Back to inbox</button>
                         </a></div>
+                    @if ($m->from != "")
                     <div class="mail_button"><a href="{{url("/newmessage/".$m->from)}}" class="text-dark">
                             <button type="button" class="btn btn-default">Reply</button>
                         </a></div>
+                    @endif
                     <div class="mail_button"><a href="#" class="text-dark">
                             {!! Form::open(['route' => ['message.delete'], 'method' => 'post']) !!}
                             {!! Form::hidden("id",$m->id) !!}
@@ -29,7 +31,7 @@
                 </div>
                 <hr/>
                 <div class="row col-md-12">
-                    <p><strong>From:</strong> <a href="#" class="text-dark">{{$m->from}}</a></p>
+                    <p><strong>From:</strong> <a href="{{url("/profile/".$m->from)}}" class="text-dark">{{$m->from}}</a></p>
                 </div>
                 <div class="row col-md-12">
                     <p><strong>Received at:</strong> {{$m->sentat}}</p>
