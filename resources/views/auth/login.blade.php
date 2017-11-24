@@ -7,13 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>2Dice - BETA 1.0</title>
-    <!-- Bootstrap core CSS-->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom fonts for this template-->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <!-- Custom styles for this template-->
-    <link href="css/sb-admin.css" rel="stylesheet">
+    <title>2Dice - V1.0</title>
+    <!-- Force scrollbar -->
+    <style> html {
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }</style>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href={{ asset("img/favicon.png")}}/>
+    <!-- Custom stylesheet -->
+{{ Html::style('css/stylesheet.css') }}
+<!-- Bootstrap core CSS-->
+{{ Html::style("vendor/bootstrap/css/bootstrap.min.css" ) }}
+<!-- Custom fonts for this template-->
+{{ Html::style("vendor/font-awesome/css/font-awesome.min.css" ) }}
+<!-- Custom styles for this template-->
+{{ Html::style("css/sb-admin.css") }}
+<!-- jQuery-->
+    {{ Html::script("js/jquery-3.2.1.min.js") }}
 </head>
 
 <body class="bg-dark">
