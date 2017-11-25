@@ -39,7 +39,7 @@
     <div class="col-md-12 text-center">
       <div class="text-white" style="font-size: 1500%;">Oops</div>
         <h3 class="text-white">404 page not found</h3> <br>
-        <p class="text-white">This page cannot be found</p>
+        <p class="text-white">It looks like this page doesn't exist.</p>
         <a href="{{ url('/dashboard') }}" class="text-dark">
                 <button type="button" class="btn btn-outline-warning">Homepage</button>
         </a>
