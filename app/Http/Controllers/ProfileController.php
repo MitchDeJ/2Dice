@@ -194,9 +194,9 @@ class ProfileController extends Controller
                     if (StocksController::getStock($user, $i) == StocksController::getMaxStock()) {
                         $maxed = true;
                     }
-                    if ($maxed == false) {
-                        return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
-                    }
+                }
+                if ($maxed == false) {
+                    return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
                 }
                 break;
             case 14:// Lucky
