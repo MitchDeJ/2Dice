@@ -175,13 +175,21 @@
                 </ul>
             </li>
 
-            {{--FORUM LUL--}}
-            {{--<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Forum">--}}
-            {{--<a class="nav-link" href="{{ url('/forum') }}">--}}
-            {{--<i class="fa fa-fw fa-comments"></i>--}}
-            {{--<span class="nav-link-text">Forum</span>--}}
-            {{--</a>--}}
-            {{--</li>--}}
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="2Dice">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapse2Dice"
+                   data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-comments"></i>
+                    <span class="nav-link-text">2Dice</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="collapse2Dice">
+                    <li>
+                        <a href="{{ url('/gameinformation') }}">Game information</a>
+                    </li>
+                    <li>
+                        <a href="https://www.reddit.com/r/TimeToDice/" target="_blank">Subreddit</a>
+                    </li>
+                </ul>
+            </li>
 
         </ul>
         <ul class="navbar-nav sidenav-toggler">

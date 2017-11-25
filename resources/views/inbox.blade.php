@@ -16,7 +16,10 @@
             <div class="card-body">
                 <div class="row col-md-12">
                     <div class="mail_button"><a href="{{ url('/newmessage') }}" class="text-dark">
-                            <button type="button" class="btn btn-secondary">New message</button>
+                            <button type="button" class="btn btn-dark">New message</button>
+                        </a></div>
+                    <div class="mail_button"><a href="{{ url('/newglobalmessage') }}" class="text-dark">
+                            <button type="button" class="btn btn-secondary">New global message</button>
                         </a></div>
                     <div class="mail_button"><a href="#" class="text-dark">
                             {!! Form::open(['route' => ['message.readall'], 'method' => 'post']) !!}

@@ -16,7 +16,7 @@
                 <p>Objects are owned by players. You can overtake an object by winning an amount, that the object bank
                     does not hold.</p>
                 <p>Because the object isn't able to pay you, you will be the new owner of that object.</p>
-                <p>You can also buy an object from players, if they put it up for <a href="{{ url('/marketplace') }}">auction</a>.
+                <p>You can also buy an object from players, if they put it up for <a href="{{ url('/marketplace') }}" class="text-dark">auction</a>.
                 </p>
                 <div class="row">
                     <div class="col-md-12">

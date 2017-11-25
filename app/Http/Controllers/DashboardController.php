@@ -28,4 +28,14 @@ class DashboardController extends Controller
             "subscription" => $subscription
             ));
     }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function gameinformation ()
+    {
+        return view('gameinformation');
+    }
 }

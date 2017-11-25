@@ -141,4 +141,14 @@ class MessageController extends Controller
 
         return redirect('inbox')->with('success', 'All messages marked as read.');
     }
+
+    /**
+     * Show the application send new global message.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function newGlobalMessage()
+    {
+        return view('newglobalmessage', array("user" => Auth::user()));
+    }
 }

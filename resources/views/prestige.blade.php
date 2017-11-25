@@ -75,6 +75,23 @@
                                 </div>
                             </td>
                         </tr>
+
+                        <tr>
+                            <td>
+                                Global message
+                            </td>
+                            <td>
+                                1 Prestige point
+                            </td>
+                            <td>
+                                <div class="form-inline">
+                                    {!! Form::open(['route' => ['shop.claimvip'], 'method' => 'post']) !!}
+                                    <input type="number" class="form-control" placeholder="Amount" id="message" name="amount">
+                                    <button type="submit" class="btn btn-default">Buy</button>
+                                    {!! Form::close() !!}
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
