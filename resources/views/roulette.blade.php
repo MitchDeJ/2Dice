@@ -55,6 +55,7 @@
                             {!! Form::open(['route' => ['roulette.spin'], 'method' => 'post']) !!}
                             <input type="number" class="form-control" style="text-align: center" id="rouletteRed"
                                    placeholder="Amount" name="red_amount">
+                            <button type="submit" class="btn btn-default">Spin</button>
                             <button type="button" herf="#"  onclick="allInButton()" class="btn btn-outline-success">ALL</button>
                         </div>
 
@@ -62,8 +63,8 @@
                             <b>Black 8 to 14</b>
                             <img src="img/roulette_black.png" width="250px" height="250px" class="img-thumbnail">
 
-                            <input type="number" class="form-control" style="text-align: center" id="rouletteBlack"
-                                   placeholder="Amount" name="black_amount">
+                            <input type="number" class="form-control" style="text-align: center" id="rouletteBlack" placeholder="Amount" name="black_amount">
+                            <button type="submit" class="btn btn-default">Spin</button>
                             <button type="button" herf="#"  onclick="allInButtonBlack()" class="btn btn-outline-success">ALL</button>
                         </div>
 
@@ -73,10 +74,10 @@
 
                             <input type="number" class="form-control" style="text-align: center" id="rouletteGreen"
                                    placeholder="Amount" name="green_amount">
+                            <button type="submit" class="btn btn-default">Spin</button>
                             <button type="button" herf="#"  onclick="allInButtonGreen()" class="btn btn-outline-success">ALL</button>
                         </div>
                     </div>
-                        <button type="submit" class="btn btn-default">Spin</button>
                     {!! Form::close() !!}
                 @else
                     <p>You are the owner of this Roulette. Make sure there's enough money in your
