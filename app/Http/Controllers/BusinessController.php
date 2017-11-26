@@ -33,6 +33,10 @@ class BusinessController extends Controller
         $name = $request->input('name');
         $sender = Auth::user();
 
+        if ($sender::isStarter($sender->id)) {
+            return redirect('sendcash')->with('fail', "You can not send cash for the first 24 hours after account creation.");
+        }
+
         if ($sender->cash < $amount)
             return redirect('sendcash')->with('fail', "You don't have that much cash.");
 

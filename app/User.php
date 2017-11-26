@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\StartPeriod;
 
 class User extends Authenticatable
 {
@@ -26,4 +27,22 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public static function isStarter($id) {
+        $starter = StartPeriod::where('user', $id)->get()->count();
+
+        if ($starter == 0) {
+            return false;
+        }
+
+        if ($starter == 1) {
+            $starter = StartPeriod::where('user', $id)->get()->first();
+            if ($starter->end > time()) {
+                return true;
+            } else {
+                $starter->delete();
+                return false;
+            }
+        }
+    }
 }

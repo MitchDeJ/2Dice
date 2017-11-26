@@ -5,6 +5,7 @@ namespace Illuminate\Foundation\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Auth\Events\Registered;
+use App\StartPeriod;
 
 trait RegistersUsers
 {
@@ -62,5 +63,17 @@ trait RegistersUsers
         $user->lastlogin = $time;
         $user->cash = 200000;//first login bonus + default cash
         $user->save();
+
+        //setting the start period (preventing instantly sending cash)
+
+        $UNIXHOUR = 3600;
+
+        //amount of hours
+        $hours = 24;
+
+        StartPeriod::create([
+            'user' => $user->id,
+            'end' => time() + ($hours * $UNIXHOUR)
+        ]);
     }
 }
