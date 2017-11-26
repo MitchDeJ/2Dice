@@ -7,6 +7,7 @@ use Auth;
 use App\Location;
 use App\Object;
 use App\User;
+use App\Cooldown;
 
 class LocationController extends Controller
 {
@@ -25,18 +26,30 @@ class LocationController extends Controller
         else
             $owner = User::where('id', $object->owner)->get()->first();
 
+        if ($user::onCooldown($user, 69)) {
+            $cooldown = Cooldown::where('user', $user->id)->where('type', 69)->get()->first();
+        } else {
+            $cooldown = null;
+        }
+
         return view('location', array(
             "user" => $user,
             'locations' => Location::all(),
             'location' => $location,
             'object' => $object,
-            'owner' => $owner
+            'owner' => $owner,
+            'cooldown' => $cooldown
         ));
     }
 
     public function fly(Request $request) {
         $price = 5000;
         $fly = false;
+        $user = Auth::user();
+
+        if ($user::onCooldown($user, 69)) {
+            return redirect('location')->with('fail', 'Currently there are no planes available for flight.');
+        }
 
         if (Auth::user()->cash < $price)
             return redirect('location')->with('fail', 'You currently can not afford a flight.');
@@ -52,6 +65,13 @@ class LocationController extends Controller
                 $object->profit+=$price;
                 $object->save();
                 Auth::user()->save();
+
+                //set flight cooldown
+                if ($user->vip == true) {
+                    $user::addCooldown($user, 69, 60 * 10);
+                } else {
+                    $user::addCooldown($user, 69, 60 * 30);
+                }
 
                 $fly = true;
                 //unlock traveller title

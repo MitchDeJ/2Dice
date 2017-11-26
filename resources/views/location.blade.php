@@ -26,6 +26,9 @@
                 <p>You can fly to another country every <strong>30 minutes</strong>. The country you are currently in is
                     marked in bold.</p>
                 <p>As a VIP you can fly to another country every <strong>10 minutes</strong>.</p>
+                        @if ($cooldown != null)
+                        <p style="color:red">A plane will be available in {{round(($cooldown->end - time())/60)}} minutes.</p>
+                        @endif
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
