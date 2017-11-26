@@ -43,15 +43,15 @@ class JobsController extends Controller
         }
 
         if ($action == "moneyjob") {
-            $minCash = 1000;
-            $maxCash = 10000;
+            $minCash = 1000 * $this->getMultiplier($num);;
+            $maxCash = 10000 * $this->getMultiplier($num);;
             $minXp = $this->getMinXp($num)/2;
             $maxXp = $this->getMaxXp($num)/2;
         }
 
         else if ($action == "xpjob") {
-            $minCash = 1000/3;
-            $maxCash = 10000/3;
+            $minCash = (1000/3) * $this->getMultiplier($num);;
+            $maxCash = (10000/3) * $this->getMultiplier($num);;
             $minXp = $this->getMinXp($num);
             $maxXp = $this->getMaxXp($num);
         }
@@ -60,7 +60,7 @@ class JobsController extends Controller
             return;
         }
 
-        $cashReward = rand($minCash, $maxCash) * $this->getMultiplier($num);
+        $cashReward = rand($minCash, $maxCash);
         $xpReward = rand($minXp, $maxXp);
 
         $user->cash += $cashReward;
