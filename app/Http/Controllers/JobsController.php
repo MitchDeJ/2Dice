@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Cooldown;
 use Auth;
 
 
@@ -15,13 +16,31 @@ class JobsController extends Controller
      */
     public function index()
     {
-        return view('jobs', array("user" => Auth::user()));
+        $user = Auth::user();
+        $cooldowns = array();
+
+        for ($i = 1; $i <= 5; $i++) {
+            if ($user::onCooldown($user, $i)) {
+                $cooldowns[$i] = Cooldown::where('user', $user->id)->where('type', $i)->get()->first();
+            } else {
+                $cooldowns[$i] = null;
+            }
+        }
+
+        return view('jobs', array(
+            "user" => $user,
+            "cooldowns" => $cooldowns
+        ));
     }
 
     public function businessJob(Request $request) {
         $user = Auth::user();
         $action = $request->input('action');
         $num = $request->input('num');
+
+        if ($user::onCooldown($user, $num)) {
+            return redirect('jobs')->with('fail', 'That job is not available right now.');
+        }
 
         if ($action == "moneyjob") {
             $minCash = 1000;
@@ -49,6 +68,13 @@ class JobsController extends Controller
 
         $user->save();
 
+        //setting the cooldown
+        $UNIXMINUTE = 60;
+        $cd = $this->getMinutes($num) * $UNIXMINUTE;
+
+        $user::addCooldown($user, $num, $cd);
+
+        //done
         return redirect('jobs') ->with('success', 'You nailed the business job! 
         You receive $'. number_format($cashReward).' and gain '.number_format($xpReward).' XP.');
     }
