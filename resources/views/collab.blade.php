@@ -13,64 +13,50 @@
         <div class="card mb-3">
             <div class="card-header"><i class="fa fa-suitcase i_button_background"></i> Collaboration</div>
             <div class="card-body">
+                {!! Form::open(['route' => ['collab.start'], 'method' => 'post']) !!}
                 <button type="submit" class="btn btn-default">Start a new collab</button>
-
+                {!! Form::close() !!}
+                <br>
+                @if (count($collabs) == 0)
+                <p>There are currently no collab groups available.</p>
+                @else
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead>
                         <tr>
                             <td class="table_dark_bg" style="width: 10%;">Host</td>
-                            <td class="table_dark_bg" style="width: 10%;">Players</td>
+                            <td class="table_dark_bg" style="width: 10%;">Status</td>
                             <td class="table_dark_bg" style="width: 1%;">Action</td>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($collabs as $collab)
                         <tr>
                             <td>
-                                Host name
+                                {{$collab->user}}
                             </td>
                             <td>
-                                Joined player(s)
+                                Waiting for partner...
                             </td>
                             <td>
-                                <button type="submit" class="btn btn-default">Join</button>
+                                @if ($collab->user != Auth::user()->name)
+                                    {!! Form::open(['route' => ['collab.join'], 'method' => 'post']) !!}
+                                    {!! Form::hidden("id", $collab->id) !!}
+                                    <button type="submit" class="btn btn-default">Join</button>
+                                    {!! Form::close() !!}
+                                    @else
+                                    {!! Form::open(['route' => ['collab.cancel'], 'method' => 'post']) !!}
+                                    {!! Form::hidden("id", $collab->id) !!}
+                                    <button type="submit" class="btn btn-default">Cancel</button>
+                                    {!! Form::close() !!}
+                                @endif
                             </td>
                         </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
-
-                <button type="submit" class="btn btn-default">Cancel collaboration</button>
-                <button type="submit" class="btn btn-default">Leave collaboration</button>
-                <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead>
-                        <tr>
-                            <td class="table_dark_bg" style="width: 10%;">Players</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                {{Auth::user()->name}}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Waiting for player
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Waiting for player
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <p>There are currently no collab groups available.</p>
-
+                    @endif
             </div>
         </div>
     </div>

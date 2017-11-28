@@ -91,4 +91,7 @@ Route::post("/cleartitle",["uses" => "ProfileController@clearTitle", "as"=>"titl
 Route::post("/exchangestock",["uses" => "StocksController@exchangeStock", "as"=>"stock.exchange"]);
 Route::post("/addauction",["uses" => "AuctionController@addAuction", "as"=>"auction.add"]);
 Route::post("/bidauction",["uses" => "AuctionController@bid", "as"=>"auction.bid"]);
+Route::post("/newcollab",["uses" => "BusinessController@newCollab", "as"=>"collab.start"]);
+Route::post("/cancelcollab",["uses" => "BusinessController@cancelCollab", "as"=>"collab.cancel"]);
+Route::post("/joincollab",["uses" => "BusinessController@joinCollab", "as"=>"collab.join"]);
 
