@@ -34,6 +34,9 @@
 <div class="container">
     <div class="card card-register mx-auto mt-5">
         <div class="card-body">
+            <div id="fail" class="alert alert-info" align="center">
+                Creating an alternate/second account is <b>not allowed</b>
+            </div>
             <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                 {{ csrf_field() }}
                 <div class="form-group">
@@ -50,7 +53,7 @@
                     </div>
                 </div>
                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                    <label for="email" class="control-label">Email address</label>
+                    <label for="email" class="control-label">Email address</label><small> (You need a valid email address to request a forgotten password)</small>
                     <input id="email" type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}" required>
                     @if ($errors->has('email'))
                         <span class="help-block">
