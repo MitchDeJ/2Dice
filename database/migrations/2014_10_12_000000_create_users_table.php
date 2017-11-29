@@ -46,6 +46,9 @@ class CreateUsersTable extends Migration
 
             $table->unsignedBigInteger("highestbet")->default(0);
             $table->unsignedInteger("totalbets")->default(0);
+
+            $table->unsignedInteger('globalmsg')->default(0);
+
             $table->rememberToken();
             $table->timestamps();
         });

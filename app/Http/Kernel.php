@@ -37,6 +37,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \App\Http\Middleware\ApplyVip::class,
             \App\Http\Middleware\CheckAuctions::class,
+            \App\Http\Middleware\CheckBan::class,
         ],
 
         'api' => [

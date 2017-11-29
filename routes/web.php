@@ -54,6 +54,8 @@ Route::get('/companycreate', 'CompanyController@companyCreate')->name('companycr
 Route::get('/companyprofile', 'CompanyController@companyProfile')->name('companyprofile');
 Route::get('/companyleaderboard', 'CompanyController@companyLeaderboard')->name('companyleaderboard');
 Route::get('/companydashboard', 'CompanyController@companyDashboard')->name('companydashboard');
+Route::get('/adminpanel', 'AdminController@index')->name('adminpanel');
+Route::get('/banned', 'AdminController@bannedIndex')->name('banned');
 
 Route::post('editprofile', 'ProfileController@updateAvatar');
 Route::post("/updateDesc",["uses" => "ProfileController@updateDesc", "as"=>"profile.updateDesc"]);
@@ -94,4 +96,7 @@ Route::post("/bidauction",["uses" => "AuctionController@bid", "as"=>"auction.bid
 Route::post("/newcollab",["uses" => "BusinessController@newCollab", "as"=>"collab.start"]);
 Route::post("/cancelcollab",["uses" => "BusinessController@cancelCollab", "as"=>"collab.cancel"]);
 Route::post("/joincollab",["uses" => "BusinessController@joinCollab", "as"=>"collab.join"]);
+Route::post("/adminaddvip",["uses" => "AdminController@addVip", "as"=>"admin.addvip"]);
+Route::post("/adminban",["uses" => "AdminController@ban", "as"=>"admin.ban"]);
+Route::post("/adminunban",["uses" => "AdminController@unban", "as"=>"admin.unban"]);
 

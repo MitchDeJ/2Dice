@@ -111,6 +111,8 @@ class BusinessController extends Controller
 
         $user::addCooldown($user, 73, (60 * 60) * 4);
         $starter::addCooldown($starter, 73, (60 * 60) * 4);
+        RankController::addXp($user, 15000);
+        RankController::addXp($starter, 15000);
         $c->delete();
 
         return redirect("collab")->with('success', "Your collab with ".$starter->name." resulted in a profit of $".number_format($reward)." each.");

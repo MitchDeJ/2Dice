@@ -39,6 +39,9 @@
             <div class="card-body">
                 <form>
                     <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
+                        @if(Session::get('ban'))
+                                <strong style="color:red">You are banned.<br>Reason: {{ Session::get('ban') }}</strong><br>
+                        @endif
                         <label for="name" class="control-label">Username</label>
                         <input id="name" type="text" class="form-control" name="name" placeholder="Username" value="{{ old('email') }}"
                                required autofocus>

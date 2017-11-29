@@ -189,6 +189,11 @@
                     <li>
                         <a href="https://www.reddit.com/r/TimeToDice/" target="_blank">Subreddit</a>
                     </li>
+                    @if(Auth::user()->name == "admin")
+                        <li>
+                            <a href="{{ url('/adminpanel') }}">Admin Panel</a>
+                        </li>
+                    @endif
                 </ul>
             </li>
 
