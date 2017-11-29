@@ -5,8 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="keywords" content="2Dice,Timetodice,Dice,Gamble,Fun,Free-to-play,Business">
+    <meta name="description" content="2Dice is a free-to-play gamble website. We offer a fun way of gambling without losing real money.">
+    <meta name="author" content="Mitchell de Jonge, Ruben Catshoek">
     <title>2Dice - V1.0</title>
     <!-- Force scrollbar -->
     <style> html {
@@ -14,7 +15,7 @@
             overflow-y: scroll;
         }</style>
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href={{ asset("img/favicon.png")}}/>
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
     <!-- Custom stylesheet -->
 {{ Html::style('css/stylesheet.css') }}
 <!-- Bootstrap core CSS-->
