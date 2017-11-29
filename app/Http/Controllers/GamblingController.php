@@ -205,6 +205,7 @@ class GamblingController extends Controller
         $user->cash += $profit;
         $object->cash -= $profit - $bet;
         $object->profit -= $profit - $bet;
+        $user->totalbets += 1;
         $user->save();
         $object->save();
 
@@ -288,6 +289,11 @@ class GamblingController extends Controller
             $user->highestbet = $bet;
             $user->save();
         }
+
+        $user->totalbets += 1;
+        $user->save();
+        $host->totalbets += 1;
+        $host->save();
 
         if (rand(0, 1) == 0) {
             $winner = $host;
