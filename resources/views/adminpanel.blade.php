@@ -14,7 +14,7 @@
             <div class="card-header"><i class="fa fa-dollar i_button_background"></i> Admin Panel</div>
             <div class="card-body">
                 <b>Gib Vip</b>
-                <hr/>
+                <br>
                 {!! Form::open(['route' => ['admin.addvip'], 'method' => 'post', 'class' => 'form-inline']) !!}
                 <div class="form-group">
                     <label for="exampleInputName2">Username: &nbsp;</label>
@@ -28,9 +28,9 @@
                 </div>
                 <button type="submit" class="btn btn-default">Add vip</button>
                 {!! Form::close() !!}
-                <hr/>
+                <br>
                 <b>Ban player</b>
-                <hr/>
+                <br>
                 {!! Form::open(['route' => ['admin.ban'], 'method' => 'post', 'class' => 'form-inline']) !!}
                 <div class="form-group">
                     <label for="exampleInputName2">Username: &nbsp;</label>
@@ -44,9 +44,9 @@
                 </div>
                 <button type="submit" class="btn btn-danger">B A N</button>
                 {!! Form::close() !!}
-                <hr/>
+                <br>
                 <b>Unban player</b>
-                <hr/>
+                <br>
                 {!! Form::open(['route' => ['admin.unban'], 'method' => 'post', 'class' => 'form-inline']) !!}
                 <div class="form-group">
                     <label for="exampleInputName2">Username: &nbsp;</label>
@@ -54,7 +54,7 @@
                 </div>
                 <button type="submit" class="btn btn-success">Unban</button>
                 {!! Form::close() !!}
-                <hr/>
+                <br><br>
                 {!! Form::open(['route' => ['admin.send'], 'method' => 'post', 'class' => 'form-horizontal']) !!}
                 <h6><b>Send system message</b></h6>
                 {!! Form::select('action', array("SOLO" => 'Player', "ALL" => 'All Players'), "SOLO", ['class' => 'form-control form-group form-inline col-sm-1']) !!}
@@ -81,6 +81,5 @@
                 {!! Form::close() !!}
             </div>
         </div>
-    </div>
     </div>
 @endsection
