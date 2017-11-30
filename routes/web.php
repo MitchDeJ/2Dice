@@ -64,6 +64,7 @@ Route::post("/getPage",["uses" => "LeaderboardController@getPage", "as"=>"leader
 Route::post("/fly", ["uses" => "LocationController@fly", "as"=>'location.fly']);
 Route::post("/roll55x2", ["uses" => "GamblingController@roll55x2", "as"=>'55x2.roll']);
 Route::post("/sendMessage", ["uses" => "MessageController@sendMessage", "as"=>"message.send"]);
+Route::post("/sendGlobalMessage", ["uses" => "MessageController@sendGlobalMessage", "as"=>"message.sendglobal"]);
 Route::post("/deletemessage",["uses" => "MessageController@deleteMessage", "as"=>"message.delete"]);
 Route::post("/deleteallmessages",["uses" => "MessageController@deleteAllMessages", "as"=>"message.deleteall"]);
 Route::post("/readallmessages",["uses" => "MessageController@readAllMessages", "as"=>"message.readall"]);
@@ -71,6 +72,7 @@ Route::post("/buypower",["uses" => "ShopController@buyPower", "as"=>"shop.buypow
 Route::post("/claimpower",["uses" => "ShopController@claimPower", "as"=>"shop.claimpower"]);
 Route::post("/claimcash",["uses" => "ShopController@claimCash", "as"=>"shop.claimcash"]);
 Route::post("/claimvip",["uses" => "ShopController@claimVIP", "as"=>"shop.claimvip"]);
+Route::post("/claimgms",["uses" => "ShopController@claimGMs", "as"=>"shop.claimgms"]);
 Route::post("/createoffer",["uses" => "MarketplaceController@createOffer", "as"=>"market.newoffer"]);
 Route::post("/collectoffer",["uses" => "MarketplaceController@collectOffer", "as"=>"market.collect"]);
 Route::post("/canceloffer",["uses" => "MarketplaceController@cancelOffer", "as"=>"market.cancel"]);

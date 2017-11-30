@@ -110,6 +110,47 @@ class MessageController extends Controller
         return redirect('inbox')->with('success', 'Message sent.');
     }
 
+    public function sendGlobalMessage(Request $request)
+    {
+        $from = Auth::user()->name;
+        $title = $request['title'];
+        $text = $request['text'];
+
+        if (Auth::user()->globalmsg < 1) {
+            return redirect("newglobalmessage")->
+            with("fail", "You need at least 1 global message point to send a global message.");
+        }
+
+        if ($title == null || $title == "") {
+            return redirect('newglobalmessage')->with('fail', 'Please enter a title.');
+        }
+
+        if ($text == null || $text == "") {
+            return redirect('newglobalmessage')->with('fail', 'Why would you send an empty message?');
+        }
+
+        $this->validate($request, [
+            'title' => 'Required|max:400',
+            'text' => 'Required|max:64'
+        ]);
+
+        $users = User::all();
+        foreach($users as $user) {
+            if ($user->name != $from)
+            Message::create([
+                'to' => strtolower($user->name),
+                'from' => $from,
+                'title' => $title,
+                'text' => $text,
+                'sentat' => date("d-m-y H:i")
+
+            ]);
+        }
+        Auth::user()->globalmsg -=1;
+        Auth::user()->save();
+        return redirect('inbox')->with('success', 'Global message sent.');
+    }
+
     public function deleteMessage(Request $request)
     {
         $id = $request['id'];
