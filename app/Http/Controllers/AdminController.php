@@ -62,7 +62,6 @@ class AdminController extends Controller
         if ($bans->count() > 0) {
             foreach($bans as $ban) {
                 $ban->delete();
-                var_dump($ban);
             }
         }
         return redirect('adminpanel')->with('success', $name . ' unbanned.');
