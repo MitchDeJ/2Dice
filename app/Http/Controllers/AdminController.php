@@ -74,7 +74,7 @@ class AdminController extends Controller
         $title = $request->input('title');
         $message = $request->input('text');
 
-        if ($action == "ALL") {
+        if ($action == "ALL") {//message to all players
             $users = User::all();
             foreach($users as $user) {
                 if ($user->name != "admin")
@@ -85,7 +85,7 @@ class AdminController extends Controller
             }
             return redirect('adminpanel')->with('success', 'All message sent.');
         }
-        if ($action == "SOLO") {
+        if ($action == "SOLO") {//message to one player
             $found = User::where('name', $to)->get();
             if ($found->count() == 0) {
                 return redirect('adminpanel')->with('fail', 'User "' . $to . '" not found.');
