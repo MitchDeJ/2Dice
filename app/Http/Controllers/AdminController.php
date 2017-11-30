@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Message;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
@@ -65,5 +66,36 @@ class AdminController extends Controller
             }
         }
         return redirect('adminpanel')->with('success', $name . ' unbanned.');
+    }
+
+    public function sendAdminMessage(Request $request) {
+        $action = $request->input('action');
+        $to = $request->input('to');
+        $title = $request->input('title');
+        $message = $request->input('text');
+
+        if ($action == "ALL") {
+            $users = User::all();
+            foreach($users as $user) {
+                if ($user->name != "admin")
+                MessageController::sendSystemMessage($user->name,
+                    $title,
+                    $message
+                    );
+            }
+            return redirect('adminpanel')->with('success', 'All message sent.');
+        }
+        if ($action == "SOLO") {
+            $found = User::where('name', $to)->get();
+            if ($found->count() == 0) {
+                return redirect('adminpanel')->with('fail', 'User "' . $to . '" not found.');
+            }
+            $user = $found->first();
+            MessageController::sendSystemMessage($user->name,
+                $title,
+                $message
+            );
+            return redirect('adminpanel')->with('success', 'Message sent.');
+        }
     }
 }

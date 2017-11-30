@@ -20,7 +20,6 @@
             </div>
             <hr/>
             {!! Form::open(['route' => ['message.send'], 'method' => 'post', 'class' => 'form-horizontal']) !!}
-            {!! Form::hidden("from", Auth::user()->name) !!}
             <div class="row col-md-12">
                 <h6>Send to</h6>
                 <input type="text" class="form-control" placeholder="Username" value="{{$name}}" name="to">

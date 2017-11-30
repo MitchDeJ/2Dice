@@ -55,8 +55,32 @@
                 <button type="submit" class="btn btn-success">Unban</button>
                 {!! Form::close() !!}
                 <hr/>
-            </div>
+                {!! Form::open(['route' => ['admin.send'], 'method' => 'post', 'class' => 'form-horizontal']) !!}
+                <h6><b>Send system message</b></h6>
+                {!! Form::select('action', array("SOLO" => 'Player', "ALL" => 'All Players'), "SOLO", ['class' => 'form-control form-group form-inline col-sm-1']) !!}
+                <div class="row col-md-12">
+                    <input type="text" class="form-control" placeholder="Username" value="" name="to">
+                </div>
+                <br>
+
+                <div class="row col-md-12">
+                    <h6>Title</h6>
+                    <input type="text" class="form-control" placeholder="Title" name="title">
+                </div>
+                <br>
+
+                <div class="row col-md-12">
+                    <h6>Message</h6>
+                    <textarea class="form-control" rows="3" placeholder="Message" name="text"></textarea>
+                </div>
+                <br>
+
+                <div class="mail_button"><a href="{{ url('/inbox') }}" class="text-dark">
+                        <button type="submit" class="btn btn-secondary">Send</button>
+                    </a></div>
+                {!! Form::close() !!}
             </div>
         </div>
+    </div>
     </div>
 @endsection

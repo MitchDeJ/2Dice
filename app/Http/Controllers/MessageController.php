@@ -70,7 +70,7 @@ class MessageController extends Controller
     public function sendMessage(Request $request)
     {
         $to = $request['to'];
-        $from = $request['from'];
+        $from = Auth::user()->name;
         $title = $request['title'];
         $text = $request['text'];
 
@@ -90,6 +90,11 @@ class MessageController extends Controller
         if ($to == Auth::user()->name) {
             return redirect('newmessage')->with('fail', 'Why would you send a message to yourself?');
         }
+
+        $this->validate($request, [
+            'title' => 'Required|max:400',
+            'text' => 'Required|max:64'
+        ]);
 
         $message = Message::create([
             'to' => strtolower($to),

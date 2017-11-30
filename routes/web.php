@@ -99,4 +99,5 @@ Route::post("/joincollab",["uses" => "BusinessController@joinCollab", "as"=>"col
 Route::post("/adminaddvip",["uses" => "AdminController@addVip", "as"=>"admin.addvip"]);
 Route::post("/adminban",["uses" => "AdminController@ban", "as"=>"admin.ban"]);
 Route::post("/adminunban",["uses" => "AdminController@unban", "as"=>"admin.unban"]);
+Route::post("/adminsend",["uses" => "AdminController@sendAdminMessage", "as"=>"admin.send"]);
 
