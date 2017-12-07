@@ -164,7 +164,7 @@
                 <p>The prices of the stock market update every hour (12:00, 13:00, 14:00 etc.). Stocks have a minimum price of $500 and a maximum price of $1500.</p>
 
                 <b>Collaboration</b>
-                <p>Every 4 hours you can do a business collaboration with 2 other players. This activity has a 90% chance of giving you 200k each, a 5% chance of giving you 100k each and a 5% chance of giving you 400k each.</p>
+                <p>Every 4 hours you can do a business collaboration with another player. This activity has a 90% chance of giving you 200k each, a 10% chance of giving you 100k each and a 10% chance of giving you 400k each.</p>
 
                 <b>Jobs</b>
                 <p>Jobs can be done for money or xp. You can choose on which option to focus in the dropdown. Each job has a different cooldown and amount of money/xp reward.</p>

@@ -14,14 +14,14 @@
             <div class="card-header"><i class="fa fa-tasks i_button_background"></i> Leaderboard</div>
             <div class="table-responsive">
                 <div class="card-body">
-                    <div class="col-md-2" style="float: right;">
-                        <label>Search:
+                    <div class="col-md-12" style="text-align: right">
+                        <label>
                             {!! Form::open(['route' => ['leaderboard.getPlayer'], 'method' => 'post', 'class' => 'form-horizontal']) !!}
-                            {!! Form::text('name', '', ["class" => "form-control form-control-sm"]) !!}
+                            {!! Form::text('name', '', ["class" => "form-control form-control-sm form-inline", 'placeholder' => 'Search'])!!}
                             {!! Form::close() !!}
                         </label>
 
-                        <label>Page
+                        <label>
                             {!! Form::open(['route' => ['leaderboard.getPage'], 'method' => 'post', 'id' => 'pageselect']) !!}
                             <select name="pageselected" class="form-control form-control-sm" form="pageselect"
                                     onchange="this.form.submit()">
