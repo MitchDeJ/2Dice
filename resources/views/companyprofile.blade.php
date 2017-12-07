@@ -11,19 +11,28 @@
 @section('content')
     <div class="container-fluid">
         <div class="card mb-3">
-            <div class="card-header"><i class="fa fa-suitcase i_button_background"></i> Company profile | <a
-                        class="text-dark" href="#">Edit profile</a></div>
+            <div class="card-header"><i class="fa fa-suitcase i_button_background"></i> {{$company->name}}@if($mycompany == $company->id) | <a
+                        class="text-dark" href="{{url("/editcompanyprofile")}}">Edit profile</a>@endif</div>
             <div class="card-body">
-                <img src="{!! url("/userimg/".$user->avatar) !!}" width="200px" height="200px" class="img-thumbnail"
+                <img src="{!! url("/companyimg/".$company->avatar) !!}" width="200px" height="200px" class="img-thumbnail"
                      style="display: block; margin: auto; margin-bottom: 1%">
-                <h4 class="text-center">Company name</h4>
+                <h4 class="text-center">{{$company->name}}</h4>
 
-                <button style="display: block;margin: auto;" class="btn btn-success">Join this company</button>
+                @if($mycompany == -1 && $pending == false)
+                    {!! Form::open(['route' => ['company.joinrequest'], 'method' => 'post']) !!}
+                    {!! Form::hidden("id", $company->id) !!}
+                    <br>
+                    <button style="display: block;margin: auto;" class="btn btn-success">Send join request</button>
+                    {!! Form::close() !!}
+                    @elseif ($mycompany == -1 && $pending == true)
+                    <br>
+                    <p class="text-center">Join request pending...</p>
+                @endif
 
                 <div class="form-group">
                     <br>
                     <textarea class="form-control text-center" id="about_area" rows="6"
-                              disabled>company desc</textarea>
+                              disabled>{{$company->desc}}</textarea>
                 </div>
                 <br>
                 <div class="row">
@@ -50,7 +59,7 @@
                                         Level
                                     </td>
                                     <td>
-                                        55
+                                        {{$company->level}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -58,15 +67,7 @@
                                         Total power
                                     </td>
                                     <td>
-                                        500,000
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><i style="color: #f39c12;" class="fa fa-money i_button_background"></i>
-                                        Base income
-                                    </td>
-                                    <td>
-                                        $10,000
+                                        {{number_format($totalpower)}}
                                     </td>
                                 </tr>
                                 </tbody>
@@ -89,7 +90,7 @@
                                         Owner
                                     </td>
                                     <td>
-                                        <a href="#" class="text-dark">{{$user->name}}</a>
+                                        <a href="{{url("/profile/".$company->owner)}}" class="text-dark">{{$company->owner}}</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -97,7 +98,15 @@
                                         Created
                                     </td>
                                     <td>
-                                        01-01-2000
+                                        {{$company->createdat}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><i class="fa fa-plane i_button_background"></i>
+                                        Location
+                                    </td>
+                                    <td>
+                                        {{$location}}
                                     </td>
                                 </tr>
                                 </tbody>
@@ -117,12 +126,14 @@
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($members as $member)
                         <tr>
-                            <td>523523</td>
-                            <td><a href="#" class="text-dark">{{$user->name}}</a></td>
-                            <td>Owner</td>
-                            <td>{{number_format($user->power)}}</td>
+                            <td>#{{$ranks[$member->id]}}</td>
+                            <td><a href="{{url("/profile/".$member->name)}}" class="text-dark">{{$member->name}}</a></td>
+                            <td>{{ComAff::getRole($roles[$member->id])}}</td>
+                            <td>{{number_format($member->power)}}</td>
                         </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

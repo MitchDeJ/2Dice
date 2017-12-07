@@ -106,7 +106,7 @@
                                         Company
                                     </td>
                                     <td>
-                                        <a href="#" class="text-dark"> {{$user->company}}</a>
+                                        <a href="{{url("/companyprofile/".$company)}}" class="text-dark"> {{$company}}</a>
                                     </td>
                                 </tr>
                                 <tr>

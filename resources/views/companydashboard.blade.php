@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="col-md-3 text-center">
-                        <a href="#" class="text-dark">
+                        <a href={{url('viewrequests')}} class="text-dark">
                             <button type="button" class="btn btn-outline-dark">Join requests</button>
                         </a>
                     </div>

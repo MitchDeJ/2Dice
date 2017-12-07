@@ -11,16 +11,17 @@
 @section('content')
     <div class="container-fluid">
         <div class="card mb-3">
-            <div class="card-header"><i class="fa fa-university i_button_background"></i> Marketplace</div>
+            <div class="card-header"><i class="fa fa-university i_button_background"></i> Company Marketplace</div>
             <div class="card-body">
                 <div class="col-md-2">
                     <label for="type">Type</label>
-                    {!! Form::open(['route' => ['market.newoffer'], 'method' => 'post', 'class' => 'form-horizontal']) !!}
+                    {!! Form::open(['route' => ['market.newcompanyoffer'], 'method' => 'post', 'class' => 'form-horizontal']) !!}
+                    {!! Form::hidden("creator", $user->id) !!}
                     {!! Form::select('offertype', array(0 => 'Buy', 1 => 'Sell'), 0, ['class' => 'form-control form-group form-inline']) !!}
                 </div>
                 <div class="col-md-2">
                     <label for="item">Item</label>
-                    {!! Form::select('item', array(0 => 'Wood', 1 => 'Stone', 2 => 'Wheat', 3 => 'Prestige point'), 0, ['class' => 'form-control form-group form-inline']) !!}
+                    {!! Form::select('item', array(0 => 'Wood', 1 => 'Stone', 2 => 'Wheat'), 0, ['class' => 'form-control form-group form-inline']) !!}
                 </div>
                 <div class="col-md-2 form-group form-inline">
                     <label for="amount">Amount &nbsp;</label>

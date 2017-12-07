@@ -158,9 +158,12 @@
                     <span class="nav-link-text">Company</span>
                 </a>
                 <ul class="sidenav-second-level collapse" id="collapseCompany">
-                    @if (Auth::user()->company != -1)
+                    @if (ComAff::getAffiliation(Auth::user()) != -1)
                         <li>
                             <a href="{{ url('/companyprofile') }}">Profile</a>
+                        </li>
+                        <li>
+                            <a href="{{ url('/companydashboard') }}">Dashboard</a>
                         </li>
                     @else
                         <li>
@@ -169,9 +172,6 @@
                     @endif
                     <li>
                         <a href="{{ url('/companyleaderboard') }}">Leaderboard</a>
-                    </li>
-                    <li>
-                        <a href="{{ url('/companydashboard') }}">Dashboard</a>
                     </li>
                 </ul>
             </li>

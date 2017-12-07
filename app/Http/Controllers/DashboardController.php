@@ -21,11 +21,17 @@ class DashboardController extends Controller
             $subscription = Subscription::where('user', $user->id)->get()->first();
         else
             $subscription = null;
+
+        $company = "";
+        if (CompanyController::getAffiliation($user) != -1) {
+            $company = CompanyController::getCompanyName(CompanyController::getAffiliation($user));
+        }
         return view('dashboard', array(
             "user" => $user,
             "lbrank" => ProfileController::getLeaderboardRank(Auth::user()->name),
             "location" => Location::where("id", $user->location)->get()->first(),
-            "subscription" => $subscription
+            "subscription" => $subscription,
+            "company" => $company
             ));
     }
 

@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 25; $i++) {
             DB::table('users')->insert([
                 'name' => str_random(10),
                 'email' => str_random(10) . "@gmail.com",
@@ -35,8 +35,6 @@ class UsersTableSeeder extends Seeder
                 'wood' => random_int(1, 13337),
                 'stone' => random_int(1, 13337),
                 'wheat' => random_int(1, 13337),
-
-                'company' => -1,
 
                 'title' => -1,
                 'unlockedtitles' => serialize(array_fill(0, 20, 0)),
@@ -68,8 +66,6 @@ class UsersTableSeeder extends Seeder
             'wood' => random_int(1, 13337),
             'stone' => random_int(1, 13337),
             'wheat' => random_int(1, 13337),
-
-            'company' => -1,
 
             'title' => -1,
             'unlockedtitles' => serialize(array_fill(0, 20, 0)),

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Company;
 use Illuminate\Http\Request;
 use Auth;
 use File;
@@ -26,11 +27,16 @@ class ProfileController extends Controller
             $list .= ObjectController::getTypeName($obj->type) . ' ' . LocationController::getName($obj->location) . ', ';
         }
         $list = substr($list, 0, strlen($list) - 2);
+        $company = "";
+        if (CompanyController::getAffiliation($user) != -1) {
+            $company = CompanyController::getCompanyName(CompanyController::getAffiliation($user));
+        }
         return view('profile', array(
             "user" => $user,
             "lbrank" => ProfileController::getLeaderboardRank(Auth::user()->name),
             "location" => Location::where("id", $user->location)->get()->first(),
-            'list' => $list
+            'list' => $list,
+            'company' => $company
         ));
     }
 
@@ -43,11 +49,17 @@ class ProfileController extends Controller
             $list .= ObjectController::getTypeName($obj->type) . ' ' . LocationController::getName($obj->location) . ', ';
         }
         $list = substr($list, 0, strlen($list) - 2);
+        $company = "";
+        if (CompanyController::getAffiliation($user) != -1) {
+            $company = CompanyController::getCompanyName(CompanyController::getAffiliation($user));
+        }
+
         return view("profile", array(
             "user" => $user,
             "lbrank" => ProfileController::getLeaderboardRank($user->name),
             "location" => Location::where("id", $user->location)->get()->first(),
-            'list' => $list
+            'list' => $list,
+            'company' => $company
         ));
     }
 
@@ -135,8 +147,8 @@ class ProfileController extends Controller
                     return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
                 }
                 break;
-            case 2://TODO verander naar koppeltabel als companies added zijn
-                if ($user->company == -1) {
+            case 2:
+                if (CompanyController::getAffiliation($user) == -1) {
                     return redirect('titleselection')->with('fail', 'You do not meet the requirements to unlock this title.');
                 }
                 break;

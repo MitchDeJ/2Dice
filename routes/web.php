@@ -35,7 +35,9 @@ Route::get('/titleselection', 'ProfileController@titleIndex')->name('titeselecti
 Route::get('/location', 'LocationController@index')->name('location');
 Route::get('/statistics', 'StatisticsController@index')->name('statistics');
 Route::get('/marketplace', 'MarketplaceController@index')->name('marketplace');
-Route::get('/newoffer', 'MarketplaceController@newoffer')->name('newoffer');
+Route::get('/newoffer', 'MarketplaceController@newOffer')->name('newoffer');
+Route::get('/companymarket', 'MarketplaceController@companyIndex')->name('companymarket');
+Route::get('/newcompanyoffer', 'MarketplaceController@newCompanyOffer')->name('newcompanyoffer');
 Route::get('/55x2', 'GamblingController@diceIndex')->name('55x2');
 Route::get('/coinflip', 'GamblingController@coinflipIndex')->name('coinflip');
 Route::get('/roulette', 'GamblingController@rouletteIndex')->name('roulette');
@@ -52,10 +54,12 @@ Route::get('/gameinformation', 'DashboardController@gameinformation')->name('gam
 Route::get('/objectoverview', 'ObjectController@objectOverview')->name('objectoverview');
 Route::get('/companycreate', 'CompanyController@companyCreate')->name('companycreate');
 Route::get('/companyprofile', 'CompanyController@companyProfile')->name('companyprofile');
+Route::get('/editcompanyprofile', 'CompanyController@editProfile')->name('editcompanyprofile');
+Route::get('/companyprofile/{name}', "CompanyController@otherProfile");
 Route::get('/companyleaderboard', 'CompanyController@companyLeaderboard')->name('companyleaderboard');
 Route::get('/companydashboard', 'CompanyController@companyDashboard')->name('companydashboard');
+Route::get('/viewrequests', 'CompanyController@viewRequests')->name('viewrequests');
 Route::get('/adminpanel', 'AdminController@index')->name('adminpanel');
-Route::get('/banned', 'AdminController@bannedIndex')->name('banned');
 
 Route::post('editprofile', 'ProfileController@updateAvatar');
 Route::post("/updateDesc",["uses" => "ProfileController@updateDesc", "as"=>"profile.updateDesc"]);
@@ -76,6 +80,8 @@ Route::post("/claimgms",["uses" => "ShopController@claimGMs", "as"=>"shop.claimg
 Route::post("/createoffer",["uses" => "MarketplaceController@createOffer", "as"=>"market.newoffer"]);
 Route::post("/collectoffer",["uses" => "MarketplaceController@collectOffer", "as"=>"market.collect"]);
 Route::post("/canceloffer",["uses" => "MarketplaceController@cancelOffer", "as"=>"market.cancel"]);
+Route::post("/createcompanyoffer",["uses" => "MarketplaceController@createCompanyOffer", "as"=>"market.newcompanyoffer"]);
+Route::post("/collectcompanyoffer",["uses" => "MarketplaceController@collectCompanyOffer", "as"=>"market.companycollect"]);
 Route::post("/changepass",["uses" => "ChangePasswordController@changePassword", "as"=>"changepass"]);
 Route::post("/cashsender",["uses" => "BusinessController@sendCash", "as"=>"business.sendcash"]);
 Route::post("/objectmaxbet",["uses" => "ObjectController@changeMaxBet", "as"=>"object.maxbet"]);
@@ -102,4 +108,10 @@ Route::post("/adminaddvip",["uses" => "AdminController@addVip", "as"=>"admin.add
 Route::post("/adminban",["uses" => "AdminController@ban", "as"=>"admin.ban"]);
 Route::post("/adminunban",["uses" => "AdminController@unban", "as"=>"admin.unban"]);
 Route::post("/adminsend",["uses" => "AdminController@sendAdminMessage", "as"=>"admin.send"]);
+Route::post("/createcompany",["uses" => "CompanyController@createCompany", "as"=>"company.create"]);
+Route::post('editcompanyprofile', 'CompanyController@updateAvatar');
+Route::post("/companydesc",["uses" => "CompanyController@updateDesc", "as"=>"company.updateDesc"]);
+Route::post("/sendjoinrequest",["uses" => "CompanyController@sendJoinRequest", "as"=>"company.joinrequest"]);
+Route::post("/acceptrequest",["uses" => "CompanyController@acceptJoinRequest", "as"=>"request.accept"]);
+Route::post("/declinerequest",["uses" => "CompanyController@declineJoinRequest", "as"=>"request.decline"]);
 

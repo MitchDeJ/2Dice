@@ -220,7 +220,7 @@
                                     Company
                                 </td>
                                 <td>
-                                    {{$user->company}}
+                                    {{$company}}
                                 </td>
                             </tr>
                             <tr>
