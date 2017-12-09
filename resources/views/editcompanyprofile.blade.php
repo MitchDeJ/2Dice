@@ -11,7 +11,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="card mb-3">
-            <div class="card-header"><i class="fa fa-suitcase i_button_background"></i> {{$company->name}} | <a
+            <div class="card-header"><i class="fa fa-building i_button_background"></i> {{$company->name}} | <a
                         class="text-dark" href="{{url("/companyprofile/".$company->name)}}">Back</a></div>
             <div class="card-body">
                 <img src="{!! url("/companyimg/".$company->avatar) !!}" width="200px" height="200px" class="img-thumbnail"
