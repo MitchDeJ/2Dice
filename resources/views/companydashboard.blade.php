@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="col-md-2 text-center">
-                        <a href="#" class="text-dark">
+                        <a href="{{url("/companyoptions")}}" class="text-dark">
                             <button type="button" class="btn btn-outline-dark">Options</button>
                         </a>
                     </div>
@@ -104,34 +104,6 @@
                         </tr>
                         </tbody>
                     </table>
-
-                    <hr/>
-                    @if ($user->name == $company->owner)
-                        <b>Disbanding</b>
-                        <br>
-                        If you want to <b>delete all progress and the entire company itself,</b> you can disband your
-                        company.
-                        Alternatively, if you still want the company to exist, you can transfer the ownership of the
-                        company to
-                        another member in the member management menu.
-                        <br>
-                        <br>
-                        {!! Form::open(['route' => ['company.disband'], 'method' => 'post']) !!}
-                        {!! Form::checkbox("confirm") !!} I hereby confirm that I will knowingly delete my company and
-                        it's progress by pressing 'Disband'.
-                        <br>
-                        <br>
-                        <button type="submit" class="btn btn-danger">Disband</button>
-                        {!! Form::close() !!}
-                    @else
-                        <b>Leaving</b>
-                        <br>
-                        If you want to leave this company, you can press the 'Leave' button below to do so.
-                        <br><br>
-                        {!! Form::open(['route' => ['company.leave'], 'method' => 'post']) !!}
-                        <button type="submit" class="btn btn-danger">Leave</button>
-                        {!! Form::close() !!}
-                    @endif
                 </div>
             </div>
         </div>

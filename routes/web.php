@@ -58,6 +58,7 @@ Route::get('/companyleaderboard', 'CompanyController@companyLeaderboard')->name(
 Route::get('/companydashboard', 'CompanyController@companyDashboard')->name('companydashboard');
 Route::get('/viewrequests', 'CompanyController@viewRequests')->name('viewrequests');
 Route::get('/managemembers', 'CompanyController@manageMembers')->name('managemembers');
+Route::get('/companyoptions', 'CompanyController@companyOptions')->name('companyOptions');
 Route::get('/adminpanel', 'AdminController@index')->name('adminpanel');
 
 Route::post('editprofile', 'ProfileController@updateAvatar');
@@ -119,4 +120,5 @@ Route::post("/disband",["uses" => "CompanyController@disband", "as"=>"company.di
 Route::post("/leave",["uses" => "CompanyController@leave", "as"=>"company.leave"]);
 Route::post("/depositcash",["uses" => "CompanyController@depositCash", "as"=>"company.depositcash"]);
 Route::post("/changeowner",["uses" => "CompanyController@changeOwner", "as"=>"company.changeowner"]);
+Route::post("/setoption",["uses" => "CompanyController@setOption", "as"=>"company.setoption"]);
 

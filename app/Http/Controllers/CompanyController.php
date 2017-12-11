@@ -187,6 +187,27 @@ class CompanyController extends Controller
         ));
     }
 
+    public function companyOptions() {
+        $user = Auth::user();
+
+        if (CompanyController::getAffiliation($user) == -1) {
+            return $this->companyCreate();
+        }
+
+        $company = Company::where('id', CompanyController::getAffiliation($user))->get()->first();
+
+        if (self::getRights($user) == 3)
+            $enabled = "";
+        else
+            $enabled = "disabled";
+
+        return view('companyoptions', array(
+            "user" => $user,
+            "company" => $company,
+            "enabled" => $enabled
+        ));
+    }
+
     public function updateAvatar(Request $request)
     {
 
@@ -479,7 +500,7 @@ class CompanyController extends Controller
 
         //this role doesnt exist
         if (ComAff::getRole($rights) == "")
-            return redirect("managemembers")->with('fail', 'Invalid role.');
+        return redirect("managemembers")->with('fail', 'Invalid role.');
 
         if ($user2->count() == 0) //if the user doesnt exist
             return redirect("managemembers")->with('fail', 'Invalid user.');
@@ -660,6 +681,67 @@ class CompanyController extends Controller
         );
 
         return redirect('companydashboard')->with('success', $user2->name.' is now the owner of '.$company->name.'.');
+    }
+
+    public function setOption(Request $request) {
+        $option = $request->input('option');
+        $value = $request->input('value');
+        $user = Auth::user();
+
+        if (ComAff::getRole($value) == "")
+            return redirect("companyoptions")->with('fail', 'Invalid value.');
+
+        if (self::getAffiliation($user) == -1)
+            return redirect("dashboard")->with('fail', 'You are not part of a company.');
+
+        if (self::getRights($user) != 3)
+            return redirect('companyoptions')->with('fail', 'Only the owner can change options.');
+
+        $company = Company::where('id', self::getAffiliation($user))->get()->first();
+        $options = self::getOptions($company->id);
+
+        $valueN = "";
+
+        switch ($value) {
+            case 0:
+                $valueN = "Everyone";
+                break;
+            case 1:
+                $valueN = "Moderator +";
+                break;
+            case 2:
+                $valueN = "Admin +";
+                break;
+            case 3:
+                $valueN = "Owner";
+                break;
+        }
+
+
+        switch ($option) {
+            case "editprofile":
+            $options->editprofile = $value;
+            $options->save();
+            return redirect('companyoptions')->with('success', "Option 'edit profile' set to: ".$valueN);
+            case "makeoffers":
+                $options->makeoffers = $value;
+                $options->save();
+                return redirect('companyoptions')->with('success', "Option 'make / use market offers' set to: ".$valueN);
+            case "viewoffers":
+                $options->viewoffers = $value;
+                $options->save();
+                return redirect('companyoptions')->with('success', "Option 'view market offers' set to: ".$valueN);
+            case "handlerequests":
+                $options->handlerequests = $value;
+                $options->save();
+                return redirect('companyoptions')->with('success', "Option 'Handle requests / kick members' set to: ".$valueN);
+            case "setroles":
+                $options->setroles = $value;
+                $options->save();
+                return redirect('companyoptions')->with('success', "Option 'Set roles' set to: ".$valueN);
+            default:
+                return redirect('companyoptions')->with('fail', "Invalid option.");
+        }
     }
 
     public function depositCash(Request $request)

@@ -29,4 +29,23 @@ class ComAff extends Facade //short for CompanyAffiliation
                 return "";
         }
     }
+
+    public static function getOption($cid, $option) {
+        $options = CompanyController::getOptions($cid);
+
+        switch($option) {
+            case "editprofile":
+                return $options->editprofile;
+            case "makeoffers":
+                return $options->makeoffers;
+            case "viewoffers":
+                return $options->viewoffers;
+            case "handlerequests":
+                return $options->handlerequests;
+            case "setroles":
+                return $options->setroles;
+            default:
+                return -1;
+        }
+    }
 }
