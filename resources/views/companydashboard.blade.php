@@ -59,8 +59,7 @@
                             <td>Cash</td>
                             <td>${{number_format($company->cash)}}</td>
                             <td>
-                                {!! Form::open(['route' => ['auction.bid'], 'method' => 'post', 'class' => 'form-inline']) !!}
-                                {!! Form::hidden("id", 2) !!}
+                                {!! Form::open(['route' => ['company.depositcash'], 'method' => 'post', 'class' => 'form-inline']) !!}
                                 <input type="number" class="form-control" placeholder="Amount" id="offer"
                                        name="amount">
                                 <button type="submit" class="btn btn-default">Deposit</button>

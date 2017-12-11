@@ -56,6 +56,17 @@
                             @endforeach
                             </tbody>
                         </table>
+                        @if($user->name == $company->owner)
+                            <hr/>
+                            <b>Transfer ownership</b>
+                            <br>
+                            If you don't want to be the company's owner anymore, you can transfer ownership to another
+                            member.
+                            {!! Form::open(['route' => ['company.changeowner'], 'method' => 'post', 'class' => 'form-inline']) !!}
+                            <input type="text" class="form-control" placeholder="Player" name="name">
+                            <button type="submit" class="btn btn-default">Transfer</button>
+                            {!! Form::close() !!}
+                        @endif
                     </div>
                 @endif
             </div>

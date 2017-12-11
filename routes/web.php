@@ -117,4 +117,6 @@ Route::post("/kickmember",["uses" => "CompanyController@kick", "as"=>"company.ki
 Route::post("/setrole",["uses" => "CompanyController@setRole", "as"=>"company.setrole"]);
 Route::post("/disband",["uses" => "CompanyController@disband", "as"=>"company.disband"]);
 Route::post("/leave",["uses" => "CompanyController@leave", "as"=>"company.leave"]);
+Route::post("/depositcash",["uses" => "CompanyController@depositCash", "as"=>"company.depositcash"]);
+Route::post("/changeowner",["uses" => "CompanyController@changeOwner", "as"=>"company.changeowner"]);
 

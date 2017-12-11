@@ -168,7 +168,7 @@ class CompanyController extends Controller
         $company = Company::where('id', CompanyController::getAffiliation($user))->get()->first();
         $members = self::getCompanyMembers($company->id);
         $i = 0;
-        foreach($members as $member) {
+        foreach ($members as $member) {
             if ($member->id == $user->id)
                 unset($members[$i]);
             if ($member->name == $company->owner)
@@ -259,7 +259,7 @@ class CompanyController extends Controller
         return view('companydashboard', array(
             "user" => Auth::user(),
             'company' => $company
-            ));
+        ));
     }
 
     //Creating a company
@@ -327,11 +327,11 @@ class CompanyController extends Controller
 
         $options = self::getOptions($company->id);
 
-        foreach(self::getCompanyMembers($company->id) as $member) {
+        foreach (self::getCompanyMembers($company->id) as $member) {
             if (self::hasRights($member, $options->handlerequests))
                 MessageController::sendSystemMessage(
                     $member->name,
-                    $user->name." has requested to join ".self::getCompanyName($company->id).'.',
+                    $user->name . " has requested to join " . self::getCompanyName($company->id) . '.',
                     'To handle this request, check out the join requests page.'
                 );
         }
@@ -446,7 +446,8 @@ class CompanyController extends Controller
         return $users;
     }
 
-    public static function getRights(User $user) {
+    public static function getRights(User $user)
+    {
         if (self::getAffiliation($user) == -1)
             return -1;
 
@@ -454,18 +455,21 @@ class CompanyController extends Controller
         return $a->rights;
     }
 
-    public static function hasRights(User $user, $rights) {
+    public static function hasRights(User $user, $rights)
+    {
         if (self::getRights($user) >= $rights) {
             return true;
         }
         return false;
     }
 
-    public static function getOptions($id) {
-       return CompanyOptions::where('company', $id)->get()->first();
+    public static function getOptions($id)
+    {
+        return CompanyOptions::where('company', $id)->get()->first();
     }
 
-    public function setRole(Request $request) {
+    public function setRole(Request $request)
+    {
         $rights = $request->input('rights');
         $uid = $request->input('id');
 
@@ -500,7 +504,7 @@ class CompanyController extends Controller
         $aff = Affiliation::where('company', $cid)->where('user', $user2->id)->get()->first();
 
         if ($aff->rights == $rights)
-            return redirect('managemembers')->with('fail', $user2->name." already has that role.");
+            return redirect('managemembers')->with('fail', $user2->name . " already has that role.");
 
         $word = "";
 
@@ -515,13 +519,14 @@ class CompanyController extends Controller
 
         MessageController::sendSystemMessage(
             $user2->name,
-            "You have been ".$word." within ".self::getCompanyName($cid).'.',
-            "Your role has been changed to ".ComAff::getRole($rights)."."
+            "You have been " . $word . " within " . self::getCompanyName($cid) . '.',
+            "Your role has been changed to " . ComAff::getRole($rights) . "."
         );
-        return redirect("managemembers")->with('success', $user2->name."'s role has been set to: ".ComAff::getRole($rights));
+        return redirect("managemembers")->with('success', $user2->name . "'s role has been set to: " . ComAff::getRole($rights));
     }
 
-    public function kick(Request $request) {
+    public function kick(Request $request)
+    {
         $uid = $request->input('id');
         $user = Auth::user();
         $cid = self::getAffiliation($user);
@@ -548,13 +553,14 @@ class CompanyController extends Controller
         $aff->delete();
         MessageController::sendSystemMessage(
             $user2->name,
-            "You have been kicked from ".self::getCompanyName($cid).'.',
+            "You have been kicked from " . self::getCompanyName($cid) . '.',
             'For more information, contact a representative of the company.'
         );
-        return redirect("managemembers")->with('success', 'Kicked '.$user2->name.".");
+        return redirect("managemembers")->with('success', 'Kicked ' . $user2->name . ".");
     }
 
-    public function leave(Request $request) {
+    public function leave(Request $request)
+    {
         $user = Auth::user();
 
         if (self::getAffiliation($user) == -1)
@@ -571,18 +577,19 @@ class CompanyController extends Controller
 
         $options = self::getOptions($cid);
 
-        foreach(self::getCompanyMembers($cid) as $member) {
+        foreach (self::getCompanyMembers($cid) as $member) {
             if (self::hasRights($member, $options->handlerequests))
                 MessageController::sendSystemMessage(
                     $member->name,
-                    $user->name." has left ".self::getCompanyName($cid).'.',
-                    'For more information, please contact '.$user->name.'.'
+                    $user->name . " has left " . self::getCompanyName($cid) . '.',
+                    'For more information, please contact ' . $user->name . '.'
                 );
         }
-        return redirect('dashboard')->with('success', 'You have left '.self::getCompanyName($cid).'.');
+        return redirect('dashboard')->with('success', 'You have left ' . self::getCompanyName($cid) . '.');
     }
 
-    public function disband(Request $request) {
+    public function disband(Request $request)
+    {
         $user = Auth::user();
 
         if ($request->input('confirm') != 1)
@@ -599,11 +606,11 @@ class CompanyController extends Controller
 
         //disbanding
 
-        $name =  self::getCompanyName($cid);
-        foreach(self::getCompanyMembers($cid) as $member) {
+        $name = self::getCompanyName($cid);
+        foreach (self::getCompanyMembers($cid) as $member) {
             MessageController::sendSystemMessage(
                 $member->name,
-                $name.' has been disbanded.',
+                $name . ' has been disbanded.',
                 'You are now free to join or create a company.'
             );
         }
@@ -614,6 +621,70 @@ class CompanyController extends Controller
         }
 
         $company->delete();
-        return redirect('dashboard')->with('success', $name.' disbanded.');
+        return redirect('dashboard')->with('success', $name . ' disbanded.');
     }
+
+    public function changeOwner(Request $request) {
+        $name = $request->input('name');
+        $user = Auth::user();
+        $user2 = User::where('name', $name)->get();
+
+        if ($user2->count() == 0)
+            return redirect('managemembers')->with('fail', 'Invalid user "'.$name.'".');
+
+        $user2 = $user2->first();
+
+        if (self::getAffiliation($user) != self::getAffiliation($user2))
+            return redirect('managemembers')->with('fail', $user2->name.' is not part of your company.');
+
+        $company = Company::where('id', self::getAffiliation($user))->get()->first();
+
+        if ($company->owner != $user->name)
+            return redirect("managemembers")->with('fail', 'Only the owner of the company can do that.');
+
+        $usera = Affiliation::where('user', $user->id)->get()->first();
+        $user2a = Affiliation::where('user', $user2->id)->get()->first();
+
+        $usera->rights = 0;
+        $user2a->rights = 3;
+        $usera->save();
+        $user2a->save();
+
+        $company->owner = $user2->name;
+        $company->save();
+
+        MessageController::sendSystemMessage(
+            $user2->name,
+            'You are now the owner of '.$company->name.'.',
+            $user->name.' has transferred ownership of '.$company->name.' to you.'
+        );
+
+        return redirect('companydashboard')->with('success', $user2->name.' is now the owner of '.$company->name.'.');
+    }
+
+    public function depositCash(Request $request)
+    {
+        $user = Auth::user();
+        $amount = $request->input('amount');
+
+        if (self::getAffiliation($user) == -1)
+            return redirect("dashboard")->with('fail', 'You are not part of a company.');
+
+        $cid = self::getAffiliation($user);
+        $company = Company::where('id', $cid)->get()->first();
+
+        if ($amount < 1)
+            return redirect('companydashboard')->with('fail', 'Invalid amount.');
+
+        if ($amount > $user->cash)
+            return redirect('companydashboard')->with('fail', 'You do not have that much cash.');
+
+        $company->cash += $amount;
+        $user->cash -= $amount;
+
+        $user->save();
+        $company->save();
+        return redirect('companydashboard')->with('success', 'Deposited $'.number_format($amount).'.');
+    }
+
 }
