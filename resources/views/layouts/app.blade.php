@@ -42,56 +42,56 @@
     <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dashboard">
+            <li class="nav-item test" data-toggle="tooltip" data-placement="right" title="Dashboard">
                 <a class="nav-link" href="{{ url('/dashboard') }}">
                     <i class="fa fa-fw fa-dashboard"></i>
                     <span class="nav-link-text">Dashboard</span>
                 </a>
             </li>
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Leaderboard">
+            <li class="nav-item nav-small" data-toggle="tooltip" data-placement="right" title="Leaderboard">
                 <a class="nav-link" href="{{ url('/leaderboard/1') }}">
                     <i class="fa fa-fw fa-tasks"></i>
                     <span class="nav-link-text">Leaderboard</span>
                 </a>
             </li>
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Statistics">
+            <li class="nav-item nav-small" data-toggle="tooltip" data-placement="right" title="Statistics">
                 <a class="nav-link" href="{{ url('/statistics') }}">
                     <i class="fa fa-fw fa-area-chart"></i>
                     <span class="nav-link-text">Statistics</span>
                 </a>
             </li>
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Marketplace">
+            <li class="nav-item nav-small" data-toggle="tooltip" data-placement="right" title="Marketplace">
                 <a class="nav-link" href="{{ url('/marketplace') }}">
                     <i class="fa fa-fw fa-university"></i>
                     <span class="nav-link-text">Marketplace</span>
                 </a>
             </li>
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Location">
+            <li class="nav-item nav-small" data-toggle="tooltip" data-placement="right" title="Location">
                 <a class="nav-link" href="{{ url('/location') }}">
                     <i class="fa fa-fw fa-plane"></i>
                     <span class="nav-link-text">Location</span>
                 </a>
             </li>
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Objectoverview">
+            <li class="nav-item nav-small" data-toggle="tooltip" data-placement="right" title="Objectoverview">
                 <a class="nav-link" href="{{ url('/objectoverview') }}">
                     <i class="fa fa-fw fa-globe"></i>
                     <span class="nav-link-text">Objects</span>
                 </a>
             </li>
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Location">
+            <li class="nav-item nav-small" data-toggle="tooltip" data-placement="right" title="Location">
                 <a class="nav-link" href="{{ url('/vip') }}">
                     <i class="fa fa-fw fa-diamond"></i>
                     <span class="nav-link-text">VIP</span>
                 </a>
             </li>
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Shop">
+            <li class="nav-item nav-small" data-toggle="tooltip" data-placement="right" title="Shop">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseShop"
                    data-parent="#exampleAccordion">
                     <i class="fa fa-fw fa-shopping-bag"></i>
@@ -107,7 +107,7 @@
                 </ul>
             </li>
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Betting">
+            <li class="nav-item nav-small" data-toggle="tooltip" data-placement="right" title="Betting">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseBetting"
                    data-parent="#exampleAccordion">
                     <i class="fa fa-fw fa-dollar"></i>
@@ -129,7 +129,7 @@
                 </ul>
             </li>
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Business">
+            <li class="nav-item nav-small" data-toggle="tooltip" data-placement="right" title="Business">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseBusiness"
                    data-parent="#exampleAccordion">
                     <i class="fa fa-fw fa-suitcase"></i>
@@ -151,7 +151,7 @@
                 </ul>
             </li>
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Company">
+            <li class="nav-item nav-small" data-toggle="tooltip" data-placement="right" title="Company">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseCompany"
                    data-parent="#exampleAccordion">
                     <i class="fa fa-fw fa-building"></i>
@@ -176,7 +176,7 @@
                 </ul>
             </li>
 
-            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="2Dice">
+            <li class="nav-item nav-small" data-toggle="tooltip" data-placement="right" title="2Dice">
                 <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapse2Dice"
                    data-parent="#exampleAccordion">
                     <i class="fa fa-fw fa-comments"></i>
@@ -206,7 +206,7 @@
             </li>
         </ul>
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
+            <li class="nav-item nav-small">
                 @if ( MessageNotifier::getUnread() > 0)
                     <a href="{{ url('/inbox') }}" class="nav-link"><i
                                 class="fa fa-fw fa-envelope i_button_background"></i></a>
@@ -217,13 +217,13 @@
 
             <span style="display:inline-block; width: 50px;"></span>
 
-            <li class="nav-item">
+            <li class="nav-item nav-small">
                 <span class="navbar-text">${{number_format(Auth::user()->cash)}}</span>
             </li>
 
             <span style="display:inline-block; width: 50px;"></span>
 
-            <li class="nav-item">
+            <li class="nav-item nav-small">
                 <a href="{{ url('/profile') }}" class="nav-link"><strong
                             style="color:{{Titles::getTitleColor(Auth::user()->title)}}">
                         {{Titles::getTitle(Auth::user()->title)}}</strong>{{ Auth::user()->name }}</a>
@@ -231,7 +231,7 @@
 
             <span style="display:inline-block; width: 50px;"></span>
 
-            <li class="nav-item">
+            <li class="nav-item nav-small">
                 <a href="{{ route('logout') }}" onclick="event.preventDefault();
                    document.getElementById('logout-form').submit();" class="nav-link" data-toggle="modal"
                    data-target="#exampleModal">

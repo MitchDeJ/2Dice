@@ -28,3 +28,8 @@
     color: #212529;
     font-weight: 500;
 }
+
+.nav-small {
+    line-height: 100%;
+    font-size: 15px;
+}
