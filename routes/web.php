@@ -115,4 +115,6 @@ Route::post("/acceptrequest",["uses" => "CompanyController@acceptJoinRequest", "
 Route::post("/declinerequest",["uses" => "CompanyController@declineJoinRequest", "as"=>"request.decline"]);
 Route::post("/kickmember",["uses" => "CompanyController@kick", "as"=>"company.kick"]);
 Route::post("/setrole",["uses" => "CompanyController@setRole", "as"=>"company.setrole"]);
+Route::post("/disband",["uses" => "CompanyController@disband", "as"=>"company.disband"]);
+Route::post("/leave",["uses" => "CompanyController@leave", "as"=>"company.leave"]);
 

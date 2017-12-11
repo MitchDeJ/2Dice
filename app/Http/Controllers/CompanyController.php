@@ -324,6 +324,18 @@ class CompanyController extends Controller
             'user' => $user->id,
             'company' => $company->id
         ]);
+
+        $options = self::getOptions($company->id);
+
+        foreach(self::getCompanyMembers($company->id) as $member) {
+            if (self::hasRights($member, $options->handlerequests))
+                MessageController::sendSystemMessage(
+                    $member->name,
+                    $user->name." has requested to join ".self::getCompanyName($company->id).'.',
+                    'To handle this request, check out the join requests page.'
+                );
+        }
+
         return redirect('companyprofile/' . $company->name)->with('success', 'Request sent.');
     }
 
@@ -564,7 +576,7 @@ class CompanyController extends Controller
                 MessageController::sendSystemMessage(
                     $member->name,
                     $user->name." has left ".self::getCompanyName($cid).'.',
-                    'For more information, please contact '.$member->name.'.'
+                    'For more information, please contact '.$user->name.'.'
                 );
         }
         return redirect('dashboard')->with('success', 'You have left '.self::getCompanyName($cid).'.');
@@ -587,10 +599,11 @@ class CompanyController extends Controller
 
         //disbanding
 
+        $name =  self::getCompanyName($cid);
         foreach(self::getCompanyMembers($cid) as $member) {
             MessageController::sendSystemMessage(
                 $member->name,
-                self::getCompanyName($cid).' has been disbanded.',
+                $name.' has been disbanded.',
                 'You are now free to join or create a company.'
             );
         }
@@ -601,6 +614,6 @@ class CompanyController extends Controller
         }
 
         $company->delete();
-        return redirect('dashboard')->with('success', self::getCompanyName($cid).' disbanded.');
+        return redirect('dashboard')->with('success', $name.' disbanded.');
     }
 }
