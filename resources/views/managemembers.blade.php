@@ -24,9 +24,9 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <td class="table_dark_bg" style="width: 30%;">Player</td>
-                                <td class="table_dark_bg" style="width: 70%;">Role</td>
-                                <td class="table_dark_bg" style="width: 70%;"></td>
+                                <td class="table_dark_bg" style="width: 33%;">Player</td>
+                                <td class="table_dark_bg" style="width: 33%;">Role</td>
+                                <td class="table_dark_bg" style="width: 34%;">Action</td>
                             </tr>
                             </thead>
                             <tbody>

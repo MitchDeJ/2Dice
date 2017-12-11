@@ -14,25 +14,31 @@
             <div class="card-header"><i class="fa fa-building i_button_background"></i> Company dashboard</div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-3 text-center">
+                    <div class="col-md-2 text-center">
                         <a href="#" class="text-dark">
                             <button type="button" class="btn btn-outline-dark">Expand</button>
                         </a>
                     </div>
 
-                    <div class="col-md-3 text-center">
-                        <a href="#" class="text-dark">
+                    <div class="col-md-2 text-center">
+                        <a href="{{url('managemembers')}}" class="text-dark">
                             <button type="button" class="btn btn-outline-dark">Manage</button>
                         </a>
                     </div>
 
-                    <div class="col-md-3 text-center">
+                    <div class="col-md-2 text-center">
+                        <a href="#" class="text-dark">
+                            <button type="button" class="btn btn-outline-dark">Marketplace</button>
+                        </a>
+                    </div>
+
+                    <div class="col-md-2 text-center">
                         <a href={{url('viewrequests')}} class="text-dark">
                             <button type="button" class="btn btn-outline-dark">Join requests</button>
                         </a>
                     </div>
 
-                    <div class="col-md-3 text-center">
+                    <div class="col-md-2 text-center">
                         <a href="#" class="text-dark">
                             <button type="button" class="btn btn-outline-dark">Options</button>
                         </a>
@@ -43,9 +49,9 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <td class="table_dark_bg" style="width: 10%;">Resource</td>
-                            <td class="table_dark_bg" style="width: 10%;">Storage</td>
-                            <td class="table_dark_bg" style="width: 20%;"></td>
+                            <td class="table_dark_bg" style="width: 33%;">Resource</td>
+                            <td class="table_dark_bg" style="width: 33%;">Storage</td>
+                            <td class="table_dark_bg" style="width: 34%;">Amount</td>
                         </tr>
                         </thead>
                         <tbody>
