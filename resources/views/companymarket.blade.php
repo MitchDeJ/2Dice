@@ -13,9 +13,11 @@
         <div class="card mb-3">
             <div class="card-header"><i class="fa fa-university i_button_background"></i> Company Marketplace</div>
             <div class="card-body">
+                @if ($rights >= $options->makeoffers)
                 <a href="{{ url('/newcompanyoffer') }}">
                     <button type="submit" class="btn btn-default">New offer</button>
                 </a>
+                @endif
                 <div class="row">
                     @foreach($offers as $offer)
                         <div class="col-md-4 logo_center">
@@ -61,6 +63,7 @@
                                     <tr>
                                         <td>
                                             <div class="row" style="margin: auto; justify-content: center">
+                                                @if($rights >= $options->makeoffers)
                                                 {!! Form::open(['route' => ['market.companycollect'], 'method' => 'post']) !!}
                                                 <button type="submit" class="btn btn-dark form-group">Collect</button>
                                                 {!! Form::hidden("id", $offer->id) !!}
@@ -70,6 +73,7 @@
                                                 <button type="submit" class="btn btn-dark form-group">Cancel</button>
                                                 {!! Form::hidden("id", $offer->id) !!}
                                                 {!! Form::close() !!}
+                                                    @endif
                                             </div>
                                         </td>
                                     </tr>

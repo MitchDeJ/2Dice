@@ -9,6 +9,7 @@ use App\Location;
 use App\Company;
 use App\Affiliation;
 use App\User;
+use App\CompanyOptions;
 use File;
 use Image;
 
@@ -74,7 +75,10 @@ class CompanyController extends Controller
         }
 
         $company = Company::where('id', CompanyController::getAffiliation($user))->get()->first();
-        //TODO permissions
+
+        if (!self::hasRights($user, self::getOptions($company->id)->handlerequests)) {
+            return redirect('companydashboard')->with('fail', 'You do not have permission to handle join requests.');
+        }
 
         $requests = JoinRequest::where('company', $company->id)->get();
         $users = array();
@@ -143,11 +147,43 @@ class CompanyController extends Controller
         $company = Company::where('id', CompanyController::getAffiliation($user))->get()->first();
 
 
-        //TODO permission to edit profile
+        if (!self::hasRights($user, self::getOptions($company->id)->editprofile)) {
+            return redirect('companyprofile')->with('fail', 'You do not have permission to edit the company profile.');
+        }
 
         return view('editcompanyprofile', array(
             "user" => $user,
             "company" => $company,
+        ));
+    }
+
+    public function manageMembers()
+    {
+        $user = Auth::user();
+
+        if (CompanyController::getAffiliation($user) == -1) {
+            return $this->companyCreate();
+        }
+
+        $company = Company::where('id', CompanyController::getAffiliation($user))->get()->first();
+        $members = self::getCompanyMembers($company->id);
+        $i = 0;
+        foreach($members as $member) {
+            if ($member->id == $user->id)
+                unset($members[$i]);
+            if ($member->name == $company->owner)
+                unset($members[$i]);
+            $i++;
+        }
+
+        if (!self::hasRights($user, self::getOptions($company->id)->handlerequests) && !self::hasRights($user, self::getOptions($company->id)->setroles)) {
+            return redirect('companydashboard')->with('fail', 'You do not have permission to access member management.');
+        }
+
+        return view('managemembers', array(
+            "user" => $user,
+            "company" => $company,
+            'members' => $members
         ));
     }
 
@@ -164,7 +200,9 @@ class CompanyController extends Controller
 
             $company = Company::where('id', CompanyController::getAffiliation($user))->get()->first();
 
-            //TODO permissions
+            if (!self::hasRights($user, self::getOptions($company->id)->editprofile)) {
+                return redirect('companyprofile')->with('fail', 'You do not have permission to edit the company profile.');
+            }
 
             $avatar = $request->file('avatar');
             $filename = $company->name . time() . '.' . $avatar->getClientOriginalExtension();
@@ -191,7 +229,9 @@ class CompanyController extends Controller
 
         $company = Company::where('id', CompanyController::getAffiliation($user))->get()->first();
 
-        //TODO permissions
+        if (!self::hasRights($user, self::getOptions($company->id)->editprofile)) {
+            return redirect('companyprofile')->with('fail', 'You do not have permission to edit the company profile.');
+        }
 
         $this->validate($request, [
             'desc' => 'Required|max:400'
@@ -209,7 +249,17 @@ class CompanyController extends Controller
 
     public function companyDashboard()
     {
-        return view('companydashboard', array("user" => Auth::user()));
+        $user = Auth::user();
+        if (CompanyController::getAffiliation($user) == -1) {
+            return $this->companyCreate();
+        }
+
+        $company = Company::where('id', CompanyController::getAffiliation($user))->get()->first();
+
+        return view('companydashboard', array(
+            "user" => Auth::user(),
+            'company' => $company
+            ));
     }
 
     //Creating a company
@@ -248,6 +298,9 @@ class CompanyController extends Controller
             'company' => $company->id,
             'rights' => 3
         ]);
+
+        //making an options instance
+        CompanyOptions::create(['company' => $company->id]);
 
         return redirect('companyprofile')->with('success', 'Company "' . $name . '" created!');
     }
@@ -297,7 +350,9 @@ class CompanyController extends Controller
             return redirect('viewrequests')->with('neutral', $applicant->name . ' has already joined a different company.');
         }
 
-        //TODO Permissions
+        if (!self::hasRights($user, self::getOptions($company->id)->handlerequests)) {
+            return redirect('companydashboard')->with('fail', 'You do not have permission to handle join requests.');
+        }
 
         //accepting
         $req->delete();
@@ -337,7 +392,9 @@ class CompanyController extends Controller
             return redirect('viewrequests')->with('success', 'Declined ' . $applicant->name . "'s request.");
         }
 
-        //TODO Permissions
+        if (!self::hasRights($user, self::getOptions($company->id)->handlerequests)) {
+            return redirect('companydashboard')->with('fail', 'You do not have permission to handle join requests.');
+        }
 
         //declined
         $req->delete();
@@ -375,5 +432,175 @@ class CompanyController extends Controller
             $i++;
         }
         return $users;
+    }
+
+    public static function getRights(User $user) {
+        if (self::getAffiliation($user) == -1)
+            return -1;
+
+        $a = Affiliation::where('company', self::getAffiliation($user))->where('user', $user->id)->get()->first();
+        return $a->rights;
+    }
+
+    public static function hasRights(User $user, $rights) {
+        if (self::getRights($user) >= $rights) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function getOptions($id) {
+       return CompanyOptions::where('company', $id)->get()->first();
+    }
+
+    public function setRole(Request $request) {
+        $rights = $request->input('rights');
+        $uid = $request->input('id');
+
+        $user = Auth::user();
+        $cid = self::getAffiliation($user);
+        $user2 = User::where('id', $uid)->get();
+
+        //this role doesnt exist
+        if (ComAff::getRole($rights) == "")
+            return redirect("managemembers")->with('fail', 'Invalid role.');
+
+        if ($user2->count() == 0) //if the user doesnt exist
+            return redirect("managemembers")->with('fail', 'Invalid user.');
+
+        $user2 = $user2->first();
+
+        if (self::getAffiliation($user2) != $cid) //if the user isnt in your company
+            return redirect("managemembers")->with('fail', 'Invalid user.');
+
+        $options = self::getOptions($cid);
+
+        //check if the user has permission to set roles
+        if (!self::hasRights($user, $options->setroles))
+            return redirect("managemembers")->with('fail', 'You do not have permission to do that.');
+
+        if ($rights > self::getRights($user))
+            return redirect("managemembers")->with('fail', 'You can not give someone a role that is higher than your own.');
+
+        if (self::getRights($user2) >= self::getRights($user))
+            return redirect("managemembers")->with('fail', 'You do not have permission to do that.');
+
+        $aff = Affiliation::where('company', $cid)->where('user', $user2->id)->get()->first();
+
+        if ($aff->rights == $rights)
+            return redirect('managemembers')->with('fail', $user2->name." already has that role.");
+
+        $word = "";
+
+        if ($rights > $aff->rights)
+            $word = "promoted";
+
+        if ($rights < $aff->rights)
+            $word = "demoted";
+
+        $aff->rights = $rights;
+        $aff->save();
+
+        MessageController::sendSystemMessage(
+            $user2->name,
+            "You have been ".$word." within ".self::getCompanyName($cid).'.',
+            "Your role has been changed to ".ComAff::getRole($rights)."."
+        );
+        return redirect("managemembers")->with('success', $user2->name."'s role has been set to: ".ComAff::getRole($rights));
+    }
+
+    public function kick(Request $request) {
+        $uid = $request->input('id');
+        $user = Auth::user();
+        $cid = self::getAffiliation($user);
+        $user2 = User::where('id', $uid)->get();
+
+        if ($user2->count() == 0) //if the user doesnt exist
+            return redirect("managemembers")->with('fail', 'Invalid user.');
+
+        $user2 = $user2->first();
+
+        if (self::getAffiliation($user2) != $cid) //if the user isnt in your company
+            return redirect("managemembers")->with('fail', 'Invalid user.');
+
+        $options = self::getOptions($cid);
+
+        //check if the user has permission to kick
+        if (!self::hasRights($user, $options->handlerequests))
+            return redirect("managemembers")->with('fail', 'You do not have permission to do that.');
+
+        if (self::getRights($user2) >= self::getRights($user))
+            return redirect("managemembers")->with('fail', 'You do not have permission to do that.');
+
+        $aff = Affiliation::where('company', $cid)->where('user', $user2->id)->get()->first();
+        $aff->delete();
+        MessageController::sendSystemMessage(
+            $user2->name,
+            "You have been kicked from ".self::getCompanyName($cid).'.',
+            'For more information, contact a representative of the company.'
+        );
+        return redirect("managemembers")->with('success', 'Kicked '.$user2->name.".");
+    }
+
+    public function leave(Request $request) {
+        $user = Auth::user();
+
+        if (self::getAffiliation($user) == -1)
+            return redirect("dashboard")->with('fail', 'You are not part of a company.');
+
+        $cid = self::getAffiliation($user);
+        $company = Company::where('id', $cid)->get()->first();
+
+        if ($user->name == $company->owner)
+            return redirect("dashboard")->with('fail', 'The owner of the company can not leave.');
+
+        $aff = Affiliation::where('company', $cid)->where('user', $user->id)->get()->first();
+        $aff->delete();
+
+        $options = self::getOptions($cid);
+
+        foreach(self::getCompanyMembers($cid) as $member) {
+            if (self::hasRights($member, $options->handlerequests))
+                MessageController::sendSystemMessage(
+                    $member->name,
+                    $user->name." has left ".self::getCompanyName($cid).'.',
+                    'For more information, please contact '.$member->name.'.'
+                );
+        }
+        return redirect('dashboard')->with('success', 'You have left '.self::getCompanyName($cid).'.');
+    }
+
+    public function disband(Request $request) {
+        $user = Auth::user();
+
+        if ($request->input('confirm') != 1)
+            return redirect("companydashboard")->with('fail', 'Please confirm that you want to disband your company.');
+
+        if (self::getAffiliation($user) == -1)
+            return redirect("dashboard")->with('fail', 'You are not part of a company.');
+
+        $cid = self::getAffiliation($user);
+        $company = Company::where('id', $cid)->get()->first();
+
+        if ($user->name != $company->owner)
+            return redirect("companydashboard")->with('fail', 'Only the owner of the company can disband.');
+
+        //disbanding
+
+        foreach(self::getCompanyMembers($cid) as $member) {
+            MessageController::sendSystemMessage(
+                $member->name,
+                self::getCompanyName($cid).' has been disbanded.',
+                'You are now free to join or create a company.'
+            );
+        }
+
+        $affs = Affiliation::where('company', $cid)->get();
+        foreach ($affs as $a) {
+            $a->delete();
+        }
+
+        $company->delete();
+        return redirect('dashboard')->with('success', self::getCompanyName($cid).' disbanded.');
     }
 }

@@ -44,10 +44,24 @@ class MarketplaceController extends Controller
         $offers = MarketOffer::where('creator', CompanyController::getAffiliation($user))->where('creatortype', 1)->get();
         $itemnames = $this->getItemNames();
 
+        if (CompanyController::getAffiliation($user) == -1)
+            return redirect('companydashboard');
+
+        $company = Company::where('id', CompanyController::getAffiliation($user))->get()->first();
+
+        $options = CompanyController::getOptions($company->id);
+        $rights = CompanyController::getRights($user);
+
+        if (!CompanyController::hasRights($user, CompanyController::getOptions($company->id)->viewoffers)) {
+            return redirect('companydashboard')->with('fail', 'You do not have permission to view company market offers.');
+        }
+
         return view('companymarket', array(
             "user" => $user,
             "offers" => $offers,
             'itemnames' => $itemnames,
+            'options' => $options,
+            'rights' => $rights
         ));
     }
 
@@ -359,6 +373,7 @@ class MarketplaceController extends Controller
 
     public function cancelOffer(Request $request)
     {
+        $user = Auth::user();
         $offer = MarketOffer::where('id', $request->input('id'))->get()->first();;
 
         if ($offer->creatortype == 0) {
@@ -368,10 +383,15 @@ class MarketplaceController extends Controller
             $redirect = 'marketplace';
         }
 
+        $company = Company::where('id', CompanyController::getAffiliation($user))->get()->first();
+
         if ($offer->creatortype == 1) {
             if (CompanyController::getAffiliation(Auth::user()) != $offer->creator) {
-                //TODO heeft geen permissie om offer te cancelen
+
                 return redirect('marketplace')->with('fail', 'You do not have permission to cancel that offer.');
+            }
+            if (!CompanyController::hasRights(Auth::user(), CompanyController::getOptions($company->id)->makeoffers)) {
+                return redirect('companydashboard')->with('fail', 'You do not have permission to handle company market offers.');
             }
             $redirect = 'companymarket';
         }
@@ -465,8 +485,10 @@ class MarketplaceController extends Controller
             return redirect('companymarket')->with('fail', 'Invalid offer.');
 
         if (CompanyController::getAffiliation(Auth::user()) != $offer->creator) {
-            //TODO heeft geen permissie om offer te collecten
             return redirect('companymarket')->with('fail', 'You do not have permission to cancel that offer.');
+        }
+        if (!CompanyController::hasRights(Auth::user(), CompanyController::getOptions($company->id)->makeoffers)) {
+            return redirect('companydashboard')->with('fail', 'You do not have permission to handle company market offers.');
         }
 
         if ($offer->offertype == 0) { //buy offer
@@ -590,6 +612,19 @@ class MarketplaceController extends Controller
 
     public function newCompanyOffer()
     {
+        $user = Auth::user();
+        $cid = CompanyController::getAffiliation($user);
+
+        if ($cid == -1) {
+            return redirect("companyprofile");
+        }
+
+        $company = Company::where('id', $cid)->get()->first();
+
+        if (!CompanyController::hasRights($user, CompanyController::getOptions($company->id)->makeoffers)) {
+            return redirect('companymarket')->with('fail', 'You do not have permission to handle company market offers.');
+        }
+
         return view('newcompanyoffer', array("user" => Auth::user()));
     }
 }

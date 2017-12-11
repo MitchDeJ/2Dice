@@ -11,6 +11,10 @@ class ComAff extends Facade //short for CompanyAffiliation
         return CompanyController::getAffiliation($user);
     }
 
+    public static function getRights(User $user) {
+        return CompanyController::getRights($user);
+    }
+
     public static function getRole($rights) {
         switch ($rights) {
             case 0:
@@ -21,6 +25,8 @@ class ComAff extends Facade //short for CompanyAffiliation
                 return "Admin";
             case 3:
                 return "Owner";
+            default:
+                return "";
         }
     }
 }
