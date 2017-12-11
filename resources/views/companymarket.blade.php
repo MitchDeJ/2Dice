@@ -11,10 +11,10 @@
 @section('content')
     <div class="container-fluid">
         <div class="card mb-3">
-            <div class="card-header"><i class="fa fa-university i_button_background"></i> Company dashboard >
+            <div class="card-header"><i class="fa fa-building i_button_background"></i> Company dashboard >
                 Marketplace | <a class="text-dark"
                                  href="{{url("/companydashboard")}}">Back</a></div>
-        </div>
+
         <div class="card-body">
             @if ($rights >= $options->makeoffers)
                 <a href="{{ url('/newcompanyoffer') }}">
@@ -87,6 +87,7 @@
                 @endforeach
             </div>
         </div>
+    </div>
     </div>
 @endsection
 
