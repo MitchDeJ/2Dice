@@ -90,4 +90,24 @@ class LocationController extends Controller
         $location = Location::where('id', $loc)->get()->first();
         return $location->name;
     }
+
+    public static function getSellPrice($loc, $item) { //get quick sell price of an item in this location
+        $location = Location::where('id', $loc)->get()->first();
+        switch ($item) {
+            case 0://wood
+                return $location->woodprice;
+            case 1://stone
+                return $location->stoneprice;
+            case 2://oil
+                return $location->oilprice;
+            case 3:
+                return 0;
+            case 4://planks
+                return $location->planksprice;
+            case 5://bricks
+                return $location->bricksprice;
+            case 6://gasoline
+                return $location->gasolineprice;
+        }
+    }
 }

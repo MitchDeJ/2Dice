@@ -36,6 +36,7 @@ Route::get('/marketplace', 'MarketplaceController@index')->name('marketplace');
 Route::get('/newoffer', 'MarketplaceController@newOffer')->name('newoffer');
 Route::get('/companymarket', 'MarketplaceController@companyIndex')->name('companymarket');
 Route::get('/newcompanyoffer', 'MarketplaceController@newCompanyOffer')->name('newcompanyoffer');
+Route::get('/marketprices', 'MarketplaceController@marketPrices')->name('marketPrices');
 Route::get('/55x2', 'GamblingController@diceIndex')->name('55x2');
 Route::get('/coinflip', 'GamblingController@coinflipIndex')->name('coinflip');
 Route::get('/roulette', 'GamblingController@rouletteIndex')->name('roulette');

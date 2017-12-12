@@ -19,7 +19,10 @@ class CreateLocationsTable extends Migration
             $table->string('flag')->default("flag.png");
             $table->unsignedInteger('woodprice')->default(10);
             $table->unsignedInteger('stoneprice')->default(10);
-            $table->unsignedInteger('wheatprice')->default(10);
+            $table->unsignedInteger('oilprice')->default(10);
+            $table->unsignedInteger('planksprice')->default(10);
+            $table->unsignedInteger('bricksprice')->default(10);
+            $table->unsignedInteger('gasolineprice')->default(10);
             $table->timestamps();
         });
     }
