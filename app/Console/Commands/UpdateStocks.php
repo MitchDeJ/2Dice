@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Stock;
+Use App\Http\Controllers\StocksController;
 
 class UpdateStocks extends Command
 {
