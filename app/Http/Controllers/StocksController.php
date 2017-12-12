@@ -12,9 +12,6 @@ class StocksController extends Controller
 {
     public function index()
     {
-        //TODO only for testing rates
-        StocksController::update();
-
         $owned = collect([
             0,
             StocksController::getStock(Auth::user(), 1),
@@ -36,7 +33,7 @@ class StocksController extends Controller
         ));
     }
 
-    public function update()
+    public static function update()
     {
         $stocks = Stock::all();
         $diff = 200;
