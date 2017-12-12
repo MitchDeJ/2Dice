@@ -102,10 +102,10 @@
                             </tr>
                             <tr>
                                 <td><i class="fa fa-area-chart i_button_background"></i>
-                                    Wheat
+                                    Oil
                                 </td>
                                 <td>
-                                    {{number_format($user->wheat)}}
+                                    {{number_format($user->oil)}}
                                 </td>
                             </tr>
                             </tbody>

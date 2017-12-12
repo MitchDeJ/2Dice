@@ -91,8 +91,8 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>Wheat</td>
-                            <td>{{number_format($company->wheat)}} / {{number_format(1000000)}}</td>
+                            <td>Oil</td>
+                            <td>{{number_format($company->oil)}} / {{number_format(1000000)}}</td>
                             <td>
                                 {!! Form::open(['route' => ['auction.bid'], 'method' => 'post', 'class' => 'form-inline']) !!}
                                 {!! Form::hidden("id", 2) !!}

@@ -37,7 +37,11 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('prestigepoints')->default(0);
             $table->unsignedBigInteger('wood')->default(0);
             $table->unsignedBigInteger('stone')->default(0);
-            $table->unsignedBigInteger('wheat')->default(0);
+            $table->unsignedBigInteger('oil')->default(0);
+
+            $table->unsignedBigInteger('planks')->default(0);
+            $table->unsignedBigInteger('bricks')->default(0);
+            $table->unsignedBigInteger('gasoline')->default(0);
 
             $table->tinyInteger("title")->default(-1);
             $table->string("unlockedtitles")->default(serialize(array_fill(0, 20, 0)));

@@ -34,7 +34,10 @@ class UsersTableSeeder extends Seeder
                 'prestigepoints' => random_int(1, 10),
                 'wood' => random_int(1, 13337),
                 'stone' => random_int(1, 13337),
-                'wheat' => random_int(1, 13337),
+                'oil' => random_int(1, 13337),
+                'planks' => random_int(1, 13337),
+                'bricks' => random_int(1, 13337),
+                'gasoline' => random_int(1, 13337),
 
                 'title' => -1,
                 'unlockedtitles' => serialize(array_fill(0, 20, 0)),
@@ -65,7 +68,10 @@ class UsersTableSeeder extends Seeder
             'prestigepoints' => 10,
             'wood' => random_int(1, 13337),
             'stone' => random_int(1, 13337),
-            'wheat' => random_int(1, 13337),
+            'oil' => random_int(1, 13337),
+            'planks' => random_int(1, 13337),
+            'bricks' => random_int(1, 13337),
+            'gasoline' => random_int(1, 13337),
 
             'title' => -1,
             'unlockedtitles' => serialize(array_fill(0, 20, 0)),

@@ -20,7 +20,8 @@
                 </div>
                 <div class="col-md-2">
                     <label for="item">Item</label>
-                    {!! Form::select('item', array(0 => 'Wood', 1 => 'Stone', 2 => 'Wheat', 3 => 'Prestige point'), 0, ['class' => 'form-control form-group form-inline']) !!}
+                    {!! Form::select('item', array(0 => 'Wood', 1 => 'Stone', 2 => 'Oil', 3 => 'Prestige point', 4 => 'Planks' , 5 => 'Bricks', 6 => 'Gasoline'),
+                    0, ['class' => 'form-control form-group form-inline']) !!}
                 </div>
                 <div class="col-md-2 form-group form-inline">
                     <label for="amount">Amount &nbsp;</label>

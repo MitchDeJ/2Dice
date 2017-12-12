@@ -546,8 +546,8 @@ class MarketplaceController extends Controller
                 return $user->wood >= $amount;
             case 1://stone
                 return $user->stone >= $amount;
-            case 2://wheat
-                return $user->wheat >= $amount;
+            case 2://oil
+                return $user->oil >= $amount;
             case 3://prestige point
                 return $user->prestigepoints >= $amount;
         }
@@ -562,11 +562,20 @@ class MarketplaceController extends Controller
             case 1://stone
                 $user->stone -= $amount;
                 break;
-            case 2://wheat
-                $user->wheat -= $amount;
+            case 2://oil
+                $user->oil -= $amount;
                 break;
             case 3://prestige point
                 $user->prestigepoints -= $amount;
+                break;
+            case 4://planks
+                $user->planks -= $amount;
+            break;
+            case 5://bricks
+                $user->bricks -= $amount;
+                break;
+            case 6://gasoline
+                $user->gasoline -= $amount;
                 break;
         }
         $user->save();
@@ -581,11 +590,20 @@ class MarketplaceController extends Controller
             case 1://stone
                 $user->stone += $amount;
                 break;
-            case 2://wheat
-                $user->wheat += $amount;
+            case 2://oil
+                $user->oil += $amount;
                 break;
             case 3://prestige point
                 $user->prestigepoints += $amount;
+                break;
+            case 4://planks
+                $user->planks += $amount;
+                break;
+            case 5://bricks
+                $user->bricks += $amount;
+                break;
+            case 6://gasoline
+                $user->gasoline += $amount;
                 break;
         }
         $user->save();
@@ -602,7 +620,7 @@ class MarketplaceController extends Controller
     }
 
     public function getItemNames() {
-        return collect(["Wood", "Stone", "Wheat", "Prestige point"]);
+        return collect(["Wood", "Stone", "Oil", "Prestige point", "Planks", "Bricks", "Gasoline"]);
     }
 
     public function newOffer()

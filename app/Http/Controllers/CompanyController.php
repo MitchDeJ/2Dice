@@ -9,6 +9,7 @@ use App\Location;
 use App\Company;
 use App\Affiliation;
 use App\User;
+use App\Factory;
 use App\CompanyOptions;
 use File;
 use Image;
@@ -20,9 +21,17 @@ class CompanyController extends Controller
 
     public function companyCreate()
     {
+        $factories = array();
+        $types = 3; //only the first basic 3 factories are free
+
+        for($i=0; $i < $types; $i++) {
+            $factories[$i] = FactoryController::getTypeName($i);
+        }
+
         return view('companycreate', array(
             "user" => Auth::user(),
-            "location" => Location::where('id', Auth::user()->location)->get()->first()
+            "location" => Location::where('id', Auth::user()->location)->get()->first(),
+            "factories" => $factories
         ));
     }
 
@@ -289,6 +298,7 @@ class CompanyController extends Controller
     {
         $user = Auth::user();
         $name = $request->input('name');
+        $type = $request->input('type');
 
         $this->validate($request, [
             'name' => 'required|unique:companies|regex:/(^[A-Za-z0-9 ]+$)+/|min:3|max:15',
@@ -302,6 +312,14 @@ class CompanyController extends Controller
 
         if (CompanyController::getAffiliation($user) != -1) {
             return redirect('companycreate')->with('fail', 'You are already part of a company.');
+        }
+
+        if (!FactoryController::validType($type)) {
+            return redirect('companycreate')->with('fail', 'Invalid factory.');
+        }
+
+        if (!FactoryController::isGatherType($type)) {
+            return redirect('companycreate')->with('fail', 'Only gathering factories can be built at this point.');
         }
 
         $user->cash -= $price;
@@ -318,6 +336,11 @@ class CompanyController extends Controller
             'user' => $user->id,
             'company' => $company->id,
             'rights' => 3
+        ]);
+
+        Factory::create([
+            'company' => $company->id,
+            'type' => $type
         ]);
 
         //making an options instance

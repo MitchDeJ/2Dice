@@ -25,7 +25,10 @@ class CreateCompaniesTable extends Migration
             $table->unsignedBigInteger('cash')->default(0);
             $table->unsignedBigInteger('wood')->default(0);
             $table->unsignedBigInteger('stone')->default(0);
-            $table->unsignedBigInteger('wheat')->default(0);
+            $table->unsignedBigInteger('oil')->default(0);
+            $table->unsignedBigInteger('planks')->default(0);
+            $table->unsignedBigInteger('bricks')->default(0);
+            $table->unsignedBigInteger('gasoline')->default(0);
             $table->timestamps();
         });
     }
