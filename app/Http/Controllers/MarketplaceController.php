@@ -412,9 +412,9 @@ class MarketplaceController extends Controller
         if ($offer->creatortype != 0)
             return redirect('marketplace')->with('fail', 'Invalid offer.');
 
-            if (Auth::user()->id != $offer->creator) {
-                return redirect('marketplace')->with('fail', 'That is not your offer.');
-            }
+        if (Auth::user()->id != $offer->creator) {
+            return redirect('marketplace')->with('fail', 'That is not your offer.');
+        }
 
         $user = Auth::user();
 
@@ -576,7 +576,7 @@ class MarketplaceController extends Controller
                 break;
             case 4://planks
                 $user->planks -= $amount;
-            break;
+                break;
             case 5://bricks
                 $user->bricks -= $amount;
                 break;
@@ -615,17 +615,19 @@ class MarketplaceController extends Controller
         $user->save();
     }
 
-    public function validItem($item) {
+    public function validItem($item)
+    {
         if ($item < 0)
             return false;
 
-        if ($item > count($this->getItemNames())-1)
+        if ($item > count($this->getItemNames()) - 1)
             return false;
 
         return true;
     }
 
-    public function getItemNames() {
+    public function getItemNames()
+    {
         return collect(["Wood", "Stone", "Oil", "Prestige point", "Planks", "Bricks", "Gasoline"]);
     }
 
@@ -652,11 +654,12 @@ class MarketplaceController extends Controller
         return view('newcompanyoffer', array("user" => Auth::user()));
     }
 
-    public static function getAvgItemPrice($item) {
+    public static function getAvgItemPrice($item)
+    {
         $offers = MarketOffer::where('item', $item)->get();
         $amount = 0;
         $pricetotal = 0;
-        foreach($offers as $offer) {
+        foreach ($offers as $offer) {
             $a = $offer->amount - $offer->completed;
 
             $amount += $a;
@@ -666,19 +669,22 @@ class MarketplaceController extends Controller
         if ($amount == 0)
             return 0;
 
-        return ($pricetotal/$amount);
+        return ($pricetotal / $amount);
     }
 
-    public static function getMedianPrice($item) {
+    public static function getMedianPrice($item)
+    {
         $offers = MarketOffer::where('item', $item)->get();
         $amount = 0;
         $i = 0;
         $array = array();
-        foreach($offers as $offer) {
-            $a = $offer->amount - $offer->completed;
-            for ($t = $i; $i < $t+$a; $i++) {
-                $array[$i] = $offer->price;
-                $amount++;
+        foreach ($offers as $offer) {
+            if ($offer->cancelled == false) {
+                $a = $offer->amount - $offer->completed;
+                for ($t = $i; $i < $t + $a; $i++) {
+                    $array[$i] = $offer->price;
+                    $amount++;
+                }
             }
         }
 
@@ -688,10 +694,11 @@ class MarketplaceController extends Controller
         return self::calculateMedian($array);
     }
 
-    public static function getItemAmount($item) {
+    public static function getItemAmount($item)
+    {
         $offers = MarketOffer::where('item', $item)->get();
         $total = 0;
-        foreach($offers as $offer) {
+        foreach ($offers as $offer) {
             $total += ($offer->amount - $offer->completed);
         }
 
@@ -709,15 +716,15 @@ class MarketplaceController extends Controller
         $Count = count($Values);
 
         //Check the amount of remainders to calculate odd/even
-        if($Count % 2 == 0)
-        {
+        if ($Count % 2 == 0) {
             return $Values[$Count / 2];
         }
 
         return (($Values[($Count / 2)] + $Values[($Count / 2) - 1]) / 2);
     }
 
-    public function marketPrices() {
+    public function marketPrices()
+    {
 
         $items = $this->getItemNames();
 
@@ -729,13 +736,13 @@ class MarketplaceController extends Controller
         $locations = 3;
         for ($l = 1; $l <= $locations; $l++) {
             $allprices = array();
-            for($i = 0; $i < count($items); $i++) {
+            for ($i = 0; $i < count($items); $i++) {
                 $allprices[$i] = LocationController::getSellPrice($l, $i);
             }
             $quicksells[$l] = $allprices;
         }
 
-        for($i = 0; $i < count($items); $i++) {
+        for ($i = 0; $i < count($items); $i++) {
             $prices[$i] = self::getMedianPrice($i);
             $amounts[$i] = self::getItemAmount($i);
         }
