@@ -699,6 +699,7 @@ class MarketplaceController extends Controller
         $offers = MarketOffer::where('item', $item)->get();
         $total = 0;
         foreach ($offers as $offer) {
+            if ($offer->cancelled == false)
             $total += ($offer->amount - $offer->completed);
         }
 
