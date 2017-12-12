@@ -44,9 +44,9 @@
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <td class="table_dark_bg" style="width: 10%;">Host</td>
-                            <td class="table_dark_bg" style="width: 10%;">Bet</td>
-                            <td class="table_dark_bg" style="width: 1%;">Action</td>
+                            <td class="table_dark_bg" style="width: 33%;">Host</td>
+                            <td class="table_dark_bg" style="width: 33%;">Bet</td>
+                            <td class="table_dark_bg" style="width: 34%;">Action</td>
                         </tr>
                         </thead>
                         <tbody>
