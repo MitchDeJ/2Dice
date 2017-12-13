@@ -74,12 +74,12 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-3">
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <td class="table_dark_bg" style="width: 50%;">Resources</td>
+                                <td class="table_dark_bg" style="width: 50%;">Gathering resources</td>
                                 <td class="table_dark_bg" style="width: 50%;"></td>
                             </tr>
                             </thead>
@@ -106,6 +106,84 @@
                                 </td>
                                 <td>
                                     {{number_format($user->oil)}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <td class="table_dark_bg" style="width: 50%;">Processed resources</td>
+                                <td class="table_dark_bg" style="width: 50%;"></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><i class="fa fa-area-chart i_button_background"></i>
+                                    Bricks
+                                </td>
+                                <td>
+                                    {{number_format($user->bricks)}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-area-chart i_button_background"></i>
+                                    Planks
+                                </td>
+                                <td>
+                                    {{number_format($user->planks)}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-area-chart i_button_background"></i>
+                                    Gasoline
+                                </td>
+                                <td>
+                                    {{number_format($user->gasoline)}}
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <td class="table_dark_bg" style="width: 50%;">Currency</td>
+                                <td class="table_dark_bg" style="width: 50%;"></td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td><i style="color: #f39c12;" class="fa fa-money i_button_background"></i>
+                                    Cash
+                                </td>
+                                <td>
+                                    ${{number_format($user->cash)}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i style="color: #f39c12;" class="fa fa-cube i_button_background"></i>
+                                    Prestige points
+                                </td>
+                                <td>
+                                    {{number_format($user->prestigepoints)}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i style="color: #f39c12;" class="fa fa-envelope i_button_background"></i>
+                                    Global message points
+                                </td>
+                                <td>
+                                    {{number_format($user->globalmsg)}}
                                 </td>
                             </tr>
                             </tbody>
@@ -149,25 +227,25 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <td class="table_dark_bg" style="width: 50%;">Currency</td>
+                                <td class="table_dark_bg" style="width: 50%;">Company</td>
                                 <td class="table_dark_bg" style="width: 50%;"></td>
                             </tr>
                             </thead>
                             <tbody>
                             <tr>
-                                <td><i style="color: #f39c12;" class="fa fa-money i_button_background"></i>
-                                    Cash
+                                <td><i class="fa fa-building i_button_background"></i>
+                                    Company
                                 </td>
                                 <td>
-                                    ${{number_format($user->cash)}}
+                                    {{$company}}
                                 </td>
                             </tr>
                             <tr>
-                                <td><i style="color: #f39c12;" class="fa fa-cube i_button_background"></i>
-                                    Prestige points
+                                <td><i class="fa fa-building i_button_background"></i>
+                                    Company rank
                                 </td>
                                 <td>
-                                    {{number_format($user->prestigepoints)}}
+                                    Unknown
                                 </td>
                             </tr>
                             </tbody>
@@ -198,37 +276,6 @@
                                     Total bets</td>
                                 <td>
                                     {{number_format($user->totalbets)}}
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="table-responsive">
-                        <table class="table table-striped">
-                            <thead>
-                            <tr>
-                                <td class="table_dark_bg" style="width: 50%;">Company</td>
-                                <td class="table_dark_bg" style="width: 50%;"></td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td><i class="fa fa-building i_button_background"></i>
-                                    Company
-                                </td>
-                                <td>
-                                    {{$company}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-building i_button_background"></i>
-                                    Company rank
-                                </td>
-                                <td>
-                                    Unknown
                                 </td>
                             </tr>
                             </tbody>
