@@ -45,14 +45,20 @@
                             <tr>
                                 <td>{{(($num-1)*25)+$loop->iteration}}</td>
                                 <td>
-                                    <strong style="color:{{Titles::getTitleColor($user->title)}}">
-                                        {{Titles::getTitle($user->title)}}</strong>
-                                    <a href="{{url("/profile/".$user->name)}}"
-                                       @if($user->vip == true)
-                                       class="vip_yes"
-                                       @else
-                                       class="text-dark"
-                                            @endif >{{$user->name}}</a> @if($user->vip == true)★@endif
+                                    @if($bans[$user->id] == 1)
+                                        <strike>
+                                            @endif
+                                            <strong style="color:{{Titles::getTitleColor($user->title)}}">
+                                                {{Titles::getTitle($user->title)}}</strong>
+                                            <a href="{{url("/profile/".$user->name)}}"
+                                               @if($user->vip == true)
+                                               class="vip_yes"
+                                               @else
+                                               class="text-dark"
+                                                    @endif >{{$user->name}}</a> @if($user->vip == true)★@endif
+                                            @if($bans[$user->id] == 1)
+                                        </strike>
+                                    @endif
                                 </td>
                                 <td>{{number_format($user->power)}}</td>
                             </tr>

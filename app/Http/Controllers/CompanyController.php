@@ -24,7 +24,7 @@ class CompanyController extends Controller
         $factories = array();
         $types = 3; //only the first basic 3 factories are free
 
-        for($i=0; $i < $types; $i++) {
+        for ($i = 0; $i < $types; $i++) {
             $factories[$i] = FactoryController::getTypeName($i);
         }
 
@@ -196,7 +196,8 @@ class CompanyController extends Controller
         ));
     }
 
-    public function companyOptions() {
+    public function companyOptions()
+    {
         $user = Auth::user();
 
         if (CompanyController::getAffiliation($user) == -1) {
@@ -204,6 +205,7 @@ class CompanyController extends Controller
         }
 
         $company = Company::where('id', CompanyController::getAffiliation($user))->get()->first();
+        $membercount = count(self::getCompanyMembers($company->id));
 
         if (self::getRights($user) == 3)
             $enabled = "";
@@ -213,7 +215,8 @@ class CompanyController extends Controller
         return view('companyoptions', array(
             "user" => $user,
             "company" => $company,
-            "enabled" => $enabled
+            "enabled" => $enabled,
+            'membercount' => $membercount
         ));
     }
 
@@ -285,10 +288,19 @@ class CompanyController extends Controller
         }
 
         $company = Company::where('id', CompanyController::getAffiliation($user))->get()->first();
+        $quicksells = array();
+        $items = MarketplaceController::getItemNames();
+            for ($i = 0; $i < count($items); $i++) {
+                $quicksells[$i] = LocationController::getSellPrice($company->location, $i);
+            }
+
+        $items = $items->except(3);
 
         return view('companydashboard', array(
             "user" => Auth::user(),
-            'company' => $company
+            'company' => $company,
+            'quicksells' => $quicksells,
+            'items' => $items
         ));
     }
 
@@ -523,7 +535,7 @@ class CompanyController extends Controller
 
         //this role doesnt exist
         if (ComAff::getRole($rights) == "")
-        return redirect("managemembers")->with('fail', 'Invalid role.');
+            return redirect("managemembers")->with('fail', 'Invalid role.');
 
         if ($user2->count() == 0) //if the user doesnt exist
             return redirect("managemembers")->with('fail', 'Invalid user.');
@@ -668,18 +680,19 @@ class CompanyController extends Controller
         return redirect('dashboard')->with('success', $name . ' disbanded.');
     }
 
-    public function changeOwner(Request $request) {
+    public function changeOwner(Request $request)
+    {
         $name = $request->input('name');
         $user = Auth::user();
         $user2 = User::where('name', $name)->get();
 
         if ($user2->count() == 0)
-            return redirect('managemembers')->with('fail', 'Invalid user "'.$name.'".');
+            return redirect('managemembers')->with('fail', 'Invalid user "' . $name . '".');
 
         $user2 = $user2->first();
 
         if (self::getAffiliation($user) != self::getAffiliation($user2))
-            return redirect('managemembers')->with('fail', $user2->name.' is not part of your company.');
+            return redirect('managemembers')->with('fail', $user2->name . ' is not part of your company.');
 
         $company = Company::where('id', self::getAffiliation($user))->get()->first();
 
@@ -699,14 +712,15 @@ class CompanyController extends Controller
 
         MessageController::sendSystemMessage(
             $user2->name,
-            'You are now the owner of '.$company->name.'.',
-            $user->name.' has transferred ownership of '.$company->name.' to you.'
+            'You are now the owner of ' . $company->name . '.',
+            $user->name . ' has transferred ownership of ' . $company->name . ' to you.'
         );
 
-        return redirect('companydashboard')->with('success', $user2->name.' is now the owner of '.$company->name.'.');
+        return redirect('companydashboard')->with('success', $user2->name . ' is now the owner of ' . $company->name . '.');
     }
 
-    public function setOption(Request $request) {
+    public function setOption(Request $request)
+    {
         $option = $request->input('option');
         $value = $request->input('value');
         $user = Auth::user();
@@ -743,28 +757,57 @@ class CompanyController extends Controller
 
         switch ($option) {
             case "editprofile":
-            $options->editprofile = $value;
-            $options->save();
-            return redirect('companyoptions')->with('success', "Option 'edit profile' set to: ".$valueN);
+                $options->editprofile = $value;
+                $options->save();
+                return redirect('companyoptions')->with('success', "Option 'Edit profile' set to: " . $valueN);
             case "makeoffers":
                 $options->makeoffers = $value;
                 $options->save();
-                return redirect('companyoptions')->with('success', "Option 'make / use market offers' set to: ".$valueN);
+                return redirect('companyoptions')->with('success', "Option 'Make / use market offers' set to: " . $valueN);
             case "viewoffers":
                 $options->viewoffers = $value;
                 $options->save();
-                return redirect('companyoptions')->with('success', "Option 'view market offers' set to: ".$valueN);
+                return redirect('companyoptions')->with('success', "Option 'View market offers' set to: " . $valueN);
             case "handlerequests":
                 $options->handlerequests = $value;
                 $options->save();
-                return redirect('companyoptions')->with('success', "Option 'Handle requests / kick members' set to: ".$valueN);
+                return redirect('companyoptions')->with('success', "Option 'Handle requests / kick members' set to: " . $valueN);
             case "setroles":
                 $options->setroles = $value;
                 $options->save();
-                return redirect('companyoptions')->with('success', "Option 'Set roles' set to: ".$valueN);
+                return redirect('companyoptions')->with('success', "Option 'Set roles' set to: " . $valueN);
+            case "quicksell":
+                $options->quicksell = $value;
+                $options->save();
+                return redirect('companyoptions')->with('success', "Option 'Quick-sell resources' set to: " . $valueN);
             default:
                 return redirect('companyoptions')->with('fail', "Invalid option.");
         }
+    }
+
+    public function setSalary(Request $request)
+    {
+        $amount = $request->input('amount');
+        $user = Auth::user();
+
+        if ($amount < 1)
+            return redirect("companyoptions")->with('fail', 'Invalid amount');
+
+        if ($amount > config('app.maxcash'))
+            return redirect("companyoptions")->with('fail', 'Invalid amount');
+
+        if (self::getAffiliation($user) == -1)
+            return redirect("dashboard")->with('fail', 'You are not part of a company.');
+
+        if (self::getRights($user) != 3)
+            return redirect('companyoptions')->with('fail', 'Only the owner can change options.');
+
+        $company = Company::where('id', self::getAffiliation($user))->get()->first();
+        $options = self::getOptions($company->id);
+
+        $options->salary = $amount;
+        $options->save();
+        return redirect('companyoptions')->with('success', 'Salary set to: $'.number_format($amount).'.');
     }
 
     public function depositCash(Request $request)
@@ -789,7 +832,45 @@ class CompanyController extends Controller
 
         $user->save();
         $company->save();
-        return redirect('companydashboard')->with('success', 'Deposited $'.number_format($amount).'.');
+        return redirect('companydashboard')->with('success', 'Deposited $' . number_format($amount) . '.');
+    }
+
+    public function quickSell(Request $request)
+    {
+        $user = Auth::user();
+        $item = $request->input('item');
+
+        if (self::getAffiliation($user) == -1)
+            return redirect('dashboard')->with('fail', 'You are not part of a company.');
+
+        $company = Company::where('id', self::getAffiliation($user))->get()->first();
+
+        if (!MarketplaceController::validItem($item))
+            return redirect('companydashboard')->with('fail', 'Invalid item.');
+
+        $price = LocationController::getSellPrice($company->location, $item);
+        $amount = $request->input('amount');
+
+        if ($amount < 1)
+            return redirect('companydashboard')->with('fail', 'Invalid amount.');
+
+        if ($amount > config('app.maxcash') || $amount * $price > config('app.maxcash'))
+            return redirect('companydashboard')->with('fail', 'Invalid amount.');
+
+        $options = self::getOptions(self::getAffiliation($user));
+        if (!self::hasRights($user, $options->quicksell))
+            return redirect('companydashboard')->with('fail', 'You do not have permission to do that.');
+
+        if (!MarketplaceController::hasItem($company, $item, $amount))
+            return redirect('companydashboard')->with('fail', 'The company does not have that many '.MarketplaceController::getItemnames()[$item].'.');
+
+        //acutally selling
+        MarketplaceController::removeItem($company, $item, $amount);
+        $company->cash += $amount * $price;
+        $company->save();
+
+        return redirect('companydashboard')->with('success',
+            'Sold '.number_format($amount)."x ".MarketplaceController::getItemnames()[$item]." for $".number_format($price*$amount));
     }
 
 }

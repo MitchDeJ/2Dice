@@ -8,6 +8,7 @@ use App\User;
 use App\Auction;
 use App\MarketOffer;
 use App\Company;
+use App\Location;
 
 class MarketplaceController extends Controller
 {
@@ -90,6 +91,9 @@ class MarketplaceController extends Controller
             return redirect('marketplace')->with('fail', 'You have reached the ' . $limit . ' offer limit.');
 
         if ($amount < 1 || $price < 1)
+            return redirect('newoffer')->with('fail', 'Invalid amount.');
+
+        if ($amount * $price > config('app.maxcash'))
             return redirect('newoffer')->with('fail', 'Invalid amount.');
 
         /*
@@ -539,7 +543,7 @@ class MarketplaceController extends Controller
     }
 
 
-    public function hasItem($user, $item, $amount)
+    public static function hasItem($user, $item, $amount)
     {
         switch ($item) {
             case 0://wood
@@ -559,7 +563,7 @@ class MarketplaceController extends Controller
         }
     }
 
-    public function removeItem($user, $item, $amount)
+    public static function removeItem($user, $item, $amount)
     {
         switch ($item) {
             case 0://wood
@@ -587,7 +591,7 @@ class MarketplaceController extends Controller
         $user->save();
     }
 
-    public function addItem($user, $item, $amount)
+    public static function addItem($user, $item, $amount)
     {
         switch ($item) {
             case 0://wood
@@ -615,18 +619,18 @@ class MarketplaceController extends Controller
         $user->save();
     }
 
-    public function validItem($item)
+    public static function validItem($item)
     {
         if ($item < 0)
             return false;
 
-        if ($item > count($this->getItemNames()) - 1)
+        if ($item > count(self::getItemNames()) - 1)
             return false;
 
         return true;
     }
 
-    public function getItemNames()
+    public static function getItemNames()
     {
         return collect(["Wood", "Stone", "Oil", "Prestige point", "Planks", "Bricks", "Gasoline"]);
     }
@@ -733,8 +737,7 @@ class MarketplaceController extends Controller
         $amounts = array();
 
         $quicksells = array();
-        //TODO AMOUNT OF LOCATIONS
-        $locations = 3;
+        $locations = Location::all()->count();
         for ($l = 1; $l <= $locations; $l++) {
             $allprices = array();
             for ($i = 0; $i < count($items); $i++) {

@@ -94,9 +94,13 @@ class AuctionController extends Controller
             return redirect('newauction')->with('fail', 'Invalid minimum price.');
         }
 
+        if ($minprice > config('app.maxcash'))
+            return redirect('newauction')->with('fail', 'Invalid amount.');
+
         if ($object->count() < 1) {
             return redirect('newauction')->with('fail', 'Invalid object.');
         }
+
 
         $object = $object->first();
 

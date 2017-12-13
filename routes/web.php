@@ -122,4 +122,6 @@ Route::post("/leave",["uses" => "CompanyController@leave", "as"=>"company.leave"
 Route::post("/depositcash",["uses" => "CompanyController@depositCash", "as"=>"company.depositcash"]);
 Route::post("/changeowner",["uses" => "CompanyController@changeOwner", "as"=>"company.changeowner"]);
 Route::post("/setoption",["uses" => "CompanyController@setOption", "as"=>"company.setoption"]);
+Route::post("/quicksell",["uses" => "CompanyController@quickSell", "as"=>"company.quicksell"]);
+Route::post("/setSalary",["uses" => "CompanyController@setSalary", "as"=>"company.setsalary"]);
 

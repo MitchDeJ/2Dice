@@ -95,6 +95,41 @@
                                 </div>
                             </td>
                         </tr>
+                        <tr>
+                            <td>
+                                Quick-sell resources
+                            </td>
+                            <td>
+                                <div class="form-inline">
+                                    {!! Form::open(['route' => ['company.setoption'], 'method' => 'post']) !!}
+                                    {!! Form::select('value', array(0 => 'Everyone', 1 => 'Moderator +', 2 => 'Admin +', 3 => 'Owner'),
+                                     ComAff::getOption($company->id, "quicksell"), ['class' => 'form-control form-group form-inline', 'onchange' => "this.form.submit()", $enabled]) !!}
+                                    {!! Form::hidden("option", "quicksell") !!}
+                                    {!! Form::close() !!}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Daily salary
+                            </td>
+                            <td>
+                                <div class="form-inline">
+                                    {!! Form::open(['route' => ['company.setsalary'], 'method' => 'post']) !!}
+                                    @if(!$enabled == "")
+                                        {!! Form::text('amount', ComAff::getOption($company->id, "salary"), ['class' => 'form-control form-group form-inline',
+                                         $enabled,'id'=>"amount", 'placeholder' => ComAff::getOption($company->id, "salary")]) !!}
+                                    @else
+                                        {!! Form::number('amount', ComAff::getOption($company->id, "salary"), ['class' => 'form-control form-group form-inline',
+                                         $enabled,'id'=>"amount", 'placeholder' => ComAff::getOption($company->id, "salary")]) !!}
+                                        Total per
+                                        day: {!! Form::text('totalprice', null, ['class'=>"form-control", 'disabled', 'id' => 'totalprice']) !!}
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                        {!! Form::close() !!}
+                                    @endif
+                                </div>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                     <hr/>
@@ -128,4 +163,28 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        @if($enabled == "")
+        $('#amount').keyup(calculate);
+        function calculate(e) {
+            var amount = $('#amount').val();
+            var members = {{ $membercount }};
+            var maths = members * amount;
+            $('#totalprice').val(numberWithCommas(maths));
+        }
+        function numberWithCommas(x) {
+            return "$" + x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        @else
+        function numberWithCommas(x) {
+            return "$" + x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+        function calculate(e) {
+            var amount = numberWithCommas({{ComAff::getOption($company->id, "salary")}});
+            $('#amount').val(amount);
+        }
+        @endif
+        calculate();
+    </script>
 @endsection

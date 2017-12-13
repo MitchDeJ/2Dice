@@ -34,6 +34,9 @@ class ObjectController extends Controller
             return redirect($page)->with('fail', 'Invalid amount.');
         }
 
+        if ($amount > config('app.maxcash'))
+            return redirect($page)->with('fail', 'Invalid amount.');
+
         $auctions = Auction::all();
 
         foreach ($auctions as $auction) {

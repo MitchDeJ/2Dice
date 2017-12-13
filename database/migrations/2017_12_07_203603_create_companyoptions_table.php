@@ -21,6 +21,8 @@ class CreateCompanyoptionsTable extends Migration
             $table->unsignedTinyInteger('viewoffers')->default(0);
             $table->unsignedTinyInteger('handlerequests')->default(1);
             $table->unsignedTinyInteger('setroles')->default(3);
+            $table->unsignedTinyInteger('quicksell')->default(2);
+            $table->unsignedBigInteger('salary')->default(0);
             $table->timestamps();
         });
     }

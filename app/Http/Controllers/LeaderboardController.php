@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use App\Ban;
 
 class LeaderboardController extends Controller
 {
@@ -17,7 +18,19 @@ class LeaderboardController extends Controller
     {
         $users = User::all()->sortByDesc('power')->slice(0+(25*($num-1)), 25);
         $pages = ceil(User::count()/25);
-        return view('leaderboard', array('users' => $users, "pages" => $pages, "num" => $num));
+        $bans = array();
+        foreach($users as $user) {
+            $bans[$user->id] = 0;
+            if (Ban::where('user', $user->id)->get()->count() > 0)
+                $bans[$user->id] = 1;
+        }
+
+        return view('leaderboard', array(
+            'users' => $users,
+            "pages" => $pages,
+            "num" => $num,
+            "bans" => $bans
+        ));
     }
 
     public function getPlayer(Request $request) {

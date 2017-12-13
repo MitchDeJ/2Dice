@@ -48,6 +48,9 @@ class AdminController extends Controller
             'reason' => $reason
         ]);
 
+        $user->desc = "This player is banned. Reason: ".$reason;
+        $user->save();
+
         return redirect('adminpanel')->with('success', $name . ' banned for reason: ' . $reason);
     }
 
@@ -65,6 +68,9 @@ class AdminController extends Controller
                 $ban->delete();
             }
         }
+        $user->desc = "";
+        $user->save();
+
         return redirect('adminpanel')->with('success', $name . ' unbanned.');
     }
 

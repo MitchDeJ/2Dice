@@ -25,6 +25,16 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('stocks:update')->hourly();
+
+        //updating quicksell prices
+        $schedule->command('prices:update')->dailyAt('00:00');
+        $schedule->command('prices:update')->dailyAt('06:00');
+        $schedule->command('prices:update')->dailyAt('12:00');
+        $schedule->command('prices:update')->dailyAt('18:00');
+
+        //paying salaries
+
+        $schedule->command('salaries:pay')->daily();
     }
 
     /**

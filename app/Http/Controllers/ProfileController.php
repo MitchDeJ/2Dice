@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\Ban;
 use Illuminate\Http\Request;
 use Auth;
 use File;
@@ -36,7 +37,8 @@ class ProfileController extends Controller
             "lbrank" => ProfileController::getLeaderboardRank(Auth::user()->name),
             "location" => Location::where("id", $user->location)->get()->first(),
             'list' => $list,
-            'company' => $company
+            'company' => $company,
+            'banned' => 0 //cannot view your own profile if your banned anyways..
         ));
     }
 
@@ -54,12 +56,15 @@ class ProfileController extends Controller
             $company = CompanyController::getCompanyName(CompanyController::getAffiliation($user));
         }
 
+        $banned = Ban::where('user', $user->id)->get()->count();
+
         return view("profile", array(
             "user" => $user,
             "lbrank" => ProfileController::getLeaderboardRank($user->name),
             "location" => Location::where("id", $user->location)->get()->first(),
             'list' => $list,
-            'company' => $company
+            'company' => $company,
+            'banned' => $banned
         ));
     }
 

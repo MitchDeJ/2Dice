@@ -22,8 +22,14 @@
             <div class="card-body">
                 <img src="{!! url("/userimg/".$user->avatar) !!}" width="200px" height="200px" class="img-thumbnail"
                      style="display: block; margin: auto; margin-bottom: 1%">
-                <h4 class="text-center"><strong style="color:{{Titles::getTitleColor($user->title)}}">
-                        {{Titles::getTitle($user->title)}}</strong>{{$user->name}}</h4>
+                @if($banned > 0)
+                    <strike>
+                        @endif
+                        <h4 class="text-center"><strong style="color:{{Titles::getTitleColor($user->title)}}">
+                                {{Titles::getTitle($user->title)}}</strong>{{$user->name}}</h4>
+                        @if($banned > 0)
+                    </strike>
+                @endif
 
                 <div class="form-group">
                     <br>
@@ -106,7 +112,8 @@
                                         Company
                                     </td>
                                     <td>
-                                        <a href="{{url("/companyprofile/".$company)}}" class="text-dark"> {{$company}}</a>
+                                        <a href="{{url("/companyprofile/".$company)}}"
+                                           class="text-dark"> {{$company}}</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -145,9 +152,10 @@
                             </table>
                         </div>
                     </div>
-                </div> <br>
-                    <div class="row">
-                        <div class="col-md-6">
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-6">
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -176,8 +184,8 @@
                                 </tbody>
                             </table>
                         </div>
-                        </div>
-                        <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6">
                         <div class="table-responsive">
                             <table class="table table-striped">
                                 <thead>
@@ -198,9 +206,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        </div>
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 @endsection
