@@ -699,6 +699,9 @@ class CompanyController extends Controller
         if ($company->owner != $user->name)
             return redirect("managemembers")->with('fail', 'Only the owner of the company can do that.');
 
+        if ($user->name == $user2->name)
+            return redirect("managemembers")->with('fail', 'Why would you do that?');
+
         $usera = Affiliation::where('user', $user->id)->get()->first();
         $user2a = Affiliation::where('user', $user2->id)->get()->first();
 
