@@ -76,3 +76,5 @@ class PaySalaries extends Command
             }
         }
     }
+}
+
