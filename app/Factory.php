@@ -8,6 +8,6 @@ class Factory extends Model
 {
     protected $table = 'factories';
     protected $fillable = [
-        'id', 'company', 'type', 'efficiency', 'luck'
+        'id', 'company', 'type', 'level'
     ];
 }

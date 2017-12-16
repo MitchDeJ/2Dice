@@ -24,10 +24,11 @@
                             </thead>
                             <tbody>
                             @foreach($toprichest as $user)
-                            <tr>
-                                <td><a href="{{url("/profile/".$user->name)}}" class="text-dark">{{$user->name}}</a></td>
-                                <td>${{number_format($user->cash)}}</td>
-                            </tr>
+                                <tr>
+                                    <td><a href="{{url("/profile/".$user->name)}}" class="text-dark">{{$user->name}}</a>
+                                    </td>
+                                    <td>${{number_format($user->cash)}}</td>
+                                </tr>
                             @endforeach
                             </tbody>
                         </table>
@@ -46,7 +47,8 @@
                             <tbody>
                             @foreach($topranked as $user)
                                 <tr>
-                                    <td><a href="{{url("/profile/".$user->name)}}" class="text-dark">{{$user->name}}</a></td>
+                                    <td><a href="{{url("/profile/".$user->name)}}" class="text-dark">{{$user->name}}</a>
+                                    </td>
                                     <td>Prestige {{$user->prestige}} (Rank {{$user->rank}})</td>
                                 </tr>
                             @endforeach
@@ -67,7 +69,8 @@
                             <tbody>
                             @foreach($topbets as $user)
                                 <tr>
-                                    <td><a href="{{url("/profile/".$user->name)}}" class="text-dark">{{$user->name}}</a></td>
+                                    <td><a href="{{url("/profile/".$user->name)}}" class="text-dark">{{$user->name}}</a>
+                                    </td>
                                     <td>${{number_format($user->highestbet)}}</td>
                                 </tr>
                             @endforeach
@@ -88,7 +91,8 @@
                             <tbody>
                             @foreach($toptotalbets as $user)
                                 <tr>
-                                    <td><a href="{{url("/profile/".$user->name)}}" class="text-dark">{{$user->name}}</a></td>
+                                    <td><a href="{{url("/profile/".$user->name)}}" class="text-dark">{{$user->name}}</a>
+                                    </td>
                                     <td>{{number_format($user->totalbets)}}</td>
                                 </tr>
                             @endforeach

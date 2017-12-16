@@ -17,8 +17,7 @@ class CreateFactoriesTable extends Migration
             $table->increments('id');
             $table->integer('company');
             $table->unsignedTinyInteger('type');
-            $table->unsignedInteger('efficiency')->default(1);
-            $table->unsignedInteger('luck')->default(1);
+            $table->unsignedInteger('level')->default(1);
             $table->timestamps();
         });
     }

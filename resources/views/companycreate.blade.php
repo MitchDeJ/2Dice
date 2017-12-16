@@ -31,7 +31,7 @@
                 </div>
                 <div class="form-check-inline">
                     <label>Factory type</label>
-                    {!! Form::select('type', $factories, null, ['class' => 'form-control']) !!}
+                    {!! Form::select('type', $factories, null, ['class' => 'form-control form-inline']) !!}
                 </div>
                 <button type="submit" class="btn btn-default">Create</button>
                 {!! Form::close() !!}

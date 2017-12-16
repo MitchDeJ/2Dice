@@ -48,6 +48,8 @@ class ComAff extends Facade //short for CompanyAffiliation
                 return $options->quicksell;
             case "salary":
                 return $options->salary;
+            case "expand":
+                return $options->expand;
             default:
                 return -1;
         }

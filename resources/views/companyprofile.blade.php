@@ -51,7 +51,7 @@
                                         Position
                                     </td>
                                     <td>
-                                        #1
+                                        #{{$rank}}
                                     </td>
                                 </tr>
                                 <tr>

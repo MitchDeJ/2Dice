@@ -178,7 +178,7 @@
                         </li>
                     @endif
                     <li>
-                        <a href="{{ url('/companyleaderboard') }}">Leaderboard</a>
+                        <a href="{{ url('/companyleaderboard/1') }}">Leaderboard</a>
                     </li>
                 </ul>
             </li>

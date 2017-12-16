@@ -402,6 +402,8 @@ class MarketplaceController extends Controller
 
         if ($offer->amount == $offer->completed)
             return redirect($redirect)->with('neutral', 'Offer has already been completed, please collect.');
+        if ($offer->cancelled == true)
+            return redirect($redirect)->with('neutral', 'Offer has already been cancelled, please collect.');
 
         $offer->cancelled = true;
         $offer->save();
@@ -479,7 +481,7 @@ class MarketplaceController extends Controller
         }
     }
 
-    public function collectCompanyOffer(Request $request)
+    public function collectCompanyOffer(Request $request)//TODO add storage limit to all ways of collecting
     {
         $offer = MarketOffer::where('id', $request->input('id'))->get()->first();
         $toCollect = $offer->completed - $offer->collected;
@@ -500,6 +502,16 @@ class MarketplaceController extends Controller
             if ($offer->cancelled == false && $toCollect <= 0)
                 return redirect('companymarket')->with('fail', 'The collection box of this offer is currently empty.');
 
+            /*Checking for storage*/
+            $now = MarketplaceController::getItem($company, $offer->item);
+            $limit = CompanyController::getStorageLimit($company);
+            if ($now == $limit) {
+                return redirect('companymarket')->with('fail', "The company's " . strtolower(MarketplaceController::getItemnames()[$offer->item]) . " storage is full.");
+            }
+            if (($now + $toCollect) > $limit) {
+                $toCollect = $limit - $now;
+            }
+            /*end of storage check */
             $this->addItem($company, $offer->item, $toCollect);
             $offer->collected += $toCollect;
             $offer->save();
@@ -507,12 +519,15 @@ class MarketplaceController extends Controller
                 $cash = $offer->cash;
                 $company->cash += $cash;
                 $company->save();
+                if ($offer->completed - $offer->collected == 0)
                 $offer->delete();
+                else
+                    $offer->save();
 
                 if ($cash > 0)
-                    return redirect('companymarket')->with('success', 'Collected ' . number_format($toCollect) . ' items and $' . number_format($cash) . '. The offer has been removed.');
+                    return redirect('companymarket')->with('success', 'Collected ' . number_format($toCollect) . ' items and $' . number_format($cash) . '.');
                 else
-                    return redirect('companymarket')->with('success', 'Collected ' . number_format($toCollect) . ' items. The offer has been removed.');
+                    return redirect('companymarket')->with('success', 'Collected ' . number_format($toCollect) . ' items.');
             } else {
                 return redirect('companymarket')->with('success', 'Collected ' . number_format($toCollect) . ' items.');
             }
@@ -527,15 +542,33 @@ class MarketplaceController extends Controller
             $offer->cash = 0;
             $company->save();
             $offer->save();
+
+            /*Checking for storage*/
+            $now = MarketplaceController::getItem($company, $offer->item);
+            $limit = CompanyController::getStorageLimit($company);
+            if ($now == $limit) {
+                return redirect('companymarket')->with('fail', "The company's " . strtolower(MarketplaceController::getItemnames()[$offer->item]) . " storage is full.");
+            }
+
+            $toCollect = $offer->amount - $offer->completed - $offer->collected;
+
+            if (($now + $toCollect) > $limit) {
+                $toCollect = $limit - $now;
+            }
+            /*end of storage check */
             $offer->collected += $toCollect;
+
             if ($offer->cancelled == true || $offer->amount == $offer->completed) {
-                $this->addItem($company, $offer->item, $offer->amount - $offer->completed);
+                $this->addItem($company, $offer->item, $toCollect);
+                if ($offer->collected == $offer->amount-$offer->completed)
                 $offer->delete();
+                else
+                    $offer->save();
 
                 if ($offer->amount - $offer->completed > 0)
-                    return redirect('companymarket')->with('success', 'Collected ' . number_format($offer->amount - $offer->completed) . ' items and $' . number_format($cash) . '. The offer has been removed.');
+                    return redirect('companymarket')->with('success', 'Collected ' . number_format($toCollect) . ' items and $' . number_format($cash) . '.');
                 else
-                    return redirect('companymarket')->with('success', 'Collected $' . number_format($cash) . '. The offer has been removed.');
+                    return redirect('companymarket')->with('success', 'Collected $' . number_format($cash) . '.');
             } else {
                 return redirect('companymarket')->with('success', 'Collected $' . number_format($cash) . '.');
             }
@@ -617,6 +650,26 @@ class MarketplaceController extends Controller
                 break;
         }
         $user->save();
+    }
+
+    public static function getItem($user, $item)
+    {
+        switch ($item) {
+            case 0://wood
+                return $user->wood;
+            case 1://stone
+                return $user->stone;
+            case 2://oil
+                return $user->oil;
+            case 3://prestige point
+                return $user->prestigepoints;
+            case 4://planks
+                return $user->planks;
+            case 5://bricks
+                return $user->bricks;
+            case 6://gasoline
+                return $user->gasoline;
+        }
     }
 
     public static function validItem($item)

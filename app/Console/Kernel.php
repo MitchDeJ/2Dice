@@ -24,6 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('factory:tick')->hourly();
         $schedule->command('stocks:update')->hourly();
 
         //updating quicksell prices

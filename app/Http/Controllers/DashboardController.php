@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Location;
 use App\Subscription;
+use App\Company;
 
 class DashboardController extends Controller
 {
@@ -23,16 +24,19 @@ class DashboardController extends Controller
             $subscription = null;
 
         $company = "";
+        $companyrank = "";
         if (CompanyController::getAffiliation($user) != -1) {
             $company = CompanyController::getCompanyName(CompanyController::getAffiliation($user));
+            $companyrank = CompanyController::getLeaderboardRank(Company::where('id', CompanyController::getAffiliation($user))->get()->first()->id);
         }
         return view('dashboard', array(
             "user" => $user,
             "lbrank" => ProfileController::getLeaderboardRank(Auth::user()->name),
             "location" => Location::where("id", $user->location)->get()->first(),
             "subscription" => $subscription,
-            "company" => $company
-            ));
+            "company" => $company,
+            'companyrank' => $companyrank
+        ));
     }
 
     /**
@@ -40,7 +44,7 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function gameinformation ()
+    public function gameinformation()
     {
         return view('gameinformation');
     }

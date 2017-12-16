@@ -86,20 +86,21 @@
                             <tbody>
                             <tr>
                                 <td><i class="fa fa-area-chart i_button_background"></i>
-                                    Stone
-                                </td>
-                                <td>
-                                    {{number_format($user->stone)}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-area-chart i_button_background"></i>
                                     Wood
                                 </td>
                                 <td>
                                     {{number_format($user->wood)}}
                                 </td>
                             </tr>
+                            <tr>
+                                <td><i class="fa fa-area-chart i_button_background"></i>
+                                    Stone
+                                </td>
+                                <td>
+                                    {{number_format($user->stone)}}
+                                </td>
+                            </tr>
+
                             <tr>
                                 <td><i class="fa fa-area-chart i_button_background"></i>
                                     Oil
@@ -125,18 +126,18 @@
                             <tbody>
                             <tr>
                                 <td><i class="fa fa-area-chart i_button_background"></i>
-                                    Bricks
-                                </td>
-                                <td>
-                                    {{number_format($user->bricks)}}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><i class="fa fa-area-chart i_button_background"></i>
                                     Planks
                                 </td>
                                 <td>
                                     {{number_format($user->planks)}}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><i class="fa fa-area-chart i_button_background"></i>
+                                    Bricks
+                                </td>
+                                <td>
+                                    {{number_format($user->bricks)}}
                                 </td>
                             </tr>
                             <tr>
@@ -237,7 +238,7 @@
                                     Company
                                 </td>
                                 <td>
-                                    {{$company}}
+                                    <a class="text-dark" href="{{url("companyprofile/".$company)}}">{{$company}}</a>
                                 </td>
                             </tr>
                             <tr>
@@ -245,7 +246,7 @@
                                     Company rank
                                 </td>
                                 <td>
-                                    Unknown
+                                    #{{$companyrank}}
                                 </td>
                             </tr>
                             </tbody>

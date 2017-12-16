@@ -22,6 +22,7 @@ class CreateCompaniesTable extends Migration
             $table->string('createdat');
             $table->unsignedTinyInteger('location');
             $table->unsignedInteger('level')->default(1);
+            $table->unsignedBigInteger('storage')->default(2000);
             $table->unsignedBigInteger('cash')->default(0);
             $table->unsignedBigInteger('wood')->default(0);
             $table->unsignedBigInteger('stone')->default(0);

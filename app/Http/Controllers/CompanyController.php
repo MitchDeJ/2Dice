@@ -47,6 +47,7 @@ class CompanyController extends Controller
         $mycompany = CompanyController::getAffiliation($user);
         $location = LocationController::getName($company->location);
         $members = CompanyController::getCompanyMembers($company->id);
+        $rank =  self::getLeaderboardRank($company->id);
 
 
         $roles = array();
@@ -71,7 +72,8 @@ class CompanyController extends Controller
             'ranks' => $ranks,
             'totalpower' => $totalpower,
             'mycompany' => $mycompany,
-            'pending' => false
+            'pending' => false,
+            'rank' => $rank
         ));
     }
 
@@ -112,6 +114,7 @@ class CompanyController extends Controller
         $mycompany = CompanyController::getAffiliation($user);
         $location = LocationController::getName($company->location);
         $members = CompanyController::getCompanyMembers($company->id);
+        $rank =  self::getLeaderboardRank($company->id);
 
         $pending = false;
 
@@ -141,7 +144,8 @@ class CompanyController extends Controller
             'ranks' => $ranks,
             'totalpower' => $totalpower,
             'mycompany' => $mycompany,
-            'pending' => $pending
+            'pending' => $pending,
+            'rank' => $rank
         ));
     }
 
@@ -290,17 +294,19 @@ class CompanyController extends Controller
         $company = Company::where('id', CompanyController::getAffiliation($user))->get()->first();
         $quicksells = array();
         $items = MarketplaceController::getItemNames();
-            for ($i = 0; $i < count($items); $i++) {
-                $quicksells[$i] = LocationController::getSellPrice($company->location, $i);
-            }
+        for ($i = 0; $i < count($items); $i++) {
+            $quicksells[$i] = LocationController::getSellPrice($company->location, $i);
+        }
 
         $items = $items->except(3);
+        $limit = self::getStorageLimit($company);
 
         return view('companydashboard', array(
             "user" => Auth::user(),
             'company' => $company,
             'quicksells' => $quicksells,
-            'items' => $items
+            'items' => $items,
+            'limit' => $limit
         ));
     }
 
@@ -783,6 +789,10 @@ class CompanyController extends Controller
                 $options->quicksell = $value;
                 $options->save();
                 return redirect('companyoptions')->with('success', "Option 'Quick-sell resources' set to: " . $valueN);
+            case "expand":
+                $options->expand = $value;
+                $options->save();
+                return redirect('companyoptions')->with('success', "Option 'Build / expand' set to: " . $valueN);
             default:
                 return redirect('companyoptions')->with('fail', "Invalid option.");
         }
@@ -810,7 +820,7 @@ class CompanyController extends Controller
 
         $options->salary = $amount;
         $options->save();
-        return redirect('companyoptions')->with('success', 'Salary set to: $'.number_format($amount).'.');
+        return redirect('companyoptions')->with('success', 'Salary set to: $' . number_format($amount) . '.');
     }
 
     public function depositCash(Request $request)
@@ -836,6 +846,46 @@ class CompanyController extends Controller
         $user->save();
         $company->save();
         return redirect('companydashboard')->with('success', 'Deposited $' . number_format($amount) . '.');
+    }
+
+    public function depositItem(Request $request)
+    {
+        $user = Auth::user();
+        $amount = $request->input('amount');
+        $item = $request->input('item');
+
+        if (self::getAffiliation($user) == -1)
+            return redirect("dashboard")->with('fail', 'You are not part of a company.');
+
+        $cid = self::getAffiliation($user);
+        $company = Company::where('id', $cid)->get()->first();
+
+        if (!MarketplaceController::validItem($item))
+            return redirect('companydashboard')->with('fail', 'Invalid item.');
+
+        if ($amount < 1)
+            return redirect('companydashboard')->with('fail', 'Invalid amount.');
+
+        if (!MarketplaceController::hasItem($user, $item, $amount))
+            return redirect('companydashboard')->with('fail', 'You do not have enough ' . strtolower(MarketplaceController::getItemnames()[$item]) . '.');
+
+        $now = MarketplaceController::getItem($company, $item);
+        $limit = self::getStorageLimit($company);
+
+        if ($now == $limit) {
+            return redirect('companydashboard')->with('fail', "The company's " . strtolower(MarketplaceController::getItemnames()[$item]) . " storage is full.");
+        }
+
+        if (($now + $amount) > $limit) {
+            $amount = $limit - $now;
+        }
+
+        MarketplaceController::addItem($company, $item, $amount);
+        MarketplaceController::removeItem($user, $item, $amount);
+
+        $user->save();
+        $company->save();
+        return redirect('companydashboard')->with('success', 'Deposited ' . number_format($amount) . ' ' . strtolower(MarketplaceController::getItemnames()[$item]) . '.');
     }
 
     public function quickSell(Request $request)
@@ -865,7 +915,7 @@ class CompanyController extends Controller
             return redirect('companydashboard')->with('fail', 'You do not have permission to do that.');
 
         if (!MarketplaceController::hasItem($company, $item, $amount))
-            return redirect('companydashboard')->with('fail', 'The company does not have that many '.MarketplaceController::getItemnames()[$item].'.');
+            return redirect('companydashboard')->with('fail', 'The company does not have enough ' . strtolower(MarketplaceController::getItemnames()[$item]) . '.');
 
         //acutally selling
         MarketplaceController::removeItem($company, $item, $amount);
@@ -873,7 +923,83 @@ class CompanyController extends Controller
         $company->save();
 
         return redirect('companydashboard')->with('success',
-            'Sold '.number_format($amount)."x ".MarketplaceController::getItemnames()[$item]." for $".number_format($price*$amount));
+            'Sold ' . number_format($amount) . " " . strtolower(MarketplaceController::getItemnames()[$item]) . " for $" . number_format($price * $amount) . '.');
+    }
+
+    public static function getStorageLimit(Company $company)
+    {
+        return $company->storage;
+    }
+
+    public function buyStorage(Request $request) {
+        $user = Auth::user();
+        $amount = $request->input('amount');
+        $PRICE = 250;
+
+        if (self::getAffiliation($user) == -1)
+            return redirect('dashboard')->with('fail', 'You are not part of a company.');
+
+        $company = Company::where('id', self::getAffiliation($user))->get()->first();
+
+        $options = self::getOptions(self::getAffiliation($user));
+        if (!self::hasRights($user, $options->expand))
+            return redirect('companydashboard')->with('fail', 'You do not have permission to do that.');
+
+        if ($amount < 1) {
+            return redirect('companydashboard')->with('fail', 'Invalid amount.');
+        }
+
+        $total = $PRICE * $amount;
+
+        if ($company->cash < $total) {
+            return redirect('companydashboard')->with('fail', 'The company does not have enough cash to buy that much storage.');
+        }
+
+        $company->storage += $amount;
+        $company->cash -= $total;
+        $company->save();
+
+        return redirect('companydashboard')->with('success', 'Bought '.number_format($amount).' storage for $'.number_format($total).'.');
+    }
+
+    public function expand() {
+
+        $user = Auth::user();
+
+        if (CompanyController::getAffiliation($user) == -1) {
+            return $this->companyCreate();
+        }
+
+        $cid = CompanyController::getAffiliation($user);
+        $names = array();
+        $types = 6;
+
+        if (!self::hasRights($user, self::getOptions($cid)->expand)) {
+            return redirect('companydashboard')->with('fail', 'You do not have permission to view the expand page.');
+        }
+
+        for ($i = 0; $i < $types; $i++) {
+            $names[$i] = FactoryController::getTypeName($i);
+        }
+
+        $factories = Factory::where('company', $cid)->get();
+
+        return view('expand', array(
+            "user" =>$user,
+            "names" => $names,
+            "factories" => $factories
+        ));
+    }
+
+    public static function getLeaderboardRank($id)
+    {
+        $i = 0;
+        foreach (Company::all()->sortByDesc('level') as $c) {
+            $i++;
+            if ($c->id == $id) {
+                return $i;
+            }
+        }
     }
 
 }

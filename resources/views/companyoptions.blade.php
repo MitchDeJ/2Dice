@@ -111,6 +111,20 @@
                         </tr>
                         <tr>
                             <td>
+                                Build / expand
+                            </td>
+                            <td>
+                                <div class="form-inline">
+                                    {!! Form::open(['route' => ['company.setoption'], 'method' => 'post']) !!}
+                                    {!! Form::select('value', array(0 => 'Everyone', 1 => 'Moderator +', 2 => 'Admin +', 3 => 'Owner'),
+                                     ComAff::getOption($company->id, "expand"), ['class' => 'form-control form-group form-inline', 'onchange' => "this.form.submit()", $enabled]) !!}
+                                    {!! Form::hidden("option", "expand") !!}
+                                    {!! Form::close() !!}
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 Daily salary
                             </td>
                             <td>

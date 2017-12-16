@@ -75,6 +75,18 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td>
+                                            @if ($offer->offertype == 1)
+                                                ${{number_format($offer->cash)}}
+                                                | {{number_format($offer->amount - $offer->completed - $offer->collected)}} {{strtolower($itemnames->get($offer->item))}}
+                                            @endif
+                                            @if ($offer->offertype == 0)
+                                                ${{number_format($offer->cash)}}
+                                                | {{number_format($offer->completed - $offer->collected)}} {{strtolower($itemnames->get($offer->item))}}
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         @if($offer->cancelled == true)
                                             <td class="table-danger">
                                                 Cancelled

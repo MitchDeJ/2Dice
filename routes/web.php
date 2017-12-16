@@ -55,17 +55,22 @@ Route::get('/companycreate', 'CompanyController@companyCreate')->name('companycr
 Route::get('/companyprofile', 'CompanyController@companyProfile')->name('companyprofile');
 Route::get('/editcompanyprofile', 'CompanyController@editProfile')->name('editcompanyprofile');
 Route::get('/companyprofile/{name}', "CompanyController@otherProfile");
-Route::get('/companyleaderboard', 'CompanyController@companyLeaderboard')->name('companyleaderboard');
+Route::get('/companyleaderboard/{num}', 'LeaderboardController@companyIndex')->name('companyleaderboard');
 Route::get('/companydashboard', 'CompanyController@companyDashboard')->name('companydashboard');
 Route::get('/viewrequests', 'CompanyController@viewRequests')->name('viewrequests');
 Route::get('/managemembers', 'CompanyController@manageMembers')->name('managemembers');
 Route::get('/companyoptions', 'CompanyController@companyOptions')->name('companyOptions');
+Route::get('/expand', 'CompanyController@expand')->name('expand');
+Route::get('/build', 'FactoryController@buildView')->name('build');
 Route::get('/adminpanel', 'AdminController@index')->name('adminpanel');
+Route::get('/factory/{num}', 'FactoryController@factoryPage');
 
 Route::post('editprofile', 'ProfileController@updateAvatar');
 Route::post("/updateDesc",["uses" => "ProfileController@updateDesc", "as"=>"profile.updateDesc"]);
 Route::post("/getPlayer",["uses" => "LeaderboardController@getPlayer", "as"=>"leaderboard.getPlayer"]);
 Route::post("/getPage",["uses" => "LeaderboardController@getPage", "as"=>"leaderboard.getPage"]);
+Route::post("/getCompany",["uses" => "LeaderboardController@getCompany", "as"=>"leaderboard.getcompany"]);
+Route::post("/getCompanyPage",["uses" => "LeaderboardController@getCompanyPage", "as"=>"leaderboard.getcompanypage"]);
 Route::post("/fly", ["uses" => "LocationController@fly", "as"=>'location.fly']);
 Route::post("/roll55x2", ["uses" => "GamblingController@roll55x2", "as"=>'55x2.roll']);
 Route::post("/sendMessage", ["uses" => "MessageController@sendMessage", "as"=>"message.send"]);
@@ -120,8 +125,13 @@ Route::post("/setrole",["uses" => "CompanyController@setRole", "as"=>"company.se
 Route::post("/disband",["uses" => "CompanyController@disband", "as"=>"company.disband"]);
 Route::post("/leave",["uses" => "CompanyController@leave", "as"=>"company.leave"]);
 Route::post("/depositcash",["uses" => "CompanyController@depositCash", "as"=>"company.depositcash"]);
+Route::post("/deposititem",["uses" => "CompanyController@depositItem", "as"=>"company.deposit"]);
 Route::post("/changeowner",["uses" => "CompanyController@changeOwner", "as"=>"company.changeowner"]);
 Route::post("/setoption",["uses" => "CompanyController@setOption", "as"=>"company.setoption"]);
 Route::post("/quicksell",["uses" => "CompanyController@quickSell", "as"=>"company.quicksell"]);
+Route::post("/buystorage",["uses" => "CompanyController@buyStorage", "as"=>"company.buystorage"]);
 Route::post("/setSalary",["uses" => "CompanyController@setSalary", "as"=>"company.setsalary"]);
+Route::post("/buildfactory",["uses" => "FactoryController@build", "as"=>"factory.build"]);
+Route::post("/upgradefactory",["uses" => "FactoryController@upgrade", "as"=>"factory.upgrade"]);
+Route::post("/removefactory",["uses" => "FactoryController@remove", "as"=>"factory.remove"]);
 
