@@ -246,7 +246,7 @@
                                     Company rank
                                 </td>
                                 <td>
-                                    #{{$companyrank}}
+                                    {{$companyrank}}
                                 </td>
                             </tr>
                             </tbody>

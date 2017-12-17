@@ -27,7 +27,7 @@ class DashboardController extends Controller
         $companyrank = "";
         if (CompanyController::getAffiliation($user) != -1) {
             $company = CompanyController::getCompanyName(CompanyController::getAffiliation($user));
-            $companyrank = CompanyController::getLeaderboardRank(Company::where('id', CompanyController::getAffiliation($user))->get()->first()->id);
+            $companyrank = "#".CompanyController::getLeaderboardRank(Company::where('id', CompanyController::getAffiliation($user))->get()->first()->id);
         }
         return view('dashboard', array(
             "user" => $user,
