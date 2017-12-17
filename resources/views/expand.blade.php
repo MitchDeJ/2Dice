@@ -16,8 +16,8 @@
                             href="{{url("/companydashboard")}}">Back</a></div>
             <div class="card-body">
                 <div>
-                    <p>Start gathering resources by building factories. You're able to build a maximum of 4 factories.</p>
-                    <p>There is a limit of one per factory, and two per factory type (gather and processed).</p>
+                    <p>Start gathering resources by building factories. You can build a maximum of <b>four</b> factories.</p>
+                    <p>You can not build the same factory more than once, and can build <b>two</b> factories of each type (gathering and processing)</p>
                     <a href="{{url('build')}}">
                     <button type="submit" class="btn btn-dark">Build</button>
                     </a>
