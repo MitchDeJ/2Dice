@@ -19,22 +19,22 @@
                     </a></div>
             </div>
             <hr/>
-            {!! Form::open(['route' => ['message.send'], 'method' => 'post', 'class' => 'form-horizontal']) !!}
+            {!! Form::open(['route' => ['message.send'], 'method' => 'post', 'class' => 'form-horizontal'], 'required') !!}
             <div class="row col-md-12">
                 <h6>Send to</h6>
-                <input type="text" class="form-control" placeholder="Username" value="{{$name}}" name="to">
+                <input type="text" class="form-control" placeholder="Username" value="{{$name}}" name="to" required>
             </div>
             <br>
 
             <div class="row col-md-12">
                 <h6>Title</h6>
-                <input type="text" class="form-control" placeholder="Title" name="title">
+                <input type="text" class="form-control" placeholder="Title" name="title" required>
             </div>
             <br>
 
             <div class="row col-md-12">
                 <h6>Message</h6>
-                <textarea class="form-control" rows="3" placeholder="Message" name="text"></textarea>
+                <textarea class="form-control" rows="3" placeholder="Message" name="text" required></textarea>
             </div>
             <br>
 

@@ -21,16 +21,16 @@
                 <p>You currently have {{number_format($user->globalmsg)}} global message points.</p>
                 <p>This message will be sent to every user and will cost you 1 global message point. You can buy points at the <a href="{{ url('/prestige') }}" class="text-dark">prestige shop</a>.</p>
                 <hr/>
-                {!! Form::open(['route' => ['message.sendglobal'], 'method' => 'post', 'class' => 'form-horizontal']) !!}
+                {!! Form::open(['route' => ['message.sendglobal'], 'method' => 'post', 'class' => 'form-horizontal'], 'required') !!}
                 <div class="row col-md-12">
                     <h6>Title</h6>
-                    <input type="text" class="form-control" placeholder="Title" name="title">
+                    <input type="text" class="form-control" placeholder="Title" name="title" required>
                 </div>
                 <br>
 
                 <div class="row col-md-12">
                     <h6>Message</h6>
-                    <textarea class="form-control" rows="3" placeholder="Message" name="text"></textarea>
+                    <textarea class="form-control" rows="3" placeholder="Message" name="text" required></textarea>
                 </div>
                 <br>
 
