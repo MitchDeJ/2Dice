@@ -14,13 +14,45 @@
         @if ($c != null)
         // Set the date we're counting down to
         var countDownDate{{$loop->iteration}} = {{$c->end}};
+        @endif
+            @endforeach
 
+        var xmlHttp;
+        function srvTime(){
+            try {
+                //FF, Opera, Safari, Chrome
+                xmlHttp = new XMLHttpRequest();
+            }
+            catch (err1) {
+                //IE
+                try {
+                    xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
+                }
+                catch (err2) {
+                    try {
+                        xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+                    }
+                    catch (eerr3) {
+                        //AJAX not supported, use CPU time.
+                    }
+                }
+            }
+            xmlHttp.open('HEAD',window.location.href.toString(),false);
+            xmlHttp.setRequestHeader("Content-Type", "text/html");
+            xmlHttp.send('');
+            return xmlHttp.getResponseHeader("Date");
+        }
+        var st = srvTime();
+        var now =  Math.round(new Date(st).getTime() / 1000);
+
+        var s = setInterval(function () {
+            now++;
+        }, 1000);
+
+        @foreach($cooldowns as $c)
+        @if ($c != null)
         // Update the count down every 1 second
         var x{{$loop->iteration}} = setInterval(function () {
-
-            // Get todays date and time
-            var now = Math.round((new Date()).getTime() / 1000);
-
             // Find the distance between now an the count down date
             var distance{{$loop->iteration}} = countDownDate{{$loop->iteration}} - now;
 

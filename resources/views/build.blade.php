@@ -21,7 +21,7 @@
                         @if($hascash == true) </strike> @endif
                 </p>
                 <p @if($haspower == true) style="color:green" @else style="color:red" @endif>
-                    @if($haspower = true) <strike> @endif
+                    @if($haspower == true) <strike> @endif
                         Building a new factory requires a total of <b>{{number_format($powerreq)}} power.</b>
                         @if($haspower) </strike> @endif
                 </p>
