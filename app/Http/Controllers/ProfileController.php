@@ -32,7 +32,7 @@ class ProfileController extends Controller
         $companyrank = "";
         if (CompanyController::getAffiliation($user) != -1) {
             $company = CompanyController::getCompanyName(CompanyController::getAffiliation($user));
-            $companyrank = CompanyController::getLeaderboardRank(Company::where('id', CompanyController::getAffiliation($user))->get()->first()->id);
+            $companyrank = "#".CompanyController::getLeaderboardRank(Company::where('id', CompanyController::getAffiliation($user))->get()->first()->id);
         }
         if (CompanyController::getAffiliation($user) != -1) {
             $company = CompanyController::getCompanyName(CompanyController::getAffiliation($user));
@@ -61,7 +61,7 @@ class ProfileController extends Controller
         $companyrank = "";
         if (CompanyController::getAffiliation($user) != -1) {
             $company = CompanyController::getCompanyName(CompanyController::getAffiliation($user));
-            $companyrank = CompanyController::getLeaderboardRank(Company::where('id', CompanyController::getAffiliation($user))->get()->first()->id);
+            $companyrank = "#".CompanyController::getLeaderboardRank(Company::where('id', CompanyController::getAffiliation($user))->get()->first()->id);
         }
 
         if (CompanyController::getAffiliation($user) != -1) {
