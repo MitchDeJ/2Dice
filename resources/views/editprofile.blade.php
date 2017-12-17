@@ -19,7 +19,7 @@
                      style="display: block; margin: auto; margin-bottom: 1%">
                 <div class="text-center form-group">
                     <form enctype="multipart/form-data" action="" method="POST">
-                        <input type="file" required name="avatar">
+                        <input type="file" required name="avatar" accept="image/*">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <button type="submit" class="btn btn-secondary">Save</button>
                     </form>
