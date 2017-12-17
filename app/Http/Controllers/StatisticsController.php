@@ -16,10 +16,11 @@ class StatisticsController extends Controller
      */
     public function index()
     {
-        $toprichest = User::all()->sortByDesc('cash')->slice(0, 5);
-        $topranked = User::orderBy('prestige', 'DESC')->orderBy('rank', 'DESC')->get()->slice(0, 5);
-        $topbets = User::all()->sortByDesc('highestbet')->slice(0, 5);
-        $toptotalbets = User::all()->sortByDesc('totalbets')->slice(0, 5);
+        $adminid = User::where('name', "admin")->get()->first()->id;
+        $toprichest = User::where('id', '!=',  $adminid)->get()->sortByDesc('cash')->slice(0, 5);
+        $topranked = User::where('id', '!=',  $adminid)->orderBy('prestige', 'DESC')->orderBy('rank', 'DESC')->get()->slice(0, 5);
+        $topbets = User::where('id', '!=',  $adminid)->get()->sortByDesc('highestbet')->slice(0, 5);
+        $toptotalbets = User::where('id', '!=',  $adminid)->get()->sortByDesc('totalbets')->slice(0, 5);
 
         return view('statistics', array(
             "user" => Auth::user(),

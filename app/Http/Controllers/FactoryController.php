@@ -269,7 +269,7 @@ class FactoryController extends Controller
     public static function getBuildReq($count)
     {
         //count= how many you currently own
-        $pointpower = 3000000; //how much power you get off one prestige point
+        $pointpower = 5000000; //how much power you get off one prestige point
         switch ($count) {
             case 0:
                 return 0;

@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Location;
 use Illuminate\Console\Command;
+use App\Http\Controllers\MessageController;
 
 class UpdatePrices extends Command
 {
@@ -38,6 +39,7 @@ class UpdatePrices extends Command
      */
     public function handle()
     {
+        MessageController::sendSystemMessage("admin", "price update DONE.", "");
         $locations = Location::all();
 
         $min = 1;

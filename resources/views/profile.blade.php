@@ -121,7 +121,7 @@
                                         Company rank
                                     </td>
                                     <td>
-                                        #1
+                                        #{{$companyrank}}
                                     </td>
                                 </tr>
                                 <tr>

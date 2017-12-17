@@ -17,7 +17,8 @@ class LeaderboardController extends Controller
      */
     public function index($num)
     {
-        $users = User::all()->sortByDesc('power')->slice(0+(25*($num-1)), 25);
+        $adminid = User::where('name', "admin")->get()->first()->id;
+        $users = User::where('id', '!=', $adminid)->get()->sortByDesc('power')->slice(0+(25*($num-1)), 25);
         $pages = ceil(User::count()/25);
         $bans = array();
         foreach($users as $user) {

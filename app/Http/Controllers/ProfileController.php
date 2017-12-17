@@ -29,6 +29,11 @@ class ProfileController extends Controller
         }
         $list = substr($list, 0, strlen($list) - 2);
         $company = "";
+        $companyrank = "";
+        if (CompanyController::getAffiliation($user) != -1) {
+            $company = CompanyController::getCompanyName(CompanyController::getAffiliation($user));
+            $companyrank = CompanyController::getLeaderboardRank(Company::where('id', CompanyController::getAffiliation($user))->get()->first()->id);
+        }
         if (CompanyController::getAffiliation($user) != -1) {
             $company = CompanyController::getCompanyName(CompanyController::getAffiliation($user));
         }
@@ -38,7 +43,8 @@ class ProfileController extends Controller
             "location" => Location::where("id", $user->location)->get()->first(),
             'list' => $list,
             'company' => $company,
-            'banned' => 0 //cannot view your own profile if your banned anyways..
+            'banned' => 0, //cannot view your own profile if your banned anyways..
+            'companyrank' => $companyrank
         ));
     }
 
@@ -52,6 +58,12 @@ class ProfileController extends Controller
         }
         $list = substr($list, 0, strlen($list) - 2);
         $company = "";
+        $companyrank = "";
+        if (CompanyController::getAffiliation($user) != -1) {
+            $company = CompanyController::getCompanyName(CompanyController::getAffiliation($user));
+            $companyrank = CompanyController::getLeaderboardRank(Company::where('id', CompanyController::getAffiliation($user))->get()->first()->id);
+        }
+
         if (CompanyController::getAffiliation($user) != -1) {
             $company = CompanyController::getCompanyName(CompanyController::getAffiliation($user));
         }
@@ -64,7 +76,8 @@ class ProfileController extends Controller
             "location" => Location::where("id", $user->location)->get()->first(),
             'list' => $list,
             'company' => $company,
-            'banned' => $banned
+            'banned' => $banned,
+            'companyrank' => $companyrank
         ));
     }
 
@@ -109,7 +122,8 @@ class ProfileController extends Controller
     public static function getLeaderboardRank($name)
     {
         $i = 0;
-        foreach (User::all()->sortByDesc('power') as $p) {
+        $adminid = User::where('name', "admin")->get()->first()->id;
+        foreach (User::where('id', '!=', $adminid)->get()->sortByDesc('power') as $p) {
             $i++;
             if ($p->name == $name) {
                 return $i;

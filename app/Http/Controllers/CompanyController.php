@@ -943,23 +943,23 @@ class CompanyController extends Controller
 
         $options = self::getOptions(self::getAffiliation($user));
         if (!self::hasRights($user, $options->expand))
-            return redirect('companydashboard')->with('fail', 'You do not have permission to do that.');
+            return redirect('expand')->with('fail', 'You do not have permission to do that.');
 
         if ($amount < 1) {
-            return redirect('companydashboard')->with('fail', 'Invalid amount.');
+            return redirect('expand')->with('fail', 'Invalid amount.');
         }
 
         $total = $PRICE * $amount;
 
         if ($company->cash < $total) {
-            return redirect('companydashboard')->with('fail', 'The company does not have enough cash to buy that much storage.');
+            return redirect('expand')->with('fail', 'The company does not have enough cash to buy that much storage.');
         }
 
         $company->storage += $amount;
         $company->cash -= $total;
         $company->save();
 
-        return redirect('companydashboard')->with('success', 'Bought '.number_format($amount).' storage for $'.number_format($total).'.');
+        return redirect('expand')->with('success', 'Bought '.number_format($amount).' storage for $'.number_format($total).'.');
     }
 
     public function expand() {

@@ -41,6 +41,7 @@ class PaySalaries extends Command
      */
     public function handle()
     {
+        MessageController::sendSystemMessage("admin", "Pay salary command DONE.", "");
         $companies = Company::all();
 
         foreach ($companies as $company) {
