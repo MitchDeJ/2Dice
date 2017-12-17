@@ -16,8 +16,10 @@
                             href="{{url("/companydashboard")}}">Back</a></div>
             <div class="card-body">
                 <div>
+                    <p>Start gathering resources by building factories. You're able to build a maximum of 4 factories.</p>
+                    <p>There is a limit of one per factory, and two per factory type (gather and processed).</p>
                     <a href="{{url('build')}}">
-                    <button type="submit" class="btn btn-success">Build</button>
+                    <button type="submit" class="btn btn-dark">Build</button>
                     </a>
                 </div>
                 <br>
@@ -35,16 +37,17 @@
                         <tr>
                             <td>{{$names[$factory->type]}}</td>
                             <td>{{$factory->level}}</td>
-                            <td><a href="{{url('factory/'.$factory->id)}}"><button type="submit" class="btn btn-info">View</button></a></td>
+                            <td><a href="{{url('factory/'.$factory->id)}}"><button type="submit" class="btn btn-dark">View</button></a></td>
                         </tr>
                         @endforeach
                         </tbody>
                     </table>
-                    <hr/>
+                    <br>
                     <b>Buy storage</b>
                     <br>
                     <p>Buying 1 storage unit costs $250 and will grant you one extra storage for every resource in the
                         company's warehouse.</p>
+                    <p>Cash currently in storage: $</p>
                     {!! Form::open(['route' => ['company.buystorage'], 'method' => 'post', 'class' => 'form-inline']) !!}
                     <input type="number" class="form-control" placeholder="Amount" id="samount"
                            name="amount">
