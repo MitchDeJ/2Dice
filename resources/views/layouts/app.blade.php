@@ -73,7 +73,7 @@
             <li class="nav-item nav-small" data-toggle="tooltip" data-placement="right" title="Marketprices">
                 <a class="nav-link" href="{{ url('/marketprices') }}">
                     <i class="fa fa-fw fa-university"></i>
-                    <span class="nav-link-text">Market prices</span>
+                    <span class="nav-link-text">Prices</span>
                 </a>
             </li>
 

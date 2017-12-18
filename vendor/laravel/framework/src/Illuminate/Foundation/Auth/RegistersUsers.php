@@ -52,6 +52,7 @@ trait RegistersUsers
         $user->started = $time;
         $user->lastlogin = $time;
         $user->cash = 200000;//first login bonus + default cash
+        $user->location = rand(1, 3);
         $user->save();
         //setting the start period (preventing instantly sending cash)
         $UNIXHOUR = 3600;

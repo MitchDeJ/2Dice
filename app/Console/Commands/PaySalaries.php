@@ -6,7 +6,6 @@ use App\Http\Controllers\MessageController;
 use Illuminate\Console\Command;
 use App\Company;
 use App\Http\Controllers\CompanyController;
-use App\User;
 
 class PaySalaries extends Command
 {
@@ -41,7 +40,6 @@ class PaySalaries extends Command
      */
     public function handle()
     {
-        MessageController::sendSystemMessage("admin", "Pay salary command DONE.", "");
         $companies = Company::all();
 
         foreach ($companies as $company) {

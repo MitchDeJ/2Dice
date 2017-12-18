@@ -50,7 +50,7 @@
         @foreach($auctions as $a)
         // Update the count down every 1 second
         var x{{$loop->iteration}} = setInterval(function () {
-            
+
             // Find the distance between now an the count down date
             var distance{{$loop->iteration}} = countDownDate{{$loop->iteration}} - now;
 

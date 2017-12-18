@@ -47,7 +47,7 @@
                     <br>
                     <p>Buying 1 storage unit costs $250 and will grant you one extra storage for every resource in the
                         company's warehouse.</p>
-                    <p>Cash currently in storage: $</p>
+                    <p>Cash currently in storage: ${{$company->cash}}</p>
                     {!! Form::open(['route' => ['company.buystorage'], 'method' => 'post', 'class' => 'form-inline']) !!}
                     <input type="number" class="form-control" placeholder="Amount" id="samount"
                            name="amount">

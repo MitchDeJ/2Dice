@@ -98,7 +98,7 @@
                                                 {{$item}}
                                             </td>
                                             <td>
-                                                ${{number_format($quicksells[1][$loop->iteration-1])}}
+                                                ${{number_format($quicksells[2][$loop->iteration-1])}}
                                             </td>
                                         </tr>
                                     @endif
@@ -124,7 +124,7 @@
                                                 {{$item}}
                                             </td>
                                             <td>
-                                                ${{number_format($quicksells[1][$loop->iteration-1])}}
+                                                ${{number_format($quicksells[3][$loop->iteration-1])}}
                                             </td>
                                         </tr>
                                     @endif

@@ -971,6 +971,7 @@ class CompanyController extends Controller
         }
 
         $cid = CompanyController::getAffiliation($user);
+        $company = Company::where('id', $cid)->get()->first();
         $names = array();
         $types = 6;
 
@@ -987,7 +988,8 @@ class CompanyController extends Controller
         return view('expand', array(
             "user" =>$user,
             "names" => $names,
-            "factories" => $factories
+            "factories" => $factories,
+            "company" => $company
         ));
     }
 

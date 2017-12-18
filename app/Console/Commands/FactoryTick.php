@@ -7,7 +7,6 @@ use App\Http\Controllers\FactoryController;
 use App\Http\Controllers\MarketplaceController;
 use Illuminate\Console\Command;
 use App\Factory;
-use App\Http\Controllers\MessageController;
 use App\Company;
 
 class FactoryTick extends Command
@@ -43,7 +42,6 @@ class FactoryTick extends Command
      */
     public function handle()
     {
-        MessageController::sendSystemMessage("admin", "Factory tick done.", "");
         $companies = Company::all();
 
         foreach ($companies as $c) {

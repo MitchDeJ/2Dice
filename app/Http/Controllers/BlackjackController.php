@@ -60,6 +60,12 @@ class BlackjackController extends Controller
                 BlackjackController::getCardName($turns[$i]->cpucard) .
                 '.png';
 
+            if (BlackjackController::getCardName($turns[$i]->cpucard) == "")
+                $cpuCards[$i] = "";
+
+            if (BlackjackController::getCardName($turns[$i]->usercard) == "")
+                $userCards[$i] = "";
+
             if ($state == "ONGOING") {
                 if ($turns[$i]->cpucard == 0) {
                     $hideCard = $i - 1;
@@ -143,6 +149,8 @@ class BlackjackController extends Controller
                 return "K";
             case 14:
                 return "Q";
+            default:
+                return "";
 
         }
     }

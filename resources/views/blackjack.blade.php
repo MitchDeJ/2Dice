@@ -47,21 +47,26 @@
                                     <div>
                                         <button type="submit" class="btn btn-default">Gamble</button>
 
-                                        <button type="button" herf="#"  onclick="allInButton()" class="btn btn-outline-success">ALL</button>
+                                        <button type="button" herf="#" onclick="allInButton()"
+                                                class="btn btn-outline-success">ALL
+                                        </button>
                                     </div>
                                     {!! Form::close() !!}
                                 </div>
                             @else
                                 @if($state == "ONGOING")
                                     <p>Your bet: <b>${{number_format($bet)}}</b></p>
-                                    @elseif ($state == "DRAW")
-                                    <p style="color:royalblue">It's a draw! <b>${{number_format($bet)}}</b> has been returned.</p>
+                                @elseif ($state == "DRAW")
+                                    <p style="color:royalblue">It's a draw! <b>${{number_format($bet)}}</b> has been
+                                        returned.</p>
                                 @elseif ($state == "LOSE")
                                     <p style="color:red">Dealer wins! You lose <b>${{number_format($bet)}}</b>.</p>
                                 @elseif ($state == "WIN")
-                                    <p style="color:green">{{$user->name}} wins! You win <b>${{number_format($bet)}}</b>.</p>
+                                    <p style="color:green">{{$user->name}} wins! You win <b>${{number_format($bet)}}</b>.
+                                    </p>
                                 @elseif ($state == "WIN_BLACKJACK")
-                                    <p style="color:green">{{$user->name}} wins (instant blackjack)! You win <b>${{number_format($bet*1.5)}}</b>.</p>
+                                    <p style="color:green">{{$user->name}} wins (instant blackjack)! You win
+                                        <b>${{number_format($bet*1.5)}}</b>.</p>
                                 @endif
                                 <div class="table-responsive">
                                     <table class="table table-striped">
@@ -74,13 +79,13 @@
                                         <tbody>
                                         <tr>
                                             <td
-                                            @if($state == "WIN" || $state == "WIN_BLACKJACK")
-                                                style="color:red;"
-                                            @elseif($state == "LOSE")
-                                                style="color:green"
-                                            @elseif($state == "DRAW")
-                                                style="color:royalblue;"
-                                            @endif
+                                                    @if($state == "WIN" || $state == "WIN_BLACKJACK")
+                                                    style="color:red;"
+                                                    @elseif($state == "LOSE")
+                                                    style="color:green"
+                                                    @elseif($state == "DRAW")
+                                                    style="color:royalblue;"
+                                                    @endif
                                             >
                                                 Dealer ({{$cputotal}})
                                             </td>
@@ -88,10 +93,12 @@
                                                 @for($i = 0; $i < $turncount; $i++)
                                                     @if ($i == $hidecard && $state == "ONGOING")
                                                         <img src="img/cards/cardBack.png">
-                                                        @else
-                                                <img src="{{$cpucards[$i]}}">
+                                                    @else
+                                                        @if($cpucards[$i] != "")
+                                                            <img src="{{$cpucards[$i]}}">
+                                                        @endif
                                                     @endif
-                                                    @endfor
+                                                @endfor
                                             </td>
                                         </tr>
                                         <tr>
@@ -108,7 +115,9 @@
                                             </td>
                                             <td>
                                                 @for($i = 0; $i < $turncount; $i++)
-                                                <img src="{{$usercards[$i]}}">
+                                                    @if($usercards[$i] != "")
+                                                    <img src="{{$usercards[$i]}}">
+                                                    @endif
                                                 @endfor
                                             </td>
                                         </tr>
@@ -117,20 +126,21 @@
                                     @if($state == "ONGOING")
                                         {!! Form::open(['route' => ['blackjack.hit'], 'method' => 'post']) !!}
                                         {!! Form::hidden("location", $location->id) !!}
-                                    <div class="form-inline">
-                                    <button type="submit" class="btn btn-default">Hit!</button>&nbsp;
-                                    {!! Form::close() !!}
-                                        {!! Form::open(['route' => ['blackjack.stand'], 'method' => 'post']) !!}
-                                        {!! Form::hidden("location", $location->id) !!}
-                                    <button type="submit" class="btn btn-default">Stand</button>
+                                        <div class="form-inline">
+                                            <button type="submit" class="btn btn-default">Hit!</button>
+                                            &nbsp;
+                                            {!! Form::close() !!}
+                                            {!! Form::open(['route' => ['blackjack.stand'], 'method' => 'post']) !!}
+                                            {!! Form::hidden("location", $location->id) !!}
+                                            <button type="submit" class="btn btn-default">Stand</button>
+                                            {!! Form::close() !!}
+                                            @else
+                                                {!! Form::open(['route' => ['blackjack.reset'], 'method' => 'post']) !!}
+                                                {!! Form::hidden("location", $location->id) !!}
+                                                <button type="submit" class="btn btn-default">Reset</button>
+                                        </div>
                                         {!! Form::close() !!}
-                                        @else
-                                        {!! Form::open(['route' => ['blackjack.reset'], 'method' => 'post']) !!}
-                                        {!! Form::hidden("location", $location->id) !!}
-                                        <button type="submit" class="btn btn-default">Reset</button>
-                                    </div>
-                                        {!! Form::close() !!}
-                                        @endif
+                                    @endif
                                 </div><br>
                             @endif
                             @else
