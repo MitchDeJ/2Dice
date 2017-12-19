@@ -79,7 +79,7 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <td class="table_dark_bg" style="width: 50%;">Gathering resources</td>
+                                <td class="table_dark_bg" style="width: 50%;">Gathering</td>
                                 <td class="table_dark_bg" style="width: 50%;"></td>
                             </tr>
                             </thead>
@@ -119,7 +119,7 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <td class="table_dark_bg" style="width: 50%;">Processed resources</td>
+                                <td class="table_dark_bg" style="width: 50%;">Processed</td>
                                 <td class="table_dark_bg" style="width: 50%;"></td>
                             </tr>
                             </thead>
