@@ -50,7 +50,7 @@
                             @foreach($newmessages as $m)
                                 <tr>
                                     <td><a href="{{ url('/message/'.$m->id) }}" class="text-dark"><b>{{$m->title}}</b></a></td>
-                                    <td><a href="profile/"{{$m->from}} class="text-dark"><b>{{$m->from}}</b></a></td>
+                                    <td><a href={{url("profile/".$m->from)}} class="text-dark"><b>{{$m->from}}</b></a></td>
                                     <td><b>{{$m->sentat}}</b></td>
                                     <td>
                                         {!! Form::open(['route' => ['message.delete'], 'method' => 'post']) !!}
@@ -63,7 +63,7 @@
                             @foreach($oldmessages as $m)
                                 <tr>
                                     <td><a href="{{ url('/message/'.$m->id) }}" class="text-dark">{{$m->title}}</a></td>
-                                    <td><a href="profile/" .{{$m->from}} class="text-dark">{{$m->from}}</a></td>
+                                    <td><a href="{{url("profile/".$m->from)}}" class="text-dark">{{$m->from}}</a></td>
                                     <td>{{$m->sentat}}</td>
                                     <td>
                                         {!! Form::open(['route' => ['message.delete'], 'method' => 'post']) !!}

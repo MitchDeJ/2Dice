@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/register', 'Auth\RegisterController@showRegisterForm')->name('register');
+
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/profile/{name}', "ProfileController@otherProfile");
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');

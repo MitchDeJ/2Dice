@@ -37,4 +37,14 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    public function showLoginForm() {
+        $release = 1513857600;
+        if (time() < $release)
+            return view("soon", array(
+                'timestamp' => $release,
+            ));
+        else
+            return view('auth/login');
+    }
 }

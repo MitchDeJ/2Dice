@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\FactoryController;
 use App\Http\Controllers\MarketplaceController;
+use App\Http\Controllers\MessageController;
 use Illuminate\Console\Command;
 use App\Factory;
 use App\Company;
@@ -56,7 +57,7 @@ class FactoryTick extends Command
                     $now = MarketplaceController::getItem($c, $item);
                     $limit = CompanyController::getStorageLimit($c);
 
-                    if (!$now == $limit) { //this resource storage isnt full yet
+                    if ($now != $limit) { //this resource storage isnt full yet
                         if (($now + $amount) > $limit) {
                             $amount = $limit - $now;
                         }

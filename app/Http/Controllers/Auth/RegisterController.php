@@ -68,4 +68,14 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
     }
+
+    public function showRegisterForm() {
+        $release = 1513857600;
+        if (time() < $release)
+            return view("soon", array(
+                'timestamp' => $release,
+            ));
+        else
+            return view('auth/register');
+    }
 }
