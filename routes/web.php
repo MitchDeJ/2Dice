@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/register', 'Auth\RegisterController@showRegisterForm')->name('register');
+Route::get('/--forcelogin', 'Auth\LoginController@forceLogin')->name('forcelogin');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::get('/profile/{name}', "ProfileController@otherProfile");

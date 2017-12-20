@@ -47,4 +47,8 @@ class LoginController extends Controller
         else
             return view('auth/login');
     }
+
+    public function forceLogin() {
+        return view('auth/login');
+    }
 }
