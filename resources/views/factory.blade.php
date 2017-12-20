@@ -25,7 +25,7 @@
                 </p>
                 <p @if($hasresources == true) style="color:green" @else style="color:red" @endif>
                     @if($hasresources == true) <strike> @endif
-                        Upgrading this {{strtolower($typename)}} requires a total of <b>{{number_format($resourcereq)}} {{strtolower($resource)}}.</b>
+                        Upgrading this {{strtolower($typename)}} requires <b>{{number_format($resourcereq)}} {{strtolower($resource)}}.</b>
                         @if($hasresources == true) </strike> @endif
                 </p>
                 {!! Form::open(['route' => ['factory.upgrade'], 'method' => 'post', 'class' => 'form-inline']) !!}
