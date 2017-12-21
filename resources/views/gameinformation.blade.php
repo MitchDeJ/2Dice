@@ -345,7 +345,7 @@
                 </ul>
                 <p>Factories can be upgraded for an increasing cost of cash and resources. This will increase it's efficiency per hour.</p>
                 <b>Selling resources</b>
-                <p>Resources can be quick-sold on the company dashboard page. For current quick sell prices, check the "Prices" tab.</p>
+                <p>Resources can be quick-sold on the company dashboard page. For current quick sell prices, check the "Prices" tab. <b>Prices change every 6 hours.</b></p>
                 <p>If you would like to decide on the pricing yourself, consider selling resources to other players/companies using the marketplace.</p>
                 <br>
                 <p>Is there any information we did not include? <a href="mailto:2DiceInfo@gmail.com">Let us know!</a></p>
