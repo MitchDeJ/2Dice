@@ -47,8 +47,15 @@ class CompanyController extends Controller
         $mycompany = CompanyController::getAffiliation($user);
         $location = LocationController::getName($company->location);
         $members = CompanyController::getCompanyMembers($company->id);
-        $rank =  self::getLeaderboardRank($company->id);
+        $rank = self::getLeaderboardRank($company->id);
+        $factories = Factory::where('company', $company->id)->get();
+        $names = array();
 
+        $i = 0;
+        while (FactoryController::validType($i)) {
+            $names[$i] = FactoryController::getTypeName($i);
+            $i++;
+        }
 
         $roles = array();
         $ranks = array();
@@ -73,7 +80,9 @@ class CompanyController extends Controller
             'totalpower' => $totalpower,
             'mycompany' => $mycompany,
             'pending' => false,
-            'rank' => $rank
+            'rank' => $rank,
+            'factories' => $factories,
+            'names' => $names
         ));
     }
 
@@ -114,12 +123,21 @@ class CompanyController extends Controller
         $mycompany = CompanyController::getAffiliation($user);
         $location = LocationController::getName($company->location);
         $members = CompanyController::getCompanyMembers($company->id);
-        $rank =  self::getLeaderboardRank($company->id);
+        $rank = self::getLeaderboardRank($company->id);
 
         $pending = false;
 
         if (JoinRequest::where('user', Auth::user()->id)->get()->count() > 0)
             $pending = true;
+
+        $factories = Factory::where('company', $company->id)->get();
+        $names = array();
+
+        $i = 0;
+        while (FactoryController::validType($i)) {
+            $names[$i] = FactoryController::getTypeName($i);
+            $i++;
+        }
 
         $roles = array();
         $ranks = array();
@@ -145,7 +163,9 @@ class CompanyController extends Controller
             'totalpower' => $totalpower,
             'mycompany' => $mycompany,
             'pending' => $pending,
-            'rank' => $rank
+            'rank' => $rank,
+            'factories' => $factories,
+            'names' => $names
         ));
     }
 
@@ -931,7 +951,8 @@ class CompanyController extends Controller
         return $company->storage;
     }
 
-    public function buyStorage(Request $request) {
+    public function buyStorage(Request $request)
+    {
         $user = Auth::user();
         $amount = $request->input('amount');
         $PRICE = 250;
@@ -959,10 +980,11 @@ class CompanyController extends Controller
         $company->cash -= $total;
         $company->save();
 
-        return redirect('expand')->with('success', 'Bought '.number_format($amount).' storage for $'.number_format($total).'.');
+        return redirect('expand')->with('success', 'Bought ' . number_format($amount) . ' storage for $' . number_format($total) . '.');
     }
 
-    public function expand() {
+    public function expand()
+    {
 
         $user = Auth::user();
 
@@ -986,7 +1008,7 @@ class CompanyController extends Controller
         $factories = Factory::where('company', $cid)->get();
 
         return view('expand', array(
-            "user" =>$user,
+            "user" => $user,
             "names" => $names,
             "factories" => $factories,
             "company" => $company

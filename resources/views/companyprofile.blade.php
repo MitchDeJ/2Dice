@@ -137,6 +137,25 @@
                         </tbody>
                     </table>
                 </div>
+                <br>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <td class="table_dark_bg" style="width: 50%;">Factory</td>
+                            <td class="table_dark_bg" style="width: 50%;">Level</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($factories as $factory)
+                            <tr>
+                                <td>{{$names[$factory->type]}}</td>
+                                <td>{{$factory->level}}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
