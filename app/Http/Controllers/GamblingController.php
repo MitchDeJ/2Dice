@@ -76,7 +76,7 @@ class GamblingController extends Controller
             $user->highestbet = $bet;
         }
 
-        if ($num <= 50) {
+        if ($num <= 55) {
             $user->cash -= $bet;
             $object->cash += $bet;
             $object->profit += $bet;

@@ -68,14 +68,14 @@
                         An alternate/second account is <b>not allowed.</b>
                     </li>
                     <li>
-                        You start at Prestige 0, Rank 1. 100.000 XP is required to gain a rank.
+                        You start at Prestige 0, Level 1. 100.000 XP is required to gain a level.
                     </li>
                     <li>
-                        To gain Prestige, you have to reach 100.000xp whilst you're Rank 10 (as if your were ranking to
-                        rank 11)
+                        To gain Prestige, you have to reach 100.000xp whilst you're level 10 (as if your were ranking to
+                        level 11)
                     </li>
                     <li>
-                        Whenever you gain Prestige, you will be reset to rank 1 and gain 1 Prestige point which can be
+                        Whenever you gain Prestige, you will be reset to level 1 and gain 1 Prestige point which can be
                         spent in the prestige shop.
                     </li>
                     <li>

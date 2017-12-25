@@ -131,8 +131,7 @@ class MarketplaceController extends Controller
 
                 if ($completed >= $amount)
                     break;
-
-                if (!$match->amount == $match->completed) {
+                if ($match->amount != $match->completed) {
                     $available = $match->amount - $match->completed;
                     $needed = ($amount - $completed);
                     if ($needed >= $available) {
@@ -174,10 +173,11 @@ class MarketplaceController extends Controller
 
             foreach ($matches as $match) {
                 //ignore offers from your own company
-                if (!($match->creatortype == 1 && $match->creator == $affiliation)) {
+                if (($match->creatortype == 1 && $match->creator == $affiliation))
+                    break;
                     if ($completed >= $amount)
                         break;
-                    if (!$match->amount == $match->completed) {
+                    if ($match->amount != $match->completed) {
                         $needed = $match->amount - $match->completed;
                         $available = $amount - $completed;
                         if ($needed >= $available) {
@@ -193,7 +193,6 @@ class MarketplaceController extends Controller
                         }
                         $match->save();
                     }
-                }
             }
         }
 
@@ -261,7 +260,7 @@ class MarketplaceController extends Controller
 
             //remove company members from list
             foreach ($userMatches as $match) {
-                if (CompanyController::getAffiliation($match->creator) == $company->id) {
+                if (CompanyController::getAffiliation(User::where('id', $match->creator)->get()->first()) == $company->id) {
                     $userMatches = $userMatches->except($match->id);
                 }
             }
@@ -277,12 +276,16 @@ class MarketplaceController extends Controller
 
             $matches = $userMatches->merge($companyMatches);
 
+
+            //var_dump(count($matches));
+            //die;
+
             foreach ($matches as $match) {
 
                 if ($completed >= $amount)
                     break;
 
-                if (!$match->amount == $match->completed) {
+                if ($match->amount != $match->completed) {
                     $available = $match->amount - $match->completed;
                     $needed = ($amount - $completed);
                     if ($needed >= $available) {
@@ -318,7 +321,7 @@ class MarketplaceController extends Controller
 
             //remove company members from list
             foreach ($userMatches as $match) {
-                if (CompanyController::getAffiliation($match->creator) == $company->id) {
+                if (CompanyController::getAffiliation(User::where('id', $match->creator)->get()->first()) == $company->id) {
                     $userMatches = $userMatches->except($match->id);
                 }
             }
@@ -756,7 +759,7 @@ class MarketplaceController extends Controller
         $offers = MarketOffer::where('item', $item)->get();
         $total = 0;
         foreach ($offers as $offer) {
-            if ($offer->cancelled == false)
+            if ($offer->cancelled == false && $offer->offertype == 1)
             $total += ($offer->amount - $offer->completed);
         }
 

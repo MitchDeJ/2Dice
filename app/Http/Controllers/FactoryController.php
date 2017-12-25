@@ -436,6 +436,8 @@ class FactoryController extends Controller
 
         $action = "";
 
+        $nexteff = self::getUnitsPerHour($factory->level + 1);
+
         if (self::isGatherType($factory->type))
             $action = "gathers";
 
@@ -454,7 +456,8 @@ class FactoryController extends Controller
             'resource' => $resource,
             'action' => $action,
             'units' => $units,
-            'result' => $result
+            'result' => $result,
+            'nexteff' => $nexteff
         ]);
     }
 }

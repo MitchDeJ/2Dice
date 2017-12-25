@@ -21,12 +21,12 @@ class RankController extends Controller
                 $user->prestigepoints+=1;
                 MessageController::sendSystemMessage($user->name, "You have gained prestige!",
                     "Congratulations! You have reached prestige ".$user->prestige.".
-                     Your rank has been reset to 1 and you have gained 1 prestige point. Prestige points can be spent in the prestige shop.");
+                     Your level has been reset to 1 and you have gained 1 prestige point. Prestige points can be spent in the prestige shop.");
             } else {
                 //the player just gained a rank
                 $user->rank+=1;
-                MessageController::sendSystemMessage($user->name, "You have gained a rank!",
-                    "Congratulations! You are now rank ".$user->rank.".");
+                MessageController::sendSystemMessage($user->name, "You have gained a level!",
+                    "Congratulations! You are now level ".$user->rank.".");
             }
         }
         $user->save();

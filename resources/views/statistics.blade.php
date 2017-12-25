@@ -40,7 +40,7 @@
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <td class="table_dark_bg" style="width: 50%;">Top ranked players</td>
+                                <td class="table_dark_bg" style="width: 50%;">Top levelled players</td>
                                 <td class="table_dark_bg" style="width: 50%;"></td>
                             </tr>
                             </thead>
@@ -49,7 +49,7 @@
                                 <tr>
                                     <td><a href="{{url("/profile/".$user->name)}}" class="text-dark">{{$user->name}}</a>
                                     </td>
-                                    <td>Prestige {{$user->prestige}} (Rank {{$user->rank}})</td>
+                                    <td>Prestige {{$user->prestige}} (Level {{$user->rank}})</td>
                                 </tr>
                             @endforeach
                             </tbody>

@@ -1,5 +1,6 @@
 <?php
 namespace Illuminate\Foundation\Auth;
+use App\IpLog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -108,6 +109,12 @@ trait AuthenticatesUsers
         }
         $user->lastlogin = $time;
         $user->save();
+
+        //create an iplog
+        IpLog::create([
+            'user' => $user->name,
+            'ip' => $request->ip()
+        ]);
     }
     /**
      * Get the failed login response instance.

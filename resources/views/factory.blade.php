@@ -16,6 +16,7 @@
             <div class="card-body">
                 <h5>Efficiency</h5>
                 <p>This {{strtolower($typename)}} {{$action}} <b>{{number_format($units)}} {{strtolower($result)}} per hour.</b></p>
+                <p>Upgrading will increase this to <b>{{number_format($nexteff)}} {{strtolower($result)}} per hour</b> (Increase of {{($nexteff - $units) * 24}} per day).</p>
                 <hr/>
                 <h5>Upgrade requirements (level {{$factory->level}} -> level {{$factory->level+1}})</h5>
                 <p @if($hascash == true) style="color:green" @else style="color:red" @endif>

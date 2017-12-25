@@ -127,7 +127,7 @@ class CompanyController extends Controller
 
         $pending = false;
 
-        if (JoinRequest::where('user', Auth::user()->id)->get()->count() > 0)
+        if (JoinRequest::where('user', Auth::user()->id)->where('company', $company->id)->get()->count() > 0)
             $pending = true;
 
         $factories = Factory::where('company', $company->id)->get();

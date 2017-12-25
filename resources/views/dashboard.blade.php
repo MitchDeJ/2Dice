@@ -41,7 +41,7 @@
                                     Prestige
                                 </td>
                                 <td>
-                                    {{$user->prestige}} (Rank {{$user->rank}})
+                                    {{$user->prestige}} (Level {{$user->rank}})
                                 </td>
                             </tr>
                             <tr>
