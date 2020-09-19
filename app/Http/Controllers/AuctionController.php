@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use App\Object;
+use App\GameObject;
 use App\User;
 use App\Auction;
 
@@ -19,7 +19,7 @@ class AuctionController extends Controller
     public function newAuction()
     {
         $user = Auth::user();
-        $objects = Object::where('owner', $user->id)->get();
+        $objects = GameObject::where('owner', $user->id)->get();
         $list = "";
         foreach ($objects as $obj) {
             $list .= ObjectController::getTypeName($obj->type) . ' ' . LocationController::getName($obj->location) . ', ';
@@ -66,7 +66,7 @@ class AuctionController extends Controller
     public function addAuction(Request $request)
     {
         $user = Auth::user();
-        $object = Object::where('type', substr($request->input('object'), 0, 1))->where('location', substr($request->input('object'), 1, 1))->get();
+        $object = GameObject::where('type', substr($request->input('object'), 0, 1))->where('location', substr($request->input('object'), 1, 1))->get();
         $minprice = $request->input('minprice');
         $hours = $request->input('time');
 
@@ -199,7 +199,7 @@ class AuctionController extends Controller
         $auction = Auction::where('id', $id)->get()->first();
         $seller = User::where('id', $auction->user)->get()->first();
         $winner = User::where('id', $auction->biduser)->get()->first();
-        $object = Object::where('type', $auction->type)->where('location', $auction->location)->get()->first();
+        $object = GameObject::where('type', $auction->type)->where('location', $auction->location)->get()->first();
 
         if ($auction->biduser == 0 || $auction->bid == 0) {
             MessageController::sendSystemMessage($seller->name,

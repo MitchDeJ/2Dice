@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Object;
+use App\GameObject;
 use App\BlackjackTurn;
 use Illuminate\Http\Request;
 use Auth;
@@ -26,7 +26,7 @@ class BlackjackController extends Controller
         $user = Auth::user();
         $location = Location::where("id", $user->location)->get()->first();
 
-        $object = Object::where('location', $location->id)->where('type', 1)->get()->first();
+        $object = GameObject::where('location', $location->id)->where('type', 1)->get()->first();
 
         $state = BlackjackController::getGameState($user, $location->id);
         $turns = BlackjackTurn::where('user', $user->id)->where('location', $location->id)->get();
@@ -203,7 +203,7 @@ class BlackjackController extends Controller
         }
 
         //getting the object
-        $object = Object::where('type', 1)->where('location', $location)->get()->first();
+        $object = GameObject::where('type', 1)->where('location', $location)->get()->first();
 
         if ($bet > $object->maxbet) {
             return redirect('blackjack')->with('fail', 'You can not place a bet higher than the maximum bet.');
@@ -386,7 +386,7 @@ class BlackjackController extends Controller
     public function checkBlackJack(User $user, $location) {
         $state = BlackjackController::getGameState($user, $location);
 
-        $object = Object::where('type', 1)->where('location', $location)->get()->first();
+        $object = GameObject::where('type', 1)->where('location', $location)->get()->first();
         $owner = User::where('id', $object->owner)->get()->first();
 
         $turns = BlackjackTurn::where('user', $user->id)->where('location', $location)->get();

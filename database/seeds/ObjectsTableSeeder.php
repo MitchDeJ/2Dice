@@ -13,7 +13,7 @@ class ObjectsTableSeeder extends Seeder
     {
         for ($t = 0; $t < 4; $t++) {
             for ($i = 1; $i < 4; $i++) {
-                DB::table('objects')->insert([
+                DB::table('game_objects')->insert([
                     'type' => $t,
                     'location' => $i,
                     'owner' => -1,

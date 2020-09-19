@@ -28,6 +28,13 @@
                     <br>
                     <p class="text-center">Join request pending...</p>
                 @endif
+                @if ($mycompany == $company->id && $company->owner != $user->name)
+                    <p class="text-center">If you want to leave this company, you can press the 'Leave' button below to do so.</p>
+                    <form class="text-center" action="{{ route('company.leave') }}" method="post">
+                        {{csrf_field()}}
+                        <button  type="submit" class="btn btn-danger">Leave</button>
+                    </form>
+                @endif
 
                 <div class="form-group">
                     <br>

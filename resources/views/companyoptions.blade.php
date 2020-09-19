@@ -164,14 +164,6 @@
                         <br>
                         <button type="submit" class="btn btn-danger">Disband</button>
                         {!! Form::close() !!}
-                    @else
-                        <b>Leaving</b>
-                        <br>
-                        If you want to leave this company, you can press the 'Leave' button below to do so.
-                        <br><br>
-                        {!! Form::open(['route' => ['company.leave'], 'method' => 'post']) !!}
-                        <button type="submit" class="btn btn-danger">Leave</button>
-                        {!! Form::close() !!}
                     @endif
                 </div>
             </div>

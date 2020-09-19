@@ -823,7 +823,7 @@ class CompanyController extends Controller
         $amount = $request->input('amount');
         $user = Auth::user();
 
-        if ($amount < 1)
+        if ($amount < 0)
             return redirect("companyoptions")->with('fail', 'Invalid amount');
 
         if ($amount > config('app.maxcash'))

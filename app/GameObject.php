@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Object extends Model
+class GameObject extends Model
 {
     /**
      * The attributes that are mass assignable.

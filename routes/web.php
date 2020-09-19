@@ -137,4 +137,5 @@ Route::post("/setSalary",["uses" => "CompanyController@setSalary", "as"=>"compan
 Route::post("/buildfactory",["uses" => "FactoryController@build", "as"=>"factory.build"]);
 Route::post("/upgradefactory",["uses" => "FactoryController@upgrade", "as"=>"factory.upgrade"]);
 Route::post("/removefactory",["uses" => "FactoryController@remove", "as"=>"factory.remove"]);
+Route::post("/redeemvip",["uses" => "SubscriptionController@redeem", "as"=>"vip.redeem"]);
 

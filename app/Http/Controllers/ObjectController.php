@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Object;
+use App\GameObject;
 use Auth;
 use App\Auction;
 use App\BlackjackTurn;
@@ -16,7 +16,7 @@ class ObjectController extends Controller
         $amount = $request->input('amount');
         $location = $request->input('location');
         $type = $request->input('type');
-        $object = Object::where('type', $type)->where('location', $location)->get()->first();
+        $object = GameObject::where('type', $type)->where('location', $location)->get()->first();
 
         if ($type == 0) {
             $page = 'roulette';
@@ -77,7 +77,7 @@ class ObjectController extends Controller
         $amount = $request->input('amount');
         $location = $request->input('location');
         $type = $request->input('type');
-        $object = Object::where('type', $type)->where('location', $location)->get()->first();
+        $object = GameObject::where('type', $type)->where('location', $location)->get()->first();
         $action = $request->input('action');
 
         if ($type == 0) {
@@ -175,9 +175,9 @@ class ObjectController extends Controller
      */
     public function objectOverview()
     {
-        $objectsNL = Object::where('location', 1)->get();
-        $objectsUK = Object::where('location', 2)->get();
-        $objectsRU = Object::where('location', 3)->get();
+        $objectsNL = GameObject::where('location', 1)->get();
+        $objectsUK = GameObject::where('location', 2)->get();
+        $objectsRU = GameObject::where('location', 3)->get();
 
         $objects = $objectsNL->merge($objectsUK)->merge($objectsRU);
         $users = array();

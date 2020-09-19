@@ -30,25 +30,25 @@ class StocksTableSeeder extends Seeder
         switch($id)
         {
             case 1:
-                return "Jamflex Studios";
+                return "2Dice Ltd";
             case 2:
-                return "AgRee Supermarkets";
+                return "Upgrader Studios";
             case 3:
-                return "Scalba Bakeries";
+                return "Pinto Productions";
             case 4:
-                return "OOMEN Technology";
+                return "Wood Technology";
             case 5:
-                return "AE Sports";
+                return "Basic Fitness";
             case 6:
-                return "Motherlode Mining";
+                return "The Golden Trident";
             case 7:
-                return "Astra Supercars";
+                return "Sheep & Lemon";
             case 8:
-                return "Corsa Travels";
+                return "Carlos Audio";
             case 9:
-                return "TimeToDice Casinos";
+                return "Bet-Tastic Casinos";
             case 10:
-                return "M1tch Software";
+                return "RoFlex Ltd";
         }
     }
 }

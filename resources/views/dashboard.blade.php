@@ -13,7 +13,7 @@
         <div class="card mb-3">
             <div class="card-body">
                 <div id="fail" class="alert alert-info" align="center">
-                    <b>Top 3 players</b> on the leaderboard @ <b>28/12/2017 13:00</b> will be granted <b>14 days of VIP status!</b>
+                    <b>Join the community on <a href="https://discord.gg/kxWhCRY" target="_blank">Discord!</a></b>
                 </div>
             <div class="card-header"><i class="fa fa-user i_button_background"></i> {{$user->name}}'s dashboard | <a
                         href="{{ url('/changepassword') }}" class="text-dark">Change password</a></div>

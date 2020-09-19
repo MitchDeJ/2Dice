@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Location;
-use App\Object;
+use App\GameObject;
 use App\User;
 use App\Cooldown;
 
@@ -20,7 +20,7 @@ class LocationController extends Controller
     {
         $user = Auth::user();
         $location =  Location::where("id", $user->location)->get()->first();
-        $object = Object::where('location', $location->id)->where('type', 2)->get()->first();
+        $object = GameObject::where('location', $location->id)->where('type', 2)->get()->first();
         if (User::where('id', $object->owner)->get()->count() < 1)
             $owner = null;
         else
@@ -58,7 +58,7 @@ class LocationController extends Controller
             if ($request->input(['location'.$i]) != null) {
                 $oldlocation = Location::where("id", Auth::user()->location)->get()->first();
                 $location = Location::where("name",  $request->input(['location'.$i]))->get()->first();
-                $object = Object::where('location', $oldlocation->id)->where('type', 2)->get()->first();
+                $object = GameObject::where('location', $oldlocation->id)->where('type', 2)->get()->first();
                 Auth::user()->location = $location->id;
                 Auth::user()->cash -= $price;
                 $object->cash+=$price;

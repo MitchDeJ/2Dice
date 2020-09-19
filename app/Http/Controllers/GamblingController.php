@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\BlackjackTurn;
 use Illuminate\Http\Request;
 use Auth;
-use App\Object;
+use App\GameObject;
 use App\Location;
 use App\User;
 use App\Coinflip;
@@ -21,7 +21,7 @@ class GamblingController extends Controller
     {
         $user = Auth::user();
         $location = Location::where("id", $user->location)->get()->first();
-        $object = Object::where('location', $location->id)->where('type', 3)->get()->first();
+        $object = GameObject::where('location', $location->id)->where('type', 3)->get()->first();
         if (User::where('id', $object->owner)->get()->count() < 1)
             $owner = null;
         else
@@ -51,7 +51,7 @@ class GamblingController extends Controller
         $bet = $request->input('bet');
         $user = Auth::user();
         $location = Location::where('id', $user->location)->get()->first();
-        $object = Object::where('location', $user->location)->where('type', 3)->get()->first();
+        $object = GameObject::where('location', $user->location)->where('type', 3)->get()->first();
         $owner = User::where('id', $object->owner)->get()->first();
 
         if (!is_numeric($bet)) {
@@ -118,7 +118,7 @@ class GamblingController extends Controller
         $user = Auth::user();
         $red = $request['red_amount'];
         $location = Location::where('id', $user->location)->get()->first();
-        $object = Object::where('location', $user->location)->where('type', 0)->get()->first();
+        $object = GameObject::where('location', $user->location)->where('type', 0)->get()->first();
         $owner = User::where('id', $object->owner)->get()->first();
 
         if ($red == null)
@@ -332,7 +332,7 @@ class GamblingController extends Controller
     {
         $user = Auth::user();
         $location = Location::where("id", $user->location)->get()->first();
-        $object = Object::where('location', $location->id)->where('type', 0)->get()->first();
+        $object = GameObject::where('location', $location->id)->where('type', 0)->get()->first();
         if (User::where('id', $object->owner)->get()->count() < 1)
             $owner = null;
         else

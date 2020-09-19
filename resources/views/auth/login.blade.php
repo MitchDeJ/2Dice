@@ -34,10 +34,9 @@
 </div>
 <div class="container">
     <div class="card card-login mx-auto mt-5">
-        <form class="form-horizontal" method="POST" action="{{ route('login') }}">
+        <form class="form-horizontal" method="POST" action="{{ route('login') }}" id="login-form">
             {{ csrf_field() }}
             <div class="card-body">
-                <form>
                     <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                         @if(Session::get('ban'))
                                 <strong style="color:red">You are banned.<br>Reason: {{ Session::get('ban') }}</strong><br>
@@ -60,14 +59,17 @@
                             </span>
                         @endif
                     </div>
-                    <button type="submit" class="btn btn-primary btn-block">
+                    <button type="submit" class="btn btn-primary btn-block g-recaptcha"
+                            data-sitekey="6LffKs4ZAAAAANvACQR3muXpFpKU4yXxnzIkU9ei"
+                            data-callback='onSubmit'
+                            data-action='submit'>
                         Login
                     </button>
-                </form>
                 <div class="text-center">
                     <a class="d-block small mt-3" href="{{ url('/register') }}">Register an Account</a>
                 </div>
             </div>
+        </form>
     </div>
 </div>
 <!-- Bootstrap core JavaScript-->
@@ -75,6 +77,12 @@
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+    function onSubmit(token) {
+        document.getElementById("login-form").submit();
+    }
+</script>
 </body>
 
 </html>

@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Auth;
 use File;
 use Image;
-use App\Object;
+use App\GameObject;
 use App\User;
 use App\Location;
 
@@ -22,7 +22,7 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $objects = Object::where('owner', $user->id)->get();
+        $objects = GameObject::where('owner', $user->id)->get();
         $list = "";
         foreach ($objects as $obj) {
             $list .= ObjectController::getTypeName($obj->type) . ' ' . LocationController::getName($obj->location) . ', ';
@@ -51,7 +51,7 @@ class ProfileController extends Controller
     public function otherProfile($name)
     {
         $user = User::where("name", $name)->get()->first();
-        $objects = Object::where('owner', $user->id)->get();
+        $objects = GameObject::where('owner', $user->id)->get();
         $list = "";
         foreach ($objects as $obj) {
             $list .= ObjectController::getTypeName($obj->type) . ' ' . LocationController::getName($obj->location) . ', ';

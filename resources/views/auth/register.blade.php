@@ -35,10 +35,7 @@
 <div class="container">
     <div class="card card-register mx-auto mt-5">
         <div class="card-body">
-            <div id="fail" class="alert alert-info" align="center">
-                Creating an alternate/second account is <b>not allowed</b>
-            </div>
-            <form class="form-horizontal" method="POST" action="{{ route('register') }}">
+            <form class="form-horizontal" method="POST" action="{{ route('register') }}" id="register-form">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <div class="form-row">
@@ -74,7 +71,10 @@
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">
+                <button type="submit" class="btn btn-primary btn-block g-recaptcha"
+                        data-sitekey="6LffKs4ZAAAAANvACQR3muXpFpKU4yXxnzIkU9ei"
+                        data-callback='onSubmit'
+                        data-action='submit'>
                     Register
                 </button>
             </form>
@@ -89,6 +89,12 @@
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Core plugin JavaScript-->
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js"></script>
+<script>
+    function onSubmit(token) {
+        document.getElementById("register-form").submit();
+    }
+</script>
 </body>
 
 </html>

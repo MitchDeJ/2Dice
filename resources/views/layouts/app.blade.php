@@ -194,7 +194,7 @@
                         <a href="{{ url('/gameinformation') }}">Game information</a>
                     </li>
                     <li>
-                        <a href="https://www.reddit.com/r/TimeToDice/" target="_blank">Subreddit</a>
+                        <a href="https://discord.gg/kxWhCRY" target="_blank">Discord</a>
                     </li>
                     @if(Auth::user()->name == "admin")
                         <li>
